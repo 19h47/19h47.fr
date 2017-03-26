@@ -1,0 +1,59 @@
+/**
+ * Sizes classes
+ */
+
+// If Breakpoint Slicer and import size are instanciates
+@if ( $slicer-breakpoints-settings == true ) and ( $import-utilities-sizes == true ) {
+
+    @each $size-dimension in $size-dimensions {
+
+        @each $size-propertie-value, $size-propertie-name in $size-properties {
+
+            %#{ $size-propertie-value }-#{ round( $size-dimension ) }px {
+
+                #{ $size-propertie-name }: ( $size-dimension * 1px );  
+            }
+            
+            .#{ $size-propertie-value }-#{ round( $size-dimension ) }px {
+
+                @extend %#{ $size-propertie-value }-#{ round( $size-dimension ) }px; 
+            }
+
+        }
+    }
+
+    @each $breakpoint in $slicer-breakpoint-names {
+
+        @include from($breakpoint) {
+
+            @each $size-dimension in $size-dimensions
+            {
+                @each $size-propertie-value, $size-propertie-name in $size-properties {
+
+                    /**
+                     * Construct each class for each breakpoint
+                     *
+                     * Round(): Rounds a number to the nearest whole number.
+                     *
+                     * @see http://sass-lang.com/documentation/Sass/Script/Functions.html#round-instance_method
+                     */
+                    
+                    %#{ $size-propertie-value }-#{ unquote( $breakpoint ) }-#{ round( $size-dimension ) } {
+                        
+                        #{ $size-propertie-name }: ( percentage( $size-dimension / 100 ) );   
+                    }
+
+                    .#{ $size-propertie-value }-#{ unquote( $breakpoint ) }-#{ round( $size-dimension ) } {
+                        
+                        @extend %#{ $size-propertie-value }-#{ unquote( $breakpoint ) }-#{ round( $size-dimension ) }  
+                    }
+
+                    .#{ $size-propertie-value }-#{ unquote( $breakpoint ) }-auto {
+                        
+                        #{ $size-propertie-name }: auto;
+                    }
+                }
+            }
+        }
+    }
+}

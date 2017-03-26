@@ -1,0 +1,227 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ * UTILITIES
+ * –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+ 
+/**
+ * Unstyled
+ *
+ * Remove the default list style (immediate children only)
+ * 
+ * @source Bootstrap
+ * @see http://getbootstrap.com/css/#unstyled
+ * @uses @extend %list-unstyled
+ */
+%list-unstyled {
+    list-style: none;
+    padding-left: 0;
+}
+.list-unstyled {
+    @extend %list-unstyled;
+}
+
+
+// Touch devices ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––—
+.hidden-touch {
+    .touch & {
+        display: none !important;
+    }
+}
+
+/**
+ * Helper class Clearfix
+ *
+ * Easily clear floats
+ *
+ * @source Bootstrap
+ * @see http://getbootstrap.com/css/#helper-classes-clearfix
+ * @uses .clearfix
+ */
+.clearfix {
+    &::before,
+    &::after { 
+        content: " ";
+        @extend %display-xs-table;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+
+/**
+ * Clear both
+ *
+ * No floating elements allowed on the left and the right side of the element
+ *
+ * @uses .clear-both
+ */
+.clear-both {
+    clear: both;
+}
+
+// Menu ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.menu-inline {
+    @extend .list-unstyled;
+
+    @if $import-utilities-margins {
+        @extend %no-margin;
+    } @else {
+	   margin: 0;
+    } 
+
+	li {
+		display: inline-block;
+	}
+}
+
+// Border ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Responsive container for videos
+.embed-container {
+    @extend .overflow-hidden!optional;
+
+    @if $import-utilities-positions {
+
+        @extend %position-relative;
+
+    } @else {
+        position: relative;
+    }
+
+    @include padding( bottom percentage( 1 / ( 16 / 9 ) ) );
+
+    height: 0;
+    max-width: 100%;
+    
+    > iframe,
+    > object,
+    > embed,
+    > div {
+
+        @if $import-utilities-positions {
+
+            @extend %position-absolute;
+        
+        } @else {
+            position: absolute;
+        }
+
+        @include size( 100%!important );
+        
+        top: 0;
+        left: 0;
+    }
+}
+
+.map-container {
+    @extend 
+        %overflow-hidden, 
+        %position-relative;
+    
+    @include padding( bottom percentage( 655 / 598 ) );
+    
+    height: 445px;
+    max-width: 100%;
+
+    @include from( 'md' ) {
+        height: 0;
+
+    }
+
+    > iframe {
+        @extend %position-absolute;
+        @include size( 100%!important );
+
+        top: 0;
+        left: 0;
+    }
+}
+
+
+/**
+ * Responsive images
+ *
+ * @source Bootstrap
+ * @see http://v4-alpha.getbootstrap.com/content/images/#responsive-images
+ * @uses .img-fluid
+ */
+.img-fluid 
+{
+    @if $import-utilities-displays
+    {
+        @extend %display-xs-block;
+    }
+    @else
+    {
+        display: block;
+    }
+
+    max-width: 100%;
+    height: auto;
+}
+
+.img-full {
+    @include size( 100%, auto );
+    max-width: 100%;
+}
+
+.outline-none
+{
+    outline: none;
+}
+
+.is-on-top
+{
+    position: relative;
+    z-index: 10;
+}
+
+
+/**
+ * Cursor pointer class
+ *
+ * @uses .cursor-pointer
+ */
+.cursor-pointer {
+    @extend %Cursor-pointer;
+}
+
+
+.visually-hidden {
+    visibility: hidden;
+}
+
+
+/**
+ * Flex utilities
+ *
+ * @uses .aligner
+ */
+.aligner {
+
+    @include from('md') {
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        /**
+         * Item alignment
+         *
+         * @uses .aligner__item--bottom
+         */
+        &__item--bottom {
+            align-self: flex-end;
+        }
+    }
+}
+
+
+/**
+ * Background size cover
+ */
+.background-size-cover {
+    @extend %Background-size-cover;
+}

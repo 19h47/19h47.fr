@@ -1,0 +1,36 @@
+{#
+
+	/**
+	 * /views/footer
+	 * 
+	 * @package WordPress
+	 * @subpackage lecafedelaquarium
+	 * @author Jérémy Levron jeremy@poigneedemainvirile.com
+	 */
+	
+#}
+
+			<footer class="l-container margin-xs-bottom-48 margin-xs-top-24">
+				<div class="row">
+					<div class="col-xs-10 col-xs-offset-1">
+						<div class="row">
+							<div class="col-xs-6">
+								<p class="no-margin opacity-40 font-size-13 color-white uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline">
+									Creative front end developer
+								</p>
+							</div>
+							<div class="col-xs-6 text-xs-right">
+								<p class="no-margin opacity-40 font-size-13 color-white uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline">
+									{{ "now"|date("l, d F, Y") }}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</main>
+	{{ wp_footer }}
+		{% include 'components/guid.twig' %}
+</body>
+</html>

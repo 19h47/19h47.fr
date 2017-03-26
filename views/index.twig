@@ -1,0 +1,41 @@
+{#
+	/**
+	 * /views/index
+	 */
+#}
+
+{# Header #}
+{% include 'header/base.twig' %}
+
+{% block content %} 
+	<div class="l-container">
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2">
+				<img class="img-full" src="{{ theme.link }}/img/png/home-background.png" width="758" height="512">
+			</div>
+		</div>
+	</div>
+	{# <div class="l-container">
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1">
+				<p class="font-light color-white margin-xs-top-72 margin-xs-bottom-72">
+					— Hello,<br> 
+					My name is <span class="font-medium">Jérémy Levron</span>.<br> 
+					I’m an enthusiastic creative front end developer<br> 
+					currently working at <span class="font-medium">Poignée de main virile</span>,<br>
+					a France-based design studio and award winning.<br>
+					<br>
+					I love discovering and learning things every day, to be<br>
+					part of what we call “cool kids”. I'm not a kid anymore,<br> 
+					but, hey, I’m still pretty cool.<br>
+					<br>
+					You can reach me at <span class="font-medium">levronjeremy[at]19h47.fr</span><br>
+					to grab a beer or talk about JavaScript.<br>
+				</p>
+			</div>
+		</div>
+	</div> #}
+{% endblock %}
+
+{# Footer #}
+{% include 'footer/base.twig' %}

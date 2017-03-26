@@ -1,0 +1,60 @@
+{#
+
+	/**
+	 * /views/header
+	 *
+	 * @package WordPress
+	 * @subpackage lecafedelaquarium
+	 * @author Jérémy Levron jeremy@poigneedemainvirile.com
+	 */
+
+#}
+<!DOCTYPE html>
+<html {{ language_attributes }} {{ fn( 'html_class', 'no-js' ) }}>
+	<head>
+		<meta charset="{{ site.charset }}">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+		{{ wp_head }}
+
+		{% include 'components/google-analytics.twig' %}
+
+	</head>
+	<body class="background-black h-xs-100 w-xs-100">
+		<main class="display-xs-table h-xs-100 w-xs-100">
+			<div class="display-xs-table-cell vertical-align-middle ">	
+				<header class="l-container margin-xs-top-72 margin-xs-bottom-24">
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+
+							<div class="row">
+
+								<div class="col-xs-6">
+									<h1 class="font-medium font-size-24 color-white no-margin display-xs-inline-block valign-baseline">
+										<a href="{{ site.url }}">
+											{{ site.name }}
+										</a>
+									</h1>
+								</div>
+
+								<div class="col-xs-4 text-xs-right">
+									<a class="no-margin margin-xs-left-48 opacity-40 font-size-13 color-white uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline" href="">
+										Who I am
+									</a>
+								</div>
+								
+								<div class="col-xs-2 text-xs-right">
+
+									<a class="no-margin margin-xs-left-48 opacity-40 font-size-13 color-white uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline" href="">
+										What I do
+									</a>
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
+				</header>

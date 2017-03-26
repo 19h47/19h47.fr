@@ -1,0 +1,75 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+/**
+ * Get color
+ *
+ * Retrieve color from $color-variations map
+ *
+ * @access  public
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+@function get_color( $color-name, $color-variant: null ) {
+    
+    // Color variant is optional
+    @if ( $color-variant != null ) {
+      
+        // map inception
+        @return map-get( map-get( $color-variations, $color-name ), $color-variant );
+    }
+
+    @else {
+
+        @return map-get($color-variations, $color-name );
+    }
+}
+
+
+/**
+ * Get color list
+ *
+ * @access  public
+ * @param   $label
+ * @return  $list
+ */
+@function get_color_list( $label ) {
+    
+    @each $list in $color-variations {
+    
+        @if nth( $list, 1 ) == $label {
+
+            @return $list;
+        }
+    }
+    @return null;
+}
+
+
+
+/**
+ * Slightly lighten a color
+ * 
+ * @access  public
+ * @param   Color   $color          color to tint
+ * @param   Number  $percentage     percentage of `$color` in returned color
+ * @see     https://css-tricks.com/snippets/sass/tint-shade-functions/
+ * @return  Color
+ */
+@function tint($color, $percentage ) {
+  @return mix( white, $color, $percentage );
+}
+
+
+/** 
+ * Slightly darken a color
+ * 
+ * @access  public
+ * @param   Color   $color          color to shade
+ * @param   Number  $percentage     percentage of `$color` in returned color
+ * @see     https://css-tricks.com/snippets/sass/tint-shade-functions/
+ * @return  Color
+ */
+@function shade($color, $percentage ) {
+  @return mix( black, $color, $percentage );
+}

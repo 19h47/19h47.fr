@@ -1,0 +1,20 @@
+/**
+ * Positions classes
+ */
+ 
+@if ( $import-utilities-positions == true ) {
+
+
+	@each $position-value in $position-values {
+
+		%position-#{ unquote( $position-value ) } {
+
+	        position: #{unquote($position-value)};
+	    }
+
+	    .position-#{unquote($position-value)} {
+
+	        @extend %position-#{ unquote( $position-value ) };
+	    }
+	}
+}

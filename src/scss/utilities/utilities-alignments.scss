@@ -1,0 +1,39 @@
+/**
+ * Alignments
+ */
+
+@if ( $import-utilities-vertical-alignments == true ) {
+ 
+    @each $vertical-alignment-value in $vertical-alignment-values {
+        
+        %valign-#{ unquote( $vertical-alignment-value ) } {
+
+            vertical-align: #{unquote( $vertical-alignment-value ) };
+        }
+
+        .valign-#{ unquote( $vertical-alignment-value ) } {
+
+            @extend %valign-#{ unquote( $vertical-alignment-value ) }
+        }
+    }
+
+    .valign {
+        @include from('xs') {
+            &-xs {
+                &-none {
+                    vertical-align: baseline;
+                }
+            }
+        }
+        
+        @include from('sm') {
+            &-sm
+            {
+                &-middle
+                {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}

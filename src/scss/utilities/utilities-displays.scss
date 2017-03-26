@@ -1,0 +1,45 @@
+/**
+ * Display
+ */
+
+@if ( $import-utilities-displays == true ) {
+
+    /**
+     * Responsive utilities
+     */
+    @if ( $slicer-breakpoints-settings == true ) and ( $import-utilities-texts == true ) {
+
+        // For each breakpoint found in $slicer-breakpoint-names
+        @each $breakpoint in $slicer-breakpoint-names {
+
+            @include from( $breakpoint ) {
+                
+                @each $display-value in $display-values {
+
+                    %display-#{ $breakpoint }-#{ unquote( $display-value ) } {
+                        
+                        display: #{ unquote( $display-value ) };
+
+                        @if $display-value == 'table-cell' {
+                            
+                            &.vertical-align-middle {
+
+                                vertical-align: middle;
+                            }
+
+                            &.vertical-align-bottom {
+                                
+                                vertical-align: bottom;
+                            }
+                        }
+                    }
+                    
+                    .display-#{ $breakpoint }-#{ unquote( $display-value ) } {
+                        
+                       @extend %display-#{ $breakpoint }-#{ unquote( $display-value ) };
+                    }
+                }
+            }
+        }
+    }
+}

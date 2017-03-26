@@ -1,0 +1,183 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/**
+ * Color variation
+ *
+ * Each colors used in the theme.
+ * 
+ * @uses get_color($key, $value) to retrieve color value
+ * @type nested map
+ * @see http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+ * @see http://www.colorhexa.com/ to pickup color name
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+$color-variations: (
+	black: #000000,
+	white: #ffffff,
+
+	blue: (		
+		pure: #0000ff,
+	),
+
+	red: (
+		strong: #ff0000,
+	),
+	
+	social: (
+		/**
+		 * Brand colors
+		 *
+		 * @see https://brandcolors.net/
+		 */
+		facebook: #3b5998, 
+		twitter: #1da1f2,
+		google-plus: #dd4b39,
+		linkedin: #0077b5,
+		mail: #000000,
+	)
+);
+
+
+/**
+ * Font
+ *
+ * All fonts found in the site are listed here
+ *
+ * @uses map-get( $font, $key ) to retrieve font value from map
+ * @type map
+ */
+$font: (
+	body-family: ( 'Work Sans', sans-serif ),
+	title-family: ( 'Work Sans', sans-serif ),
+);
+
+
+/**
+ * Base
+ */
+$base-font-size: 24;
+$base-font-size-px: $base-font-size * 1px;
+$base-line-height: 32;
+
+
+/**
+ * Font weight
+ *
+ * Each font weight used in the theme.
+ * 
+ * @uses map-get( $font-weight, $key ) to retrieve font weight value
+ * @type map
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+$font-weight: (
+	extralight: 100,
+	light: 300,
+	book: 300,
+	regular: 400,
+	medium: 500,
+	semibold: 600,
+	bold: 700,
+	extrabold: 800,
+	extrablack: 900
+);
+
+
+// Layout ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+$grid-columns: 12;
+
+
+/**
+ * Gutter width
+ * 
+ * Overall grid gutter size from Bootstrap
+ * 
+ * @see http://stackoverflow.com/a/28193872/5091221
+ */
+$grid-gutter-width: 16px;
+
+
+/**
+ * Outer gutter width
+ *
+ * (Most of the time it's the size of a gutter divide by 2.)
+ * Useful for the container.
+ */
+$grid-outer-gutter-width-unitless: 32;
+$grid-outer-gutter-width: $grid-outer-gutter-width-unitless * 1px;
+
+
+/**
+ * Prototype width
+ *
+ * From .psd obviously
+ */
+$psd-width-unitless: 1280;
+$psd-width: $psd-width-unitless * 1px;
+
+
+/**
+ * Prototype width
+ * 
+ * Width keep from .psd (grid + outer gutter)
+ */
+// $container-width-unitless: 1198;
+$container-width: 1280px;
+
+
+/**
+ * Ease transition
+ */
+$ease-transition: .3s ease;
+
+
+/**
+ * Directories
+ *
+ * Each directories used in this theme.
+ * 
+ * @uses map-get( $directories, $key ) to retrieve directory value from map
+ * @type map
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+$directories:
+(
+	fonts: "../../fonts/",
+	img: "../../img/",
+	svg: "../../img/svg/",
+	jpg: "../../img/jpg/",
+	png: "../../img/png/",
+	gif: "../../img/gif/",
+);
+
+
+/**
+ * Breakpoint slicer
+ *
+ * @see https://github.com/lolmaus/breakpoint-slicer
+ */
+$slicer-breakpoints-settings: true;
+@if ($slicer-breakpoints-settings == true) {
+
+	$slicer-breakpoints: 0 768px 992px 1200px 1400px;
+	$slicer-breakpoint-names: 'xs' 'sm' 'md' 'lg' 'hd';
+	$slicer-anti-overlap-corrections: -1px;
+}
+
+
+/**
+ * State classes
+ *
+ * Each state class used in this theme.
+ * 
+ * @uses map-get( $state-classes, $key ) to retrieve class name from map
+ * @type map
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+$state-classes: (
+	menu-open: menu--is-open,
+	search-open: search--is-open,
+	panel-open: panel--is-open,
+	submenu-open: submenu--is-open,
+);

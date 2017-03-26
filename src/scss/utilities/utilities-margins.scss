@@ -1,0 +1,153 @@
+/**
+ * Margins classes
+ */
+@if ( $import-utilities-margins == true ) {
+    
+    /**
+     * No margin
+     *
+     * @param Placeholder
+     * @uses @extend %no-margin
+     */
+    %no-margin {
+        margin: 0;
+    }
+    .no-margin {
+        @extend %no-margin;
+    }
+
+
+    /**
+     * Margin auto
+     *
+     * @uses @extend %margin-0-auto
+     */
+    %margin-0-auto {
+        margin: 0 auto;
+    }
+    .margin-0-auto {
+        @extend %margin-0-auto;
+    }
+    
+
+    @each $margin-property in $margin-properties {
+
+        /**
+         * Create a .no-margin-{$margin-property} class
+         *
+         * @return e.g. .no-margin-top { margin-top: 0; }
+         */
+        .no-margin-#{ unquote($margin-property ) } {
+            
+            margin-#{ unquote( $margin-property ) }: 0;
+        }
+        
+
+        /**
+         * Create a .margin-{$margin-property}-{$margin-value}
+         *
+         * In em the margin value is divided by the base font size and 
+         * multiply by 1em
+         * In px the margin value is multiplied by 1px
+         *
+         * @return e.g. .margin-top-30 { margin-top: 30em }
+         */
+        @each $margin-value in $margin-values {
+            
+            /**
+             * Placeholder
+             *
+             * Declare in em
+             * 
+             * @uses %margin-{ $property }-{ $value }
+             */
+            %margin-#{ unquote( $margin-property ) }-#{ $margin-value } {
+                margin-#{ unquote( $margin-property ) }: ( $margin-value / $base-font-size ) * 1em;
+            }
+
+            .margin-#{ unquote( $margin-property ) }-#{ $margin-value } {
+                @extend %margin-#{ unquote( $margin-property ) }-#{ $margin-value };   
+            }
+
+            /**
+             * Placeholder
+             *
+             * Declare in px
+             * 
+             * @uses %margin-{ $property }-{ $value }
+             */
+            %margin-#{ $margin-value }px {
+                margin: ( $margin-value * 1px) ;
+            }
+            .margin-#{ $margin-value }px {
+                @extend %margin-#{ $margin-value }px;
+            }
+
+            %margin-#{ unquote( $margin-property ) }-#{ $margin-value }px {
+                margin-#{ unquote( $margin-property ) }: ( $margin-value * 1px) ;
+            }
+
+            .margin-#{ unquote( $margin-property ) }-#{ $margin-value }px {
+                @extend %margin-#{ unquote( $margin-property ) }-#{ $margin-value }px; 
+            }
+        }
+    }
+    
+
+    // If Slicer breakpoint is instanciate
+    @if ( $slicer-breakpoints-settings == true ) {
+
+        // Loop through each breakpoint
+        @each $breakpoint in $slicer-breakpoint-names {
+            
+            // Create breakpoint "from" statement
+            @include from( $breakpoint ) {
+                
+                // For each property find in $margin-properties
+                @each $margin-property in $margin-properties {
+
+                    // Construct each class for each breakpoint
+
+                    /**
+                     * No margin + breakpoint
+                     *
+                     * e.g. .no-margin-xs
+                     *
+                     * @author Jérémy Levron jeremy@poigneedemainvirile.com
+                     */
+                    .no-margin-#{ unquote( $breakpoint ) } {
+                        margin: 0;
+                    }
+                    
+
+                    @each $margin-value in $margin-values {
+                        
+                        %margin-#{ unquote( $breakpoint ) }-#{ unquote( $margin-property ) }-#{ $margin-value } {
+                            
+                            margin-#{ unquote( $margin-property ) }: ( $margin-value / $base-font-size ) * 1em;
+                        }
+
+                        .margin-#{ unquote( $breakpoint ) }-#{ unquote( $margin-property ) }-#{ $margin-value } {
+                            
+                            @extend %margin-#{ unquote( $breakpoint ) }-#{ unquote( $margin-property ) }-#{ $margin-value };
+                        }
+                    }
+
+                    
+                    @each $margin-value in $margin-values {
+                        
+                        %margin-#{ unquote( $breakpoint ) }-#{ unquote( $margin-property ) }-#{ $margin-value }px {
+
+                            margin-#{ unquote( $margin-property )}: ( $margin-value * 1px );
+                        }
+
+                        .margin-#{ unquote( $breakpoint ) }-#{ unquote( $margin-property ) }-#{ $margin-value }px {
+
+                            @extend %margin-#{ unquote( $breakpoint ) }-#{ unquote( $margin-property ) }-#{ $margin-value }px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

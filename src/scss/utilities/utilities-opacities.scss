@@ -1,0 +1,35 @@
+/**
+ * Opacities classes
+ */
+
+@if ( $import-utilities-opacities == true ) {
+
+    @each $opacity-value in $opacity-values {
+
+        @if $opacity-value == none {
+            
+            %opacity-#{ $opacity-value } {
+                opacity: 0;
+            }
+
+            .opacity-#{ $opacity-value } {
+                @extend %opacity-#{ $opacity-value };
+            }
+
+        } @else {
+            
+            /**
+             * Opacity placeholder
+             *
+             * @uses @extend %opacity-#{ $opacity-value }
+             */
+            %opacity-#{ $opacity-value } {
+                opacity: #{ ( $opacity-value / 100 ) };
+            }
+
+            .opacity-#{ $opacity-value } {
+                @extend %opacity-#{ $opacity-value };
+            }
+        }
+    }
+}

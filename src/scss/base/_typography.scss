@@ -1,0 +1,115 @@
+/**
+ * Basic typography style for copy text
+ */
+
+html {
+	font: {
+		size:62.5%
+	}
+}
+
+body {
+
+    -webkit-font-smoothing: antialiased;
+    font: {
+        family: map-get( $font, body-family );
+        size: $base-font-size-px;
+        weight: map-get( $font-weight, book );
+    }
+    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+    text-rendering: optimizeLegibility;
+}
+
+@include reset-selection( get_color( black ), get_color( white ) );
+
+/**
+ * Titles
+ *
+ * Construct each titles tags and associate classes
+ *
+ * @param   $font-size      font-size (px without unit)
+ * @param   $line-height    line-height (px whithout unit)
+ * @param   $weight         font-weight (from .psd)
+ * @param   $family         font-family (variable)
+ * @param   $letter-spacing letter-spacing (from .psd)
+ * @type    nested map
+ * @author  Jérémy Levron   jeremy@poigneedemainvirile.com
+ */
+$titles: (
+    h1: (
+        55, 
+        45,
+        map-get( $font-weight, medium ), 
+        map-get( $font, body-family ),
+        0 
+    ),
+
+    h2: (
+        45,
+        50,
+        map-get( $font-weight, regular ),
+        map-get( $font, cursive-family ),
+        0    
+    ),
+
+    h3: (
+        25,
+        30,
+        map-get( $font-weight, regular ),
+        map-get( $font, title-family ),
+        0    
+    ),
+
+    h4: (
+        15,
+        23,
+        map-get( $font-weight, medium ),
+        map-get( $font, title-family ),
+        0    
+    ),
+);
+
+/**
+ * Loop through $titles
+ *
+ * Each $key and $value find in $titles
+ */
+@each $title, $value in $titles {
+
+    /**
+     * Private var
+     *
+     * Get and stock all values from each keys in map
+     */
+    $font-size: nth( $value, 1 );
+    $line-height: nth( $value, 2 );
+    $weight: nth( $value, 3 );
+    $family: nth( $value, 4 );
+    $letter-spacing: nth( $value, 5 );
+
+
+    /**
+     * Generate tag and class selector
+     */
+    #{ $title }, .#{ $title } {
+        // Include mixin
+        @include letter-spacing( $letter-spacing );
+        @include margin (
+            top ( ( $line-height / $font-size ) * 1em )
+            bottom ( ( $line-height / $font-size ) / 2 ) * 1em
+        );
+
+        font: {
+            family: $family;
+            size: ( $font-size / 10 ) * 1rem;
+            weight: $weight;
+        }
+        line-height: $line-height / $font-size; 
+
+        @if $line-height == normal {
+
+            line-height: normal;
+        }
+            
+    }
+};

@@ -1,0 +1,18 @@
+/**
+ * Floats classes
+ */
+@if ( $import-utilities-float == true ) {
+
+	@each $float-value in $float-values
+	{
+		%float-#{ unquote( $float-value ) } {
+
+	        float: #{unquote( $float-value ) };
+	    }
+	    
+	    .float-#{ unquote( $float-value ) } {
+
+	        @extend %float-#{unquote( $float-value ) }
+	    }
+	}
+}

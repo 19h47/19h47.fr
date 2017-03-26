@@ -1,0 +1,13 @@
+/**
+ * Colors
+ *
+ * @see 	https://codepen.io/jakealbaugh/post/css4-variables-and-sass
+ */
+@if ( $import-utilities-colors == true ) {
+	
+	.color-current-color {
+		color: currentColor;
+	}
+
+    @include create_classes_color( color '.color', background-color '.background', border-color '.border' );
+}

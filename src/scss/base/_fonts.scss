@@ -1,0 +1,51 @@
+/**
+ * Fonts declaration
+ *
+ * 100    $extralight   Extra Light or Ultra Light
+ * 200    $light        Light or Thin
+ * 300    $book         Book or Demi
+ * 400    $regular      Normal or Regular
+ * 500    $medium       Medium
+ * 600    $semibold     Semibold, Demibold
+ * 700    $bold         Bold
+ * 800    $extrabold    Black, Extra Bold or Heavy
+ * 900    $extrablack   Extra Black, Fat, Poster or Ultra Black
+ * .eot         IE9 Compat Modes 
+ * .eot?#iefix  IE6-IE8
+ * .woff        Modern Browsers
+ * .ttf         Safari, Android, iOS
+ * .svg         Legacy iOS
+ *
+ */
+
+
+/**
+ * Font face mixin
+ *
+ * Construct @font-face
+ * 
+ * @param  {String} $font-family     		Font name
+ * @param  {String} $font-family-namespace  Font namespace
+ * @param  {String} $file-path       		Font path
+ * @param  {String} $font-weight    		Font weight (default null)
+ * @param  {[type]} $font-style				Font style (default null)
+ */
+@mixin font-face( 
+	$font-family, 
+	$font-family-namespace, 
+	$file-path, 
+	$font-weight: null, 
+	$font-style: normal 
+) {
+	@font-face {
+		font-family: $font-family;
+			src: url('#{ $font-family }.eot');
+			src: 
+				url('#{ $file-path }#{ $font-family-namespace }/#{ $font-weight }/#{ $font-family }-#{ $font-weight }.eot?#iefix') format('embedded-opentype'),
+				url('#{ $file-path }#{ $font-family-namespace }/#{ $font-weight }/#{ $font-family }-#{ $font-weight }.woff') format('woff'),
+				url('#{ $file-path }#{ $font-family-namespace }/#{ $font-weight }/#{ $font-family }-#{ $font-weight }.ttf') format('truetype'),
+				url('#{ $file-path }#{ $font-family-namespace }/#{ $font-weight }/#{ $font-family }-#{ $font-weight }.svg##{ $font-family-namespace }' ) format('svg');
+		font-weight: $font-weight;
+		font-style: $font-style;
+	}
+}

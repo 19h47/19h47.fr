@@ -1,0 +1,25 @@
+/**
+ * Overflows classes
+ */
+
+@if ( $import-utilities-overflows == true ) {
+
+	@each $overflow-value in $overflow-values {
+		
+		/**
+		 * Create a placeholder for each overflow value
+		 */
+		%overflow-#{ unquote( $overflow-value ) } {
+			overflow: #{ unquote( $overflow-value ) };
+		}
+
+
+	    .overflow-#{ unquote( $overflow-value ) } {
+	        @extend %overflow-#{ unquote( $overflow-value ) };
+	    }
+	}
+	
+	.overflow-scroll {
+		-webkit-overflow-scrolling: touch;
+	}
+}

@@ -1,0 +1,41 @@
+/**
+ * Guid
+ * 
+ * /src/scss/components/guid
+ *
+ * @uses .Guid
+ */
+.Guid {
+	@extend %Position-fixed-center;
+	
+	z-index: 10000;
+	
+
+	/**
+	 * Match all classes starting by col-xs
+	 */	
+	[class^='col-xs'] .Guid__column {
+		background: {
+			color: rgba( get_color( blue, pure ), .2 );
+		}
+	}
+
+
+	[class^='col-xs']:nth-child(odd) .Guid__column {
+		background: {
+			color: rgba( get_color( red, strong ), .2 );
+		}
+	}
+	
+  	
+  	/**
+  	 * Guid
+  	 *
+  	 * @uses .Guid__column
+  	 */
+	&__column {
+		@include size( 100% );
+		
+		color: rgba( get_color( black ), .2 );
+	}
+}

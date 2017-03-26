@@ -1,0 +1,17 @@
+.l {
+
+	/**
+	 * Layout container
+	 *
+	 * The fluid container of the grid
+	 * 
+	 * @uses .l-container
+	 */
+	&-container {
+		@include padding( right $grid-outer-gutter-width left $grid-outer-gutter-width);
+		@include margin( top 0 right auto bottom 0 left auto );
+
+		position: relative;
+		max-width: $container-width;
+	}
+}

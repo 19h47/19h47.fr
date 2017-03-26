@@ -1,0 +1,198 @@
+/**
+ * Utilities Settings
+ */
+
+
+/**
+ * Vertical alignments
+ * 
+ * @param 	Boolean 		$import-utilities-vertical-alignments
+ * @param 	List 			$$vertical-alignment-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-vertical-alignments: true;
+$vertical-alignment-values: 'middle' 'baseline';
+
+
+/**
+ * Colors
+ * 
+ * @param 	Boolean 		$import-utilities-colors
+ */
+$import-utilities-colors: true;
+
+
+/**
+ * Displays
+ *
+ * @param 	Boolean 		$import-utilities-displays
+ * @param 	List 			$display-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-displays: true;
+$display-values: 'none' 'block' 'inline-block' 'table' 'table-cell' 'table-row';
+
+
+/**
+ * Float
+ * @param 	Boolean 		$import-utilities-float
+ * @param 	List 			$float-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-float: false;
+$float-values: null;
+
+
+/**
+ * Fonts
+ *
+ * @param 	Boolean 		$import-utilities-fonts
+ * @param 	List 			$font-sizes
+ * @param 	List 			$font-styles
+ * @param 	List 			$letters-spacing 			Each letter-spacing property found in the site
+ * @param 	List 			$lines-height				Each line-height property found in the site
+ * @author 	Jérémy 	Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-fonts: true;
+$font-sizes: 13 $base-font-size;
+$font-styles: medium;
+$letters-spacing: 0 100;
+$lines-height: $base-line-height 18;
+
+
+/**
+ * Margins
+ *
+ * Each time you need a new value for this utility, add it right here in this vars
+ * So no need to create a lot of classes
+ * 
+ * @param 	Boolean 		$import-utilities-margins
+ * @param 	List 			$margin-properties
+ * @param 	List 			$margin-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-margins: true;
+$margin-properties: 'top' 'right' 'bottom' 'left';
+$margin-values: 0 24 48 72;
+
+
+/**
+ * Opacities 		
+ * 
+ * @param 	Boolean 		$import-utilities-opacities
+ * @param 	List 			$opacity-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-opacities: true;
+$opacity-values: none 40;
+
+
+/**
+ * Overflows
+ *
+ * 
+ * @param 	Boolean 		$import-utilities-overflows
+ * @param 	List 			$overflow-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-overflows: true;
+$overflow-values: 'scroll' 'hidden';
+
+
+/**
+ * Paddings
+ * 
+ * @param 	Boolean 		$import-utilities-paddings
+ * @param 	List 			$padding-properties
+ * @param 	List 			$padding-values
+ * @author 	Jérémy Levron	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-paddings: true;
+$padding-properties: 'top' 'right' 'bottom' 'left';
+$padding-values: 0 15 20 30 40 60;
+
+
+/**
+ * Positions
+ *
+ * @param 	Boolean 		$import-utilities-positions
+ * @param	List 			$position-values
+ * @author 	Jérémy Levron	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-positions: true;
+$position-values: 'relative' 'absolute';
+
+
+/**
+ * Sizes
+ * 
+ * @param 	Boolean 		$import-utilities-sizes
+ * @param 	Nested map 		$size-properties
+ * @param 	List 			$size-dimensions
+ * @author 	Jérémy Levron	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-sizes: true;
+$size-properties: (
+    w: width, 
+    h: height
+);
+$size-dimensions: 50 100;
+
+
+/**
+ * Texts
+ *
+ * @param 	Boolean 		$import-utilities-texts
+ * @param 	List 			$text-align-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-texts: true;
+$text-align-values: 'center' 'right' 'left';
+
+
+/**
+ * Z-indexes utilities
+ * 
+ * @param 	Boolean 		$import-utilities-z-indexes
+ * @param 	List 			$z-index-values
+ * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
+ */
+$import-utilities-z-indexes: false;
+$z-index-values: null;
+
+
+/**
+ * Overlaps
+ *
+ * @param 	Boolean 		$import-utilities-overlaps
+ * @author 	Julien Vasseur 	julien@poigneedemainvirile.com
+ */
+$import-utilities-overlaps: false;
+$overlap-values: null;
+
+
+/**
+ * Import utilities
+ *
+ * Unfortunately we can't at this point make an if statement with an @import
+ * Indeed it would be could cool to check right here if the $import var is set 
+ * to true
+ * 
+ * @see http://stackoverflow.com/questions/13879042/import-in-if-statement-in-sass
+ */
+@import 
+	'utilities',
+	'utilities-alignments',
+	'utilities-colors',
+	'utilities-displays',
+	'utilities-floats',
+	'utilities-fonts',
+	'utilities-margins',
+	'utilities-opacities',
+	'utilities-overflows',
+	'utilities-overlaps',
+	'utilities-paddings',
+	'utilities-positions',
+	'utilities-sizes',
+	'utilities-texts',
+	'utilities-z-indexes';

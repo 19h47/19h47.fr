@@ -1,0 +1,22 @@
+Thumbs.db
+npm-debug.log
+/node_modules/
+/dist/
+/src/ai/
+/src/psd/
+/src/jpg/
+/src/pdf/
+/src/content/
+/src/mockup/
+sftp-config.json.prod
+sftp-config.json.dev
+sftp-config.json
+*.sublime-workspace
+/vendor/
+
+#Update a gitignore http://stackoverflow.com/a/1139797
+#git rm -r --cached .
+#This removes any changed files from the index(staging area), then just run:
+#git add .
+#Commit it:
+#git commit -m ".gitignore is now working"

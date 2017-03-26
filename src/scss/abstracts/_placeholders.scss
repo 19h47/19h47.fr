@@ -1,0 +1,188 @@
+/**
+ * Placeholder position
+ *
+ * @uses    @extend %Position-{$proprerty}
+ * @author  Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Position {
+
+    /**
+     * Absolute
+     *
+     * Set element to position absolute, top 0, right 0, bottom 0, left 0
+     *
+     * @uses @extend %Position-absolute
+     */
+    &-absolute-center {
+    	@include absolute( top 0 right 0 bottom 0 left 0 );
+    }
+
+    
+
+    /**
+     * Absolute
+     *
+     * Set element to position fixed, top 0, right 0, bottom 0, left 0
+     *
+     * @uses @extend %Position-fixed
+     */
+    &-fixed-center {
+    	@include fixed( top 0 right 0 bottom 0 left 0 );
+    }
+}
+
+
+/**
+ * Placeholder background 
+ *
+ * @uses    @extend %Background-{$proprerty}
+ * @author  Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Background {
+
+    /**
+     * Background cover and center
+     *
+     * @uses @extend %Background-cover-center
+     */
+    &-cover-center {
+    	background: {
+        	position: center;
+        	size: cover;
+        }
+    }
+
+
+    /**
+     * Background size cover
+     *
+     * @uses @extend %Background-cover-center
+     */
+    &-size-cover {
+        background: {
+            size: cover;
+        }
+    }
+
+
+    /**
+     * Background current color
+     *
+     * Set background color to current color
+     *
+     * @uses @extend %Background-current-color
+     */
+    &-current-color {
+
+        background: {
+            color: currentColor;
+        }
+    }
+}
+
+
+/**
+ * Placeholder reset
+ *
+ * @uses    @extend %Reset-{$property}
+ * @author  Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Reset {
+    
+    /**
+     * Reset scale
+     *
+     * Turn scale to 1
+     *
+     * @uses @extend %Reset-scale
+     */
+    &-scale {
+        transform: scale( 1 );
+    }
+
+
+    /**
+     * Reset scale and rotate
+     *
+     * @uses @extend %Reset-scale-rotate;
+     */
+    &-scale-rotate {
+        transform: scale( 1 ) rotate( 0 );
+    }
+
+
+    /**
+     * Reset translate3d
+     *
+     * @uses @extend %Reset-translate3d
+     */
+    &-translate3d {
+        transform: translate3d( 0, 0, 0 );
+    }
+
+
+    /**
+     * Reset scaleY
+     *
+     * @uses @extend %Reset-scale-y
+     */
+    &-scaleY {
+        transform: scaleY(1);
+    }
+
+
+    /**
+     * Reset opacity
+     *
+     * Turn opacity to 1
+     * 
+     * @uses @extend %Reset-opacity
+     */
+    &-opacity {
+        opacity: 1;
+    }
+}
+
+
+/**
+ * Placeholder hover 
+ *
+ * @uses    @extend %Hover-{$proprerty}
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Hover {
+
+    /**
+     * Hover opacity
+     *
+     * Turn opacity to 1 on hover
+     *
+     * @uses @extend %Hover-opacity
+     */
+    &-opacity {
+        transition: $ease-transition;
+        
+        &:hover {
+           @extend %Reset-opacity;
+        }
+    }
+}
+
+
+/**
+ * Placeholder cursor
+ *
+ * @uses    @extend %Cursor-{$property}
+ * @author  Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Cursor {
+
+    /**
+     * Cursor pointer
+     *
+     * @uses %Cursor-pointer
+     */
+    &-pointer {
+        cursor: pointer;
+    }
+}
