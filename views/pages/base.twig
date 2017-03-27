@@ -1,0 +1,25 @@
+{#
+/**
+ * /views/pages/base
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron levronjeremy@19h47.fr
+ */
+#}
+{% extends 'index.twig' %}
+
+{% block content %}
+
+	<div class="l-container">
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1">
+				<div class="font-light color-white margin-xs-top-72 margin-xs-bottom-72">
+					{{ post.content }}
+				</div>
+
+			</div>
+		</div> 
+	</div>
+	
+{% endblock %}
