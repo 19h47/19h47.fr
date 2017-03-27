@@ -28,9 +28,7 @@ module.exports = {
      **/
     sass: {
         // Source of CSS files
-        sources: 
-        [
-            {
+        sources: [{
                 src: [
                     src + '/scss/main.scss'
                 ],
@@ -39,14 +37,20 @@ module.exports = {
                     nodeModules + 'ress',
                     nodeModules + 'breakpoint-sass/stylesheets',
                     nodeModules + 'breakpoint-slicer/stylesheets',
-                    nodeModules + 'bootstrap-sass/assets/stylesheets',
-                    nodeModules + 'spinthatshit/src'
+                    nodeModules + 'bootstrap-sass/assets/stylesheets'
                 ],
                 file: fileCSS
             },
             {
                 src: src + '/scss/editor-style.scss',
-                file: 'editor-style.css'
+                file: 'editor-style.css',
+                deps: [
+                    // './node_modules/typesettings',
+                    nodeModules + 'ress',
+                    nodeModules + 'breakpoint-sass/stylesheets',
+                    nodeModules + 'breakpoint-slicer/stylesheets',
+                    nodeModules + 'bootstrap-sass/assets/stylesheets'
+                ],
             }
         ],
 

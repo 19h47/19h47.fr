@@ -1,0 +1,68 @@
+/**
+ * Dependencies
+ */
+@import 'breakpoint';
+@import 'breakpoint-slicer';
+@import 'abstracts/variables';
+@import 'base/fonts';
+
+
+/**
+ * Vendors
+ */
+@import 
+	'ress',
+	'vendors/bootstrap-custom';
+
+/**
+ * Abstracts
+ */
+@import 
+	'abstracts/variables',
+	'abstracts/functions',
+	'abstracts/mixins',
+	'abstracts/placeholders';
+
+/**
+ * Utilities
+ */
+@import 'Utilities/_settings';
+
+
+html {
+	font: {
+		size:62.5%
+	}
+}
+
+body {
+
+    -webkit-font-smoothing: antialiased;
+    font: {
+        family: map-get( $font, body-family );
+        size: $base-font-size-px;
+        weight: map-get( $font-weight, book );
+    }
+    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+    text-rendering: optimizeLegibility;
+}
+
+@include reset-selection( get_color( black ), get_color( white ) );
+
+a, 
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+a {
+	@extend %font-medium, %text-decoration-none;;
+	color: ger_color( black );
+
+	&:active,
+	&:focus,
+	&:visited,
+	&:-webkit-any-link {
+		color: get_color( black );
+	}
+}

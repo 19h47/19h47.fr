@@ -241,6 +241,7 @@ class LJ extends TimberSite {
          */
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style' ) );
 
+        add_action( 'admin_init', add_editor_style( get_template_directory_uri() . '/dist/css/editor-style.css' ) );
 
         /**
          * Add scripts
