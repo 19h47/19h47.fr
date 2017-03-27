@@ -8,33 +8,43 @@
 {% include 'header/base.twig' %}
 
 {% block content %} 
-	<div class="l-container">
+	{# <div class="l-container">
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2">
 				<img class="img-full" src="{{ theme.link }}/img/png/home-background.png" width="758" height="512">
 			</div>
 		</div>
-	</div>
-	{# <div class="l-container">
-		<div class="row">
-			<div class="col-xs-10 col-xs-offset-1">
-				<p class="font-light color-white margin-xs-top-72 margin-xs-bottom-72">
-					— Hello,<br> 
-					My name is <span class="font-medium">Jérémy Levron</span>.<br> 
-					I’m an enthusiastic creative front end developer<br> 
-					currently working at <span class="font-medium">Poignée de main virile</span>,<br>
-					a France-based design studio and award winning.<br>
-					<br>
-					I love discovering and learning things every day, to be<br>
-					part of what we call “cool kids”. I'm not a kid anymore,<br> 
-					but, hey, I’m still pretty cool.<br>
-					<br>
-					You can reach me at <span class="font-medium">levronjeremy[at]19h47.fr</span><br>
-					to grab a beer or talk about JavaScript.<br>
-				</p>
-			</div>
-		</div>
 	</div> #}
+	
+	
+	<div class="l-container">
+		<div class="Lastfm margin-xs-top-72 margin-xs-bottom-72">
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1">
+					<p class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer">
+						What I currently listening
+						<span data-text="What I currently listening"></span>
+					</p>
+				</div>
+			</div>
+					
+			<div class="currently-listening margin-xs-top-24 margin-xs-bottom-24 display-xs-inline-block w-xs-100"></div>
+			
+			<div class="row">
+				<div class="col-xs-10 col-xs-offset-1">
+					<p class="no-margin font-size-13 color-white uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline">
+						<span class="playcount"></span>&nbsp;songs listened since 2008.
+					</p>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+
+	<script id="lastfm-template" type="text/x-handlebars-template">
+		
+
+	</script>
 {% endblock %}
 
 {# Footer #}
