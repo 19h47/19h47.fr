@@ -127,7 +127,7 @@
      * @uses @extend %Reset-scale-y
      */
     &-scaleY {
-        transform: scaleY(1);
+        transform: scaleY( 1 );
     }
 
 
@@ -184,5 +184,24 @@
      */
     &-pointer {
         cursor: pointer;
+    }
+}
+
+
+/**
+ * Placeholder filter
+ *
+ * @uses @extend %Filter-{$property}
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Filter {
+    
+    /**
+     * Grayscale
+     *
+     * @uses @extend %Filter-grayscale
+     */
+    &-grayscale {
+        filter: grayscale( 100% );
     }
 }

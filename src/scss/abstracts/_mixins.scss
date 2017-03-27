@@ -192,8 +192,8 @@
  *
  * @author Jérémy Levron jeremy@poigneedemainvirile.com
  */
-@mixin padding( $args: () ) 
-{
+@mixin padding( $args: () ) {
+    
     $offsets: top right bottom left;
     
     @each $offset in $offsets {

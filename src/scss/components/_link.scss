@@ -1,0 +1,41 @@
+.Link {
+
+	&-layer {
+		@extend %position-xs-relative;
+		
+		color: rgba( get_color( white ), .4 );
+		z-index: 1;
+
+		&:hover {
+
+			span {
+				@extend %Reset-translate3d;
+
+				&::before {
+					transform: translate3d( 0, 0, 0 );
+				}
+			}
+		}
+
+		span {
+			@extend %overflow-hidden;
+			@include absolute( top 0 right 0 bottom 0 left 0);
+			
+
+				pointer-events: none;
+			transform: translate3d( -100%, 0, 0 );
+			transition: $ease-transition;
+			z-index: 2;
+
+			&::before {
+				@extend %display-xs-block;
+				
+				color: get_color( white );
+				content: attr(data-text);
+				transform: translate3d( 100%, 0, 0 );
+				transition: $ease-transition;
+				z-index: 1;
+			}
+		}
+	}
+}

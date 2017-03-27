@@ -3,6 +3,7 @@
  */
 
 html {
+    @extend %h-xs-100, %w-xs-100;
     overflow-y: visible; // reset value from ress.css
 }
 
@@ -28,7 +29,7 @@ i {
 
 b, 
 strong {
-    font-weight: map-get($font-weight, medium);
+    font-weight: map-get( $font-weight, medium );
 }
 
 p {
@@ -87,8 +88,6 @@ em {
 iframe {
     border: 0;
 }
-
-*::selection{}
 
 blockquote {
     // Extend class
