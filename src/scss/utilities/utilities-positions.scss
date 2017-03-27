@@ -2,19 +2,30 @@
  * Positions classes
  */
  
-@if ( $import-utilities-positions == true ) {
+@if ( $slicer-breakpoints-settings == true ) and ( $import-utilities-positions == true ) {
 
+	@each $breakpoint in $slicer-breakpoint-names {
 
-	@each $position-value in $position-values {
+	    @include from( $breakpoint ) {
 
-		%position-#{ unquote( $position-value ) } {
+	        @each $size-dimension in $size-dimensions {
+	            
+	            @each $size-propertie-value, $size-propertie-name in $size-properties {
+					
+					@each $position-value in $position-values {
 
-	        position: #{unquote($position-value)};
-	    }
+						%position-#{ unquote( $breakpoint ) }-#{ unquote( $position-value ) } {
 
-	    .position-#{unquote($position-value)} {
+					        position: #{unquote( $position-value ) };
+					    }
 
-	        @extend %position-#{ unquote( $position-value ) };
-	    }
+					    .position-#{ unquote( $breakpoint ) }-#{unquote( $position-value ) } {
+
+					        @extend %position-#{ unquote( $breakpoint ) }-#{ unquote( $position-value ) };
+					    }
+					}
+				}
+			}
+		}
 	}
 }

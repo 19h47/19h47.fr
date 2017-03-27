@@ -2,12 +2,11 @@
  * Z-index
  */
  
-@if ( $import-utilities-z-indexes == true )
-{	
-	@each $z-index-value in $z-index-values
-	{
-	    .z-index-#{ $z-index-value }
-	    {
+@if ( $import-utilities-z-indexes == true ) {	
+	
+	@each $z-index-value in $z-index-values {
+	    
+	    .z-index-#{ $z-index-value } {
 	        z-index: #{ $z-index-value };
 	    }
 	}

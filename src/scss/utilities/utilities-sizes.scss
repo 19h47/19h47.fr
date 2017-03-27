@@ -24,10 +24,10 @@
 
     @each $breakpoint in $slicer-breakpoint-names {
 
-        @include from($breakpoint) {
+        @include from( $breakpoint ) {
 
-            @each $size-dimension in $size-dimensions
-            {
+            @each $size-dimension in $size-dimensions {
+
                 @each $size-propertie-value, $size-propertie-name in $size-properties {
 
                     /**

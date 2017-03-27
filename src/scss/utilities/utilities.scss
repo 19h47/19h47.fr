@@ -83,7 +83,7 @@
 
     @if $import-utilities-positions {
 
-        @extend %position-relative;
+        @extend %position-xs-relative;
 
     } @else {
         position: relative;
@@ -101,7 +101,7 @@
 
         @if $import-utilities-positions {
 
-            @extend %position-absolute;
+            @extend %position-xs-absolute;
         
         } @else {
             position: absolute;
@@ -117,7 +117,7 @@
 .map-container {
     @extend 
         %overflow-hidden, 
-        %position-relative;
+        %position-xs-relative;
     
     @include padding( bottom percentage( 655 / 598 ) );
     
@@ -130,7 +130,7 @@
     }
 
     > iframe {
-        @extend %position-absolute;
+        @extend %position-xs-absolute;
         @include size( 100%!important );
 
         top: 0;
@@ -148,12 +148,11 @@
  */
 .img-fluid 
 {
-    @if $import-utilities-displays
-    {
+    @if $import-utilities-displays {
         @extend %display-xs-block;
     }
-    @else
-    {
+
+    @else {
         display: block;
     }
 
@@ -166,13 +165,11 @@
     max-width: 100%;
 }
 
-.outline-none
-{
+.outline-none {
     outline: none;
 }
 
-.is-on-top
-{
+.is-on-top {
     position: relative;
     z-index: 10;
 }
