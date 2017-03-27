@@ -25,8 +25,12 @@
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
+    "handlebars": "^4.0.6",
+    "lastfmapi": "^0.1.1",
+    "mustache": "^2.3.0",
     "require-dir": "^0.3.1",
     "svgo": "^0.7.1",
+    "twig": "^1.10.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0"
