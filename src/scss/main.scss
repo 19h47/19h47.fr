@@ -41,7 +41,10 @@
 /**
  * Layout
  */
-@import 'layout/base';
+@import 
+	'layout/base',
+	'layout/header',
+	'layout/footer';
 
 
 /**
@@ -50,6 +53,7 @@
 @import 
 	'components/guid',
 	'components/lastfm',
+	'components/tumblr',
 	'components/link';
 
 

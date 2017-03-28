@@ -1,0 +1,95 @@
+.Tumblr {
+	
+	/**
+	 * Image
+	 *
+	 * @uses .Tumblr__image
+	 */
+	&__image {
+		@extend %position-xs-relative;
+
+		background: {
+			// color: rgba( get_color( white ), .4 );
+			position: center;
+			size: contain;
+		}
+
+
+		&::after {
+			@include padding( top 100% );
+			
+			display: block;
+			content: '';
+		}
+	}
+	
+
+	/**
+	 * Post
+	 *
+	 * @uses .Tumblr__post
+	 */
+	&__post {
+
+		@extend %display-xs-inline-block, %valign-middle;
+		@include margin( top ( $grid-gutter-width / 2 ) bottom ( $grid-gutter-width / 2 ) );
+		
+		width: 100%;
+
+		&:nth-child(even) {
+			@include padding( left 0 );
+		}
+		&:nth-child(odd) {
+			@include padding( right 0 );
+		}
+
+
+		@include from( 'md' ) {
+			width: 50%;
+
+			&:nth-child(even) {
+				@include padding( left ( $grid-gutter-width / 2 ) );
+			}
+			&:nth-child(odd) {
+				@include padding( right ( $grid-gutter-width / 2 ) );
+			}
+		}
+	}
+
+	
+	/**
+	 * Caption
+	 *
+	 * @uses .Tumblr__caption
+	 */
+	&__caption {
+		@extend 
+			%display-xs-inline-block, 
+			%valign-middle,
+			%w-xs-100, 
+			%h-xs-100, 
+			%Position-absolute-center;
+	}
+	
+
+	/**
+	 * Load more
+	 *
+	 * @uses .Tumblr__load-more
+	 */
+	&__load-more {
+		&::after {
+			@include absolute( 
+				bottom 0 
+				left 100% 
+			);
+			@include padding( 
+				bottom ( $grid-gutter-width / 2 ) 
+				left ( $grid-gutter-width / 4 ) 
+			);
+			content: attr(data-count);
+			color: rgba( get_color( white ), .4 );
+			font-size: smaller;
+		}
+	}
+}
