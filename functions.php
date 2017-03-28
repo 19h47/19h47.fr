@@ -241,7 +241,11 @@ class LJ extends TimberSite {
          */
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_style' ) );
 
-        add_action( 'admin_init', add_editor_style( get_template_directory_uri() . '/dist/css/editor-style.css' ) );
+
+        /**
+         * Admin
+         */
+        add_action( 'admin_init',  array( $this, 'admin_init' ) );
 
         /**
          * Add scripts
@@ -253,6 +257,18 @@ class LJ extends TimberSite {
          * Add favicons
          */
         add_action( 'wp_head', array( $this, 'favicons' ) );
+    }
+
+
+    /**
+     * Admin init
+     */
+    public function admin_init() {
+        
+        /**
+         * Editor style
+         */
+        add_editor_style( get_template_directory_uri() . '/dist/css/editor-style.css' );
     }
 
 
@@ -290,7 +306,7 @@ class LJ extends TimberSite {
 
         // Remove native version of jQuery and use custom CDN version instead
         wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', '//code.jquery.com/jquery-3.2.1.slim.min.js', false, null, true );
+        wp_register_script( 'jquery', '//code.jquery.com/jquery-3.2.1.min.js', false, null, true );
         
         //
         wp_register_script( $this->theme_name . '-main', get_template_directory_uri() . '/dist/js/bundle.js', array( 'jquery' ), null, true );
@@ -361,11 +377,11 @@ class LJ extends TimberSite {
      * WordPress and to define internationalization functionality.
      *
      * @since     1.0.0
-     * @return    string    The name of the plugin.
+     * @return    string    The name of the theme.
      */
-    public function get_plugin_name() {
+    public function get_theme_name() {
         
-        return $this->plugin_name;
+        return $this->theme_name;
     }
 
 
