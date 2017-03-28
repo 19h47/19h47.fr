@@ -30,11 +30,10 @@ function Lastfm(element) {
 		'secret' : this.API_SECRET
 	});
 
-	$response = $element;
+	this.$response = $element;
 
 	// console.log(this.lastfm);
 
-	// Clients.setup 
 	this.setup();
 }
 
@@ -63,7 +62,7 @@ Lastfm.prototype = {
 					
 				}
 				
-				$('.currently-listening').append('<div class="Lastfm__row row margin-xs-top-24 margin-xs-bottom-24"><div class="col-xs-1 col-xs-offset-1"><img src="' + posts.image + '" class="Lastfm__cover"/></div><div class="col-xs-9"><p class=" color-white margin-xs-top-12 no-margin-bottom"><span class="artist font-medium">' + posts.artist + '</span><br/><span class="name font-light">' + posts.name + '</span></p></div></div>');
+				this.$response.find('.response').append('<div class="Lastfm__row row margin-xs-top-24 margin-xs-bottom-24"><div class="col-xs-1 col-xs-offset-1"><img src="' + posts.image + '" class="Lastfm__cover"/></div><div class="col-xs-9"><p class=" color-white margin-xs-top-12 no-margin-bottom"><span class="artist font-medium">' + posts.artist + '</span><br/><span class="name font-light">' + posts.name + '</span></p></div></div>');
 			}
 		});
 
@@ -78,7 +77,7 @@ Lastfm.prototype = {
 
 				// console.log(info);
 
-				$response.find('.playcount').prepend(info.playcount);
+				this.$response.find('.playcount').prepend(info.playcount);
 		});
 	}
 };
