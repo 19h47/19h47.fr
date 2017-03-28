@@ -11,7 +11,7 @@
  * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
  */
 $import-utilities-vertical-alignments: true;
-$vertical-alignment-values: 'middle' 'baseline';
+$vertical-alignment-values: 'middle' 'baseline' 'inherit' 'super';
 
 
 /**
@@ -56,7 +56,7 @@ $float-values: null;
 $import-utilities-fonts: true;
 $font-sizes: 13 $base-font-size;
 $font-styles: medium;
-$letters-spacing: 0 100;
+$letters-spacing: 0 50 100;
 $lines-height: $base-line-height 18;
 
 
@@ -73,7 +73,7 @@ $lines-height: $base-line-height 18;
  */
 $import-utilities-margins: true;
 $margin-properties: 'top' 'right' 'bottom' 'left';
-$margin-values: 0 12 24 48 72;
+$margin-values: 0 16 32 64 96 128;
 
 
 /**
@@ -109,7 +109,7 @@ $overflow-values: 'scroll' 'hidden';
  */
 $import-utilities-paddings: true;
 $padding-properties: 'top' 'right' 'bottom' 'left';
-$padding-values: 0 15 20 30 40 60;
+$padding-values: 0 32 96;
 
 
 /**
