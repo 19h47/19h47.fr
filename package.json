@@ -10,27 +10,24 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^14.1.0",
-    "browserify-shim": "^3.8.13",
+    "browserify-shim": "^3.8.14",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
-    "gulp-concat": "^2.6.0",
+    "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.2",
-    "gulp-csso": "^2.0.0",
+    "gulp-csso": "^3.0.0",
     "gulp-merge-media-queries": "^0.2.1",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.4.0",
+    "gulp-sourcemaps": "^2.4.1",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
-    "gulp-uglify": "^2.0.0",
-    "gulp-util": "^3.0.7",
-    "handlebars": "^4.0.6",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8",
     "lastfmapi": "^0.1.1",
-    "mustache": "^2.3.0",
     "require-dir": "^0.3.1",
-    "svgo": "^0.7.1",
-    "twig": "^1.10.4",
+    "svgo": "^0.7.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0"
@@ -47,7 +44,7 @@
     "bootstrap-sass": "latest",
     "breakpoint-sass": "^2.7.1",
     "breakpoint-slicer": "^2.0.0",
-    "ress": "^1.1.2"
+    "ress": "^1.2.2"
   },
   "browser": {
     "jquery": "http://code.jquery.com/jquery-3.1.1.min.js"
