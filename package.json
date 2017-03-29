@@ -25,16 +25,19 @@
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.8",
-    "lastfmapi": "^0.1.1",
     "require-dir": "^0.3.1",
     "svgo": "^0.7.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-transform": "^1.0.0",
+    "vue": "^2.2.6",
+    "vue-router": "^2.3.1",
+    "vueify": "^9.0.0"
   },
   "browserify": {
     "transform": [
-      "browserify-shim"
+      "browserify-shim",
+      "vueify"
     ]
   },
   "browserify-shim": {
@@ -47,6 +50,7 @@
     "ress": "^1.2.2"
   },
   "browser": {
-    "jquery": "http://code.jquery.com/jquery-3.1.1.min.js"
+    "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",
+    "vue": "vue/dist/vue.common.js"
   }
 }
