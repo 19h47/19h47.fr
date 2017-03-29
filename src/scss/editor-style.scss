@@ -29,6 +29,7 @@
 @import 'Utilities/_settings';
 
 
+
 html {
 	font: {
 		size:62.5%
@@ -66,3 +67,4 @@ a {
 		color: get_color( black );
 	}
 }
+@include reset-selection( get_color( white ), get_color( black ) );

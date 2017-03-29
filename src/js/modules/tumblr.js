@@ -80,8 +80,7 @@ Tumblr.prototype = {
 		var url = this.API.URL.posts;
 
 		return $.get({
-			url: url, 
-	
+			url: url  + '&offset=' + this.posts.offset, 
 			dataType: 'jsonp'
 		});
 	},
@@ -137,7 +136,6 @@ Tumblr.prototype = {
 	 * Tumblr.update
 	 */
 	update: function() {
-
 		this.posts.offset += this.posts.per_page;
 		
 		this.$response

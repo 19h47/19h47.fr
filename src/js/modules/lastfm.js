@@ -39,11 +39,13 @@ function Lastfm(element) {
 
 
 Lastfm.prototype = {
-	
 	/**
 	 * Lastfm.setup
 	 */
 	setup: function() {
+
+		var _this = this;
+
 		// console.info('Lastfm.setup');
 		
 		this.lastfm.user.getRecentTracks({
@@ -51,6 +53,7 @@ Lastfm.prototype = {
 		}, 
 
 		function(err, recentTracks) {
+
 			if(err) { throw err; }
 
 			for ( i = 0; i < 3; i++ ) {
@@ -61,8 +64,8 @@ Lastfm.prototype = {
 					image: recentTracks.track[i].image[3]['#text']
 					
 				}
-				
-				this.$response.find('.response').append('<div class="Lastfm__row row margin-xs-top-24 margin-xs-bottom-24"><div class="col-xs-1 col-xs-offset-1"><img src="' + posts.image + '" class="Lastfm__cover"/></div><div class="col-xs-9"><p class=" color-white margin-xs-top-12 no-margin-bottom"><span class="artist font-medium">' + posts.artist + '</span><br/><span class="name font-light">' + posts.name + '</span></p></div></div>');
+			
+				_this.$response.find('.response').append('<div class="Lastfm__row row margin-xs-top-32 margin-xs-bottom-32"><div class="col-xs-1 col-xs-offset-1"><img src="' + posts.image + '" class="Lastfm__cover"/></div><div class="col-xs-9"><p class=" color-white margin-xs-top-16 no-margin-bottom"><span class="artist font-medium">' + posts.artist + '</span><br/><span class="name font-light">' + posts.name + '</span></p></div></div>');
 			}
 		});
 
@@ -77,7 +80,7 @@ Lastfm.prototype = {
 
 				// console.log(info);
 
-				this.$response.find('.playcount').prepend(info.playcount);
+				_this.$response.find('.playcount').prepend(info.playcount);
 		});
 	}
 };

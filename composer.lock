@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "92e3cddd5bcf85b9f3c68b3ec29de528",
     "content-hash": "ce29d8b2fde10fd12685e43f4ca2760d",
     "packages": [
         {
@@ -55,7 +56,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2014-04-16T09:44:40+00:00"
+            "time": "2014-04-16 09:44:40"
         },
         {
             "name": "asm89/twig-cache-extension",
@@ -109,7 +110,7 @@
                 "extension",
                 "twig"
             ],
-            "time": "2017-01-10T22:04:15+00:00"
+            "time": "2017-01-10 22:04:15"
         },
         {
             "name": "composer/installers",
@@ -216,7 +217,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2016-08-13T20:53:52+00:00"
+            "time": "2016-08-13 20:53:52"
         },
         {
             "name": "timber/timber",
@@ -277,7 +278,7 @@
                 "timber",
                 "twig"
             ],
-            "time": "2017-02-22T19:54:49+00:00"
+            "time": "2017-02-22 19:54:49"
         },
         {
             "name": "twig/twig",
@@ -339,7 +340,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22T15:40:09+00:00"
+            "time": "2017-03-22 15:40:09"
         },
         {
             "name": "upstatement/routes",
@@ -390,7 +391,7 @@
                 "routes",
                 "routing"
             ],
-            "time": "2016-07-06T12:53:24+00:00"
+            "time": "2016-07-06 12:53:24"
         }
     ],
     "packages-dev": [],
