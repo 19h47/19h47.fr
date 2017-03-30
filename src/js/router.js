@@ -16,7 +16,8 @@ var routes = [
 ];
 
 var router = new VueRouter({
-  	routes: routes
+  	routes: routes,
+  	mode: 'history'
 });
 
 var app = new Vue({
