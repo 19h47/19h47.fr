@@ -1,0 +1,51 @@
+{#
+/**
+ * /views/pages/what-inspires-me
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron levronjeremy@19h47.fr
+ */
+#}
+{% extends 'index.twig' %}
+
+
+{# Tumblr #}
+{% block start_wrapper %}
+	<div class="Tumblr margin-xs-top-64 margin-xs-bottom-64">
+{% endblock %}
+
+{% block header %}
+	{% include 'pages/_header.twig' %}
+{% endblock %}
+
+{% block content %}
+		
+	<section class="row margin-xs-top-32 margin-xs-bottom-32">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<section class="response"></section>
+		</div>
+	</section>
+
+			
+{% endblock %}
+
+{% block footer %}
+
+	<footer class="row">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<button class="Tumblr__load-more load-more no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline color-white position-xs-relative" data-count="">
+				<div class="Link-layer">
+					Load more
+					<span data-text="Load more"></span>
+				</div>
+				
+			</button>
+		</div>
+	</footer>
+
+{% endblock %}
+
+{% block end_wrapper %}
+	</div>
+{% endblock %}

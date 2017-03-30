@@ -20,7 +20,7 @@ gulp.task('browserify', function() {
         .pipe(buffer())
         .pipe(gulp.dest(config.dest))
         .pipe(rename({ suffix: '.min' }))
-        // .pipe(uglify())
+        .pipe(uglify())
         
         // Output to the build directory
         .pipe(gulp.dest(config.dest + '/min/'));
