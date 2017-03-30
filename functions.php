@@ -172,6 +172,19 @@ class LJ extends TimberSite {
         // Add socials to $context
         $context['socials'] = $socials;
 
+        // Page permalink
+        $context['page_permalink'] = array(
+            'what_i_currently_listening'    => get_permalink( 14 ),
+            'who_i_am'                      => get_permalink( 2 ),
+            'what_i_do'                     => get_permalink( 10 ),
+            'what_inspires_me'              => get_permalink( 12 )
+        );
+
+        $context['body_class'] = TimberHelper::function_wrapper( 'body_class' );
+
+        // Barba
+        $context['barba_namespace'] = TimberHelper::function_wrapper( 'barba_namespace' );
+
 
         return $context;
     }
@@ -257,6 +270,12 @@ class LJ extends TimberSite {
          * Add favicons
          */
         add_action( 'wp_head', array( $this, 'favicons' ) );
+
+
+        /**
+         * Set Barba namespace
+         */
+        add_filter( 'barba_namespace', array( $this, 'barba_namespace' ) );
     }
 
 
@@ -319,11 +338,33 @@ class LJ extends TimberSite {
                 'template_directory_uri'    => get_template_directory_uri(),
                 'base_url'                  => site_url(),
                 'home_url'                  => home_url( '/' ),
-                'ajax_url'                  => admin_url( 'admin-ajax.php' )
+                'ajax_url'                  => admin_url( 'admin-ajax.php' ),
+                'root'                      => esc_url_raw( rest_url() ),
+                'nonce'                     => wp_create_nonce( 'wp_rest' )
             )
         ); 
 
         wp_enqueue_script( $this->theme_name . '-main' );
+    }
+
+
+    /**
+     * Specify data-namespace attribute on barba container.
+     * @param  string $ns Default namespace 
+     * @return string          
+     */
+    public function barba_namespace( $ns ) {
+
+        if ( is_page( '12' ) ) {
+
+            $ns = 'what-inspires-me';
+        }
+
+        if ( is_page( 14 ) ) {
+
+            $ns = 'what-i-currently-listening';
+        }
+        return $ns;
     }
 
 

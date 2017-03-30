@@ -1,16 +1,20 @@
 {
-  "name": "LJ",
+  "name": "19h47",
   "version": "1.0.0",
-  "description": "LJ",
+  "description": "19h47's website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jérémy Levron jeremy@poigneedemainvirile.com",
+  "author": "Jérémy Levron levronjeremy@19h47.fr",
   "license": "ISC",
   "devDependencies": {
+    "aos": "^2.1.1",
+    "barba.js": "^1.0.0",
     "browserify": "^14.1.0",
     "browserify-shim": "^3.8.14",
+    "feature.js": "^1.0.0",
+    "chaffle": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-concat": "^2.6.1",
@@ -30,18 +34,20 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0",
-    "vue": "^2.2.6",
-    "vue-router": "^2.3.1",
-    "vueify": "^9.0.0"
+    "wow.js": "^1.2.2"
   },
   "browserify": {
     "transform": [
-      "browserify-shim",
-      "vueify"
+      "browserify-shim"
     ]
   },
   "browserify-shim": {
-    "jquery": "global:$"
+    "jquery": "global:$",
+    "barba.enhanced.js": {
+      "depends": [
+        "barba.js"
+      ]
+    }
   },
   "dependencies": {
     "bootstrap-sass": "latest",
@@ -51,6 +57,6 @@
   },
   "browser": {
     "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",
-    "vue": "vue/dist/vue.common.js"
+    "barba.enhanced.js": "./src/js/vendors/barba.enhanced.js"
   }
 }

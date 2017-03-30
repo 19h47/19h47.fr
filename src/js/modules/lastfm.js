@@ -118,7 +118,7 @@ Lastfm.prototype = {
 				output += '<div class="col-xs-1 col-xs-offset-1">';
 				output += '<img src="' + track.image + '" class="Lastfm__cover"/>';
 				output += '</div><div class="col-xs-9">';
-				output += '<p class=" color-white margin-xs-top-16 no-margin-bottom">';
+				output += '<p class=" color-white margin-xs-top-8 no-margin-bottom">';
 				output += '<span class="artist font-medium">' + track.artist + '</span>';
 				output += '<br/><span class="name font-light">' + track.name + '</span></p></div></div>';
 			}

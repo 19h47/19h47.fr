@@ -102,7 +102,7 @@ Tumblr.prototype = {
  			var post = posts[i];
 
 			// response += '';
-			response += '<div class="Tumblr__post">';
+			response += '<div class="Tumblr__post" data-aos="fade-up" data-aos-offset="0">';
 			
 
 			response += '<div class="Tumblr__image" style="background-image: url(\'' + post.photos[0].original_size.url +'\');">';
