@@ -115,7 +115,6 @@ Tumblr.prototype = {
 			
 			response += '</div>';
 
-
 			response += '</div>';
 		}
 

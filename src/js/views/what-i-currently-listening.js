@@ -14,7 +14,12 @@ var WhatICurrentlyListening = Barba.BaseView.extend({
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
 		
-		new Lastfm('.Lastfm');
+		new Lastfm('.Lastfm', {
+			limit:50,
+			user: 'Bsurde',
+			apiKey: '34ee8634c2620b37bb06c0910c946200',
+			apiSecret: '47d74ac88537e2963cd91c187f7636aa',
+		});
 	},
 
 

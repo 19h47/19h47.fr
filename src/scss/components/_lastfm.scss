@@ -25,6 +25,12 @@
 	&__cover {
 
 		@extend %Filter-grayscale, %display-xs-block;
-		@extend .background-white, .img-full;
+		@include padding( top 100% );
+
+		background: {
+			color: get_color( white );
+			position: center;
+			size: contain;
+		}
 	}
 }

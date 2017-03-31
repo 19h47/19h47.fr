@@ -8,15 +8,44 @@ var fn = require('../functions.js');
  *
  * @see  http://www.last.fm/api
  */
-function Lastfm(element) {
+function Lastfm(element, options) {
  	if (!(this instanceof Lastfm)) {
     	return new Lastfm();
 	}
 
+    // If jQuery isn't loaded
+    if (!window.jQuery) {
+        throw new Error('jQuery is missing.');
+    }
+
 	$element = $(element);
 
 	if (!$element || !$element.length) {
-		return;
+		throw new Error('Missing selector.');
+	}
+
+	this.defaults = {
+		limit: 50,
+		user: '',
+		apiKey: '',
+		apiSecret: '',
+	};
+
+	this.options = $.extend({}, this.defaults, options);
+
+	// If user isn't set
+	if (!this.options.user || !this.options.user.length) {
+	    throw new Error('User is missing.');
+	}
+
+	// If API key isn't set
+	if (!this.options.apiKey || !this.options.apiKey.length) {
+	    throw new Error('API key is missing.');
+	}
+
+	// If user isn't set
+	if (!this.options.apiSecret || !this.options.apiSecret.length) {
+	    throw new Error('API secret is missing.');
 	}
 
 	this.setup();
@@ -31,9 +60,9 @@ Lastfm.prototype = {
 	setup: function() {
 
 		this.API = {
-			KEY: '3920629640c026da1a7437af12cb6089',
-			SECRET: '78975b7ddf12b8b8216773e29d9dcb34',
-			USER: 'Bsurde',
+			KEY: this.options.apiKey,
+			SECRET: this.options.apiSecret,
+			USER: this.options.user,
 		}
 
 		this.$response = $element;
@@ -104,9 +133,10 @@ Lastfm.prototype = {
 		 */
 		recenTracks: function(response) {
 
+			var recenTracksLength = response.recenttracks.track.length;
 			var output = '';
 
-			for (i = 0; i < 3; i++) {
+			for (i = 0; i < this.options.limit; i++) {
 
 				var track = {
 					artist: response.recenttracks.track[i].artist['#text'],
@@ -114,13 +144,16 @@ Lastfm.prototype = {
 					image: response.recenttracks.track[i].image[3]['#text']	
 				}
 
-				output += '<div class="Lastfm__row row margin-xs-top-32 margin-xs-bottom-32">';
+				output += '<div class="Lastfm__row row margin-xs-top-32 margin-xs-bottom-32" data-aos="slide-up" data-aos-offset="0">';
 				output += '<div class="col-xs-1 col-xs-offset-1">';
-				output += '<img src="' + track.image + '" class="Lastfm__cover"/>';
-				output += '</div><div class="col-xs-9">';
-				output += '<p class=" color-white margin-xs-top-8 no-margin-bottom">';
-				output += '<span class="artist font-medium">' + track.artist + '</span>';
-				output += '<br/><span class="name font-light">' + track.name + '</span></p></div></div>';
+				output += '<div class="Lastfm__cover" style="background-image: url(\'' + track.image + '\')">';
+				output += '</div>';
+				output += '</div>';
+				output += '<div class="col-xs-9">';
+				output += '<p class="color-white margin-xs-top-8 no-margin-bottom">';
+				output += '<span class="artist font-medium">' + track.artist + '</span><br/>';
+				output += '<span class="name font-light">' + track.name + '</span>';
+				output += '</p></div></div>';
 			}
 
 			return output;
@@ -146,7 +179,7 @@ Lastfm.prototype = {
 		 * Lastfm.url.recentTracks
 		 */
 		recentTracks: function() {
-			
+
 			return url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
 		},
 
