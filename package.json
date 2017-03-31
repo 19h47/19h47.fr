@@ -33,8 +33,7 @@
     "svgo": "^0.7.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "vinyl-transform": "^1.0.0",
-    "wow.js": "^1.2.2"
+    "vinyl-transform": "^1.0.0"
   },
   "browserify": {
     "transform": [

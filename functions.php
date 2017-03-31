@@ -174,10 +174,10 @@ class LJ extends TimberSite {
 
         // Page permalink
         $context['page_permalink'] = array(
-            'what_i_currently_listening'    => get_permalink( 14 ),
-            'who_i_am'                      => get_permalink( 2 ),
-            'what_i_do'                     => get_permalink( 10 ),
-            'what_inspires_me'              => get_permalink( 12 )
+            'what_i_currently_listening'    => get_permalink( get_page_by_path( 'what-i-currently-listening' ) ),
+            'who_i_am'                      => get_permalink( get_page_by_path( 'who-i-am' ) ),
+            'what_i_do'                     => get_permalink( get_page_by_path( 'what-i-do' ) ),
+            'what_inspires_me'              => get_permalink( get_page_by_path( 'what-inspires-me' ) )
         );
 
         $context['body_class'] = TimberHelper::function_wrapper( 'body_class' );
@@ -339,8 +339,6 @@ class LJ extends TimberSite {
                 'base_url'                  => site_url(),
                 'home_url'                  => home_url( '/' ),
                 'ajax_url'                  => admin_url( 'admin-ajax.php' ),
-                'root'                      => esc_url_raw( rest_url() ),
-                'nonce'                     => wp_create_nonce( 'wp_rest' )
             )
         ); 
 
@@ -355,12 +353,12 @@ class LJ extends TimberSite {
      */
     public function barba_namespace( $ns ) {
 
-        if ( is_page( '12' ) ) {
+        if ( is_page( 'what-inspires-me' ) ) {
 
             $ns = 'what-inspires-me';
         }
 
-        if ( is_page( 14 ) ) {
+        if ( is_page( 'what-i-currently-listening' ) ) {
 
             $ns = 'what-i-currently-listening';
         }
