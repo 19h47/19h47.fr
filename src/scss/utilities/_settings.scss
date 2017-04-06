@@ -54,7 +54,7 @@ $float-values: null;
  * @author 	Jérémy 	Levron 	jeremy@poigneedemainvirile.com
  */
 $import-utilities-fonts: true;
-$font-sizes: 13 $base-font-size;
+$font-sizes: 13 18 $base-font-size;
 $font-styles: medium;
 $letters-spacing: 0 50 100;
 $lines-height: $base-line-height 18;
@@ -84,7 +84,7 @@ $margin-values: 0 8 16 32 64 96 128;
  * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
  */
 $import-utilities-opacities: true;
-$opacity-values: none 40;
+$opacity-values: none 40 60;
 
 
 /**
@@ -109,7 +109,7 @@ $overflow-values: 'scroll' 'hidden';
  */
 $import-utilities-paddings: true;
 $padding-properties: 'top' 'right' 'bottom' 'left';
-$padding-values: 0 32 96;
+$padding-values: 0 32 96 128 224;
 
 
 /**
@@ -157,8 +157,8 @@ $text-align-values: 'center' 'right' 'left';
  * @param 	List 			$z-index-values
  * @author 	Jérémy Levron 	jeremy@poigneedemainvirile.com
  */
-$import-utilities-z-indexes: false;
-$z-index-values: null;
+$import-utilities-z-indexes: true;
+$z-index-values: 1 10 11;
 
 
 /**

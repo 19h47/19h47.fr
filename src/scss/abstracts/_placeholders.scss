@@ -141,6 +141,18 @@
     &-opacity {
         opacity: 1;
     }
+
+
+    /**
+     * Reset visibility
+     *
+     * Turn visibility to visible
+     * 
+     * @uses @extend %Reset-visible
+     */
+    &-visibility {
+        visibility: visible;
+    }
 }
 
 

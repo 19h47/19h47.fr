@@ -3,13 +3,18 @@
  */
 
 html {
-    @extend %w-xs-100, %h-xs-100;
+    @extend %w-xs-100;
     overflow-y: visible; // reset value from ress.css
 }
 
 body {
     font-size: 62.5%;
     line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+
+    &.page--is-loading {
+        cursor: progress !important;
+        cursor: wait !important;
+    }
 }
 
 a, 

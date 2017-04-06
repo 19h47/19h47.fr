@@ -15,3 +15,11 @@
 		max-width: $container-width;
 	}
 }
+
+/**
+ * Front page
+ */
+[data-context="front-page"] {
+	user-select: none;
+
+}

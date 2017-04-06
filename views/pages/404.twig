@@ -1,0 +1,40 @@
+{#
+/**
+ * /views/pages/404
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron levronjeremy@19h47.fr
+ */
+#}
+{% extends 'index.twig' %}
+
+{% block start_wrapper %}
+	<div class="margin-xs-top-64">
+{% endblock %}
+
+{% block header %}
+	{% include 'pages/_header.twig' with { 'title': '404' }%}
+{% endblock %}
+
+{% block content %}
+	
+	<canvas id="television" class="Position-fixed-center w-xs-100 h-xs-100 opacity-60"></canvas>
+
+	<section class="row">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<div class="font-light color-white margin-xs-top-64 margin-xs-bottom-64">
+				<p>
+					Sorry, we couldn't find what you're looking for.
+				</p>
+			</div>
+
+		</div>
+	</section> 
+
+
+{% endblock %}
+
+{% block end_wrapper %}
+	</div>
+{% endblock %}

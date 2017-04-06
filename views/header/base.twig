@@ -23,47 +23,48 @@
 		{% include 'components/google-analytics.twig' %}
 
 	</head>
-	<body class="background-black h-xs-100 w-xs-100">
-		<div id="barba-wrapper" class="h-xs-100 w-xs-100">
-			<header class="l-header margin-xs-top-64 margin-xs-bottom-32">
-				<div class="l-container">
-					<div class="row">
-						<div class="col-xs-12 col-md-10 col-md-offset-1">
+	<body class="background-black">
+		<header class="l-header margin-xs-top-64 margin-xs-bottom-32">
+			<div class="l-container">
+				<div class="row">
+					<div class="col-xs-12 col-md-10 col-md-offset-1">
 
-							<div class="row">
+						<div class="row">
 
-								<div class="col-xs-8">
-									<h1 class="font-medium font-size-24 color-white no-margin display-xs-inline-block valign-baseline">
-										<a href="{{ site.url }}">
-											{{ site.name }}
-										</a>
-									</h1>
-								</div>
-								
-
-								{# Who I am link #}
-								<div class="col-xs-2 text-xs-right">
-									<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
-										Who I am
-										<span data-text="Who I am"></span>
+							<div class="col-xs-8">
+								<h1 class="font-medium font-size-24 color-white no-margin display-xs-inline-block valign-baseline z-index-1 position-xs-relative">
+									<a href="{{ site.url }}">
+										{{ site.name }}
 									</a>
-								</div>
-								
-
-								{# What I do link #}
-								<div class="col-xs-2 text-xs-right">
-									<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer" href="{{ page_permalink.what_i_do }}" data-namespace="what-i-do">
-										What I do
-										<span data-text="What I do"></span>
-									</a>
-								</div>
-								
-
+								</h1>
 							</div>
+							
+
+							{# Who I am link #}
+							<div class="col-xs-4 text-xs-right">
+								<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
+									Who I am
+									<span data-text="Who I am"></span>
+								</a>
+							</div>
+							
+
+							{# What I do link #}
+							{# <div class="col-xs-2 text-xs-right">
+								<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer" href="{{ page_permalink.what_i_do }}" data-namespace="what-i-do">
+									What I do
+									<span data-text="What I do"></span>
+								</a>
+							</div> #}
+							
+
 						</div>
 					</div>
 				</div>
-			</header>
-			<main {{ body_class( 'barba-container h-xs-100 w-xs-100' ) }} {{ barba_namespace() }}>
-				<div class="display-xs-table h-xs-100 w-xs-100">
-					<div class="display-xs-table-cell vertical-align-middle padding-xs-top-96 padding-xs-bottom-96">	
+			</div>
+		</header>
+		<main id="barba-wrapper" class="js-wrapper h-xs-100">
+
+				<div {{ body_class( 'barba-container padding-xs-bottom-224 padding-xs-top-128' ) }} {{ barba_namespace() }}>
+				
+		

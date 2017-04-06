@@ -99,6 +99,7 @@ Barba.HistoryManager.setCurrentFromLink = function() {
     }
 
     var currentStatus = this.currentStatus();
+    
     if (!currentStatus) {
         return;
     }

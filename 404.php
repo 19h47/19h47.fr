@@ -13,9 +13,7 @@ if ( ! class_exists( 'Timber' ) ) {
 }
 
 $context = Timber::get_context();
-$post = new TimberPost();
-$context['post'] = $post;
 
-$templates = array( 'index.twig' );
+$templates = array( 'pages/404.twig' );
 
 Timber::render( $templates, $context );

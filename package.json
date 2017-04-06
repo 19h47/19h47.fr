@@ -6,15 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jérémy Levron levronjeremy@19h47.fr",
+  "author": {
+    "name": "Jérémy Levron",
+    "email": "levronjeremy@19h47.fr",
+    "url": "http://www.19h47.fr"
+  },
   "license": "ISC",
   "devDependencies": {
     "aos": "^2.1.1",
     "barba.js": "^1.0.0",
     "browserify": "^14.1.0",
     "browserify-shim": "^3.8.14",
-    "feature.js": "^1.0.0",
     "chaffle": "^2.0.0",
+    "feature.js": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-concat": "^2.6.1",
@@ -29,7 +33,9 @@
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.8",
+    "mustache": "^2.3.0",
     "require-dir": "^0.3.1",
+    "scrollmonitor": "^1.2.3",
     "svgo": "^0.7.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",

@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block header %}
-	{% include 'pages/_header.twig' %}
+	{% include 'pages/_header.twig' with { 'class': 'js-loader is-loading Loader' } %}
 {% endblock %}
 
 {% block content %}
@@ -32,7 +32,7 @@
 
 {% block footer %}
 
-	<footer class="row">
+	<footer class="row" data-aos="fade" data-aos-once="false">
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
 			<button class="Tumblr__load-more load-more no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline color-white position-xs-relative" data-count="">
 				<div class="Link-layer">
@@ -43,6 +43,27 @@
 			</button>
 		</div>
 	</footer>
+
+
+	<script id="post" type="x-tmpl-mustache">
+		{% verbatim %}
+
+			<div class="Tumblr__post" data-aos="fade-up" data-aos-offset="0">
+	
+
+				<div class="Tumblr__image" style="background-image: url('{{ image }}');">
+
+					{{#src}} 
+
+						<a class="Tumblr__caption" href="{{ src }}" target="_blank"></a>
+
+					{{/src}}
+	
+				</div>
+
+			</div>
+		{% endverbatim %}
+	</script>
 
 {% endblock %}
 

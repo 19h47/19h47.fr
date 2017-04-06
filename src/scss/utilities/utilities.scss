@@ -146,8 +146,7 @@
  * @see http://v4-alpha.getbootstrap.com/content/images/#responsive-images
  * @uses .img-fluid
  */
-.img-fluid 
-{
+.img-fluid {
     @if $import-utilities-displays {
         @extend %display-xs-block;
     }
@@ -221,4 +220,9 @@
  */
 .background-size-cover {
     @extend %Background-size-cover;
+}
+
+
+.Position-fixed-center {
+    @extend %Position-fixed-center;
 }

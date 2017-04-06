@@ -2,9 +2,9 @@ module.exports = Tumblr;
 
 var $ = require('jquery');
 var fn = require('../functions.js');
+var Mustache = require('mustache');
 
-
-function Tumblr(element) {
+function Tumblr(element, options) {
  	if (!(this instanceof Tumblr)) {
     	return new Tumblr();
 	}
@@ -33,16 +33,21 @@ Tumblr.prototype = {
 		}
 		
 		var KEY = 'T1ta3DzmFPU36KjYWsoJcvjl8kSPybrqagZsRp8sXWpUIlxQ98';
+		var USER = '19h47';
+		var URL = 'http://api.tumblr.com/v2/blog/';
 
 		this.API = {
 			KEY: KEY,
+			USER: USER,
 			URL: {
-				info: 'http://api.tumblr.com/v2/blog/19h47.tumblr.com/info?api_key=' + KEY,
-				posts: 'http://api.tumblr.com/v2/blog/19h47.tumblr.com/posts?api_key=' + KEY,
+				info: URL + USER + '.tumblr.com/info?api_key=' + KEY,
+				posts: URL + USER + '.tumblr.com/posts?api_key=' + KEY,
 			}
 		}
 		
 		this.$response = $element;
+		this.button = this.$response.find('.load-more');
+		this.loader = this.$response.find('.js-loader');
 
 		this.showmore();
 		this.initEvents();
@@ -53,8 +58,10 @@ Tumblr.prototype = {
 	 * Tumblr.initEvents
 	 */
 	initEvents: function() {
-		this.$response.find('.load-more')
+		this.button
 			.on('click.tumblr', $.proxy(function() {
+
+				this.lock.on.call(this);
 				this.showmore();
 
 			}, this));
@@ -76,6 +83,8 @@ Tumblr.prototype = {
 	 * Tumblr.loadmore
 	 */
 	loadmore: function() {
+
+		this.lock.on.call(this);
 		
 		var url = this.API.URL.posts;
 
@@ -83,6 +92,58 @@ Tumblr.prototype = {
 			url: url  + '&offset=' + this.posts.offset, 
 			dataType: 'jsonp'
 		});
+	},
+
+
+	/**
+	 * Tumblr.lock
+	 */
+	lock: {
+
+		/**
+		 * Tumblr.lock.off
+		 */
+		off: function() {
+			console.info('Tumblr.lock.off');
+
+			// remove loading state to loader if exists
+			this.loader.length && 
+			this.loader
+			    .removeClass('is-loading');
+
+			// remove loading state to button if exists
+		    this.button.length && 
+		    this.button
+		        .removeClass('is-loading disabled')
+		        .prop('disabled', false);
+
+		    // add loading state to ajax container if exists
+		    this.$response.length &&
+		    this.$response.removeClass('is-loading');
+		},
+
+
+		/**
+		 * Tumblr.lock.on
+		 */
+		on: function() {
+			console.info('Tumblr.lock.on');
+			
+			// add loading state to loader if exist
+			this.loader.length && 
+			this.loader
+			    .addClass('is-loading');
+
+			// add loading state to button if exists
+		    this.button.length && 
+		    this.button
+		        .addClass('is-loading disabled')
+		        .prop('disabled', true);
+
+		    // add loading state to ajax container if exists
+		    this.$response.length &&
+		    this.$response.addClass('is-loading');
+		}
 	},
 
 
@@ -97,25 +158,17 @@ Tumblr.prototype = {
   		var posts = posts.response.posts;
 
   		var response = '';
+  		var template = $('#post').html();
+  		Mustache.parse(template);
 
   		for (var i in posts) {
  			var post = posts[i];
 
-			// response += '';
-			response += '<div class="Tumblr__post" data-aos="fade-up" data-aos-offset="0">';
+			response += Mustache.render(template, {
+				image: post.photos[0].original_size.url,
+				src: post.source_url
+			});
 			
-
-			response += '<div class="Tumblr__image" style="background-image: url(\'' + post.photos[0].original_size.url +'\');">';
-
-			if ( post.source_url ) {
-
-				response += '<a class="Tumblr__caption" href="' + post.source_url + '" target="_blank">';
-				response += '</a>';
-			}
-			
-			response += '</div>';
-
-			response += '</div>';
 		}
 
 		return response;
@@ -127,7 +180,11 @@ Tumblr.prototype = {
 	 */
 	append: function(html) {
 
-		this.$response.find('.response').append(html.replace(/>\s+</g,'><'));
+		this.$response
+			.find('.response')
+			.append(html.replace(/>\s+</g,'><'));
+
+		$.proxy(this.lock.off, this);
 	},
 
 
@@ -135,6 +192,10 @@ Tumblr.prototype = {
 	 * Tumblr.update
 	 */
 	update: function() {
+
+		// Ensure everything is unlocked
+		this.lock.off.call(this);
+
 		this.posts.offset += this.posts.per_page;
 		
 		this.$response

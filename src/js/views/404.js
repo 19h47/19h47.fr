@@ -1,11 +1,11 @@
 var $ = require('jquery');
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
-var scrollMonitor = require('scrollMonitor');
 
-var WhatInspiresMe = Barba.BaseView.extend({
 
-	namespace: 'what-inspires-me',
+var NotFound = Barba.BaseView.extend({
+
+	namespace: '404',
 
 
 	/**
@@ -14,17 +14,14 @@ var WhatInspiresMe = Barba.BaseView.extend({
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
 		
-		new Modules.Tumblr('.Tumblr');
+		new Modules.Television('#television');
+
+		$('.js-footer').addClass('is-active');
 	},
 
 
 	onEnterCompleted: function() {
 	    // The Transition has just finished.
-	    
-	    // scrollMonitor
-    	scrollMonitor.update();
-
-    	$('.js-footer').removeClass('is-active');
 	},
 	  
 
@@ -39,6 +36,6 @@ var WhatInspiresMe = Barba.BaseView.extend({
 });
 
 
-WhatInspiresMe.init();
+NotFound.init();
 
-module.exports = WhatInspiresMe;
+module.exports = NotFound;

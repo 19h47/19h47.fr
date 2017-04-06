@@ -10,38 +10,12 @@
 {% extends 'index.twig' %}
 
 {% block start_wrapper %}
-	<div class="margin-xs-top-64 margin-xs-bottom-64">
+	<div class="margin-xs-top-64">
 {% endblock %}
 
 {% block header %}
 
 	{% include 'pages/_header.twig' %}
-
-{% endblock %}
-
-{% block footer %}
-
-	<footer class="row">
-		<div class="col-xs-3 col-md-offset-1">
-				
-			<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer" href="{{ page_permalink.what_i_currently_listening }}" data-namespace="what-i-currently-listening">
-				What I currently listening
-				<span data-text="What I currently listening"></span>
-			</a>
-
-		</div>
-		
-
-		<div class="col-xs-3">
-
-			<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer" href="{{ page_permalink.what_inspires_me }}" data-namespace="what-inspires-me">
-				What inspires me
-				<span data-text="What inspires me"></span>
-			</a>
-				
-	
-		</div>
-	</footer>
 
 {% endblock %}
 

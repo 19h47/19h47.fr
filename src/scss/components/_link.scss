@@ -6,7 +6,8 @@
 		color: rgba( get_color( white ), .4 );
 		z-index: 1;
 
-		&:hover {
+		&:hover,
+		&.is-active {
 
 			span {
 				@extend %Reset-translate3d;

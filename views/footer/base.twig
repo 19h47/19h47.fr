@@ -8,33 +8,97 @@
 	 * @author Jérémy Levron jeremy@poigneedemainvirile.com
 	 */
 	
-#}
-				</div> 
+#}				
 			</div>
-		</main>
-		<footer class="l-footer margin-xs-bottom-64 margin-xs-top-32">
-			<div class="l-container">
-				<div class="row">
-					<div class="col-xs-12 col-md-10 col-md-offset-1">
-						<div class="row">
-							<div class="col-xs-6">
-								<p class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer">
-									Creative front end developer
-									<span data-text="Creative front end developer"></span>
-								</p>
-							</div>
-							<div class="col-xs-6 text-xs-right">
-								<p class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer">
-									{{ "now"|date("l, d F, Y") }}
-									<span data-text="{{ "now"|date("l, d F, Y") }}"></span>
-								</p>
-							</div>
-						</div>
-					</div>
+		
+	</main>
+	
+	<footer class="js-footer l-footer margin-xs-bottom-64 margin-xs-top-32 is-active">
+		<div class="l-container">
+
+			<div class="row">
+
+				<div class="col-xs-12 col-md-2 col-md-offset-1">
+					<p class="color-white font-size-18">
+						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.who_i_am }}">
+							Who I am
+							<span data-text="Who I am"></span>
+						</a>
+						<br>
+						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.what_i_do }}">
+							What I do
+							<span data-text="What I do"></span>
+						</a>
+						<br>
+						
+					</p>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<p class="color-white font-size-18">
+
+						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.what_i_currently_listening }}">
+							What I currently listening
+							<span data-text="What I currently listening"></span>
+						</a>
+						<br>
+						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.what_inspires_me }}">
+							What inspires me
+							<span data-text="What inspires me"></span>
+						</a>
+
+					</p>
+				</div>
+
+				<div class="col-xs-12 col-md-3">
+					<p class="color-white font-size-18">
+						<a class="display-xs-inline-block valign-baseline Link-layer" href="https://twitter.com/19h47" target="_blank">
+							Twitter
+							<span data-text="Twitter"></span>
+						</a>
+						<br>
+						<a class="display-xs-inline-block valign-baseline Link-layer" href="https://github.com/19h47" target="_blank">
+							Github
+							<span data-text="Github"></span>
+						</a>
+					</p>
+				</div>
+				
+				{# Paint control #}
+				<div class="col-xs-12 col-md-2">
+					<p class="color-white font-size-18">
+
+						<a class="js-save Paint__control display-xs-inline-block valign-baseline Link-layer" href="#" target="_blank">
+							Save me
+							<span data-text="Save me"></span>
+						</a>
+						<br>
+						<button class="js-clear Paint__control display-xs-inline-block valign-baseline Link-layer js-navigation">
+							Clear me
+							<span data-text="Clear me"></span>
+						</button>
+
+					</p>
 				</div>
 			</div>
-		</footer>
-	</div> 
+
+			<div class="row">
+				<div class="col-xs-12 col-md-5 col-md-offset-1">
+				
+					<p class="font-size-13 uppercase letter-spacing-100 font-medium color-white">
+						Creative front-end developer
+					</p>
+				</div>
+
+				<div class="col-xs-12 col-md-5 text-xs-right">
+					<p class="font-size-13 uppercase letter-spacing-100 font-medium color-white">
+						{{ "now"|date("l, d F, Y") }}
+					</p>
+				</div>
+	
+			</div>
+
+		</div>
+	</footer> 
 	{{ wp_footer }}
 		{% include 'components/guid.twig' %}
 </body>

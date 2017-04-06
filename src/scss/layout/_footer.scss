@@ -1,6 +1,19 @@
 .l {
 	&-footer {
 		@include fixed( right 0 bottom 0 left 0 );
+
+		opacity: 0;
+		transition: $ease-transition;
+		// visibility: hidden;
 		z-index: 10;
+
+		&.is-active,
+		&:hover {
+			@extend %Reset-opacity, %Reset-visibility;
+		}
+
+		@at-root [data-context="front-page"] & {
+			@extend %Reset-opacity, %Reset-visibility;
+		}
 	}
 }

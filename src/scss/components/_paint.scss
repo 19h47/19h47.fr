@@ -1,0 +1,34 @@
+
+
+/**
+ * Paint
+ */
+.Paint {
+	
+	/**
+	 * Instruction
+	 */
+	&__instruction {
+	
+		opacity: 0;
+		transition: $ease-transition;
+		visibility: hidden;
+
+		&.is-active {
+			opacity: initial;
+			@extend %Reset-visibility;
+		}
+		
+	}
+
+	&__control {
+		opacity: 0;
+		transition: $ease-transition;
+		visibility: hidden;
+
+		@at-root [data-context="front-page"] & {
+
+			@extend %Reset-opacity, %Reset-visibility;
+		}
+	}
+}

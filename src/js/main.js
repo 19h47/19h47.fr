@@ -1,32 +1,41 @@
-var feature = require('feature.js');
 var $ = require('jquery');
-var App = require('./modules/app');
-var Guid = require('./modules/guid')();
-var Lastfm = require('./modules/lastfm');
+
 var AOS = require('aos');
 var Barba = require('barba.enhanced.js');
 var randomizeText = require('./vendors/randomize_text');
 
+
+// Modules
+var Modules = require('./modules/index.js');
+
+
 // Transitions
-var BasicTransition = require('./transitions/basic');
+var Transitions = require('./transitions/index');
 
 
 // Views
-var WhatInspiresMe = require('./views/what-inspires-me');
-var WhatICurrentlyListening = require('./views/what-i-currently-listening');
+var Views = require('./views/index');
 
+// create App
+window.app = new Modules.App();
+// add state to App while current page is loading
+window.app.addState('page--is-loading');
 
+// Menu
+new Modules.Menu();
+
+// Navigation
+Modules.Navigation();
+
+/**
+ * Animate on Scroll
+ *
+ * @see  https://github.com/michalsnik/aos
+ */
 AOS.init();
-
-// Create App
-window.app = new App();
-
 
 // Barba
 Barba.Dispatcher.on('initStateChange', function(currentStatus) {
-    
-    // ensure menu is closed
-    // nav.close();
     
     // add state to App to tell new page is loading
     window.app.addState('page--is-loading');
@@ -37,6 +46,10 @@ Barba.Dispatcher.on('initStateChange', function(currentStatus) {
 
 
 Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElementContainer, newPageRawHTML) {    
+    // Add namespace as class to body
+    var bodyClass = $(newPageRawHTML).find('.barba-container').attr('data-namespace');
+
+    $('body').attr('data-context', bodyClass || '');
 
 	$('title').randomizeText({
 		refreshRate: 1,
@@ -44,6 +57,10 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 		maxRandomTries: 5,
 	});
 
+    Modules.Navigation();
+
+    new Modules.Footer('.js-footer');
+    
 });
 
 
@@ -54,6 +71,8 @@ Barba.Dispatcher.on('transitionCompleted', function() {
 
 	// remove previous state from App
 	window.app.removeState('page--is-loading');
+
+    $('.js-footer').addClass('is-active');
 });
 
 
@@ -61,7 +80,7 @@ Barba.Pjax.getTransition = function() {
     var previousStatus = Barba.Pjax.History.prevStatus();
     var currentStatus = Barba.Pjax.History.currentStatus();
 
-    return BasicTransition;
+    return Transitions.Basic;
 };
 
 

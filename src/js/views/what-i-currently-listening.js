@@ -1,10 +1,17 @@
 var $ = require('jquery');
-var Lastfm = require('../modules/lastfm');
+var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
+var scrollMonitor = require('scrollMonitor');
 
 
+/**
+ * WhatInspiresMe
+ */
 var WhatICurrentlyListening = Barba.BaseView.extend({
 
+	/**
+	 * WhatInspiresMe.namespace
+	 */
 	namespace: 'what-i-currently-listening',
 
 
@@ -12,27 +19,42 @@ var WhatICurrentlyListening = Barba.BaseView.extend({
 	 * WhatInspiresMe.onEnter
 	 */
 	onEnter: function() {
-		// The new Container is ready and attached to the DOM.
 		
-		new Lastfm('.Lastfm', {
-			limit:50,
+		new Modules.Lastfm('.Lastfm', {
+			limit: 50,
 			user: 'Bsurde',
-			apiKey: '34ee8634c2620b37bb06c0910c946200',
-			apiSecret: '47d74ac88537e2963cd91c187f7636aa',
+			api: {
+				key: '34ee8634c2620b37bb06c0910c946200',
+				secret: '47d74ac88537e2963cd91c187f7636aa'
+			}
 		});
 	},
 
 
+	/**
+	 * WhatICurrentlyListening.onEnterCompleted
+	 */
 	onEnterCompleted: function() {
 	    // The Transition has just finished.
-	},
-	  
 
+	    // scrollMonitor
+    	scrollMonitor.update();
+
+    	$('.js-footer').removeClass('is-active');
+	},
+	
+
+	/**
+	 * WhatICurrentlyListening.onLeave
+	 */
 	onLeave: function() {
 	    // A new Transition toward a new page has just started.
 	},
 
-	
+
+	/**
+	 * WhatICurrentlyListening.onLeaveCompleted
+	 */	
 	onLeaveCompleted: function() {
 	    // The Container has just been removed from the DOM.
 	}

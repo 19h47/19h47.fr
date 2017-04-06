@@ -2,6 +2,7 @@ module.exports = Lastfm;
 
 var $ = require('jquery');
 var fn = require('../functions.js');
+var Mustache = require('mustache');
 
 /**
  * Lastfm
@@ -27,8 +28,10 @@ function Lastfm(element, options) {
 	this.defaults = {
 		limit: 50,
 		user: '',
-		apiKey: '',
-		apiSecret: '',
+		api: {
+			key: '',
+			secret: '',
+		}
 	};
 
 	this.options = $.extend({}, this.defaults, options);
@@ -39,12 +42,12 @@ function Lastfm(element, options) {
 	}
 
 	// If API key isn't set
-	if (!this.options.apiKey || !this.options.apiKey.length) {
+	if (!this.options.api.key || !this.options.api.key.length) {
 	    throw new Error('API key is missing.');
 	}
 
 	// If user isn't set
-	if (!this.options.apiSecret || !this.options.apiSecret.length) {
+	if (!this.options.api.secret || !this.options.api.secret.length) {
 	    throw new Error('API secret is missing.');
 	}
 
@@ -60,12 +63,14 @@ Lastfm.prototype = {
 	setup: function() {
 
 		this.API = {
-			KEY: this.options.apiKey,
-			SECRET: this.options.apiSecret,
+			KEY: this.options.api.key,
+			SECRET: this.options.api.secret,
 			USER: this.options.user,
+			URL: 'http://ws.audioscrobbler.com/2.0/'
 		}
 
 		this.$response = $element;
+		this.loader = this.$response.find('.js-loader');
 
 		this.show.recentTracks.call(this);
 		this.show.info.call(this);
@@ -81,9 +86,12 @@ Lastfm.prototype = {
 		 * Lastfm.show.recentTracks
 		 */
 		recentTracks: function() {
+			this.lock.on.call(this);
+
 			this.get(this.url.recentTracks.call(this))
 				.then($.proxy(this.construct.recenTracks, this))
-				.done($.proxy(this.append.recentTracks, this));
+				.then($.proxy(this.append.recentTracks, this))
+				.done($.proxy(this.lock.off, this));
 		},
 
 		
@@ -134,6 +142,10 @@ Lastfm.prototype = {
 		recenTracks: function(response) {
 
 			var recenTracksLength = response.recenttracks.track.length;
+			var template = $('#track').html();
+			
+			Mustache.parse(template);
+
 			var output = '';
 
 			for (i = 0; i < this.options.limit; i++) {
@@ -144,19 +156,12 @@ Lastfm.prototype = {
 					image: response.recenttracks.track[i].image[3]['#text']	
 				}
 
-				output += '<div class="Lastfm__row row margin-xs-top-32 margin-xs-bottom-32" data-aos="slide-up" data-aos-offset="0">';
-				output += '<div class="col-xs-1 col-xs-offset-1">';
-				output += '<div class="Lastfm__cover" style="background-image: url(\'' + track.image + '\')">';
-				output += '</div>';
-				output += '</div>';
-				output += '<div class="col-xs-9">';
-				output += '<p class="color-white margin-xs-top-8 no-margin-bottom">';
-				output += '<span class="artist font-medium">' + track.artist + '</span><br/>';
-				output += '<span class="name font-light">' + track.name + '</span>';
-				output += '</p></div></div>';
+				output += Mustache.render(template, {track});
+
 			}
 
 			return output;
+
 		},
 
 
@@ -180,7 +185,7 @@ Lastfm.prototype = {
 		 */
 		recentTracks: function() {
 
-			return url = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
+			return url = this.API.URL + '?method=user.getrecenttracks&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
 		},
 
 
@@ -189,8 +194,40 @@ Lastfm.prototype = {
 		 */
 		info: function() {
 			
-			return url = 'http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
+			return url = this.API.URL + '?method=user.getinfo&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
 		},
+	},
+
+
+	/**
+	 * Lastfm.lock
+	 */
+	lock: {
+
+		/**
+		 * Lastfm.lock.on
+		 */
+		on: function() {
+			console.info('Lastfm.lock.on');
+
+			// remove loading state to loader if exists
+			this.loader.length && 
+			this.loader
+			    .addClass('is-loading');
+		},
+
+
+		/**
+		 * Lastfm.lock.off
+		 */
+		off: function() {
+			console.info('Lastfm.lock.off');
+
+			// remove loading state to loader if exists
+			this.loader.length && 
+			this.loader
+			    .removeClass('is-loading');
+		}
 	},
 
 

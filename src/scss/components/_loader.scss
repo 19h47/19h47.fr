@@ -1,0 +1,79 @@
+@keyframes loading-mask {
+ 	
+ 	0% {
+ 		transform: translate3d( 100%, 0, 0 );
+ 		// opacity: 1;
+    	// background-color: #001F3F;
+  	}
+
+  	100% {
+  		transform: translate3d( -100%, 0, 0 );
+  		// opacity: 0;
+  		
+  	}
+}
+
+@keyframes loading-text {
+ 	
+	0% {
+		transform: translate3d( -100%, 0, 0 );
+		// opacity: 1;
+   	// background-color: #001F3F;
+ 	}
+
+ 	100% {
+ 		transform: translate3d( 100%, 0, 0 );
+ 		// opacity: 0;
+ 		
+ 	}
+}
+
+.Loader {
+	@extend 
+		%position-xs-relative,
+		%display-xs-inline-block;
+
+	color: rgba( get_color( white ), .4 );
+
+	@mixin animation($animation-name) {
+		animation-name: $animation-name;
+		animation-duration: 1.3s; 
+		animation-timing-function: ease; 
+		animation-delay: 0s;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+		animation-fill-mode: forwards;
+	}
+
+	span {
+		@extend %Position-absolute-center, %display-xs-block, %overflow-hidden;
+
+		@include animation(loading-mask);
+		
+		animation-play-state: paused;
+
+		&::before {
+			@extend %Position-absolute-center, %display-xs-block;
+			content: attr(data-text);
+			color: get_color( white );
+
+			@include animation(loading-text);
+
+			animation-play-state: paused;
+			transition: $ease-transition;
+			opacity: 0;
+		}
+	}
+
+	&.is-loading {
+
+		span {
+			animation-play-state: running;
+
+			&::before {
+				animation-play-state: running;
+				opacity: 1;
+			}	
+		}
+	}
+}

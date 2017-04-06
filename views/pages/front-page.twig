@@ -9,12 +9,40 @@
 #}
 {% extends 'index.twig' %}
 
+{% block start_wrapper %}
+	<div class="margin-xs-top-64 margin-xs-bottom-64">
+{% endblock %}
+
+{% block header %}
+	
+	{% 
+		include 'pages/_header.twig' with {
+			'title': 'Click and draw!', 
+			'class' : 'Paint__instruction js-instruction is-loading Loader' 
+	} %}
+
+
+{% endblock %}
+
 {% block content %}
 	
-	<div class="row">
-		<div class="col-xs-8 col-xs-offset-2">
-			<img class="img-full" src="{{ theme.link }}/img/png/home-background.png" width="758" height="512">
-		</div>
-	</div>
+	<section class="row margin-xs-top-32 margin-xs-bottom-32 color-white">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			{# <img class="img-fluid margin-0-auto" src="{{ theme.link }}/img/png/home-background.png" width="758" height="512"> #}
+			{# <img class="img-fluid margin-0-auto" src="{{ theme.link }}/img/svg/palm.svg" width="500.57" height="467.366">  #}
+			{# <img class="img-fluid margin-0-auto" src="{{ theme.link }}/img/svg/bar.svg" width="1000" height="1000">  #}
+			{# <p class="js-instruction Canvas__instruction opacity-60">
+				—Draw me!
+			</p> #}
+			<canvas id="canvas" class="Position-fixed-center w-xs-100 h-xs-100">
+				<img class="img-fluid margin-0-auto" src="{{ theme.link }}/img/svg/bar.svg" width="1000" height="1000">
+			</canvas>
 
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block end_wrapper %}
+	</div>
 {% endblock %}

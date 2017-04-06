@@ -362,6 +362,16 @@ class LJ extends TimberSite {
 
             $ns = 'what-i-currently-listening';
         }
+
+        if ( is_404( '404' ) ) {
+
+            $ns = '404';
+        }
+
+        if ( is_front_page() ) {
+            $ns = 'front-page';
+        }
+        
         return $ns;
     }
 
