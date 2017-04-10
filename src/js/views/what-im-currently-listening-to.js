@@ -7,12 +7,12 @@ var scrollMonitor = require('scrollMonitor');
 /**
  * WhatInspiresMe
  */
-var WhatICurrentlyListening = Barba.BaseView.extend({
+var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 
 	/**
 	 * WhatInspiresMe.namespace
 	 */
-	namespace: 'what-i-currently-listening',
+	namespace: 'what-im-currently-listening-to',
 
 
 	/**
@@ -32,7 +32,7 @@ var WhatICurrentlyListening = Barba.BaseView.extend({
 
 
 	/**
-	 * WhatICurrentlyListening.onEnterCompleted
+	 * WhatImCurrentlyListeningTo.onEnterCompleted
 	 */
 	onEnterCompleted: function() {
 	    // The Transition has just finished.
@@ -45,7 +45,7 @@ var WhatICurrentlyListening = Barba.BaseView.extend({
 	
 
 	/**
-	 * WhatICurrentlyListening.onLeave
+	 * WhatImCurrentlyListeningTo.onLeave
 	 */
 	onLeave: function() {
 	    // A new Transition toward a new page has just started.
@@ -53,7 +53,7 @@ var WhatICurrentlyListening = Barba.BaseView.extend({
 
 
 	/**
-	 * WhatICurrentlyListening.onLeaveCompleted
+	 * WhatImCurrentlyListeningTo.onLeaveCompleted
 	 */	
 	onLeaveCompleted: function() {
 	    // The Container has just been removed from the DOM.
@@ -61,6 +61,6 @@ var WhatICurrentlyListening = Barba.BaseView.extend({
 });
 
 
-WhatICurrentlyListening.init();
+WhatImCurrentlyListeningTo.init();
 
-module.exports = WhatICurrentlyListening;
+module.exports = WhatImCurrentlyListeningTo;

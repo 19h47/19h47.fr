@@ -89,9 +89,9 @@ module.exports = {
         sources: [
             {
                 src: [
-                    nodeModules + 'feature.js/feature.js'
+                    './node_modules/feature.js/feature.js',
                 ],
-                file: 'feature.js'
+                file: 'feature.js',
             },
             /*{
                 src: [

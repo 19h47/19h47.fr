@@ -174,7 +174,7 @@ class LJ extends TimberSite {
 
         // Page permalink
         $context['page_permalink'] = array(
-            'what_i_currently_listening'    => get_permalink( get_page_by_path( 'what-i-currently-listening' ) ),
+            'what_im_currently_listening_to'    => get_permalink( get_page_by_path( 'what-im-currently-listening-to' ) ),
             'who_i_am'                      => get_permalink( get_page_by_path( 'who-i-am' ) ),
             'what_i_do'                     => get_permalink( get_page_by_path( 'what-i-do' ) ),
             'what_inspires_me'              => get_permalink( get_page_by_path( 'what-inspires-me' ) )
@@ -184,6 +184,15 @@ class LJ extends TimberSite {
 
         // Barba
         $context['barba_namespace'] = TimberHelper::function_wrapper( 'barba_namespace' );
+
+        // Age
+        $januaryDate = date('01-m-Y');
+        $sDateBirth = '27th July 1986'; 
+
+        $oDateNow = new DateTime($januaryDate);
+        $oDateBirth = new DateTime($sDateBirth);
+        $oDateInterval = $oDateNow->diff($oDateBirth);
+        $context['age'] = $oDateInterval->y;
 
 
         return $context;
@@ -358,9 +367,9 @@ class LJ extends TimberSite {
             $ns = 'what-inspires-me';
         }
 
-        if ( is_page( 'what-i-currently-listening' ) ) {
+        if ( is_page( 'what-im-currently-listening-to' ) ) {
 
-            $ns = 'what-i-currently-listening';
+            $ns = 'what-im-currently-listening-to';
         }
 
         if ( is_404( '404' ) ) {
@@ -398,14 +407,17 @@ class LJ extends TimberSite {
      */
     public function javascript_detection() {
 	   
-	    $output = "";
+	    ?>
 
-        $output .= "<script>";
-        $output .= "document.documentElement.className = ";
-        $output .= "document.documentElement.className.replace('no-js', 'js');";
-        $output .= "</script>";
+        <script src="<?php echo get_template_directory_uri() ?>/dist/js/min/feature.min.js"></script>
+        <script>
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+            if (feature.touch && !navigator.userAgent.match(/Trident\/(6|7)\./)) {
+                document.documentElement.className = document.documentElement.className.replace('no-touch', 'touch');
+            }
+         </script>
 
-        echo $output;
+        <?php
     }
 
 

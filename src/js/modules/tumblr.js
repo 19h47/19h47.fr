@@ -104,7 +104,7 @@ Tumblr.prototype = {
 		 * Tumblr.lock.off
 		 */
 		off: function() {
-			console.info('Tumblr.lock.off');
+			// console.info('Tumblr.lock.off');
 
 			// remove loading state to loader if exists
 			this.loader.length && 
@@ -127,7 +127,7 @@ Tumblr.prototype = {
 		 * Tumblr.lock.on
 		 */
 		on: function() {
-			console.info('Tumblr.lock.on');
+			// console.info('Tumblr.lock.on');
 			
 			// add loading state to loader if exist
 			this.loader.length && 
@@ -158,18 +158,17 @@ Tumblr.prototype = {
   		var posts = posts.response.posts;
 
   		var response = '';
-  		var template = $('#post').html();
+  		var template = this.$response.find('#post').html();
+  		
   		Mustache.parse(template);
 
-  		for (var i in posts) {
- 			var post = posts[i];
-
-			response += Mustache.render(template, {
-				image: post.photos[0].original_size.url,
-				src: post.source_url
-			});
-			
-		}
+  		posts.forEach(function(post) {
+  			response += Mustache.render(template, {
+  				image: post.photos[0].original_size.url,
+  				src: post.source_url || post.post_url,
+  				summary: post.summary
+  			});
+  		});
 
 		return response;
 	},

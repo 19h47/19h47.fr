@@ -13,7 +13,7 @@ function Navigation() {
 
 	var links = {
 		all: document.querySelectorAll('.js-navigation'), 
-		active: $(".js-navigation[href='" + currentUrl + "\'") || null
+		active: $(".js-navigation[href='" + currentUrl + "']") || null
 	}
 
 	// Remove CSS class 'is-active' from all link

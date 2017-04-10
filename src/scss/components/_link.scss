@@ -23,7 +23,7 @@
 			@include absolute( top 0 right 0 bottom 0 left 0);
 			
 
-				pointer-events: none;
+			pointer-events: none;
 			transform: translate3d( -100%, 0, 0 );
 			transition: $ease-transition;
 			z-index: 2;

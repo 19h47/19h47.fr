@@ -2,6 +2,8 @@ module.exports = Footer;
 
 var $ = require('jquery');
 var scrollMonitor = require('scrollMonitor');
+var config = require('../config');
+
 
 /**
  * Footer
@@ -24,7 +26,7 @@ function Footer(element) {
 
 	this.$wrapper = $('.js-wrapper');
 	this.body = document.querySelector('body');
-	this.$body = $(this.body);
+	this.$body = config.body.$;
 
 	this.setup();
 }
@@ -74,7 +76,7 @@ Footer.prototype = {
 			// scrollMonitor
 			scrollMonitor.update();
 
-			if (this.body.scrollTop + scrollMonitor.viewportHeight === scrollMonitor.documentHeight) {
+			if (this.body.scrollTop + scrollMonitor.viewportHeight >= scrollMonitor.documentHeight) {
 				
 				this.state.add(this.$element, 'is-active');
 			}

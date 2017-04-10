@@ -99,6 +99,19 @@
 
         // Loop through each breakpoint
         @each $breakpoint in $slicer-breakpoint-names {
+
+            @include at( $breakpoint ) {
+                /**
+                 * No margin + breakpoint
+                 *
+                 * e.g. .no-margin-xs
+                 *
+                 * @author Jérémy Levron jeremy@poigneedemainvirile.com
+                 */
+                .no-margin-#{ unquote( $breakpoint ) } {
+                    margin: 0;
+                }
+            }
             
             // Create breakpoint "from" statement
             @include from( $breakpoint ) {
@@ -107,17 +120,6 @@
                 @each $margin-property in $margin-properties {
 
                     // Construct each class for each breakpoint
-
-                    /**
-                     * No margin + breakpoint
-                     *
-                     * e.g. .no-margin-xs
-                     *
-                     * @author Jérémy Levron jeremy@poigneedemainvirile.com
-                     */
-                    .no-margin-#{ unquote( $breakpoint ) } {
-                        margin: 0;
-                    }
                     
 
                     @each $margin-value in $margin-values {

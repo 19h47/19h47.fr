@@ -1,7 +1,7 @@
 var Views = {
 
 	WhatInspiresMe: require('./what-inspires-me'),
-	WhatICurrentlyListening: require('./what-i-currently-listening'),
+	WhatImCurrentlyListeningTo: require('./what-im-currently-listening-to'),
 	NotFound: require('./404'),
 	FrontPage: require('./front-page')
 };

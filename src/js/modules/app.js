@@ -1,7 +1,7 @@
 module.exports = App;
 
 
-var feature = require('feature.js');
+var config = require('../config');
 var $ = require('jquery');
 
 
@@ -12,13 +12,6 @@ function App() {
 	if (!(this instanceof App)) {
         return new App();
     }
-
-    this.$body = $('body');
-
-    this.is_touch = feature.touch;
-
-    this.body_scrollLeft = 0;
-    this.body_scrollTop = 0;
 }
 
 
@@ -28,16 +21,18 @@ App.prototype = {
 	 * App.disableScroll
 	 */
 	disableScroll: function() {
+	    
 	    // lock scroll position, but retain settings for later
 	    // http://stackoverflow.com/a/3656618
-	    this.body_scrollLeft = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
-	    this.body_scrollTop = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
+	    config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
+	    config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
+	    
 	    $('html').css('overflow', 'hidden');
 
-	    this.resetScroll(this.body_scrollLeft, this.body_scrollTop);
+	    this.resetScroll(config.body.scroll.left, config.body.scroll.top);
 
 	    // disable scroll on touch devices as well
-	    if (this.is_touch) {
+	    if (config.is.touch) {
 	        $(document).on('touchmove.app', function(e) {
 	            e.preventDefault();
 	        });
@@ -52,7 +47,7 @@ App.prototype = {
 	 */
 	enableScroll: function(position) {
 	    if (typeof position === 'undefined') {
-	        position = this.body_scrollTop;
+	        position = config.body.scroll.top;
 	    }
 
 	    var resume_scroll = true;
@@ -66,11 +61,11 @@ App.prototype = {
 
 	    // resume scroll position if possible
 	    if (resume_scroll) {
-	        this.resetScroll(this.body_scrollLeft, position);
+	        this.resetScroll(config.body.scroll.left, position);
 	    }
 
 	    // enable scroll on touch devices as well
-	    if (this.is_touch) {
+	    if (config.is.touch) {
 	        $(document).off('touchmove.app');
 	    }
 	},
@@ -85,14 +80,14 @@ App.prototype = {
 	resetScroll: function(position_x, position_y) {
 
 	    if (typeof position_x !== 'undefined') {
-	        this.body_scrollLeft = parseInt(position_x);
+	        config.body.scroll.left = parseInt(position_x);
 	    }
 
 	    if (typeof position_y !== 'undefined') {
-	        this.body_scrollTop = parseInt(position_y);
+	        config.body.scroll.top = parseInt(position_y);
 	    }
 
-	    window.scrollTo(this.body_scrollLeft, this.body_scrollTop);
+	    window.scrollTo(config.body.scroll.left, config.body.scroll.top);
 	},
 
 
@@ -104,7 +99,7 @@ App.prototype = {
 	 */
 	addState: function(state) {
 
-	    this.$body.addClass(state);
+	    config.body.$.addClass(state);
 	},
 
 
@@ -116,6 +111,6 @@ App.prototype = {
 	 */
 	removeState: function(state) {
 
-	    this.$body.removeClass(state);
+	    config.body.$.removeClass(state);
 	}
 }

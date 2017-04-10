@@ -5,6 +5,12 @@
  */
 .Paint {
 	
+	@at-root body:not([data-context="front-page"]) & {
+
+		@extend %display-xs-none;
+	}
+
+
 	/**
 	 * Instruction
 	 */
@@ -13,6 +19,7 @@
 		opacity: 0;
 		transition: $ease-transition;
 		visibility: hidden;
+
 
 		&.is-active {
 			opacity: initial;

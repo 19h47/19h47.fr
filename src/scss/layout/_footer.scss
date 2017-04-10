@@ -1,6 +1,18 @@
 .l {
 	&-footer {
-		@include fixed( right 0 bottom 0 left 0 );
+
+		@include from( 'md' ) {
+
+			@include fixed( right 0 bottom 0 left 0 );
+
+		}
+		
+		@include between( 'xs', 'md' ) {
+
+			@at-root [data-context="front-page"] & {
+				@include fixed( right 0 bottom 0 left 0 );
+			}
+		}
 
 		opacity: 0;
 		transition: $ease-transition;

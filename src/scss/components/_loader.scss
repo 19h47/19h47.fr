@@ -1,13 +1,13 @@
 @keyframes loading-mask {
  	
  	0% {
- 		transform: translate3d( 100%, 0, 0 );
+ 		transform: translate3d( 110%, 0, 0 );
  		// opacity: 1;
     	// background-color: #001F3F;
   	}
 
   	100% {
-  		transform: translate3d( -100%, 0, 0 );
+  		transform: translate3d( -110%, 0, 0 );
   		// opacity: 0;
   		
   	}
@@ -16,13 +16,13 @@
 @keyframes loading-text {
  	
 	0% {
-		transform: translate3d( -100%, 0, 0 );
+		transform: translate3d( -110%, 0, 0 );
 		// opacity: 1;
    	// background-color: #001F3F;
  	}
 
  	100% {
- 		transform: translate3d( 100%, 0, 0 );
+ 		transform: translate3d( 110%, 0, 0 );
  		// opacity: 0;
  		
  	}
@@ -37,12 +37,12 @@
 
 	@mixin animation($animation-name) {
 		animation-name: $animation-name;
-		animation-duration: 1.3s; 
-		animation-timing-function: ease; 
+		animation-duration: 1.8s; 
+		animation-timing-function: ease-in-out; 
 		animation-delay: 0s;
 		animation-direction: alternate;
 		animation-iteration-count: infinite;
-		animation-fill-mode: forwards;
+		// animation-fill-mode: forwards;
 	}
 
 	span {

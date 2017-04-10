@@ -9,7 +9,6 @@
 #}
 {% extends 'index.twig' %}
 
-
 {# Tumblr #}
 {% block start_wrapper %}
 	<div class="Tumblr margin-xs-top-64 margin-xs-bottom-64">
@@ -53,15 +52,14 @@
 
 				<div class="Tumblr__image" style="background-image: url('{{ image }}');">
 
-					{{#src}} 
+					<a class="Tumblr__caption" href="{{ src }}" target="_blank">
 
-						<a class="Tumblr__caption" href="{{ src }}" target="_blank"></a>
+					</a>
 
-					{{/src}}
-	
 				</div>
 
 			</div>
+			
 		{% endverbatim %}
 	</script>
 

@@ -1,7 +1,7 @@
 module.exports = Menu;
 
 var $ = require('jquery');
-
+var config = require('../config');
 
 /**
 * Menu
@@ -14,8 +14,8 @@ function Menu() {
 	
 	this.button = '.js-menu-button';
 	this.state = 'menu--is-open';
-	this.$body = $('body');
-	this.is_open = this.$body.hasClass(this.state);
+	this.$body = config.body.$;
+	this.is_open = config.body.$.hasClass(this.state);
 
 	this.setup();
 };

@@ -10,19 +10,19 @@
 {% extends 'index.twig' %}
 
 {% block start_wrapper %}
-	<div class="margin-xs-top-64 margin-xs-bottom-64">
+	<div class="margin-xs-top-64 margin-xs-bottom-64 hidden-xs hidden-sm">
 {% endblock %}
 
-{% block header %}
+{# {% block header %}
 	
 	{% 
 		include 'pages/_header.twig' with {
-			'title': 'Click and draw!', 
+			'title': 'Click. Drag. Draw!', 
 			'class' : 'Paint__instruction js-instruction is-loading Loader' 
 	} %}
 
 
-{% endblock %}
+{% endblock %} #}
 
 {% block content %}
 	

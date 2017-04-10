@@ -72,7 +72,7 @@ Barba.Dispatcher.on('transitionCompleted', function() {
 	// remove previous state from App
 	window.app.removeState('page--is-loading');
 
-    $('.js-footer').addClass('is-active');
+    // $('.js-footer').addClass('is-active');
 });
 
 

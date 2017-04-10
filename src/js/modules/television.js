@@ -35,15 +35,15 @@ Television.prototype = {
 
 		this.canvas = document.querySelector(this.element);
 		
-		var context = this.canvas.getContext('2d'),
-			scaleFactor = 2.5, // Noise size
-			samples = [],
-			sampleIndex = 0,
-			scanOffsetY = 0,
-			scanSize = 0,
-			FPS = 50,
-			scanSpeed = FPS * 15, // 15 seconds from top to bottom
-			SAMPLE_COUNT = 10;
+		var context = this.canvas.getContext('2d');
+		var scaleFactor = 2.5; // Noise size
+		var samples = [];
+		var sampleIndex = 0;
+		var scanOffsetY = 0;
+		var scanSize = 0;
+		var FPS = 50;
+		var scanSpeed = FPS * 15; // 15 seconds from top to bottom
+		var SAMPLE_COUNT = 10;
 
 		window.onresize = function() {
 
@@ -51,7 +51,8 @@ Television.prototype = {
 			self.canvas.height = self.canvas.width / (self.canvas.offsetWidth / self.canvas.offsetHeight);
 			scanSize = (self.canvas.offsetHeight / scaleFactor) / 3;
 
-			samples = []
+			samples = [];
+
 			for(var i = 0; i < SAMPLE_COUNT; i++) {
 				samples.push(generateRandomSample(context, self.canvas.width, self.canvas.height));
 			}
@@ -59,12 +60,14 @@ Television.prototype = {
 
 		function generateRandomSample(context, w, h) {	
 			var intensity = [];
+			var intensityCurve = [];
 			var random = 0;
 			var factor = h / 50;
 
-			var intensityCurve = [];
-			for (var i = 0; i < Math.floor(h / factor) + factor; i++)
+			for (var i = 0; i < Math.floor(h / factor) + factor; i++) {
+				
 				intensityCurve.push(Math.floor(Math.random() * 15));
+			}
 
 			for (var i = 0; i < h; i++) {
 				
@@ -80,6 +83,7 @@ Television.prototype = {
 			}
 
 			var imageData = context.createImageData(w, h);
+
 			for(var i = 0; i < (w * h); i++) {
 				var k = i * 4;
 				var color = Math.floor(36 * Math.random());
@@ -92,30 +96,37 @@ Television.prototype = {
 		} 
 
 		function render() {
-			context.putImageData(samples[Math.floor(sampleIndex)], 0, 0);
+			
+			context.putImageData(
+				samples[Math.floor(sampleIndex)], 
+				0, 
+				0
+			);
 
 			sampleIndex += 30 / FPS; // 1/FPS == 1 second
-			if(sampleIndex >= samples.length) sampleIndex = 0;
+			
+			if (sampleIndex >= samples.length) sampleIndex = 0;
 
-			var grd = context.createLinearGradient(0, scanOffsetY, 0, scanSize + scanOffsetY);
+			var gradient = context.createLinearGradient(0, scanOffsetY, 0, scanSize + scanOffsetY);
 
-			grd.addColorStop(0, 'rgba(255,255,255,0)');
-			grd.addColorStop(0.1, 'rgba(255,255,255,0)');
-			grd.addColorStop(0.2, 'rgba(255,255,255,0.2)');
-			grd.addColorStop(0.3, 'rgba(255,255,255,0.0)');
-			grd.addColorStop(0.45, 'rgba(255,255,255,0.1)');
-			grd.addColorStop(0.5, 'rgba(255,255,255,1.0)');
-			grd.addColorStop(0.55, 'rgba(255,255,255,0.55)');
-			grd.addColorStop(0.6, 'rgba(255,255,255,0.25)');
-			grd.addColorStop(0.8, 'rgba(255,255,255,0.15)');
-			grd.addColorStop(1, 'rgba(255,255,255,0)');
+			gradient.addColorStop(0, 'rgba(255,255,255,0)');
+			gradient.addColorStop(0.1, 'rgba(255,255,255,0)');
+			gradient.addColorStop(0.2, 'rgba(255,255,255,0.2)');
+			gradient.addColorStop(0.3, 'rgba(255,255,255,0.0)');
+			gradient.addColorStop(0.45, 'rgba(255,255,255,0.1)');
+			gradient.addColorStop(0.5, 'rgba(255,255,255,1.0)');
+			gradient.addColorStop(0.55, 'rgba(255,255,255,0.55)');
+			gradient.addColorStop(0.6, 'rgba(255,255,255,0.25)');
+			gradient.addColorStop(0.8, 'rgba(255,255,255,0.15)');
+			gradient.addColorStop(1, 'rgba(255,255,255,0)');
 
-			context.fillStyle = grd;
+			context.fillStyle = gradient;
 			context.fillRect(0, scanOffsetY, self.canvas.width, scanSize + scanOffsetY);
 			context.globalCompositeOperation = "lighter";
 
 			scanOffsetY += (self.canvas.height / scanSpeed);
-			if(scanOffsetY > self.canvas.height) scanOffsetY = -(scanSize / 2);
+			
+			if (scanOffsetY > self.canvas.height) scanOffsetY = -(scanSize / 2);
 
 			window.setTimeout(function() {
 				window.requestAnimationFrame(render);
@@ -124,6 +135,16 @@ Television.prototype = {
 		window.onresize();
 
 		window.requestAnimationFrame(render);
+	},
+
+	init: {
+
+		/**
+		 * Television.init.events
+		 */
+		events: function() {
+					
+		}
 	},
 
 	interpolate: function(x, x0, y0, x1, y1) {
