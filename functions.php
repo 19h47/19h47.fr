@@ -433,7 +433,7 @@ class LJ extends TimberSite {
      * @since     1.0.0
      * @return    string    The version number of the plugin.
      */
-    public function get_version() {
+    public function get_theme_version() {
         
         return $this->theme_version;
     }
