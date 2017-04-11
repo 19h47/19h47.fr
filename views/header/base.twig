@@ -11,7 +11,7 @@
 #}
 <!DOCTYPE html>
 <!--[if IE 9]>
-<html <?php html_class( 'ie9 no-js no-touch' ) ?> <?php language_attributes() ?>>
+<html {{ fn( 'html_class', 'ie9 no-js no-touch' ) }} {{ language_attributes }}>
 <![endif]-->
 <!--[if !(IE 9)]><!-->
 <html {{ language_attributes }} {{ fn( 'html_class', 'no-js no-touch' ) }}>
@@ -36,7 +36,7 @@
 
 						<div class="row">
 
-							<div class="col-xs-8">
+							<div class="col-xs-12 col-sm-8">
 								<h1 class="font-medium font-size-24 color-white no-margin display-xs-inline-block valign-baseline z-index-1 position-xs-relative">
 									<a href="{{ site.url }}">
 										Jérémy Levron<span class="valign-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-medium">{{ site.name }}</span>
@@ -46,7 +46,7 @@
 							
 
 							{# Who I am link #}
-							<div class="col-xs-4 text-xs-right">
+							<div class="col-xs-4 hidden-xs text-xs-right">
 								<a class="no-margin font-size-13 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
 									Who I am
 									<span data-text="Who I am"></span>

@@ -8,7 +8,8 @@ var Modules = {
 	Menu: require('./menu'),
 	Navigation: require('./navigation'),
 	Paint: require('./paint'),
-	Television: require('./television')
+	Television: require('./television'),
+	Pages: require('./pages')
 };
 
 module.exports = Modules;

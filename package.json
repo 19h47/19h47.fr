@@ -58,7 +58,10 @@
     "bootstrap-sass": "latest",
     "breakpoint-sass": "^2.7.1",
     "breakpoint-slicer": "^2.0.0",
-    "ress": "^1.2.2"
+    "ress": "^1.2.2",
+    "dom-classes": "^1.0.0",
+    "dom-select": "^1.0.0",
+    "dom-css":"^2.1.0"
   },
   "browser": {
     "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",

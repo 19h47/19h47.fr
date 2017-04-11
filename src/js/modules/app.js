@@ -3,6 +3,7 @@ module.exports = App;
 
 var config = require('../config');
 var $ = require('jquery');
+var css = require('dom-css');
 
 
 /**
@@ -27,7 +28,7 @@ App.prototype = {
 		config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
 		config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
 		
-		$('html').css('overflow', 'hidden');
+		css(config.html, 'overflow', 'hidden');
 
 		this.resetScroll(config.body.scroll.left, config.body.scroll.top);
 
@@ -57,7 +58,7 @@ App.prototype = {
 
 		// unlock scroll position
 		// http://stackoverflow.com/a/3656618
-		$('html').css('overflow', 'visible');
+		css(config.html, 'overflow', 'visible');
 
 		// resume scroll position if possible
 		if (resume_scroll) {

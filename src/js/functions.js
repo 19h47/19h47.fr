@@ -5,7 +5,7 @@ var functions = {
 	 * From Modernizr.
 	 */
 	whichTransitionEvent: function() {
-		var t;
+		var transition;
 		var el = document.createElement('fakeelement');
 		var transitions = {
 			'transition': 'transitionend',
@@ -14,9 +14,9 @@ var functions = {
 			'WebkitTransition': 'webkitTransitionEnd'
 		};
 
-		for (t in transitions) {
-			if (el.style[t] !== undefined) {
-				return transitions[t];
+		for (transition in transitions) {
+			if (el.style[transition] !== undefined) {
+				return transitions[transition];
 			}
 		}
 	}

@@ -1,22 +1,22 @@
-var $ = require('jquery');
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
 var scrollMonitor = require('scrollMonitor');
-
+var classes = require('dom-classes');
+var select = require('dom-select');
 
 /**
- * WhatInspiresMe
+ * WhatImCurrentlyListeningTo
  */
 var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 
 	/**
-	 * WhatInspiresMe.namespace
+	 * WhatImCurrentlyListeningTo.namespace
 	 */
 	namespace: 'what-im-currently-listening-to',
 
 
 	/**
-	 * WhatInspiresMe.onEnter
+	 * WhatImCurrentlyListeningTo.onEnter
 	 */
 	onEnter: function() {
 		
@@ -38,9 +38,9 @@ var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 		// The Transition has just finished.
 
 		// scrollMonitor
-		scrollMonitor.update();
+		scrollMonitor.recalculateLocations();
 
-		$('.js-footer').removeClass('is-active');
+		classes.remove(select('.js-footer'), 'is-active');
 	},
 	
 
@@ -59,8 +59,5 @@ var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 		// The Container has just been removed from the DOM.
 	}
 });
-
-
-WhatImCurrentlyListeningTo.init();
 
 module.exports = WhatImCurrentlyListeningTo;

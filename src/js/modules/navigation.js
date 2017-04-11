@@ -2,7 +2,6 @@ module.exports = Navigation;
 
 var $ = require('jquery');
 
-
 /**
  * Navigation
  */

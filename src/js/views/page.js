@@ -1,26 +1,39 @@
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
+var scrollMonitor = require('scrollMonitor');
+var classes = require('dom-classes');
+var select = require('dom-select');
 
+/**
+ * Page
+ */
 
-var FrontPage = Barba.BaseView.extend({
+var Page = Barba.BaseView.extend({
 
-	namespace: 'front-page',
+	namespace: 'page',
 
 
 	/**
-	 * WhatInspiresMe.onEnter
+	 * Page.onEnter
 	 */
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
 		
-		new Modules.Paint('#canvas');
+		new Modules.Pages(this.container, {
+			namespace: this.namespace
+		});
 	},
 
 
 	onEnterCompleted: function() {
 		// The Transition has just finished.
+		
+		// scrollMonitor
+		scrollMonitor.recalculateLocations();
+
+		classes.remove(select('.js-footer'), 'is-active');
 	},
-	
+
 
 	onLeave: function() {
 		// A new Transition toward a new page has just started.
@@ -32,4 +45,4 @@ var FrontPage = Barba.BaseView.extend({
 	}
 });
 
-module.exports = FrontPage;
+module.exports = Page;

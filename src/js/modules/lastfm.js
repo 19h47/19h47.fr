@@ -1,7 +1,6 @@
 module.exports = Lastfm;
 
 var $ = require('jquery');
-var fn = require('../functions.js');
 var Mustache = require('mustache');
 
 /**

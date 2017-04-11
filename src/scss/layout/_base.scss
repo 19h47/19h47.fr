@@ -12,7 +12,8 @@
 		@include padding( right $grid-outer-gutter-width left $grid-outer-gutter-width);
 		@include margin( top 0 right auto bottom 0 left auto );
 		
-		max-width: $container-width;
+		// max-width: $container-width;
+		max-width: 100%;
 	}
 }
 
@@ -22,4 +23,14 @@
 [data-context="front-page"] {
 	user-select: none;
 
+}
+
+
+/**
+ * Who I am
+ */
+[data-post-slug="who-i-am"] {
+	header {
+		display: none;
+	}
 }

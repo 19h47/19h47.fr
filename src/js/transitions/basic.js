@@ -1,41 +1,62 @@
 var $ = require('jquery');
 var Barba = require('barba.enhanced.js');
-
+/**
+ * Basic
+ */
 var Basic = Barba.BaseTransition.extend({
 	
+	/**
+	 * Basic.start
+	 */
 	start: function() {
+		// console.info('Basic.start');
 
-		// As soon the loading is finished and the old page is faded out, let's fade the new page
+		// As soon the loading is finished and the old page is faded out, let's 
+		// fade the new page
 		Promise
-			.all([this.newContainerLoading, this.fadeOut()])
-			.then(this.fadeIn.bind(this));
+			.all([this.newContainerLoading, this.fade.out()])
+			.then(this.fade.in.bind(this));
 	},
 
 
-	fadeOut: function() {
+	/**
+	 * Basic.fade
+	 */
+	fade: {
 
-		return $(this.oldContainer).animate({ opacity: 0 }).promise();
-	},
+		/**
+		 * Basic.fade.out
+		 */
+		out: function() {
+			// console.info('Basic.fade.out');
 
-	
-	fadeIn: function() {
+			return $(this.oldContainer).animate({ opacity: 0 }, 800).promise();
+		},
 
-		var _this = this;
-		var $el = $(this.newContainer);
 
-		window.app.resetScroll(0, 0);
-		
-		$(this.oldContainer).hide();
+		/**
+		 * Basic.fade.in
+		 */
+		in: function() {
+			// console.info('Basic.fade.in');
 
-		$el.css({
-			visibility : 'visible',
-			opacity : 0
-		});
+			var _this = this;
+			var $el = $(this.newContainer);
 
-		$el.animate({ opacity: 1 }, 400, function() {
+			window.app.resetScroll(0, 0);
+			
+			$(this.oldContainer).hide();
 
-			_this.done();
-		});
+			$el.css({
+				visibility : 'visible',
+				opacity : 0
+			});
+
+			$el.animate({ opacity: 1 }, 800, function() {
+
+				_this.done();
+			});
+		}
 	}
 });
 

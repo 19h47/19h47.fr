@@ -1,7 +1,7 @@
-var $ = require('jquery');
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
-
+var classes = require('dom-classes');
+var select = require('dom-select');
 
 var NotFound = Barba.BaseView.extend({
 
@@ -15,13 +15,13 @@ var NotFound = Barba.BaseView.extend({
 		// The new Container is ready and attached to the DOM.
 		
 		new Modules.Television('#television');
-
-		$('.js-footer').addClass('is-active');
 	},
 
 
 	onEnterCompleted: function() {
+
 		// The Transition has just finished.
+		classes.add(select('.js-footer'), 'is-active');
 	},  
 
 	onLeave: function() {
@@ -33,8 +33,5 @@ var NotFound = Barba.BaseView.extend({
 		// The Container has just been removed from the DOM.
 	}
 });
-
-
-NotFound.init();
 
 module.exports = NotFound;

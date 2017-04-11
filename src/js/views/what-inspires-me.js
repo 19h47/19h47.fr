@@ -1,8 +1,12 @@
-var $ = require('jquery');
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
 var scrollMonitor = require('scrollMonitor');
+var classes = require('dom-classes');
+var select = require('dom-select');
 
+/**
+ * WhatInspiresMe
+ */
 var WhatInspiresMe = Barba.BaseView.extend({
 
 	namespace: 'what-inspires-me',
@@ -22,9 +26,9 @@ var WhatInspiresMe = Barba.BaseView.extend({
 		// The Transition has just finished.
 		
 		// scrollMonitor
-		scrollMonitor.update();
+		scrollMonitor.recalculateLocations();
 
-		$('.js-footer').removeClass('is-active');
+		classes.remove(select('.js-footer'), 'is-active');
 	},
 
 
@@ -37,8 +41,5 @@ var WhatInspiresMe = Barba.BaseView.extend({
 		// The Container has just been removed from the DOM.
 	}
 });
-
-
-WhatInspiresMe.init();
 
 module.exports = WhatInspiresMe;

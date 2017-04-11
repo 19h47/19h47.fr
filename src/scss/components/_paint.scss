@@ -13,6 +13,8 @@
 
 	/**
 	 * Instruction
+	 *
+	 * @uses .Paint__instruction
 	 */
 	&__instruction {
 	
@@ -25,7 +27,6 @@
 			opacity: initial;
 			@extend %Reset-visibility;
 		}
-		
 	}
 
 	&__control {

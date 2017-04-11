@@ -1,6 +1,6 @@
 var Transitions = {
 
-	Basic: require('./Basic'),
+	Basic: require('./basic'),
 };
 
 module.exports = Transitions;

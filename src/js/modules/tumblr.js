@@ -1,8 +1,8 @@
 module.exports = Tumblr;
 
 var $ = require('jquery');
-
 var Mustache = require('mustache');
+
 
 function Tumblr(element) {
 	if (!(this instanceof Tumblr)) {
@@ -49,7 +49,7 @@ Tumblr.prototype = {
 		this.button = this.$response.find('.load-more');
 		this.loader = this.$response.find('.js-loader');
 
-		this.showmore();
+		this.more.show.call(this);
 		this.initEvents();
 	},
 
@@ -62,36 +62,42 @@ Tumblr.prototype = {
 			.on('click.tumblr', $.proxy(function() {
 
 				this.lock.on.call(this);
-				this.showmore();
+				this.more.show.call(this);
 
 			}, this));
 	},
 
 
 	/**
-	 * Tumblr.showmore
+	 * Tumblr.more
 	 */
-	showmore: function() {
-		this.loadmore()
-			.then($.proxy(this.construct, this))
-			.then($.proxy(this.append, this))
-			.done($.proxy(this.update, this));
-	},
+	more: {
+
+		/**
+		 * Tumblr.more.show
+		 */
+		show: function() {
+			this.more.load.call(this)
+				.then($.proxy(this.construct, this))
+				.then($.proxy(this.append, this))
+				.done($.proxy(this.update, this));
+		},
 
 
-	/**
-	 * Tumblr.loadmore
-	 */
-	loadmore: function() {
+		/**
+		 * Tumblr.more.load
+		 */
+		load: function() {
 
-		this.lock.on.call(this);
-		
-		var url = this.API.URL.posts;
+			this.lock.on.call(this);
+			
+			var url = this.API.URL.posts;
 
-		return $.get({
-			url: url  + '&offset=' + this.posts.offset, 
-			dataType: 'jsonp'
-		});
+			return $.get({
+				url: url  + '&offset=' + this.posts.offset, 
+				dataType: 'jsonp'
+			});
+		}
 	},
 
 

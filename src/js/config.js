@@ -1,3 +1,5 @@
+var select = require('dom-select');
+
 var config = {
 
 	body: {
@@ -8,9 +10,14 @@ var config = {
 		}
 	},
 
+	html: select('html'),
+
 	is: {
 		touch: feature.touch
-	}
+	},
+
+	api: wp.api_url + 'wp/v2/',
+	nonce: wp.api_nonce
 }
 
 module.exports = config;

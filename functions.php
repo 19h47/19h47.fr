@@ -348,6 +348,8 @@ class LJ extends TimberSite {
                 'base_url'                  => site_url(),
                 'home_url'                  => home_url( '/' ),
                 'ajax_url'                  => admin_url( 'admin-ajax.php' ),
+                'nonce'                     => wp_create_nonce( 'wp_rest' ),
+                'api_url'                   => esc_url_raw( get_rest_url() )
             )
         ); 
 
@@ -361,6 +363,10 @@ class LJ extends TimberSite {
      * @return string          
      */
     public function barba_namespace( $ns ) {
+
+        if( is_page() ) {
+            $ns = 'page';
+        }
 
         if ( is_page( 'what-inspires-me' ) ) {
 

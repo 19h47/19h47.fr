@@ -1,8 +1,9 @@
 var $ = require('jquery');
-
 var AOS = require('aos');
 var Barba = require('barba.enhanced.js');
 
+
+require('./vendors/randomize_text');
 
 // Modules
 var Modules = require('./modules/index.js');
@@ -71,7 +72,7 @@ Barba.Dispatcher.on('transitionCompleted', function() {
 	// remove previous state from App
 	window.app.removeState('page--is-loading');
 
-	// $('.js-footer').addClass('is-active');
+	$('.js-footer').addClass('is-active');
 });
 
 

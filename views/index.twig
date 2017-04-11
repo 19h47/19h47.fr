@@ -11,29 +11,64 @@
 	
 	<div class="l-container">
 
-		{% block start_wrapper %}{% endblock %}
+		{% block start_wrapper %}
+
+			<div class="js-page margin-xs-top-64 margin-xs-bottom-64" data-post-slug="{{ post.slug }}">
+
+		{% endblock %}
 		
 		
 
-		{% block header %}{% endblock %}
+		{% block header %}
+
+			<header class="row">
+				<div class="js-title col-xs-12 col-md-10 col-md-offset-1"></div>
+			</header>
+
+			<script id="page-title" type="x-tmpl-mustache">
+				
+				{% verbatim %}
+			
+					<p class="color-white opacity-40 font-size-13 uppercase letter-spacing-100 font-medium">
+						{{{ title }}}
+						<span data-text="{{ title }}"></span>
+					</p>
+						
+				{% endverbatim %}
+
+			</script>
+
+		{% endblock %}
 
 
 		{% block content %}
 
 			<section class="row">
-				<div class="col-xs-12 col-md-10 col-md-offset-1">
-					<div class="font-light color-white margin-xs-top-64 margin-xs-bottom-64">
-						{{ post.content }}
+				<div class=" js-content col-xs-12 col-md-10 col-md-offset-1"></div>
+			</section> 
+			
+			<script id="page-content" type="x-tmpl-mustache">
+				
+				{% verbatim %}
+
+					<div class="font-light color-white">
+						{{{ content }}}
 					</div>
 
-				</div>
-			</section> 
+				{% endverbatim %}
+
+			</script>
 
 		{% endblock %}
 
 		{% block footer %}{% endblock %}
 
-		{% block end_wrapper %}{% endblock %}
+
+		{% block end_wrapper %}
+
+			</div>
+
+		{% endblock %}
 
 	</div>
 	
