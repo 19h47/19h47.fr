@@ -18,7 +18,7 @@ function Menu() {
 	this.is_open = config.body.$.hasClass(this.state);
 
 	this.setup();
-};
+}
 
 
 /**
@@ -96,4 +96,4 @@ Menu.prototype = {
 		app.enableScroll();
 
 	}
-}
+};

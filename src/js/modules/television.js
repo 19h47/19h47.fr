@@ -2,8 +2,6 @@
 
 module.exports = Television;
 
-var $ = require('jquery');
-var fn = require('../functions.js');
 
 /**
  * Television
@@ -11,8 +9,8 @@ var fn = require('../functions.js');
  * @see  http://www.last.fm/api
  */
 function Television(element) {
- 	if (!(this instanceof Television)) {
-    	return new Television();
+	if (!(this instanceof Television)) {
+		return new Television();
 	}
 
 	this.element = element;
@@ -61,15 +59,16 @@ Television.prototype = {
 		function generateRandomSample(context, w, h) {	
 			var intensity = [];
 			var intensityCurve = [];
-			var random = 0;
+			// var random = 0;
 			var factor = h / 50;
+			var i;
 
-			for (var i = 0; i < Math.floor(h / factor) + factor; i++) {
+			for (i = 0; i < Math.floor(h / factor) + factor; i++) {
 				
 				intensityCurve.push(Math.floor(Math.random() * 15));
 			}
 
-			for (var i = 0; i < h; i++) {
+			for (i = 0; i < h; i++) {
 				
 				var value = self.interpolate(
 					i/factor, 
@@ -84,7 +83,7 @@ Television.prototype = {
 
 			var imageData = context.createImageData(w, h);
 
-			for(var i = 0; i < (w * h); i++) {
+			for(i = 0; i < (w * h); i++) {
 				var k = i * 4;
 				var color = Math.floor(36 * Math.random());
 				// Optional: add an intensity curve to try to simulate scan lines
@@ -122,7 +121,7 @@ Television.prototype = {
 
 			context.fillStyle = gradient;
 			context.fillRect(0, scanOffsetY, self.canvas.width, scanSize + scanOffsetY);
-			context.globalCompositeOperation = "lighter";
+			context.globalCompositeOperation = 'lighter';
 
 			scanOffsetY += (self.canvas.height / scanSpeed);
 			

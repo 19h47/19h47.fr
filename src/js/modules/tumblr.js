@@ -1,17 +1,17 @@
 module.exports = Tumblr;
 
 var $ = require('jquery');
-var fn = require('../functions.js');
+
 var Mustache = require('mustache');
 
-function Tumblr(element, options) {
- 	if (!(this instanceof Tumblr)) {
-    	return new Tumblr();
+function Tumblr(element) {
+	if (!(this instanceof Tumblr)) {
+		return new Tumblr();
 	}
 
-	$element = $(element);
+	this.$element = $(element);
 
-	if (!$element || !$element.length) {
+	if (!this.$element || !this.$element.length) {
 		return;
 	}
 
@@ -30,7 +30,7 @@ Tumblr.prototype = {
 			offset: 0,
 			per_page: 20,
 			count: null
-		}
+		};
 		
 		var KEY = 'T1ta3DzmFPU36KjYWsoJcvjl8kSPybrqagZsRp8sXWpUIlxQ98';
 		var USER = '19h47';
@@ -43,9 +43,9 @@ Tumblr.prototype = {
 				info: URL + USER + '.tumblr.com/info?api_key=' + KEY,
 				posts: URL + USER + '.tumblr.com/posts?api_key=' + KEY,
 			}
-		}
+		};
 		
-		this.$response = $element;
+		this.$response = this.$element;
 		this.button = this.$response.find('.load-more');
 		this.loader = this.$response.find('.js-loader');
 
@@ -109,17 +109,17 @@ Tumblr.prototype = {
 			// remove loading state to loader if exists
 			this.loader.length && 
 			this.loader
-			    .removeClass('is-loading');
+				.removeClass('is-loading');
 
 			// remove loading state to button if exists
-		    this.button.length && 
-		    this.button
-		        .removeClass('is-loading disabled')
-		        .prop('disabled', false);
+			this.button.length && 
+			this.button
+				.removeClass('is-loading disabled')
+				.prop('disabled', false);
 
-		    // add loading state to ajax container if exists
-		    this.$response.length &&
-		    this.$response.removeClass('is-loading');
+			// add loading state to ajax container if exists
+			this.$response.length &&
+			this.$response.removeClass('is-loading');
 		},
 
 
@@ -132,17 +132,17 @@ Tumblr.prototype = {
 			// add loading state to loader if exist
 			this.loader.length && 
 			this.loader
-			    .addClass('is-loading');
+				.addClass('is-loading');
 
 			// add loading state to button if exists
-		    this.button.length && 
-		    this.button
-		        .addClass('is-loading disabled')
-		        .prop('disabled', true);
+			this.button.length && 
+			this.button
+				.addClass('is-loading disabled')
+				.prop('disabled', true);
 
-		    // add loading state to ajax container if exists
-		    this.$response.length &&
-		    this.$response.addClass('is-loading');
+			// add loading state to ajax container if exists
+			this.$response.length &&
+			this.$response.addClass('is-loading');
 		}
 	},
 
@@ -152,23 +152,23 @@ Tumblr.prototype = {
 	 */
 	construct: function(posts) {
 
-  		// Stock total posts
-  		this.posts.count = posts.response.total_posts;
+		// Stock total posts
+		this.posts.count = posts.response.total_posts;
 
-  		var posts = posts.response.posts;
+		posts = posts.response.posts;
 
-  		var response = '';
-  		var template = this.$response.find('#post').html();
-  		
-  		Mustache.parse(template);
+		var response = '';
+		var template = this.$response.find('#post').html();
+		
+		Mustache.parse(template);
 
-  		posts.forEach(function(post) {
-  			response += Mustache.render(template, {
-  				image: post.photos[0].original_size.url,
-  				src: post.source_url || post.post_url,
-  				summary: post.summary
-  			});
-  		});
+		posts.forEach(function(post) {
+			response += Mustache.render(template, {
+				image: post.photos[0].original_size.url,
+				src: post.source_url || post.post_url,
+				summary: post.summary
+			});
+		});
 
 		return response;
 	},
@@ -202,4 +202,4 @@ Tumblr.prototype = {
 			.attr('data-count', this.posts.count - this.posts.offset)
 			.toggle(this.posts.offset <= this.posts.count);
 	}
-}
+};

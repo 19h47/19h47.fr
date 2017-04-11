@@ -19,22 +19,22 @@ var WhatInspiresMe = Barba.BaseView.extend({
 
 
 	onEnterCompleted: function() {
-	    // The Transition has just finished.
-	    
-	    // scrollMonitor
-    	scrollMonitor.update();
+		// The Transition has just finished.
+		
+		// scrollMonitor
+		scrollMonitor.update();
 
-    	$('.js-footer').removeClass('is-active');
+		$('.js-footer').removeClass('is-active');
 	},
-	  
+
 
 	onLeave: function() {
-	    // A new Transition toward a new page has just started.
+		// A new Transition toward a new page has just started.
 	},
 
 	
 	onLeaveCompleted: function() {
-	    // The Container has just been removed from the DOM.
+		// The Container has just been removed from the DOM.
 	}
 });
 

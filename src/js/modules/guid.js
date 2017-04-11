@@ -8,8 +8,8 @@ var $ = require('jquery');
  */
 function Guid() {
 	if (!(this instanceof Guid)) {
-        return new Guid();
-    }
+		return new Guid();
+	}
 
 	// show/hide guides with CMD+;
 	$(document).on('keydown.guid',function(e) {

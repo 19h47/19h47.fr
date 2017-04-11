@@ -9,17 +9,16 @@ var config = require('../config');
  * Footer
  */
 function Footer(element) {
- 	if (!(this instanceof Footer)) {
-    	return new Footer();
+	if (!(this instanceof Footer)) {
+		return new Footer();
 	}
 
-    // If jQuery isn't loaded
-    if (!window.jQuery) {
-        throw new Error('jQuery is missing.');
-    }
-
+	// If jQuery isn't loaded
+	if (!window.jQuery) {
+		throw new Error('jQuery is missing.');
+	}
+	
 	this.$element = $(element);
-
 	if (!this.$element || !this.$element.length) {
 		throw new Error('Missing selector.');
 	}
@@ -41,7 +40,6 @@ Footer.prototype = {
 	 * Footer.setup
 	 */
 	setup: function() {
-		var _this = this;
 
 		this.wrapperWatcher = scrollMonitor.create(this.$wrapper);
 

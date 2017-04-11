@@ -10,8 +10,8 @@ var $ = require('jquery');
  */
 function App() {
 	if (!(this instanceof App)) {
-        return new App();
-    }
+		return new App();
+	}
 }
 
 
@@ -21,22 +21,22 @@ App.prototype = {
 	 * App.disableScroll
 	 */
 	disableScroll: function() {
-	    
-	    // lock scroll position, but retain settings for later
-	    // http://stackoverflow.com/a/3656618
-	    config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
-	    config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
-	    
-	    $('html').css('overflow', 'hidden');
+		
+		// lock scroll position, but retain settings for later
+		// http://stackoverflow.com/a/3656618
+		config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
+		config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
+		
+		$('html').css('overflow', 'hidden');
 
-	    this.resetScroll(config.body.scroll.left, config.body.scroll.top);
+		this.resetScroll(config.body.scroll.left, config.body.scroll.top);
 
-	    // disable scroll on touch devices as well
-	    if (config.is.touch) {
-	        $(document).on('touchmove.app', function(e) {
-	            e.preventDefault();
-	        });
-	    }
+		// disable scroll on touch devices as well
+		if (config.is.touch) {
+			$(document).on('touchmove.app', function(e) {
+				e.preventDefault();
+			});
+		}
 	},
 
 
@@ -46,28 +46,28 @@ App.prototype = {
 	 * @param  position
 	 */
 	enableScroll: function(position) {
-	    if (typeof position === 'undefined') {
-	        position = config.body.scroll.top;
-	    }
+		if (typeof position === 'undefined') {
+			position = config.body.scroll.top;
+		}
 
-	    var resume_scroll = true;
-	    if (typeof position === 'boolean' && position === false) {
-	        resume_scroll = false;
-	    }
+		var resume_scroll = true;
+		if (typeof position === 'boolean' && position === false) {
+			resume_scroll = false;
+		}
 
-	    // unlock scroll position
-	    // http://stackoverflow.com/a/3656618
-	    $('html').css('overflow', 'visible');
+		// unlock scroll position
+		// http://stackoverflow.com/a/3656618
+		$('html').css('overflow', 'visible');
 
-	    // resume scroll position if possible
-	    if (resume_scroll) {
-	        this.resetScroll(config.body.scroll.left, position);
-	    }
+		// resume scroll position if possible
+		if (resume_scroll) {
+			this.resetScroll(config.body.scroll.left, position);
+		}
 
-	    // enable scroll on touch devices as well
-	    if (config.is.touch) {
-	        $(document).off('touchmove.app');
-	    }
+		// enable scroll on touch devices as well
+		if (config.is.touch) {
+			$(document).off('touchmove.app');
+		}
 	},
 
 
@@ -79,15 +79,15 @@ App.prototype = {
 	 */
 	resetScroll: function(position_x, position_y) {
 
-	    if (typeof position_x !== 'undefined') {
-	        config.body.scroll.left = parseInt(position_x);
-	    }
+		if (typeof position_x !== 'undefined') {
+			config.body.scroll.left = parseInt(position_x);
+		}
 
-	    if (typeof position_y !== 'undefined') {
-	        config.body.scroll.top = parseInt(position_y);
-	    }
+		if (typeof position_y !== 'undefined') {
+			config.body.scroll.top = parseInt(position_y);
+		}
 
-	    window.scrollTo(config.body.scroll.left, config.body.scroll.top);
+		window.scrollTo(config.body.scroll.left, config.body.scroll.top);
 	},
 
 
@@ -99,7 +99,7 @@ App.prototype = {
 	 */
 	addState: function(state) {
 
-	    config.body.$.addClass(state);
+		config.body.$.addClass(state);
 	},
 
 
@@ -111,6 +111,6 @@ App.prototype = {
 	 */
 	removeState: function(state) {
 
-	    config.body.$.removeClass(state);
+		config.body.$.removeClass(state);
 	}
-}
+};

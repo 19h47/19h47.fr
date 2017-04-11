@@ -71,7 +71,7 @@
 				}
 			}
 
-			init = function(v, settings) {
+			var init = function(v, settings) {
 				var renderArray = [],
 					textArray = [],
 					el = $(v),
@@ -80,7 +80,7 @@
 				// get text
 				if(settings.text.length == 0) {
 					if(el.html().length == 0) {
-						text = "you need to add a text by adding {text:'my text'} as argument.";
+						text = 'you need to add a text by adding {text:\'my text\'} as argument.';
 					} else {
 						text = el.html();
 						el.html('');
@@ -90,14 +90,14 @@
 				}
 
 				textArray = parseTextToArray(text, false);
-				maxRandomValue = textArray.length;
+				// var maxRandomValue = textArray.length;
 
 				// create randomLetters
 				if(settings.randomLetters.length == 0) {
 					settings.randomLetters = parseTextToArray(text, false);
 				} else {
 					settings.randomLetters = parseTextToArray(settings.randomLetters, false);
-				}
+				};
 
 				// start gameloop
 				setTimeout(function() {
@@ -107,16 +107,16 @@
 				setTimeout(function() {
 					addLetterToText(textArray, renderArray, settings);
 				}, settings.timePerLetter);
-			}
+			};
 
 			init(v, settings);
 		};
 
 		// return false if no dom is present
 		if(this.length == 0) {
-			console.log('Randomize Text: No document object found.');
-			return
-		}
+			// console.log('Randomize Text: No document object found.');
+			return;
+		};
 
 		// options and defaults
 		var settings = $.extend(
@@ -129,7 +129,7 @@
 			var s = jQuery.extend(true, {}, settings);
 			new singleRandomText(v, s);
 		});
-	}
+	};
 
 	// Plugin defaults – added as a property on our plugin function.
 	$.fn.randomizeText.defaults = {

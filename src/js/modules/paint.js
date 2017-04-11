@@ -8,8 +8,8 @@ function Paint(canvas) {
 		return;
 	}
 
- 	if (!(this instanceof Paint)) {
-    	return new Paint();
+	if (!(this instanceof Paint)) {
+		return new Paint();
 	}
 
 	// throw error
@@ -28,8 +28,8 @@ function Paint(canvas) {
 	// @see https://github.com/Jam3/jam3-lesson-canvas2d
 	this.pixelRatio = Math.min(2, window.devicePixelRatio);
 	
-    this.setup();
-    this.init.events.call(this);
+	this.setup();
+	this.init.events.call(this);
 }
 
 Paint.prototype = {
@@ -60,7 +60,7 @@ Paint.prototype = {
 			instruction: $('.js-instruction'),
 			save: $('.js-save'),
 			clear: $('.js-clear'),
-		}
+		};
 
 		this.$button.instruction.addClass('is-active');
 
@@ -104,33 +104,33 @@ Paint.prototype = {
 			this.$button.save.on('click.paint', (function (e) {
 
 				// get the current ImageData for the canvas.
-				var compositeOperation = this.context.globalCompositeOperation;
+				// var compositeOperation = this.context.globalCompositeOperation;
 
-		        // set to draw behind current content
-		        this.context.globalCompositeOperation = 'destination-over';
+				// set to draw behind current content
+				this.context.globalCompositeOperation = 'destination-over';
 
-		        // set background color
-		        this.context.fillStyle = '#000000';
+				// set background color
+				this.context.fillStyle = '#000000';
 
-		        // draw background / rect on entire canvas
-		        this.context.fillRect(
-		        	0,
-		        	0, 
-		        	window.innerWidth,
-		        	window.innerHeight
-		        );
+				// draw background / rect on entire canvas
+				this.context.fillRect(
+					0,
+					0, 
+					window.innerWidth,
+					window.innerHeight
+				);
 
-			    e.currentTarget.href = this.save(this.canvas);
+				e.currentTarget.href = this.save(this.canvas);
 
-			    this.context.globalCompositeOperation = 'source-over';
+				this.context.globalCompositeOperation = 'source-over';
 
 			}).bind(this));
 
 			// clear button
 			this.$button.clear.on('click.paint', (function () {
-			    
-			    this.clear(this.context);
-			    this.reset();
+				
+				this.clear(this.context);
+				this.reset();
 
 			}).bind(this));
 		}
@@ -144,48 +144,48 @@ Paint.prototype = {
 		// console.info('Paint.draw');
 
 		document.onmouseup = $.proxy(function() {
-		  	
-		  	this.isDrawing = false;
-		  	
-		  	this.points.length = 0;
+			
+			this.isDrawing = false;
+			
+			this.points.length = 0;
 		
 		}, this);
 
 
 		document.onmousedown = $.proxy(function(e) {
 
-	  		this.isDrawing = true;
+			this.isDrawing = true;
 
-	  		this.points.push({ 
-		  		x: e.clientX, 
-		  		y: e.clientY 
-		  	
-		  	});
+			this.points.push({ 
+				x: e.clientX, 
+				y: e.clientY 
+			
+			});
 
-		  	this.$button.instruction.removeClass('is-active');
+			this.$button.instruction.removeClass('is-active');
 
 		}, this);
 
 		document.onmousemove = $.proxy(function(e) {
 
-		  	if (!this.isDrawing) return;
+			if (!this.isDrawing) return;
 
-		  	this.points.push({ 
-		  		x: e.clientX, 
-		  		y: e.clientY 
-		  	});
+			this.points.push({ 
+				x: e.clientX, 
+				y: e.clientY 
+			});
 
-		  	for (var i = 0; i < (this.lineCount + 1) * this.lineCount; i+= this.lineCount) {
-		  		
-		  		// After
-		  		this.stroke(this.offsetPoints(i + this.lineCount));
+			for (var i = 0; i < (this.lineCount + 1) * this.lineCount; i+= this.lineCount) {
+				
+				// After
+				this.stroke(this.offsetPoints(i + this.lineCount));
 
-		  		// Before
-		  		this.stroke(this.offsetPoints((i + this.lineCount) * -1));
+				// Before
+				this.stroke(this.offsetPoints((i + this.lineCount) * -1));
 
-		  	}
+			}
 
-		  	this.stroke(this.points);
+			this.stroke(this.points);
 		
 		}, this);
 	},
@@ -213,7 +213,7 @@ Paint.prototype = {
 	 * Paint.save
 	 */
 	save: function(element) {
-		return dataURL = element.toDataURL('image/png');
+		return element.toDataURL('image/png');
 	},
 
 
@@ -221,10 +221,10 @@ Paint.prototype = {
 	 * Paint.stroke
 	 */
 	stroke: function(points) {
-	  	
-	  	var p1 = points[0];
-	  	var p2 = points[1];
-	  
+		
+		var p1 = points[0];
+		var p2 = points[1];
+		
 		this.context.beginPath();
 		this.context.moveTo(p1.x, p1.y);
 
@@ -259,10 +259,10 @@ Paint.prototype = {
 	 * Paint.middlePointBetween
 	 */
 	middlePointBetween: function (p1, p2) {
-	  	return {
-	    	x: p1.x + (p2.x - p1.x) / 2,
-	    	y: p1.y + (p2.y - p1.y) / 2
-	  	};
+		return {
+			x: p1.x + (p2.x - p1.x) / 2,
+			y: p1.y + (p2.y - p1.y) / 2
+		};
 	},
 
 	/**
@@ -271,17 +271,17 @@ Paint.prototype = {
 	offsetPoints: function(val) {
 		// console.info('Paint.offsetPoints');
 
-	  	var offsetPoints = [];
+		var offsetPoints = [];
 
-	  	this.points.forEach(function(point){
-  			
-  			offsetPoints.push({ 
-  		  		x: point.x + val,
-  		  		y: point.y + val
-  			});
+		this.points.forEach(function(point){
+			
+			offsetPoints.push({ 
+				x: point.x + val,
+				y: point.y + val
+			});
 
-	  	}, this);
+		}, this);
 
-	  	return offsetPoints;
+		return offsetPoints;
 	}
 };

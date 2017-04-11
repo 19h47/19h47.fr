@@ -2,7 +2,6 @@ var $ = require('jquery');
 
 var AOS = require('aos');
 var Barba = require('barba.enhanced.js');
-var randomizeText = require('./vendors/randomize_text');
 
 
 // Modules
@@ -14,7 +13,7 @@ var Transitions = require('./transitions/index');
 
 
 // Views
-var Views = require('./views/index');
+require('./views/index');
 
 // create App
 window.app = new Modules.App();
@@ -35,21 +34,21 @@ Modules.Navigation();
 AOS.init();
 
 // Barba
-Barba.Dispatcher.on('initStateChange', function(currentStatus) {
-    
-    // add state to App to tell new page is loading
-    window.app.addState('page--is-loading');
-    
-    // disable scroll between transitions
-    window.app.disableScroll();
+Barba.Dispatcher.on('initStateChange', function() {
+	
+	// add state to App to tell new page is loading
+	window.app.addState('page--is-loading');
+	
+	// disable scroll between transitions
+	window.app.disableScroll();
 });
 
 
 Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElementContainer, newPageRawHTML) {    
-    // Add namespace as class to body
-    var bodyClass = $(newPageRawHTML).find('.barba-container').attr('data-namespace');
+	// Add namespace as class to body
+	var bodyClass = $(newPageRawHTML).find('.barba-container').attr('data-namespace');
 
-    $('body').attr('data-context', bodyClass || '');
+	$('body').attr('data-context', bodyClass || '');
 
 	$('title').randomizeText({
 		refreshRate: 1,
@@ -57,10 +56,10 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 		maxRandomTries: 5,
 	});
 
-    Modules.Navigation();
+	Modules.Navigation();
 
-    new Modules.Footer('.js-footer');
-    
+	new Modules.Footer('.js-footer');
+	
 });
 
 
@@ -72,15 +71,15 @@ Barba.Dispatcher.on('transitionCompleted', function() {
 	// remove previous state from App
 	window.app.removeState('page--is-loading');
 
-    // $('.js-footer').addClass('is-active');
+	// $('.js-footer').addClass('is-active');
 });
 
 
 Barba.Pjax.getTransition = function() {
-    var previousStatus = Barba.Pjax.History.prevStatus();
-    var currentStatus = Barba.Pjax.History.currentStatus();
+	// var previousStatus = Barba.Pjax.History.prevStatus();
+	// var currentStatus = Barba.Pjax.History.currentStatus();
 
-    return Transitions.Basic;
+	return Transitions.Basic;
 };
 
 

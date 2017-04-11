@@ -21,17 +21,16 @@ var NotFound = Barba.BaseView.extend({
 
 
 	onEnterCompleted: function() {
-	    // The Transition has just finished.
-	},
-	  
+		// The Transition has just finished.
+	},  
 
 	onLeave: function() {
-	    // A new Transition toward a new page has just started.
+		// A new Transition toward a new page has just started.
 	},
 
 	
 	onLeaveCompleted: function() {
-	    // The Container has just been removed from the DOM.
+		// The Container has just been removed from the DOM.
 	}
 });
 
