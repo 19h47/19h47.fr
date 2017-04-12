@@ -5,6 +5,7 @@ module.exports = {
         "$": true,
         "jQuery": true
     },
+    "code": 80,
     "env": {
         "browser": true,
         "commonjs": true

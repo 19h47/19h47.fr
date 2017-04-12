@@ -9,8 +9,8 @@ var Views = {
 	Page: require('./page')
 };
 
-// Init each 
-Object.keys(Views).map(function(key, index) {
+// Init each view
+Object.keys(Views).map(function(key) {
 	Views[key].init();
 });
 

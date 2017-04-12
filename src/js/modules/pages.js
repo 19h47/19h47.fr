@@ -49,7 +49,6 @@ Pages.prototype = {
 			return $.get({
 				url: config.api + 'pages/', 
 				data: {slug: slug},
-
 				dataType: 'json'
 			});
 		},

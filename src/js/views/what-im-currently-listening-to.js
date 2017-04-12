@@ -1,8 +1,9 @@
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
-var scrollMonitor = require('scrollMonitor');
 var classes = require('dom-classes');
 var select = require('dom-select');
+var AOS = require('aos');
+
 
 /**
  * WhatImCurrentlyListeningTo
@@ -36,9 +37,6 @@ var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 	 */
 	onEnterCompleted: function() {
 		// The Transition has just finished.
-
-		// scrollMonitor
-		scrollMonitor.recalculateLocations();
 
 		classes.remove(select('.js-footer'), 'is-active');
 	},

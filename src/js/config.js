@@ -3,6 +3,7 @@ var select = require('dom-select');
 var config = {
 
 	body: {
+		el: select('body'),
 		$: $('body'),
 		scroll: {
 			left: 0,

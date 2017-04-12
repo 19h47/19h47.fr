@@ -1,5 +1,6 @@
 var $ = require('jquery');
 var Barba = require('barba.enhanced.js');
+var TweenMax = require('TweenMax');
 
 
 /**
@@ -13,52 +14,64 @@ var Basic = Barba.BaseTransition.extend({
 	start: function() {
 		// console.info('Basic.start');
 
-		// As soon the loading is finished and the old page is faded out, let's 
-		// fade the new page
 		Promise
-			.all([this.newContainerLoading, $.proxy(this.fade.out, this)])
-			.then($.proxy(this.fade.in, this));
+			.all([this.exit(), this.newContainerLoading])
+			.then(this.enter.bind(this));
 	},
 
 
 	/**
-	 * Basic.fade
+	 * Basic.fade.out
 	 */
-	fade: {
+	exit: function() {
+		// console.info('Basic.fade.out');
 
-		/**
-		 * Basic.fade.out
-		 */
-		out: function() {
-			// console.info('Basic.fade.out');
+		var deferred = Barba.Utils.deferred();
 
-			return $(this.oldContainer).animate({ opacity: 0 }, 400).promise();
-		},
+		TweenLite.fromTo(
+            this.oldContainer,
+            1,
+            {
+                opacity: 1,
+            },
+            {
+                opacity: 0,
+                onComplete: deferred.resolve
+            }
+        );
+
+        return deferred.promise;
+	},
 
 
-		/**
-		 * Basic.fade.in
-		 */
-		in: function() {
-			// console.info('Basic.fade.in');
+	/**
+	 * Basic.fade.in
+	 */
+	enter: function() {
+		// console.info('Basic.fade.in');
 
-			var _this = this;
-			var $el = $(this.newContainer);
+		var tl = new TimelineLite({
+            callbackScope: this,
+            onComplete: this.done
+        });
 
-			window.app.resetScroll(0, 0);
-			
-			$(this.oldContainer).hide();
-
-			$el.css({
-				visibility : 'visible',
-				opacity : 0
-			});
-
-			$el.animate({ opacity: 1 }, 800, function() {
-
-				_this.done();
-			});
-		}
+        tl
+            .set(this.newContainer, { clearProps: 'opacity, visibility' })
+            .set(this.oldContainer, { display: 'none' })
+            .call(function() {
+                // reset scroll position
+                window.app.resetScroll(0, 0);
+            })
+            .fromTo(
+                this.newContainer,
+                1,
+                {
+                    opacity: 0,
+                },
+                {
+                    opacity: 1,
+                }
+            );
 	}
 });
 

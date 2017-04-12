@@ -1,7 +1,7 @@
 module.exports = Guid;
 
-
-var $ = require('jquery');
+var classes = require('dom-classes');
+var select = require('dom-select');
 
 /**
  * Guid
@@ -12,8 +12,8 @@ function Guid() {
 	}
 
 	// show/hide guides with CMD+;
-	$(document).on('keydown.guid',function(e) {
+	document.addEventListener('keydown',function(e) {
 
-		(e.metaKey || e.ctrlKey) && e.keyCode === 186 && $('.Guid').toggleClass('display-xs-none');
+		(e.metaKey || e.ctrlKey) && e.keyCode === 186 && classes.toggle(select('.Guid'), 'display-xs-none');
 	});
 }

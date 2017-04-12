@@ -21,9 +21,6 @@ window.app = new Modules.App();
 // add state to App while current page is loading
 window.app.addState('page--is-loading');
 
-// Menu
-new Modules.Menu();
-
 // Navigation
 Modules.Navigation();
 
@@ -58,9 +55,6 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 	});
 
 	Modules.Navigation();
-
-	new Modules.Footer('.js-footer');
-	
 });
 
 

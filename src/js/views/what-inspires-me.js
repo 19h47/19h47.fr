@@ -1,6 +1,6 @@
+var $ = require('jquery');
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
-var scrollMonitor = require('scrollMonitor');
 var classes = require('dom-classes');
 var select = require('dom-select');
 
@@ -17,16 +17,16 @@ var WhatInspiresMe = Barba.BaseView.extend({
 	 */
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
-		
+
 		new Modules.Tumblr('.Tumblr');
+		new Modules.Watchers();
+
 	},
 
 
 	onEnterCompleted: function() {
 		// The Transition has just finished.
-		
-		// scrollMonitor
-		scrollMonitor.recalculateLocations();
+
 
 		classes.remove(select('.js-footer'), 'is-active');
 	},

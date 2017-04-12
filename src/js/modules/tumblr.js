@@ -50,6 +50,7 @@ Tumblr.prototype = {
 		this.loader = this.$response.find('.js-loader');
 
 		this.more.show.call(this);
+
 		this.initEvents();
 	},
 
@@ -77,10 +78,14 @@ Tumblr.prototype = {
 		 * Tumblr.more.show
 		 */
 		show: function() {
+			
 			this.more.load.call(this)
 				.then($.proxy(this.construct, this))
 				.then($.proxy(this.append, this))
-				.done($.proxy(this.update, this));
+				.done($.proxy(this.update, this))
+				.fail(function(xhr) {
+					console.log(xhr);
+				});
 		},
 
 
@@ -190,6 +195,8 @@ Tumblr.prototype = {
 			.append(html.replace(/>\s+</g,'><'));
 
 		$.proxy(this.lock.off, this);
+
+
 	},
 
 

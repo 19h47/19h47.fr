@@ -142,12 +142,13 @@ Lastfm.prototype = {
 
 			// var recenTracksLength = response.recenttracks.track.length;
 			var template = $('#track').html();
+			var output = '';
+			var i = 0;
 			
 			Mustache.parse(template);
 
-			var output = '';
 
-			for (var i = 0; i < this.options.limit; i++) {
+			for (i; i < this.options.limit; i++) {
 
 				output += Mustache.render(template, {
 					image: response.recenttracks.track[i].image[3]['#text'],
