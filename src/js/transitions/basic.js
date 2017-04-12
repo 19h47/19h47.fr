@@ -1,5 +1,7 @@
 var $ = require('jquery');
 var Barba = require('barba.enhanced.js');
+
+
 /**
  * Basic
  */
@@ -14,8 +16,8 @@ var Basic = Barba.BaseTransition.extend({
 		// As soon the loading is finished and the old page is faded out, let's 
 		// fade the new page
 		Promise
-			.all([this.newContainerLoading, this.fade.out()])
-			.then(this.fade.in.bind(this));
+			.all([this.newContainerLoading, $.proxy(this.fade.out, this)])
+			.then($.proxy(this.fade.in, this));
 	},
 
 
@@ -30,7 +32,7 @@ var Basic = Barba.BaseTransition.extend({
 		out: function() {
 			// console.info('Basic.fade.out');
 
-			return $(this.oldContainer).animate({ opacity: 0 }, 800).promise();
+			return $(this.oldContainer).animate({ opacity: 0 }, 400).promise();
 		},
 
 

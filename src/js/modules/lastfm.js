@@ -9,18 +9,18 @@ var Mustache = require('mustache');
  * @see  http://www.last.fm/api
  */
 function Lastfm(element, options) {
- 	if (!(this instanceof Lastfm)) {
-    	return new Lastfm();
+	if (!(this instanceof Lastfm)) {
+		return new Lastfm();
 	}
 
-    // If jQuery isn't loaded
-    if (!window.jQuery) {
-        throw new Error('jQuery is missing.');
-    }
+	// If jQuery isn't loaded
+	if (!window.jQuery) {
+		throw new Error('jQuery is missing.');
+	}
 
-	$element = $(element);
+	this.$element = $(element);
 
-	if (!$element || !$element.length) {
+	if (!this.$element || !this.$element.length) {
 		throw new Error('Missing selector.');
 	}
 
@@ -37,17 +37,17 @@ function Lastfm(element, options) {
 
 	// If user isn't set
 	if (!this.options.user || !this.options.user.length) {
-	    throw new Error('User is missing.');
+		throw new Error('User is missing.');
 	}
 
 	// If API key isn't set
 	if (!this.options.api.key || !this.options.api.key.length) {
-	    throw new Error('API key is missing.');
+		throw new Error('API key is missing.');
 	}
 
 	// If user isn't set
 	if (!this.options.api.secret || !this.options.api.secret.length) {
-	    throw new Error('API secret is missing.');
+		throw new Error('API secret is missing.');
 	}
 
 	this.setup();
@@ -66,9 +66,9 @@ Lastfm.prototype = {
 			SECRET: this.options.api.secret,
 			USER: this.options.user,
 			URL: 'http://ws.audioscrobbler.com/2.0/'
-		}
+		};
 
-		this.$response = $element;
+		this.$response = this.$element;
 		this.loader = this.$response.find('.js-loader');
 
 		this.show.recentTracks.call(this);
@@ -140,23 +140,20 @@ Lastfm.prototype = {
 		 */
 		recenTracks: function(response) {
 
-			var recenTracksLength = response.recenttracks.track.length;
+			// var recenTracksLength = response.recenttracks.track.length;
 			var template = $('#track').html();
 			
 			Mustache.parse(template);
 
 			var output = '';
 
-			for (i = 0; i < this.options.limit; i++) {
+			for (var i = 0; i < this.options.limit; i++) {
 
-				var track = {
+				output += Mustache.render(template, {
+					image: response.recenttracks.track[i].image[3]['#text'],
 					artist: response.recenttracks.track[i].artist['#text'],
-					name: response.recenttracks.track[i].name,
-					image: response.recenttracks.track[i].image[3]['#text']	
-				}
-
-				output += Mustache.render(template, {track});
-
+					name: response.recenttracks.track[i].name
+				});
 			}
 
 			return output;
@@ -184,7 +181,7 @@ Lastfm.prototype = {
 		 */
 		recentTracks: function() {
 
-			return url = this.API.URL + '?method=user.getrecenttracks&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
+			return this.API.URL + '?method=user.getrecenttracks&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
 		},
 
 
@@ -193,7 +190,7 @@ Lastfm.prototype = {
 		 */
 		info: function() {
 			
-			return url = this.API.URL + '?method=user.getinfo&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
+			return this.API.URL + '?method=user.getinfo&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
 		},
 	},
 
@@ -207,12 +204,12 @@ Lastfm.prototype = {
 		 * Lastfm.lock.on
 		 */
 		on: function() {
-			console.info('Lastfm.lock.on');
+			// console.info('Lastfm.lock.on');
 
 			// remove loading state to loader if exists
 			this.loader.length && 
 			this.loader
-			    .addClass('is-loading');
+				.addClass('is-loading');
 		},
 
 
@@ -220,12 +217,12 @@ Lastfm.prototype = {
 		 * Lastfm.lock.off
 		 */
 		off: function() {
-			console.info('Lastfm.lock.off');
+			// console.info('Lastfm.lock.off');
 
 			// remove loading state to loader if exists
 			this.loader.length && 
 			this.loader
-			    .removeClass('is-loading');
+				.removeClass('is-loading');
 		}
 	},
 

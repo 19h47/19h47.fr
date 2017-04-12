@@ -11,6 +11,10 @@
     "email": "levronjeremy@19h47.fr",
     "url": "http://www.19h47.fr"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/19h47/19h47.fr.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "aos": "^2.1.1",
@@ -52,7 +56,8 @@
       "depends": [
         "barba.js"
       ]
-    }
+    },
+    "gsap.easing.CustomEase": "CustomEase"
   },
   "dependencies": {
     "bootstrap-sass": "latest",
@@ -65,6 +70,8 @@
   },
   "browser": {
     "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",
-    "barba.enhanced.js": "./src/js/vendors/barba.enhanced.js"
+    "barba.enhanced.js": "./src/js/vendors/barba.enhanced.js",
+    "gsap.easing.CustomEase": "./src/js/vendors/gsap/uncompressed/easing/CustomEase.js",
+    "TweenMax": "./src/js/vendors/gsap/uncompressed/TweenMax.js"
   }
 }
