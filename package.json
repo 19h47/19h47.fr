@@ -38,6 +38,8 @@
     "gulp-uglify": "^2.1.2",
     "gulp-util": "^3.0.8",
     "mustache": "^2.3.0",
+    "polyfill-nodelist-foreach": "^1.0.1",
+    "promise-polyfill": "^6.0.2",
     "require-dir": "^0.3.1",
     "scrollmonitor": "^1.2.3",
     "svgo": "^0.7.2",
@@ -66,7 +68,7 @@
     "ress": "^1.2.2",
     "dom-classes": "^1.0.0",
     "dom-select": "^1.0.0",
-    "dom-css":"^2.1.0"
+    "dom-css": "^2.1.0"
   },
   "browser": {
     "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",

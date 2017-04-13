@@ -3,6 +3,8 @@ var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
 var classes = require('dom-classes');
 var select = require('dom-select');
+var AOS = require('aos');
+
 
 /**
  * WhatInspiresMe
@@ -18,25 +20,35 @@ var WhatInspiresMe = Barba.BaseView.extend({
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
 
-		new Modules.Tumblr('.Tumblr');
-		new Modules.Watchers();
+		var Tumblr = new Modules.Tumblr('.Tumblr');
+		
+		Tumblr.deferred.then(function() {
 
+			// AOS.refreshHard();
+		});
 	},
 
 
+	/**
+	 * WhatInspiresMe.onEnterCompleted
+	 */
 	onEnterCompleted: function() {
 		// The Transition has just finished.
-
-
 		classes.remove(select('.js-footer'), 'is-active');
 	},
 
 
+	/**
+	 * WhatInspiresMe.onLeave description
+	 */
 	onLeave: function() {
 		// A new Transition toward a new page has just started.
 	},
 
 	
+	/**
+	 * WhatInspiresMe.onLeaveCompleted
+	 */
 	onLeaveCompleted: function() {
 		// The Container has just been removed from the DOM.
 	}

@@ -56,12 +56,6 @@ var Basic = Barba.BaseTransition.extend({
         });
 
         tl
-            .set(this.newContainer, { clearProps: 'opacity, visibility' })
-            .set(this.oldContainer, { display: 'none' })
-            .call(function() {
-                // reset scroll position
-                window.app.resetScroll(0, 0);
-            })
             .fromTo(
                 this.newContainer,
                 1,

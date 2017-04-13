@@ -21,13 +21,18 @@ var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 	 */
 	onEnter: function() {
 		
-		new Modules.Lastfm('.Lastfm', {
+		var Lastfm = new Modules.Lastfm('.Lastfm', {
 			limit: 50,
 			user: 'Bsurde',
 			api: {
 				key: '34ee8634c2620b37bb06c0910c946200',
 				secret: '47d74ac88537e2963cd91c187f7636aa'
 			}
+		});
+
+		Lastfm.deferred.then(function() {
+
+			// AOS.refreshHard();
 		});
 	},
 

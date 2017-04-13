@@ -3,7 +3,6 @@ module.exports = Tumblr;
 var $ = require('jquery');
 var Mustache = require('mustache');
 
-
 function Tumblr(element) {
 	if (!(this instanceof Tumblr)) {
 		return new Tumblr();
@@ -15,6 +14,8 @@ function Tumblr(element) {
 		return;
 	}
 
+	this.deferred = new $.Deferred();
+     
 	this.setup();
 }
 
@@ -50,7 +51,6 @@ Tumblr.prototype = {
 		this.loader = this.$response.find('.js-loader');
 
 		this.more.show.call(this);
-
 		this.initEvents();
 	},
 
@@ -82,10 +82,7 @@ Tumblr.prototype = {
 			this.more.load.call(this)
 				.then($.proxy(this.construct, this))
 				.then($.proxy(this.append, this))
-				.done($.proxy(this.update, this))
-				.fail(function(xhr) {
-					console.log(xhr);
-				});
+				.done($.proxy(this.update, this));				
 		},
 
 
@@ -195,8 +192,6 @@ Tumblr.prototype = {
 			.append(html.replace(/>\s+</g,'><'));
 
 		$.proxy(this.lock.off, this);
-
-
 	},
 
 
@@ -213,6 +208,8 @@ Tumblr.prototype = {
 		this.$response
 			.find('.load-more')
 			.attr('data-count', this.posts.count - this.posts.offset)
-			.toggle(this.posts.offset <= this.posts.count);
+			.toggle(this.posts.offset <= this.posts.count);	
+
+		return this.deferred.resolve();	
 	}
 };

@@ -6,6 +6,8 @@ var classes = require('dom-classes');
 var select = require('dom-select');
 var $ = require('jquery');
 
+require('polyfill-nodelist-foreach');
+
 /**
  * Watcher
  */
@@ -22,7 +24,7 @@ function Watchers() {
 	this.wrapper = select('.js-wrapper');
 
 	this.footer();
-	this.tumblr();
+	// this.tumblr();
 	this.setup();
 }
 
@@ -56,7 +58,7 @@ Watchers.prototype = {
 			window.addEventListener('scroll', function() {
 
 				this.footer();
-				this.tumblr();
+				// this.tumblr();
 
 			}.bind(this));
 		}
@@ -76,8 +78,44 @@ Watchers.prototype = {
 			return;
 		}
 
-		var tumblrPosts = select.all('.Tumblr__post');
-		console.log(tumblrPosts);
+
+		var tumblrPosts = document.querySelectorAll('.Tumblr__post');
+
+		var collection = [];
+
+		tumblrPosts.forEach(function(tumblrPost) {
+			classes.add(tumblrPost, 'is-hidden');
+
+			var tumblrPostWatcher = scrollMonitor.create(tumblrPost);
+
+			collection.push(tumblrPostWatcher);
+
+		});
+
+		console.log(collection);
+		collection.forEach(function(watcher) {
+			
+			window.addEventListener('scroll', function() {
+
+				var offset = config.body.el.scrollTop + scrollMonitor.viewportHeight;
+				
+				var itemOffsetTop = (watcher.top+128) - config.body.el.scrollTop;
+
+				// console.log(watcher.top);
+				// console.log(config.body.el.scrollTop);
+
+				// classes.add(watcher.watchItem, 'is-hidden');
+
+				if (itemOffsetTop <= config.body.el.scrollTop) {
+					
+					classes.remove(watcher.watchItem, 'is-hidden');
+				}
+
+			});
+		});
+
+		// console.log(collection);
+		
 	},
 
 

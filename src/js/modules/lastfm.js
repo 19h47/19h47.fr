@@ -50,6 +50,8 @@ function Lastfm(element, options) {
 		throw new Error('API secret is missing.');
 	}
 
+	this.deferred = new $.Deferred();
+
 	this.setup();
 }
 
@@ -102,7 +104,6 @@ Lastfm.prototype = {
 				.then($.proxy(this.construct.info, this))
 				.done($.proxy(this.append.info, this));
 		}
-
 	},
 
 
@@ -117,6 +118,8 @@ Lastfm.prototype = {
 		recentTracks: function(html) {
 
 			this.$response.find('.response').append(html);
+
+			return this.deferred.resolve();	
 		},
 
 
