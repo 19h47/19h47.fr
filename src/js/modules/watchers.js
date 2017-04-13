@@ -23,8 +23,6 @@ function Watchers() {
 	
 	this.wrapper = select('.js-wrapper');
 
-	this.footer();
-	// this.tumblr();
 	this.setup();
 }
 
@@ -39,93 +37,33 @@ Watchers.prototype = {
 	 */
 	setup: function() {
 
-		this.wrapperWatcher = scrollMonitor.create(this.wrapper);
-
-		this.init.events.call(this);
+		this.footer();
+		this.initEvents();
 	},
 
+	initEvents: function(){
 
-	/**
-	 * Watchers.init
-	 */
-	init: {
+		window.addEventListener('scroll', function() {
+			// scrollMonitor
+			scrollMonitor.update();
 
-		/**
-		 * Watcher.init.events
-		 */
-		events: function() {
+			// Update offset
+			var offset = config.body.el.scrollTop + scrollMonitor.viewportHeight;
 
-			window.addEventListener('scroll', function() {
-
-				this.footer();
-				// this.tumblr();
-
-			}.bind(this));
-		}
-	},
+			this.footer(select('.js-footer'), offset);
 
 
-	/**
-	 * Watchers.tumblr
-	 */
-	tumblr: function() {
-		// console.info('Watcher.tumblr');
-
-		var element = select('.Tumblr');
-
-		// If element selector doesn't exist
-		if(!element) {
-			return;
-		}
-
-
-		var tumblrPosts = document.querySelectorAll('.Tumblr__post');
-
-		var collection = [];
-
-		tumblrPosts.forEach(function(tumblrPost) {
-			classes.add(tumblrPost, 'is-hidden');
-
-			var tumblrPostWatcher = scrollMonitor.create(tumblrPost);
-
-			collection.push(tumblrPostWatcher);
-
-		});
-
-		console.log(collection);
-		collection.forEach(function(watcher) {
-			
-			window.addEventListener('scroll', function() {
-
-				var offset = config.body.el.scrollTop + scrollMonitor.viewportHeight;
-				
-				var itemOffsetTop = (watcher.top+128) - config.body.el.scrollTop;
-
-				// console.log(watcher.top);
-				// console.log(config.body.el.scrollTop);
-
-				// classes.add(watcher.watchItem, 'is-hidden');
-
-				if (itemOffsetTop <= config.body.el.scrollTop) {
-					
-					classes.remove(watcher.watchItem, 'is-hidden');
-				}
-
-			});
-		});
-
-		// console.log(collection);
-		
+		}.bind(this));
 	},
 
 
 	/**
 	 * Watchers.footer
+	 *
+	 * @var 	element 	DOM element
+	 * @var 	offset		actual offset
 	 */
-	footer: function() {
-		// console.log('Watcher.footer');
-
-		var element = select('.js-footer')
+	footer: function(element, offset){
 
 		// If element selector doesn't exist
 		if(!element) {
@@ -138,10 +76,6 @@ Watchers.prototype = {
 			classes.remove(element, 'is-active');
 		}
 
-		// scrollMonitor
-		scrollMonitor.update();
-
-		var offset = config.body.el.scrollTop + scrollMonitor.viewportHeight;
 
 		if(offset == document.documentElement.clientHeight) {
 			
@@ -152,5 +86,5 @@ Watchers.prototype = {
 			
 			classes.add(element, 'is-active');
 		}
-	}
+	}	
 };

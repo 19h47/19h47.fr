@@ -3,7 +3,6 @@ var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
 var classes = require('dom-classes');
 var select = require('dom-select');
-var AOS = require('aos');
 
 
 /**
@@ -22,10 +21,7 @@ var WhatInspiresMe = Barba.BaseView.extend({
 
 		var Tumblr = new Modules.Tumblr('.Tumblr');
 		
-		Tumblr.deferred.then(function() {
-
-			// AOS.refreshHard();
-		});
+		// Tumblr.deferred.then(function() {});
 	},
 
 

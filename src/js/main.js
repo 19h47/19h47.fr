@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var AOS = require('aos');
 var Barba = require('barba.enhanced.js');
 
 require('./vendors/randomize_text');
@@ -25,14 +24,6 @@ Modules.Navigation();
 
 // Watchers
 Modules.Watchers();
-
-
-/**
- * Animate on Scroll
- *
- * @see  https://github.com/michalsnik/aos
- */
-// AOS.init();
 
 // Barba
 Barba.Dispatcher.on('initStateChange', function() {

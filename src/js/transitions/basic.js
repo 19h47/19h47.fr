@@ -28,17 +28,18 @@ var Basic = Barba.BaseTransition.extend({
 
 		var deferred = Barba.Utils.deferred();
 
-		TweenLite.fromTo(
-            this.oldContainer,
-            1,
-            {
-                opacity: 1,
-            },
-            {
-                opacity: 0,
-                onComplete: deferred.resolve
-            }
-        );
+		TweenLite
+			.fromTo(
+	            this.oldContainer,
+	            1,
+	            {
+	                opacity: 1,
+	            },
+	            {
+	                opacity: 0,
+	                onComplete: deferred.resolve
+	            }
+	        );
 
         return deferred.promise;
 	},
@@ -50,12 +51,19 @@ var Basic = Barba.BaseTransition.extend({
 	enter: function() {
 		// console.info('Basic.fade.in');
 
-		var tl = new TimelineLite({
+
+        var tl = new TimelineLite({
             callbackScope: this,
             onComplete: this.done
         });
 
         tl
+            .set(this.newContainer, { clearProps: 'opacity' })
+            .set(this.oldContainer, { display: 'none' })
+            .call(function() {
+                // reset scroll position
+                window.app.resetScroll(0, 0);
+            })
             .fromTo(
                 this.newContainer,
                 1,

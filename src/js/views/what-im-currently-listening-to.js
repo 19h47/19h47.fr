@@ -2,7 +2,6 @@ var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
 var classes = require('dom-classes');
 var select = require('dom-select');
-var AOS = require('aos');
 
 
 /**
@@ -30,10 +29,7 @@ var WhatImCurrentlyListeningTo = Barba.BaseView.extend({
 			}
 		});
 
-		Lastfm.deferred.then(function() {
-
-			// AOS.refreshHard();
-		});
+		Lastfm.deferred.then(function() {});
 	},
 
 

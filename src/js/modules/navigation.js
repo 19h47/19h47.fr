@@ -2,6 +2,8 @@ module.exports = Navigation;
 
 var $ = require('jquery');
 
+require('polyfill-nodelist-foreach');
+
 /**
  * Navigation
  */
@@ -16,7 +18,7 @@ function Navigation() {
 	};
 
 	// Remove CSS class 'is-active' from all link
-	Array.prototype.forEach.call(links.all, function(link) {
+	links.all.forEach(function(link) {
 
 		link.classList.remove('is-active');
 	}); 
