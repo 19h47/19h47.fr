@@ -27,5 +27,11 @@
 		@at-root [data-context="front-page"] & {
 			@extend %Reset-opacity, %Reset-visibility;
 		}
+
+		@at-root [data-context="works"] &.is-on-top {
+
+			opacity: 0;
+			visibility: hidden;
+		}
 	}
 }

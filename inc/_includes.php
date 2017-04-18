@@ -12,9 +12,9 @@ include __DIR__ . '/reset.php';
 
 
 /**
- * Template tags
+ * Post template
  */
-// include __DIR__ . '/template-tags.php';
+include __DIR__ . '/post-template.php';
 
 
 /**

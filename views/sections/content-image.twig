@@ -1,0 +1,15 @@
+<div class="col-xs-12 col-md-10 col-md-offset-1 margin-xs-top-64">
+	<p>
+		<img class="img-full {% if section.shadow == 'true' %}box-shadow{% endif %}" src="{{ TimberImage( section.image ).src }}" alt="" />
+
+		{% if TimberImage( section.image ).caption %}
+
+			{# Caption #}
+			<span class="display-xs-block font-size-13 font-regular color-white text-xs-right">
+				{{ TimberImage( section.image ).caption }}
+			</span>
+
+		{% endif %}
+
+	</p>
+</div>

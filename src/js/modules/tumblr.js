@@ -82,7 +82,8 @@ Tumblr.prototype = {
 			this.more.load.call(this)
 				.then($.proxy(this.construct, this))
 				.then($.proxy(this.append, this))
-				.done($.proxy(this.update, this));				
+				.then($.proxy(this.update, this))
+				.done(this.deferred.promise());				
 		},
 
 

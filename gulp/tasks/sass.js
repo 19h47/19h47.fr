@@ -18,32 +18,26 @@ gulp.task('sass', function() {
 
     config.sources.forEach(function(source) {
         gulp.src( source.src )
-            .pipe( plumber({
+            .pipe(plumber({
                 errorHandler: function ( error ) {
                     console.log( error.message );
                     this.emit( 'end' );
                 }
             }))
-            .pipe( sourcemaps.init({
-                    loadMaps: true,
-                    // includeContent: false, 
-                    // sourceRoot: '../'
-                }))
-            .pipe( sass({
+            .pipe(sass({
                 includePaths: source.deps,
                 outputStyle: 'expanded',
                 precision: 6,
-            }).on('error', sass.logError))
-            // .pipe( concat( config.vendors ))
-            .pipe( autoprefixer({ 
-                    browsers: minify.supported, 
-                    add: true 
-                }) )
-            .pipe( mmq() )
-            .pipe( csso() )
-            // .pipe( sourcemaps.write( 'maps' ))
+            })
+            .on('error', sass.logError))
+            .pipe(autoprefixer({ 
+                browsers: minify.supported, 
+                cascade: false
+            }))
+            .pipe(mmq())
+            .pipe(csso())
             .pipe(rename(source.file))
-            .pipe( gulp.dest( config.dest ));
+            .pipe(gulp.dest(config.dest));
 
     });
 

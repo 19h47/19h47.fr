@@ -1,4 +1,3 @@
-var $ = require('jquery');
 var Barba = require('barba.enhanced.js');
 var TweenMax = require('TweenMax');
 

@@ -1,0 +1,73 @@
+{#
+/**
+ * /views/pages/work-archive
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron levronjeremy@19h47.fr
+ */
+#}
+{% extends 'index.twig' %}
+
+
+{% block start_wrapper %}
+	<div class="margin-xs-top-64 margin-xs-bottom-64">
+{% endblock %}
+
+
+{% block header %}
+	{% include 'pages/_header.twig' with { 'title': 'Work' } %}
+{% endblock %}
+
+
+{% block content %}
+
+	<section class="row">
+
+		
+		<div class="col-xs-12">
+			
+			{% for post in posts %}
+			<div class="row margin-xs-top-32 margin-xs-bottom-32">
+				<div class="col-xs-1 col-xs-offset-1 hidden-xs hidden-sm">
+					
+					<a class="js-to-work-single Work-archive__color" href="{{ post.link }}" style="background-color: {{ post.get_field( 'color' ) }}"  data-namespace="{{ post.slug }}" data-color="{{ post.get_field( 'color' ) }}">
+						
+					</a>
+
+				</div>
+				<div class="col-xs-12 col-md-9">
+					<p class="color-white margin-xs-top-8 no-margin-bottom">
+						<span class="font-medium">
+							<a class="js-to-work-single" href="{{ post.link }}" data-namespace="{{ post.slug }}" data-color="{{ post.get_field( 'color' ) }}">{{ post.title }}</a>
+							<sup class="valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
+								{{ post.year|date( 'Y' ) }}
+							</sup>
+						</span>
+						<br/>
+						<span class="font-light">
+							{% for role in post.get_field( 'role' ) %}
+								{{ role.name }}{{ not loop.last ? ', ' }}
+							{% endfor %}
+						</span>
+					</p>
+				</div>
+			</div>
+			{% endfor %}
+
+		</div>
+		
+	</section> 
+
+{% endblock %}
+
+{% block footer %}
+	<footer class="row">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<p class="no-margin font-size-13 color-white uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+			</p>
+		</div>
+	</footer>
+
+{% endblock %}

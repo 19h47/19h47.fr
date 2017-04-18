@@ -1,4 +1,8 @@
-var functions = {
+/**
+ * utils
+ * @type {Object}
+ */
+let utils = {
 	
 	/**
 	 * Get right transitionend event name regarding browser support.
@@ -19,7 +23,17 @@ var functions = {
 				return transitions[transition];
 			}
 		}
-	}
-};
+	},
 
-module.exports = functions;
+	/**
+	 * @see  http://stackoverflow.com/a/28608829/5091221
+	 */
+	removeClassByPrefix: function(el, prefix) {
+	    var regx = new RegExp('(?:^|\\s)' + prefix + '(?!\\S)');
+	    el.className = el.className.replace(regx, '');
+
+	    return el;
+	}
+}
+
+export default utils

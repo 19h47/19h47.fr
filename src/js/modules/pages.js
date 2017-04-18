@@ -66,6 +66,7 @@ Pages.prototype = {
 	 * Pages.construct
 	 */
 	construct: function(response) {
+		var post;
 
 		return post = {
 			title: response[0].title.rendered,

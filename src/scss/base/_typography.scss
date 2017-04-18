@@ -39,32 +39,32 @@ body {
  */
 $titles: (
     h1: (
-        55, 
-        45,
+        57, 
+        64,
         map-get( $font-weight, medium ), 
         map-get( $font, body-family ),
         0 
     ),
 
     h2: (
-        45,
-        50,
+        43,
+        64,
         map-get( $font-weight, regular ),
         map-get( $font, cursive-family ),
         0    
     ),
 
     h3: (
-        25,
-        30,
+        32,
+        32,
         map-get( $font-weight, regular ),
         map-get( $font, title-family ),
         0    
     ),
 
     h4: (
-        15,
-        23,
+        24,
+        32,
         map-get( $font-weight, medium ),
         map-get( $font, title-family ),
         0    
