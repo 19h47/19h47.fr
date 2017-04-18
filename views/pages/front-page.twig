@@ -13,16 +13,25 @@
 	<div class="margin-xs-top-64 margin-xs-bottom-64 hidden-xs hidden-sm">
 {% endblock %}
 
-{# {% block header %}
+{% block header %}
 	
-	{% 
+	{# {% 
 		include 'pages/_header.twig' with {
 			'title': 'Click. Drag. Draw!', 
 			'class' : 'Paint__instruction js-instruction is-loading Loader' 
-	} %}
+	} %} #}
+
+	<div class="Paint row">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<p class="Paint__instruction no-margin js-instruction is-loading Loader h3 font-light is-black">
+				Click. Drag. Draw!
+				<span data-text="Click. Drag. Draw!"></span>
+			</p>
+		</div>
+	</div>
 
 
-{% endblock %} #}
+{% endblock %}
 
 {% block content %}
 	
