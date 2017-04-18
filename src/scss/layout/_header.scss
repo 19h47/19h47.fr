@@ -2,5 +2,14 @@
 	&-header {
 		@include absolute( top 0 right 0 left 0 );
 		z-index: 10;
+
+		@at-root .page--is-loading & {
+
+			@include at( 'xs' ) {
+
+				opacity: 0;
+				visibility: hidden;
+			}
+		}
 	}
 }

@@ -27,7 +27,7 @@ var Page = Barba.BaseView.extend({
 	onEnterCompleted: function() {
 		// The Transition has just finished.
 
-		classes.remove(select('.js-footer'), 'is-active');
+		// classes.remove(select('.js-footer'), 'is-active');
 	},
 
 

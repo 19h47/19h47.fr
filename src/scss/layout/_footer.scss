@@ -33,5 +33,27 @@
 			opacity: 0;
 			visibility: hidden;
 		}
+
+		@at-root [data-context="page"] &.is-on-top {
+
+			opacity: 0;
+			visibility: hidden;
+		}
+
+
+		@at-root .page--is-loading & {
+
+			@include at( 'xs' ) {
+
+				opacity: 0;
+				visibility: hidden;
+			}
+		}
+
+		&.is-init {
+			@extend %Reset-opacity, %Reset-visibility;
+		}
+
+
 	}
 }

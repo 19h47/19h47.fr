@@ -67,7 +67,7 @@ App.prototype = {
 
 		// enable scroll on touch devices as well
 		if (config.is.touch) {
-			document.removeEventListener('touchmove.app');
+			$(document).off('touchmove.app');
 		}
 	},
 
