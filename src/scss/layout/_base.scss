@@ -29,7 +29,7 @@
 /**
  * Who I am
  */
-[data-post-slug="who-i-am"] {
+.Page__who-i-am {
 	header {
 		display: none;
 	}
@@ -38,8 +38,8 @@
 
 .Transition {
 	@extend %Position-fixed-center;
-	
 	@extend .background-black;
+
 	transform: translate3d( -100%, 0, 0);
 	transition: 1s ease;
 	overflow: hidden;
@@ -47,5 +47,27 @@
 
 	@at-root .page--is-loading & {
 		@extend %Reset-translate3d;
+	}
+}
+
+.Work {
+	
+	/**
+	 * Work archive
+	 *
+	 * @uses .Work-archive
+	 */
+	&-archive {
+
+		&__color {
+
+			@extend %display-xs-block;
+
+			@include padding( top 100% );
+
+			// border: {
+			// 	radius: 100%;
+			// }
+		}
 	}
 }

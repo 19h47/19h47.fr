@@ -1,5 +1,10 @@
 var select = require('dom-select');
 
+/**
+ * Config object
+ * 
+ * global shared variables
+ */
 var config = {
 
 	body: {
@@ -10,9 +15,10 @@ var config = {
 			top: 0
 		}
 	},
-
 	html: select('html'),
+	transition: select('.js-transition'),
 
+	// is
 	is: {
 		touch: feature.touch
 	},

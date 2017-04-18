@@ -1,16 +1,16 @@
 (function($) {
 	$.fn.randomizeText = function(options) {
 
-		singleRandomText = function(v, settings) {
+		var singleRandomText = function(v, settings) {
 
-			parseTextToArray = function(text, cleanSpaces) {
+			var parseTextToArray = function(text, cleanSpaces) {
 				if(cleanSpaces) {
 					text = text.replace(' ', '');
 				}
 				return text.split('');
 			}
 
-			renderText = function(renderArray, el, targetText, refreshRate) {
+			var renderText = function(renderArray, el, targetText, refreshRate) {
 				var a = [];
 				$.each(renderArray, function(k, v){
 					a.push(v.getLetter());
@@ -25,7 +25,7 @@
 				}
 			}
 
-			addLetterToText = function(textArray, renderArray, settings) {
+			var addLetterToText = function(textArray, renderArray, settings) {
 				var l = textArray.slice(renderArray.length, renderArray.length+1);
 				var lo = new randomLetter(l[0], settings);
 				renderArray.push(lo);
@@ -37,7 +37,7 @@
 				}
 			}
 
-			randomLetter = function(l, settings) {
+			var randomLetter = function(l, settings) {
 				this.letter = l;
 				this.settings = settings;
 				this.currentLetter = "";
@@ -52,7 +52,7 @@
 
 			}
 
-			generateRandomLetter = function(letter) {
+			var generateRandomLetter = function(letter) {
 				var i = parseInt(Math.random()*letter.settings.randomLetters.length);
 				letter.currentLetter = letter.settings.randomLetters[i];
 				if(letter.maxRandomTries != 0) {

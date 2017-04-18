@@ -91,10 +91,11 @@ class LJ extends TimberSite {
      */
     private function load_dependencies() {
 
-        // Load post type
         require_once get_template_directory() . '/inc/admin.php';
+        require_once get_template_directory() . '/inc/post-types/_includes.php';
         
-        new ADMIN( $this->get_theme_name(), $this->get_theme_version() );
+        new ADMIN( $this->get_theme_name(), $this->get_theme_version() );        
+        new Custom_Post_Types( $this->get_theme_name(), $this->get_theme_version() );
     }
 
 
@@ -176,8 +177,9 @@ class LJ extends TimberSite {
         $context['page_permalink'] = array(
             'what_im_currently_listening_to'    => get_permalink( get_page_by_path( 'what-im-currently-listening-to' ) ),
             'who_i_am'                      => get_permalink( get_page_by_path( 'who-i-am' ) ),
-            'what_i_do'                     => get_permalink( get_page_by_path( 'what-i-do' ) ),
-            'what_inspires_me'              => get_permalink( get_page_by_path( 'what-inspires-me' ) )
+            // 'what_i_do'                     => get_permalink( get_page_by_path( 'what-i-do' ) ),
+            'what_inspires_me'              => get_permalink( get_page_by_path( 'what-inspires-me' ) ),
+            'works'                         => get_post_type_archive_link( 'work' ),
         );
 
         $context['body_class'] = TimberHelper::function_wrapper( 'body_class' );
@@ -285,6 +287,74 @@ class LJ extends TimberSite {
          * Set Barba namespace
          */
         add_filter( 'barba_namespace', array( $this, 'barba_namespace' ) );
+
+
+        /**
+         * custom styles for works
+         */
+        add_action( 'wp_head', array( $this, 'works_styles' ), 99 );
+
+        /** 
+         * delete transient for works styles after work is saved/updated
+         */
+        add_action( 'save_post_work', array( $this, 'clear_transient_for_works_styles' ), 10, 3 );
+    }
+
+
+    /**
+     * 
+     */
+    function works_styles() {
+        $transient_id = $this->theme_name . '_works_styles';
+
+        if ( false === ( $html = get_transient( $transient_id ) ) ) {
+            $works = get_posts( array(
+                'post_type'     => 'work',
+                'numberposts'   => -1,
+            ) );
+
+            if ( $works ) {
+                ob_start();
+            ?>
+                <style>
+
+                    <?php foreach ( $works as $work ) : ?>
+
+                        <?php if ( ( $color = get_field( 'color', $work ) ) ) : ?>
+
+                            .Page__<?php echo $work->post_name ?>, 
+                            .Transition .js-to-<?php echo $work->post_name ?> { background-color: <?php echo $color ?> }
+
+                        <?php endif; ?>
+
+                    <?php endforeach; ?>
+
+                </style>
+            <?php
+                $html = ob_get_clean();
+
+                // minify HTML output before saving to transient
+                $html = str_replace( array( "\r\n", "\r", "\n", "\t", " " ), '', $html );
+
+                // then finally save to transient
+                set_transient( $transient_id, $html, 30 * DAY_IN_SECONDS );
+            }
+        }
+
+        echo $html;
+    }
+
+
+    /**
+     * Empty the transient for styles when a project is saved.
+     * 
+     * @author Julien Vasseur <julien@poigneedemainvirile.com>
+     * @param int     $post_ID Post ID.
+     * @param WP_Post $post    Post object.
+     * @param bool    $update  Whether this is an existing post being updated or not.
+     */
+    function clear_transient_for_works_styles() {
+        delete_transient( $this->theme_name . '_works_styles' );
     }
 
 
@@ -366,6 +436,14 @@ class LJ extends TimberSite {
 
         if( is_page() ) {
             $ns = 'page';
+        }
+
+        if( is_post_type_archive( 'work' ) ) {
+            $ns = 'works';
+        }
+
+        if( is_singular( 'work' ) ) {
+            $ns = 'works';
         }
 
         if ( is_page( 'what-inspires-me' ) ) {

@@ -11,9 +11,14 @@
 #}
 <header class="row">
 	<div class="col-xs-12 col-md-10 col-md-offset-1">
-		<p class="{{ class ? class : 'color-white opacity-40' }} font-size-13 uppercase letter-spacing-100 font-medium">
+
+		
+
+		<{{ link ? 'a href="' ~ link ~ '" ' : 'p' }} class="{{ class ? class }} font-size-13 line-height-32 no-margin uppercase letter-spacing-100 font-medium{{ link ? ' Link-layer' : ' opacity-40 color-white' }}">
 			{{ title ? title : post.title }}
 			<span data-text="{{ title ? title : post.title }}"></span>
-		</p>
+		
+		</{{ link ? 'a' : 'p' }}>
+		
 	</div>
 </header>

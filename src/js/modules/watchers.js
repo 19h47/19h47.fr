@@ -4,7 +4,6 @@ var scrollMonitor = require('scrollMonitor');
 var config = require('../config');
 var classes = require('dom-classes');
 var select = require('dom-select');
-var $ = require('jquery');
 
 require('polyfill-nodelist-foreach');
 
@@ -14,11 +13,6 @@ require('polyfill-nodelist-foreach');
 function Watchers() {
 	if (!(this instanceof Watchers)) {
 		return new Watchers();
-	}
-
-	// If jQuery isn't loaded
-	if (!window.jQuery) {
-		throw new Error('jQuery is missing.');
 	}
 	
 	this.wrapper = select('.js-wrapper');
@@ -74,12 +68,14 @@ Watchers.prototype = {
 		if(classes.contains(element, 'is-active')) {
 
 			classes.remove(element, 'is-active');
+			classes.remove(element, 'is-on-top');
 		}
 
 
 		if(offset == document.documentElement.clientHeight) {
 			
 			classes.add(element, 'is-active');
+			classes.add(element, 'is-on-top');
 		}
 
 		if (offset >= scrollMonitor.documentHeight) {

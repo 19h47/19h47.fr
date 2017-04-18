@@ -2,7 +2,6 @@ module.exports = App;
 
 
 var config = require('../config');
-var $ = require('jquery');
 var css = require('dom-css');
 
 
@@ -34,7 +33,8 @@ App.prototype = {
 
 		// disable scroll on touch devices as well
 		if (config.is.touch) {
-			$(document).on('touchmove.app', function(e) {
+			
+			document.addEventListener('touchmove.app', function(e) {
 				e.preventDefault();
 			});
 		}
@@ -67,7 +67,7 @@ App.prototype = {
 
 		// enable scroll on touch devices as well
 		if (config.is.touch) {
-			$(document).off('touchmove.app');
+			document.removeEventListener('touchmove.app');
 		}
 	},
 
@@ -111,7 +111,12 @@ App.prototype = {
 	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
 	 */
 	removeState: function(state) {
+		var deferred = new $.Deferred();
 
 		config.body.$.removeClass(state);
+
+		deferred.promise();
+
+		return deferred.resolve();	
 	}
 };

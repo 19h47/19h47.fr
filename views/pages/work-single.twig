@@ -1,0 +1,84 @@
+{#
+/**
+ * /views/pages/work-single
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron levronjeremy@19h47.fr
+ */
+#}
+{% extends 'index.twig' %}
+
+{% block header %}
+	{% include 'pages/_header.twig' with {
+			'title': 'Works',
+			'link': page_permalink.works } %}
+{% endblock %}
+
+{% block content %}
+
+	<section class="row">
+
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			
+			<h2 class="h1 color-white font-semibold margin-xs-top-16">
+				{{ post.title }}
+				<sup class="valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
+					{{ post.year|date( 'Y' ) }}
+				</sup>
+			</h2>
+
+		</div>
+		
+
+		<div class="col-xs-12 col-md-6 col-md-offset-1">
+			
+			<div class="color-white">
+				
+				{{ post.content }}
+
+				{% if work.details.link %}
+					<a class="font-size-18 font-regular display-xs-inline-block valign-baseline Link-layer" href="{{ work.details.link }}" target="_blank">
+						View the website
+						<span data-text="View the website"></span>
+					</a>
+				{% endif %}
+				
+			</div>
+			
+		</div>
+
+
+		<aside class="col-xs-12 col-md-3 col-md-offset-1">
+			
+			<p class="color-white">
+				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">Client</span><br>
+				<span class="font-size-18 font-medium">
+					{% for client in work.details.clients %}
+						{{ client }}
+						{{ not loop.last ? '<br>' }}
+					{% endfor %}
+				</span>
+			</p>
+
+			<p class="color-white">
+				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">Role</span><br>
+				<span class="font-size-18 font-medium">
+					{% for role in work.details.roles %}
+						{{ role }}
+						{{ not loop.last ? '<br>' }}
+					{% endfor %}
+				</span>
+			</p>
+			
+		</aside>
+	
+		{% for section in post.get_field( 'sections' ) %}
+
+			{% include 'sections/section-' ~ section.acf_fc_layout ~ '.twig' %}
+
+		{% endfor %}
+
+	</section>
+
+{% endblock %}

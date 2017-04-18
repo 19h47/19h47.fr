@@ -1,4 +1,3 @@
-var $ = require('jquery');
 var Modules = require('../modules/index');
 var Barba = require('barba.enhanced.js');
 var classes = require('dom-classes');
