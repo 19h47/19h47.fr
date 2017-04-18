@@ -24,7 +24,6 @@
     "browserify": "^14.1.0",
     "browserify-shim": "^3.8.14",
     "chaffle": "^2.0.0",
-    "dom-style": "^1.0.0",
     "feature.js": "^1.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
@@ -72,7 +71,8 @@
     "ress": "^1.2.2",
     "dom-classes": "^1.0.0",
     "dom-select": "^1.0.0",
-    "dom-css": "^2.1.0"
+    "dom-css": "^2.1.0",
+    "dom-style": "^1.0.0"
   },
   "browser": {
     "jquery": "http://code.jquery.com/jquery-3.1.1.min.js",

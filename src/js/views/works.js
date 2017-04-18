@@ -1,5 +1,12 @@
 var Barba = require('barba.enhanced.js');
+var select = require('dom-select');
+var YouTubeVideo = require('youtube-video-js');
 
+var forEach = function (array, callback, scope) {
+  for (var i = 0; i < array.length; i++) {
+    callback.call(scope, i, array[i]); // passes back stuff we need
+  }
+};
 
 /**
  * Works

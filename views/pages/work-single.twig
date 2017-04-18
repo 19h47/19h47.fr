@@ -51,6 +51,7 @@
 
 		<aside class="col-xs-12 col-md-3 col-md-offset-1">
 			
+			{% if work.details.clients %}
 			<p class="color-white">
 				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">Client</span><br>
 				<span class="font-size-18 font-medium">
@@ -60,6 +61,7 @@
 					{% endfor %}
 				</span>
 			</p>
+			{% endif %}
 
 			<p class="color-white">
 				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">Role</span><br>

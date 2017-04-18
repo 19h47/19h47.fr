@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-md-10 col-md-offset-1 margin-xs-top-64">
 	<p>
-		<img class="img-full {% if section.shadow == 'true' %}box-shadow{% endif %}" src="{{ TimberImage( section.image ).src }}" alt="" />
+		<img class="img-full {% if section.shadow == 'true' %}box-shadow{% endif %}" src="{{ TimberImage( section.image ).src }}" alt="{{ TimberImage( section.image ).title }}" />
 
 		{% if TimberImage( section.image ).caption %}
 
