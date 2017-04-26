@@ -443,7 +443,7 @@ class LJ extends TimberSite {
         }
 
         if( is_singular( 'work' ) ) {
-            $ns = 'works';
+            $ns = 'work';
         }
 
         if ( is_page( 'what-inspires-me' ) ) {

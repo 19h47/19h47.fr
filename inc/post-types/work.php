@@ -108,10 +108,15 @@ class Work {
 	    <style>
 	        #dashboard_right_now .work-count:before { content: "\f322"; }
 	        .widefat .column-featured-image { width: 60px; }
-	        .fixed .column-year, .fixed .column-color { 
+	        .fixed .column-year { 
 	            width: 10%;
-	            text-align: center;
-	            vertical-align: middle;
+	            text-align: left;
+	            vertical-align: top;
+	        }
+	        .fixed .column-color { 
+	        	width: 10%;
+	        	text-align: center;
+	        	vertical-align: top;
 	        }
 	        .column-color .color-indicator { 
 	            border: none !important; 

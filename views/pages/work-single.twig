@@ -12,7 +12,10 @@
 {% block header %}
 	{% include 'pages/_header.twig' with {
 			'title': 'Works',
-			'link': page_permalink.works } %}
+			'link': page_permalink.works,
+			'class': ' ' 
+		} 
+	%}
 {% endblock %}
 
 {% block content %}
@@ -21,7 +24,7 @@
 
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
 			
-			<h2 class="h1 color-white font-semibold margin-xs-top-16">
+			<h2 class="h1 color-white font-bold margin-xs-top-16">
 				{{ post.title }}
 				<sup class="valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
 					{{ post.year|date( 'Y' ) }}
@@ -82,5 +85,38 @@
 		{% endfor %}
 
 	</section>
+
+{% endblock %}
+
+{% block footer %}
+	
+	{# Navigation #}
+	<nav class="row margin-xs-top-64">
+		
+		<div class="col-xs-12 col-md-offset-1 col-md-5">
+			<a class="js-work-navigation display-xs-inline-block Work__navigation" href="{{ work.next.link}}" rel="next" data-namespace="work" data-color="{{ work.next.color }}">
+				<span class="color-white font-size-13 uppercase letter-spacing-100 font-medium color-white">	Next work
+				</span>
+				<br>
+				<p class="display-xs-inline-block valign-baseline Link-layer no-margin-top">
+					{{ work.next.title }}
+					<span data-text="{{ work.next.title }}"></span>
+				</p>
+			</a>
+		</div>
+
+		<div class="col-xs-12 col-md-5 text-xs-right">
+			<a class="js-work-navigation display-xs-inline-block Work__navigation" href="{{ work.previous.link}}" rel="prev" data-namespace="work" data-color="{{ work.previous.color }}">
+				<span class="color-white font-size-13 uppercase letter-spacing-100 font-medium color-white">	Previous work
+				</span>
+				<br>
+				<p class="display-xs-inline-block valign-baseline Link-layer no-margin-top">
+					{{ work.previous.title }}
+					<span data-text="{{ work.previous.title }}"></span>
+				</p>
+			</a>
+		</div>
+
+	</nav>
 
 {% endblock %}

@@ -56,6 +56,39 @@ if ( is_404() ) {
 // Single work
 if ( is_singular( 'work' ) ) {
 
+	// Previous post
+	$previous_object = get_previous_post();
+
+	// If post hasn't previous post
+	if( empty( $previous_object ) ) {
+		
+	  	// Retrieve the first
+	  	$previous_object = get_boundary_post_for_type( get_post_type(), false, '', false )[0];	   
+	}
+
+    $context['work']['previous']['id'] = $previous_object->ID;
+    $context['work']['previous']['title'] = strip_tags( str_replace( '"', '', $previous_object->post_title ) );
+    $context['work']['previous']['link'] = get_permalink( $previous_object->ID );
+    $context['work']['previous']['color'] = get_field( 'color', $previous_object->ID );
+    $context['work']['previous']['slug'] = $previous_object->post_name;
+
+
+	// Next post
+	$next_object = get_next_post();
+
+	// If post hasn't next post
+	if( empty( $next_object ) ) {
+
+		// Retrieve the last
+		$next_object = get_boundary_post_for_type( get_post_type(), false, '', true )[0];
+	}
+
+	$context['work']['next']['id'] = $next_object->ID;
+	$context['work']['next']['title'] = strip_tags( str_replace( '"', '', $next_object->post_title ) );
+	$context['work']['next']['link'] = get_permalink( $next_object->ID );
+	$context['work']['next']['color'] = get_field( 'color', $next_object->ID );
+	$context['work']['next']['slug'] = $next_object->post_name;
+
 	array_unshift( $templates, 'pages/work-single.twig' );
 }
 
