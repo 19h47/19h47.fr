@@ -4,7 +4,7 @@
  *
  * @package  	WordPress
  * @subpackage  19h47
- * @author   	Jérémy Levron jeremy@poigneedemainvirile.com
+ * @author   	Jérémy Levron levronjeremy@19h47.fr
  */
 
 if ( ! class_exists( 'Timber' ) ) {
