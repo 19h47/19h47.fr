@@ -24,9 +24,9 @@
 
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
 			
-			<h2 class="h1 color-white font-bold margin-xs-top-16">
+			<h2 class="Work__title color-white font-bold margin-xs-top-16">
 				{{ post.title }}
-				<sup class="valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
+				<sup class="hidden-xs valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
 					{{ post.year|date( 'Y' ) }}
 				</sup>
 			</h2>
@@ -46,6 +46,16 @@
 						<span data-text="View the website"></span>
 					</a>
 				{% endif %}
+
+				{% if work.details.repository %}
+
+					{% if work.details.link %}<br>{% endif %}
+
+					<a class="font-size-18 font-regular display-xs-inline-block valign-baseline Link-layer" href="{{ work.details.repository }}" target="_blank">
+						View the repository
+						<span data-text="View the repository"></span>
+					</a>
+				{% endif %}
 				
 			</div>
 			
@@ -56,7 +66,10 @@
 			
 			{% if work.details.clients %}
 			<p class="color-white">
-				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">Client</span><br>
+				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">
+					{{ __( 'Client', '19h47' ) }}
+				</span>
+				<br>
 				<span class="font-size-18 font-medium">
 					{% for client in work.details.clients %}
 						{{ client }}
@@ -75,6 +88,8 @@
 					{% endfor %}
 				</span>
 			</p>
+
+
 			
 		</aside>
 	
@@ -105,7 +120,7 @@
 			</a>
 		</div>
 
-		<div class="col-xs-12 col-md-5 text-xs-right">
+		<div class="col-xs-12 col-md-5 text-md-right">
 			<a class="js-work-navigation display-xs-inline-block Work__navigation" href="{{ work.previous.link}}" rel="prev" data-namespace="work" data-color="{{ work.previous.color }}">
 				<span class="color-white font-size-13 uppercase letter-spacing-100 font-medium color-white">	Previous work
 				</span>

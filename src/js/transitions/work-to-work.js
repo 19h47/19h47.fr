@@ -12,7 +12,7 @@ var WorkToWork = Basic.extend({
 	 * WorkToWork.start
 	 */
 	start: function() {
-		console.info('WorkToWork.start');
+		// console.info('WorkToWork.start');
 
 		Promise
 			.all([this.newContainerLoading, this.exit()])
@@ -25,7 +25,7 @@ var WorkToWork = Basic.extend({
 	 * WorkToWork.exit
 	 */
 	exit: function() {
-		console.info('WorkToWork.exit');
+		// console.info('WorkToWork.exit');
 
 		var deferred = Barba.Utils.deferred();
 		
@@ -52,7 +52,7 @@ var WorkToWork = Basic.extend({
 	 * WorkToWork.enter
 	 */
 	enter: function() {
-		console.info('WorkToWork.enter');
+		// console.info('WorkToWork.enter');
 		
 		var tl = new TimelineLite({
 		    callbackScope: this,

@@ -177,9 +177,9 @@ class LJ extends TimberSite {
         $context['page_permalink'] = array(
             'what_im_currently_listening_to'    => get_permalink( get_page_by_path( 'what-im-currently-listening-to' ) ),
             'who_i_am'                      => get_permalink( get_page_by_path( 'who-i-am' ) ),
-            // 'what_i_do'                     => get_permalink( get_page_by_path( 'what-i-do' ) ),
             'what_inspires_me'              => get_permalink( get_page_by_path( 'what-inspires-me' ) ),
             'works'                         => get_post_type_archive_link( 'work' ),
+            'thoughts'                      => get_permalink( get_page_by_path( 'thoughts' ) ),
         );
 
         $context['body_class'] = TimberHelper::function_wrapper( 'body_class' );
@@ -407,7 +407,7 @@ class LJ extends TimberSite {
         wp_register_script( 'jquery', '//code.jquery.com/jquery-3.2.1.min.js', false, null, true );
         
         //
-        wp_register_script( $this->theme_name . '-main', get_template_directory_uri() . '/dist/js/bundle.js', array( 'jquery' ), null, true );
+        wp_register_script( $this->theme_name . '-main', get_template_directory_uri() . '/dist/js/min/bundle.min.js', array( 'jquery' ), null, true );
         
         // Localize script
         wp_localize_script( 
@@ -463,6 +463,10 @@ class LJ extends TimberSite {
 
         if ( is_front_page() ) {
             $ns = 'front-page';
+        }
+
+        if ( is_home() ) {
+            $ns = 'thoughts';
         }
         
         return $ns;

@@ -46,6 +46,15 @@ if( ! empty( $link ) ) {
 }
 
 
+// Repository
+$repository = get_field( 'repository' );
+
+if( ! empty( $repository ) ) {
+
+	$context['work']['details']['repository'] = $repository;
+}
+
+
 $templates = array( 'index.twig' );
 
 if ( is_404() ) {
@@ -96,6 +105,12 @@ if ( is_singular( 'work' ) ) {
 if ( is_post_type_archive( 'work' ) ) {
 
 	array_unshift( $templates, 'pages/work-archive.twig' );
+}
+
+// Archive work
+if ( is_home() ) {
+
+	array_unshift( $templates, 'pages/thoughts.twig' );
 }
 
 Timber::render( $templates, $context );

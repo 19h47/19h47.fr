@@ -4,10 +4,10 @@
  * Template Name: What inspires me
  */
 
- $context = Timber::get_context();
- $post = new TimberPost();
- $context['post'] = $post;
+$context = Timber::get_context();
+$post = new TimberPost();
+$context['post'] = $post;
 
- $templates = array( 'pages/what-inspires-me.twig' );
+$templates = array( 'pages/what-inspires-me.twig' );
 
- Timber::render( $templates, $context );
+Timber::render( $templates, $context );

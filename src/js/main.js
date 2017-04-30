@@ -13,6 +13,7 @@ var Modules = require('./modules/index.js');
 // Transitions
 var Transitions = require('./transitions/index');
 
+console.log('%c🔥 Scooby doo wah, scooby doo wee, like a jazz player, I improvise wisely 🔥', 'background-color:#000;color:#fff;padding:0.5em 1em;' );
 
 // Views
 require('./views/index');
@@ -31,16 +32,15 @@ Modules.Watchers();
 
 // Barba
 Barba.Dispatcher.on('linkClicked', function(HTMLElement, MouseEvent) {
-console.dir(HTMLElement);
+	// console.dir(HTMLElement);
 	if (HTMLElement.dataset.namespace != 'work') {
-
-		config.transition.style = '';
+		config.transition.removeAttribute('style');
 	};
 	
 	// We are going to a single work
 	if (classes.contains(HTMLElement, 'js-to-work-single')) {
 
-		var color = MouseEvent.srcElement.dataset.color;
+		var color = MouseEvent.target.dataset.color;
 
 		style(config.transition, 'background-color', color);
 	}
@@ -132,3 +132,6 @@ Barba.Pjax.getTransition = function() {
 
 // Intialize Barba
 Barba.Pjax.start();
+
+// enable prefetching
+Barba.Prefetch.init();

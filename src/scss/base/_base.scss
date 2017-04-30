@@ -10,6 +10,18 @@ html {
 body {
     font-size: 62.5%;
     line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+    background: {
+        color: get_color( black );
+    }
+    color: get_color( white );
+    transition: $ease-transition 1s;
+
+    &[data-context="thoughts"] {
+        background: {
+            color: get_color( white );
+        }
+        color: get_color( black );
+    }
 
     &.page--is-loading {
         cursor: progress !important;

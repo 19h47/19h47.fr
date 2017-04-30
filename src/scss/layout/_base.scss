@@ -27,6 +27,31 @@
 
 
 /**
+ * What I think
+ */
+[data-context="thoughts"] {
+
+	.wp-caption {
+		@include margin( 
+			top ( ( $base-line-height / $base-font-size ) * 1em )
+			right auto 
+        	bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
+        	left auto
+    	);
+
+		max-width: 100%;
+
+		img {
+			@extend .img-full, .box-shadow;
+		}
+
+		&-text {
+			@extend %display-xs-block, %font-size-13, %font-regular, %text-xs-right;
+		}
+	}
+}
+
+/**
  * Who I am
  */
 .Page__who-i-am {
@@ -47,6 +72,12 @@
 
 	@at-root .page--is-loading & {
 		@extend %Reset-translate3d;
+	}
+
+	@at-root [data-context="thoughts"] {
+		background: {
+			color: get_color( white );
+		}
 	}
 }
 
@@ -72,6 +103,33 @@
 	}
 
 
+	/**
+	 * Title
+	 */
+	&__title {
+		@extend .h3;
+		
+		@include from( 'md' ) {
+			
+			$line-height: 64;
+			$font-size: 57;
+
+			@include margin (
+			    top ( ( $line-height / $font-size ) * 1em )
+			    bottom ( ( $line-height / $font-size ) / 2 ) * 1em
+			);
+			font: {
+			    size: ( $font-size / 10 ) * 1rem;
+			}
+			line-height: $line-height / $font-size; 
+		}
+
+	}
+
+	
+	/**
+	 * Navigation
+	 */
 	&__navigation {
 
 		&:hover {

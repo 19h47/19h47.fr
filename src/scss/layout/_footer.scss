@@ -40,6 +40,12 @@
 			visibility: hidden;
 		}
 
+		@at-root [data-context="thoughts"] &.is-on-top {
+
+			opacity: 0;
+			visibility: hidden;
+		}
+
 
 		@at-root .page--is-loading & {
 

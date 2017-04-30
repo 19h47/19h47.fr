@@ -1,0 +1,61 @@
+{#
+/**
+ * /views/pages/thoughts
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron levronjeremy@19h47.fr
+ */
+#}
+{% extends 'index.twig' %}
+
+{% block start_wrapper %}
+	<div class="margin-xs-top-64 margin-xs-bottom-64">
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+	
+	{% for post in posts %}
+
+	<article class="row" id="post-{{ post.ID }}">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			
+			<p class=" opacity-40 font-size-13 line-height-32 no-margin uppercase letter-spacing-100 font-medium">
+				{{ post.date|date( 'F j, Y' ) }}
+			</p>
+
+			<h2 class="margin-xs-top-0">
+				{{ post.title }}
+			</h2>
+
+		</div>
+
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			
+			<p>
+				<img src="{{ post.thumbnail.src }}" class="img-full box-shadow"/>
+				<span class="display-xs-block font-size-13 font-regular text-xs-right">
+					{{ post.thumbnail.caption }}
+				</span>
+			</p>
+
+		</div>
+		<div class="col-xs-12 col-md-8 col-md-offset-2">
+
+			
+				
+				{{ post.content }}
+
+			
+		</div>
+	</article> 
+
+	{% endfor %}
+
+{% endblock %}
+
+{% block end_wrapper %}
+	</div>
+{% endblock %}

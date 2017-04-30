@@ -41,8 +41,13 @@ Watchers.prototype = {
 			// scrollMonitor
 			scrollMonitor.update();
 
+			// console.log(scrollMonitor.viewportHeight);
+			// console.log(config.body.el.scrollTop);
+			// console.dir(config.body.el);
+
 			// Update offset
-			var offset = config.body.el.scrollTop + scrollMonitor.viewportHeight;
+			var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+			var offset = scrollTop + scrollMonitor.viewportHeight;
 
 			this.footer(select('.js-footer'), offset);
 
@@ -73,7 +78,8 @@ Watchers.prototype = {
 
 
 		if(offset == document.documentElement.clientHeight) {
-			
+			// console.log(offset);
+			// console.log(document.documentElement.clientHeight);
 			classes.add(element, 'is-active');
 			classes.add(element, 'is-on-top');
 		}

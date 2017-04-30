@@ -28,44 +28,52 @@
 		{% include 'components/google-analytics.twig' %}
 
 	</head>
-	<body class="background-black page--is-loading">
+	<body class="page--is-loading">
 		<header class="l-header margin-xs-top-64 margin-xs-bottom-32">
 			<div class="l-container">
+				
+
 				<div class="row">
-					<div class="col-xs-12 col-md-10 col-md-offset-1">
 
-						<div class="row">
-
-							<div class="col-xs-12 col-sm-8">
-								<h1 class="font-medium font-size-24 line-height-32 color-white no-margin z-index-1 position-xs-relative">
-									<a href="{{ site.url }}">
-										Jérémy Levron<sup class="valign-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-medium">{{ site.name }}</sup>
-									</a>
-								</h1>
-							</div>
-							
-
-							{# Who I am link #}
-							<div class="col-xs-2 hidden-xs text-xs-right">
-								<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
-									Who I am
-									<span data-text="Who I am"></span>
-								</a>
-							</div>
-							
-
-							{# Works #}
-							<div class="col-xs-2 hidden-xs text-xs-right">
-								<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.works }}" data-namespace="works">
-									Works
-									<span data-text="Works"></span>
-								</a>
-							</div>
-							
-
-						</div>
+					<div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-1">
+						<h1 class="font-medium font-size-24 line-height-32 no-margin z-index-1 position-xs-relative">
+							<a href="{{ site.url }}">
+								Jérémy Levron<sup class="valign-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-medium">{{ site.name }}</sup>
+							</a>
+						</h1>
 					</div>
+					
+
+					{# Who I am link #}
+					<div class="col-xs-2 col-lg-1 col-lg-offset-3 hidden-xs text-xs-right text-lg-center">
+						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
+							Who I am
+							<span data-text="Who I am"></span>
+						</a>
+					</div>
+					
+
+					{# Works #}
+					<div class="col-xs-2 col-lg-1 hidden-xs text-xs-right text-lg-center">
+						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.works }}" data-namespace="works">
+							Works
+							<span data-text="Works"></span>
+						</a>
+					</div>
+
+					{# What I think #}
+					<div class="col-xs-2 col-lg-1 hidden-xs text-xs-right text-lg-center">
+						
+						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.thoughts }}" data-namespace="what-i-think">
+							Thoughts
+							<span data-text="Thoughts"></span>
+
+						</a>
+					</div>
+					
+
 				</div>
+			
 			</div>
 		</header>
 		<div class="js-transition Transition">
