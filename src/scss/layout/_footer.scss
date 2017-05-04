@@ -19,8 +19,7 @@
 		// visibility: hidden;
 		z-index: 10;
 
-		&.is-active,
-		&:hover {
+		&.is-active {
 			@extend %Reset-opacity, %Reset-visibility;
 		}
 
@@ -29,6 +28,12 @@
 		}
 
 		@at-root [data-context="works"] &.is-on-top {
+
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		@at-root [data-context="work"] &.is-on-top {
 
 			opacity: 0;
 			visibility: hidden;
