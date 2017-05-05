@@ -1,11 +1,9 @@
-// http://codepen.io/alenaksu/pen/dGjeMZ
-
 module.exports = Television;
 
 
 /**
  * Television
- *
+ * @see 	http://codepen.io/alenaksu/pen/dGjeMZ
  */
 function Television(element) {
 	if (!(this instanceof Television)) {
