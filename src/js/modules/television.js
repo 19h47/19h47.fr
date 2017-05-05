@@ -6,7 +6,6 @@ module.exports = Television;
 /**
  * Television
  *
- * @see  http://www.last.fm/api
  */
 function Television(element) {
 	if (!(this instanceof Television)) {
