@@ -54,7 +54,7 @@ Pages.prototype = {
 		},
 
 		/**
-		 * Pages.get.namespace
+		 * Pages.get.postSlug
 		 */
 		postSlug: function(element) {
 			return element.attr('data-post-slug');
