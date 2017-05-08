@@ -107,7 +107,7 @@ if ( is_post_type_archive( 'work' ) ) {
 	array_unshift( $templates, 'pages/work-archive.twig' );
 }
 
-// Archive work
+// Home
 if ( is_home() ) {
 
 	array_unshift( $templates, 'pages/thoughts.twig' );
