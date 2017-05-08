@@ -9,7 +9,7 @@ var NotFound = Barba.BaseView.extend({
 
 
 	/**
-	 * WhatInspiresMe.onEnter
+	 * NotFound.onEnter
 	 */
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
