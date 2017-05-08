@@ -8,7 +8,7 @@ var FrontPage = Barba.BaseView.extend({
 
 
 	/**
-	 * WhatInspiresMe.onEnter
+	 * FrontPage.onEnter
 	 */
 	onEnter: function() {
 		// The new Container is ready and attached to the DOM.
