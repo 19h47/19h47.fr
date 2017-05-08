@@ -1,5 +1,3 @@
-
-
 /**
  * Paint
  */
@@ -28,7 +26,12 @@
 			@extend %Reset-visibility;
 		}
 	}
-
+	
+	
+	/**
+	 * Control
+	 * @uses .Paint__control
+	 */
 	&__control {
 		opacity: 0;
 		transition: $ease-transition;
