@@ -76,14 +76,16 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 
 			this.addEventListener('mouseover', function() {
 
-				HTMLElementContainer.style = 'background-color: ' + color;
+				// console.dir(HTMLElementContainer);
+
+				HTMLElementContainer.style.backgroundColor = color;
 
 				style(config.transition, 'background-color', color);
 			});
 
 			this.addEventListener('mouseleave', function() {
 
-				HTMLElementContainer.style = '';
+				HTMLElementContainer.style.backgroundColor = '';
 			});
 
 			// this.addEventListener('click', function() {});
