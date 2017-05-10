@@ -16,7 +16,7 @@
 
 		opacity: 0;
 		transition: $ease-transition;
-		// visibility: hidden;
+		visibility: hidden;
 		z-index: 10;
 
 		&.is-active {
@@ -31,24 +31,28 @@
 
 			opacity: 0;
 			visibility: hidden;
+			pointer-events: none;
 		}
 
 		@at-root [data-context="work"] &.is-on-top {
 
 			opacity: 0;
 			visibility: hidden;
+			pointer-events: none;
 		}
 
 		@at-root [data-context="page"] &.is-on-top {
 
 			opacity: 0;
 			visibility: hidden;
+			pointer-events: none;
 		}
 
 		@at-root [data-context="thoughts"] &.is-on-top {
 
 			opacity: 0;
 			visibility: hidden;
+			pointer-events: none;
 		}
 
 
@@ -58,13 +62,12 @@
 
 				opacity: 0;
 				visibility: hidden;
+				pointer-events: none;
 			}
 		}
 
 		&.is-init {
 			@extend %Reset-opacity, %Reset-visibility;
 		}
-
-
 	}
 }
