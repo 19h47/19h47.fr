@@ -119,14 +119,14 @@ Barba.Pjax.getTransition = function() {
 	var currentStatus = Barba.Pjax.History.currentStatus();
 
 	if (!currentStatus.namespace) {
-        // set future namespace before it's loaded
-        Barba.Pjax.History.setCurrentNamespace();
-    }
+        	// set future namespace before it's loaded
+	        Barba.Pjax.History.setCurrentNamespace();
+	}
 
 	if (previousStatus.namespace === 'work' && currentStatus.namespace === 'work') {
 
 	    return Transitions.WorkToWork;
-    }
+	}
 
 	return Transitions.Basic;
 };
