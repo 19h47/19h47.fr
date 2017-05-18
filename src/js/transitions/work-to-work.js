@@ -16,7 +16,6 @@ var WorkToWork = Basic.extend({
 
 		Promise
 			.all([this.newContainerLoading, this.exit()])
-			.then()
 			.then(this.enter.bind(this));
 	},
 
