@@ -46,7 +46,9 @@
 						</span>
 						<br/>
 						<span class="font-light">
-							{{ post.get_field( 'role' ) | join(', ') }}
+							{% for role in post.get_field( 'role' ) %}
+								{{ role.name }}{{ not loop.last ? ', ' }}
+							{% endfor %}
 						</span>
 					</p>
 				</div>
