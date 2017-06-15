@@ -24,7 +24,8 @@ body {
 
 @include reset-selection( get_color( black ), get_color( white ) );
 
-[data-context="thoughts"] {
+[data-context="thoughts"],
+[data-context="curriculum-vitae"] {
     @include reset-selection( get_color( white ), get_color( black ) );
 }
 

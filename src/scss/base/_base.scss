@@ -15,7 +15,8 @@ body {
     }
     color: get_color( white );
     transition: $ease-transition 1s;
-
+    
+    &[data-context="curriculum-vitae"],
     &[data-context="thoughts"] {
         background: {
             color: get_color( white );

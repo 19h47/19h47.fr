@@ -456,6 +456,11 @@ class LJ extends TimberSite {
             $ns = 'what-im-currently-listening-to';
         }
 
+        if ( is_page( 'curriculum-vitae' ) ) {
+
+            $ns = 'curriculum-vitae';
+        }
+
         if ( is_404( '404' ) ) {
 
             $ns = '404';

@@ -5,6 +5,7 @@ let Views = {
 	NotFound: require('./404'),
 	FrontPage: require('./front-page'),
 	Works: require('./works'),
+	CurriculumVitae: require('./curriculum-vitae'),
 
 	// Generic page
 	Page: require('./page'),
