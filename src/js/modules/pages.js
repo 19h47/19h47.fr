@@ -12,7 +12,7 @@ function Pages(element) {
 	this.$element = $(element).find('.js-page');
 
 	if (!this.$element || !this.$element.length) {
-		throw new Error('Missing selector.');
+		return;
 	}
 
 	this.setup();
