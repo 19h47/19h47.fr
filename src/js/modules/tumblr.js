@@ -15,7 +15,7 @@ function Tumblr(element) {
 	}
 
 	this.deferred = new $.Deferred();
-     
+
 	this.setup();
 }
 
@@ -32,7 +32,7 @@ Tumblr.prototype = {
 			per_page: 20,
 			count: null
 		};
-		
+
 		var KEY = 'T1ta3DzmFPU36KjYWsoJcvjl8kSPybrqagZsRp8sXWpUIlxQ98';
 		var USER = '19h47';
 		var URL = 'http://api.tumblr.com/v2/blog/';
@@ -45,7 +45,7 @@ Tumblr.prototype = {
 				posts: URL + USER + '.tumblr.com/posts?api_key=' + KEY,
 			}
 		};
-		
+
 		this.$response = this.$element;
 		this.button = this.$response.find('.load-more');
 		this.loader = this.$response.find('.js-loader');
@@ -78,12 +78,12 @@ Tumblr.prototype = {
 		 * Tumblr.more.show
 		 */
 		show: function() {
-			
+
 			this.more.load.call(this)
 				.then($.proxy(this.construct, this))
 				.then($.proxy(this.append, this))
 				.then($.proxy(this.update, this))
-				.done(this.deferred.promise());				
+				.done(this.deferred.promise());
 		},
 
 
@@ -93,11 +93,11 @@ Tumblr.prototype = {
 		load: function() {
 
 			this.lock.on.call(this);
-			
+
 			var url = this.API.URL.posts;
 
 			return $.get({
-				url: url  + '&offset=' + this.posts.offset, 
+				url: url  + '&offset=' + this.posts.offset,
 				dataType: 'jsonp'
 			});
 		}
@@ -116,12 +116,12 @@ Tumblr.prototype = {
 			// console.info('Tumblr.lock.off');
 
 			// remove loading state to loader if exists
-			this.loader.length && 
+			this.loader.length &&
 			this.loader
 				.removeClass('is-loading');
 
 			// remove loading state to button if exists
-			this.button.length && 
+			this.button.length &&
 			this.button
 				.removeClass('is-loading disabled')
 				.prop('disabled', false);
@@ -137,14 +137,14 @@ Tumblr.prototype = {
 		 */
 		on: function() {
 			// console.info('Tumblr.lock.on');
-			
+
 			// add loading state to loader if exist
-			this.loader.length && 
+			this.loader.length &&
 			this.loader
 				.addClass('is-loading');
 
 			// add loading state to button if exists
-			this.button.length && 
+			this.button.length &&
 			this.button
 				.addClass('is-loading disabled')
 				.prop('disabled', true);
@@ -168,10 +168,14 @@ Tumblr.prototype = {
 
 		var response = '';
 		var template = this.$response.find('#post').html();
-		
+
 		Mustache.parse(template);
 
 		posts.forEach(function(post) {
+			if (post.type !== 'photo') {
+				return;
+			}
+
 			response += Mustache.render(template, {
 				image: post.photos[0].original_size.url,
 				src: post.source_url || post.post_url,
@@ -205,12 +209,12 @@ Tumblr.prototype = {
 		this.lock.off.call(this);
 
 		this.posts.offset += this.posts.per_page;
-		
+
 		this.$response
 			.find('.load-more')
 			.attr('data-count', this.posts.count - this.posts.offset)
-			.toggle(this.posts.offset <= this.posts.count);	
+			.toggle(this.posts.offset <= this.posts.count);
 
-		return this.deferred.resolve();	
+		return this.deferred.resolve();
 	}
 };
