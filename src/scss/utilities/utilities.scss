@@ -2,12 +2,12 @@
  * UTILITIES
  * –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 
- 
+
 /**
  * Unstyled
  *
  * Remove the default list style (immediate children only)
- * 
+ *
  * @source Bootstrap
  * @see http://getbootstrap.com/css/#unstyled
  * @uses @extend %list-unstyled
@@ -39,7 +39,7 @@
  */
 .clearfix {
     &::before,
-    &::after { 
+    &::after {
         content: " ";
         @extend %display-xs-table;
     }
@@ -69,7 +69,7 @@
         @extend %no-margin;
     } @else {
 	   margin: 0;
-    } 
+    }
 
 	li {
 		display: inline-block;
@@ -93,7 +93,7 @@
 
     height: 0;
     max-width: 100%;
-    
+
     > iframe,
     > object,
     > embed,
@@ -102,25 +102,25 @@
         @if $import-utilities-positions {
 
             @extend %position-xs-absolute;
-        
+
         } @else {
             position: absolute;
         }
 
         @include size( 100%!important );
-        
+
         top: 0;
         left: 0;
     }
 }
 
 .map-container {
-    @extend 
-        %overflow-hidden, 
+    @extend
+        %overflow-hidden,
         %position-xs-relative;
-    
+
     @include padding( bottom percentage( 655 / 598 ) );
-    
+
     height: 445px;
     max-width: 100%;
 
@@ -160,7 +160,10 @@
 }
 
 .img-full {
-    @include size( 100%, auto );
+    @include size( auto );
+    @include margin( right auto left auto );
+
+    display: block;
     max-width: 100%;
 }
 
@@ -197,7 +200,7 @@
 .aligner {
 
     @include from('md') {
-        
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -228,5 +231,5 @@
 }
 
 .box-shadow {
-    box-shadow: 0px 32px 32px 0px rgba( get_color( black ), 0.1 ); 
+    box-shadow: 0px 32px 32px 0px rgba( get_color( black ), 0.1 );
 }
