@@ -8,7 +8,7 @@
  * @subpackage 19h47
  * @since 1.0.0
  *
- * Functions'prefix is lj_ 
+ * Functions'prefix is lj_
  */
 
 
@@ -20,7 +20,7 @@ include get_template_directory() . '/vendor/autoload.php';
 
 /**
  * Timber
- * 
+ *
  * Instanciate Timber
  *
  * @see         https://github.com/timber/timber
@@ -37,11 +37,11 @@ include get_template_directory() . '/inc/_includes.php';
 
 /**
  * Dirname
- * 
+ *
  * Tell Timber where are views
  */
 Timber::$dirname = array( 'views' );
- 
+
 
 /**
  * class LJ
@@ -72,29 +72,29 @@ class LJ extends TimberSite {
      * @access public
      */
     public function __construct( $theme_name, $theme_version ) {
-        
+
         $this->theme_name = $theme_name;
         $this->theme_version = $theme_version;
         $this->setup();
         $this->load_dependencies();
         // add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
         add_filter( 'timber_context', array( $this, 'add_to_context' ) );
-        
+
         parent::__construct();
     }
 
 
     /**
      * Load dependencies description
-     * 
+     *
      * @access private
      */
     private function load_dependencies() {
 
         require_once get_template_directory() . '/inc/admin.php';
         require_once get_template_directory() . '/inc/post-types/_includes.php';
-        
-        new ADMIN( $this->get_theme_name(), $this->get_theme_version() );        
+
+        new ADMIN( $this->get_theme_name(), $this->get_theme_version() );
         new Custom_Post_Types( $this->get_theme_name(), $this->get_theme_version() );
     }
 
@@ -123,7 +123,7 @@ class LJ extends TimberSite {
          * Add menu to context
          */
         $context['main_menu'] = new TimberMenu( 'main' );
-        
+
 
         /**
          * Add socials to context
@@ -132,41 +132,41 @@ class LJ extends TimberSite {
 
         // Facebook
         if ( get_option( 'facebook' ) ) {
-            $facebook = array( 
+            $facebook = array(
                 'slug'  => 'facebook',
                 'name'  => 'Facebook',
                 'url'   => get_option( 'facebook' )
-            ); 
+            );
             $socials['facebook'] = $facebook;
         }
 
         // Twitter
         if ( get_option( 'twitter' ) ) {
-            $twitter = array( 
+            $twitter = array(
                 'slug'  => 'twitter',
                 'name'  => 'Twitter',
                 'url'   => get_option( 'twitter' )
-            ); 
+            );
             $socials['twitter'] = $twitter;
         }
 
         // Instagram
         if ( get_option( 'instagram' ) ) {
-            $instagram = array( 
+            $instagram = array(
                 'slug'  => 'instagram',
                 'name'  => 'Instagram',
                 'url'   => get_option( 'instagram' )
-            ); 
+            );
             $socials['instagram'] = $instagram;
         }
 
         // Pinterest
         if ( get_option( 'pinterest' ) ) {
-            $pinterest = array( 
+            $pinterest = array(
                 'slug'  => 'pinterest',
                 'name'  => 'Pinterest',
                 'url'   => get_option( 'pinterest' )
-            ); 
+            );
             $socials['pinterest'] = $pinterest;
         }
 
@@ -176,10 +176,10 @@ class LJ extends TimberSite {
         // Page permalink
         $context['page_permalink'] = array(
             'what_im_currently_listening_to'    => get_permalink( get_page_by_path( 'what-im-currently-listening-to' ) ),
-            'who_i_am'                      => get_permalink( get_page_by_path( 'who-i-am' ) ),
-            'what_inspires_me'              => get_permalink( get_page_by_path( 'what-inspires-me' ) ),
-            'works'                         => get_post_type_archive_link( 'work' ),
-            'thoughts'                      => get_permalink( get_page_by_path( 'thoughts' ) ),
+            'who_i_am'                          => get_permalink( get_page_by_path( 'who-i-am' ) ),
+            'what_inspires_me'                  => get_permalink( get_page_by_path( 'what-inspires-me' ) ),
+            'works'                             => get_post_type_archive_link( 'work' ),
+            'thoughts'                          => get_permalink( get_page_by_path( 'thoughts' ) ),
         );
 
         $context['body_class'] = TimberHelper::function_wrapper( 'body_class' );
@@ -189,7 +189,7 @@ class LJ extends TimberSite {
 
         // Age
         $januaryDate = date('01-m-Y');
-        $sDateBirth = '27th July 1986'; 
+        $sDateBirth = '27th July 1986';
 
         $oDateNow = new DateTime($januaryDate);
         $oDateBirth = new DateTime($sDateBirth);
@@ -203,14 +203,14 @@ class LJ extends TimberSite {
 
     /**
      * Setup
-     * 
+     *
      * @access public
      */
     public function setup() {
-        
+
         // Let WordPress manage the document title.
         add_theme_support( 'title-tag' );
-        
+
 
         /*
          * Enable support for Post Thumbnails on posts and pages.
@@ -218,33 +218,33 @@ class LJ extends TimberSite {
          * @see https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
          */
         add_theme_support( 'post-thumbnails' );
-        
+
 
         /*
         * Switch default core markup for search form, comment form, and comments
         * to output valid HTML5.
         */
-        add_theme_support( 
-            'html5', 
+        add_theme_support(
+            'html5',
             array(
                 'search-form',
                 'comment-form',
                 'comment-list',
                 'gallery',
                 'caption'
-            ) 
+            )
         );
-        
+
 
         /**
          * Register nav menus
          */
-        register_nav_menus( 
+        register_nav_menus(
             array(
-                'main'  => __( 'Menu Principal', $this->theme_name )            
-            ) 
+                'main'  => __( 'Menu Principal', $this->theme_name )
+            )
         );
-        
+
 
         /**
          * Add excerpt on page
@@ -294,7 +294,7 @@ class LJ extends TimberSite {
          */
         add_action( 'wp_head', array( $this, 'works_styles' ), 99 );
 
-        /** 
+        /**
          * delete transient for works styles after work is saved/updated
          */
         add_action( 'save_post_work', array( $this, 'clear_transient_for_works_styles' ), 10, 3 );
@@ -302,7 +302,7 @@ class LJ extends TimberSite {
 
 
     /**
-     * 
+     *
      */
     function works_styles() {
         $transient_id = $this->theme_name . '_works_styles';
@@ -322,7 +322,7 @@ class LJ extends TimberSite {
 
                         <?php if ( ( $color = get_field( 'color', $work ) ) ) : ?>
 
-                            .Page__<?php echo $work->post_name ?>, 
+                            .Page__<?php echo $work->post_name ?>,
                             .Transition .js-to-<?php echo $work->post_name ?> { background-color: <?php echo $color ?> }
 
                         <?php endif; ?>
@@ -347,7 +347,7 @@ class LJ extends TimberSite {
 
     /**
      * Empty the transient for styles when a project is saved.
-     * 
+     *
      * @author Julien Vasseur <julien@poigneedemainvirile.com>
      * @param int     $post_ID Post ID.
      * @param WP_Post $post    Post object.
@@ -362,7 +362,7 @@ class LJ extends TimberSite {
      * Admin init
      */
     public function admin_init() {
-        
+
         /**
          * Editor style
          */
@@ -372,11 +372,11 @@ class LJ extends TimberSite {
 
     /**
      * Enqueue styles.
-     * 
+     *
      * @access public
      */
     public function enqueue_style() {
-        
+
         // Add custom fonts, used in the main stylesheet.
         $webfonts = array();
         foreach ( $this->webfonts() as $name => $url ) {
@@ -397,7 +397,7 @@ class LJ extends TimberSite {
      * @access public
      */
     public function enqueue_scripts() {
-        
+
         // Remove wp-embed script from WordPress
         wp_deregister_script( 'wp-embed' );
 
@@ -405,14 +405,14 @@ class LJ extends TimberSite {
         // Remove native version of jQuery and use custom CDN version instead
         wp_deregister_script( 'jquery' );
         wp_register_script( 'jquery', '//code.jquery.com/jquery-3.2.1.min.js', false, null, true );
-        
+
         //
         wp_register_script( $this->theme_name . '-main', get_template_directory_uri() . '/dist/js/min/bundle.min.js', array( 'jquery' ), null, true );
-        
+
         // Localize script
-        wp_localize_script( 
-            $this->theme_name . '-main', 
-            'wp', 
+        wp_localize_script(
+            $this->theme_name . '-main',
+            'wp',
             array(
                 'template_directory_uri'    => get_template_directory_uri(),
                 'base_url'                  => site_url(),
@@ -421,7 +421,7 @@ class LJ extends TimberSite {
                 'nonce'                     => wp_create_nonce( 'wp_rest' ),
                 'api_url'                   => esc_url_raw( get_rest_url() )
             )
-        ); 
+        );
 
         wp_enqueue_script( $this->theme_name . '-main' );
     }
@@ -429,8 +429,8 @@ class LJ extends TimberSite {
 
     /**
      * Specify data-namespace attribute on barba container.
-     * @param  string $ns Default namespace 
-     * @return string          
+     * @param  string $ns Default namespace
+     * @return string
      */
     public function barba_namespace( $ns ) {
 
@@ -473,19 +473,19 @@ class LJ extends TimberSite {
         if ( is_home() ) {
             $ns = 'thoughts';
         }
-        
+
         return $ns;
     }
 
 
     /**
      * List webfonts used by the theme.
-     * 
+     *
      * @return array
      * @access public
      */
     public function webfonts() {
-        
+
         return array(
         	'work-sans' => 'https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900',
         );
@@ -499,7 +499,7 @@ class LJ extends TimberSite {
      * @access public
      */
     public function javascript_detection() {
-	   
+
 	    ?>
 
         <script src="<?php echo get_template_directory_uri() ?>/dist/js/min/feature.min.js"></script>
@@ -521,7 +521,7 @@ class LJ extends TimberSite {
      * @return    string    The version number of the plugin.
      */
     public function get_theme_version() {
-        
+
         return $this->theme_version;
     }
 
@@ -534,7 +534,7 @@ class LJ extends TimberSite {
      * @return    string    The name of the theme.
      */
     public function get_theme_name() {
-        
+
         return $this->theme_name;
     }
 

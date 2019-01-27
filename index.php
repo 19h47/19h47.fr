@@ -41,7 +41,6 @@ if( ! empty( $clients ) ) {
 $link = get_field( 'link' );
 
 if( ! empty( $link ) ) {
-
 	$context['work']['details']['link'] = $link;
 }
 
@@ -50,7 +49,6 @@ if( ! empty( $link ) ) {
 $repository = get_field( 'repository' );
 
 if( ! empty( $repository ) ) {
-
 	$context['work']['details']['repository'] = $repository;
 }
 
@@ -58,7 +56,6 @@ if( ! empty( $repository ) ) {
 $templates = array( 'index.twig' );
 
 if ( is_404() ) {
-
 	array_unshift( $templates, 'pages/404.twig' );
 }
 
@@ -70,9 +67,8 @@ if ( is_singular( 'work' ) ) {
 
 	// If post hasn't previous post
 	if( empty( $previous_object ) ) {
-		
 	  	// Retrieve the first
-	  	$previous_object = get_boundary_post_for_type( get_post_type(), false, '', false )[0];	   
+	  	$previous_object = get_boundary_post_for_type( get_post_type(), false, '', false )[0];
 	}
 
     $context['work']['previous']['id'] = $previous_object->ID;
@@ -103,13 +99,11 @@ if ( is_singular( 'work' ) ) {
 
 // Archive work
 if ( is_post_type_archive( 'work' ) ) {
-
 	array_unshift( $templates, 'pages/work-archive.twig' );
 }
 
 // Home
 if ( is_home() ) {
-
 	array_unshift( $templates, 'pages/thoughts.twig' );
 }
 

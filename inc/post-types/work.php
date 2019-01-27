@@ -32,15 +32,17 @@ class Work {
 	public function __construct( $theme_name, $theme_version ) {
 		$this->theme_name = $theme_name;
         $this->theme_version = $theme_version;
-        
+
         $this->register_post_type();
 
-        add_action( 'init', array( &$this, 'register_post_type' ) );
-        add_action( 'admin_head', array( &$this, 'works_css' ) );
-        add_filter( 'dashboard_glance_items', array( &$this, 'at_a_glance_works' ) );
+        add_action( 'init', array( $this, 'register_post_type' ) );
+        add_action( 'admin_head', array( $this, 'works_css' ) );
+        add_filter( 'dashboard_glance_items', array( $this, 'at_a_glance_works' ) );
+
+        add_filter('pre_get_posts', array( $this, 'pre_get_works' ), 10);
 	}
 
-	
+
 	/**
 	 * Register Custom Post Type
 	 */
@@ -94,7 +96,7 @@ class Work {
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
 			'has_archive'           => true,
-			'rewrite'				=> $rewrite,		
+			'rewrite'				=> $rewrite,
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => true,
 			'capability_type'       => 'post',
@@ -103,26 +105,26 @@ class Work {
 	}
 
 
-	function works_css() {    
+	function works_css() {
 	?>
 	    <style>
 	        #dashboard_right_now .work-count:before { content: "\f322"; }
 	        .widefat .column-featured-image { width: 60px; }
-	        .fixed .column-year { 
+	        .fixed .column-year {
 	            width: 10%;
 	            text-align: left;
 	            vertical-align: top;
 	        }
-	        .fixed .column-color { 
+	        .fixed .column-color {
 	        	width: 10%;
 	        	text-align: center;
 	        	vertical-align: top;
 	        }
-	        .column-color .color-indicator { 
-	            border: none !important; 
-	            border-radius: 50% !important; 
-	            height: 26px !important; 
-	            margin-left: auto; 
+	        .column-color .color-indicator {
+	            border: none !important;
+	            border-radius: 50% !important;
+	            height: 26px !important;
+	            margin-left: auto;
 	            margin-right: auto;
 	        }
 
@@ -139,16 +141,16 @@ class Work {
 	    $post_status = 'publish';
 
 	    $object = get_post_type_object( $post_type );
-	    
+
 	    $num_posts = wp_count_posts( $post_type );
 
 	    if ( ! $num_posts || ! isset ( $num_posts->{$post_status} ) || 0 === (int) $num_posts->{$post_status} )
 	        return $items;
 
 	    $text = sprintf(
-	        _n( '%1$s %4$s%2$s', '%1$s %4$s%3$s', $num_posts->{$post_status} ), 
-	        number_format_i18n( $num_posts->{$post_status} ), 
-	        strtolower( $object->labels->singular_name ), 
+	        _n( '%1$s %4$s%2$s', '%1$s %4$s%3$s', $num_posts->{$post_status} ),
+	        number_format_i18n( $num_posts->{$post_status} ),
+	        strtolower( $object->labels->singular_name ),
 	        strtolower( $object->labels->name ),
 	        'pending' === $post_status ? 'Pending ' : ''
 	    );
@@ -156,7 +158,24 @@ class Work {
 	        $items[] = sprintf( '<a class="%1$s-count" href="edit.php?post_status=%2$s&post_type=%1$s">%3$s</a>', $post_type, $post_status, $text );
 	    else
 	        $items[] = sprintf( '<span class="%1$s-count">%s</span>', $text );
-	    
+
 	    return $items;
 	}
+
+
+    /**
+     * Pre get works
+     *
+     * @param  {} $query
+     * @return
+     */
+    function pre_get_works( $query ) {
+        if ( ! in_array ( $query->get('post_type'), array( 'work' ) ) ) return false;
+
+        $query->set( 'meta_key', 'year' );
+        $query->set( 'orderby', 'meta_value_num' );
+        $query->set( 'order', 'DESC' );
+
+        return $query;
+    }
 }

@@ -11,6 +11,7 @@ npm-debug.log
 sftp-config.json.prod
 sftp-config.json.dev
 sftp-config.json
+.remote-sync.json
 *.sublime-workspace
 /vendor/
 
