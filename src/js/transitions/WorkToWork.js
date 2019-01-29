@@ -3,29 +3,30 @@ import Barba from 'Vendors/barba.enhanced';
 import TweenLite from 'gsap/TweenLite';
 import TimelineLite from 'gsap/TimelineLite';
 
+import Basic from 'Transitions/Basic';
+
 
 /**
- * Basic
+ * WorkToWork
  */
-const Basic = Barba.BaseTransition.extend({
-
+const WorkToWork = Basic.extend({
 	/**
-	 * Basic.start
+	 * WorkToWork.start
 	 */
 	start() {
-		// console.info('Basic.start');
+		// console.info('WorkToWork.start');
 
 		Promise
-			.all([this.exit(), this.newContainerLoading])
+			.all([this.newContainerLoading, this.exit()])
 			.then(this.enter.bind(this));
 	},
 
 
 	/**
-	 * Basic.fade.out
+	 * WorkToWork.exit
 	 */
 	exit() {
-		// console.info('Basic.fade.out');
+		// console.info('WorkToWork.exit');
 
 		const deferred = Barba.Utils.deferred();
 
@@ -34,10 +35,10 @@ const Basic = Barba.BaseTransition.extend({
 				this.oldContainer,
 				1,
 				{
-					opacity: 1,
+					// opacity: 1,
 				},
 				{
-					opacity: 0,
+					// opacity: 0,
 					onComplete: deferred.resolve,
 				},
 			);
@@ -47,10 +48,11 @@ const Basic = Barba.BaseTransition.extend({
 
 
 	/**
-	 * Basic.fade.in
+	 * WorkToWork.enter
 	 */
 	enter() {
-		// console.info('Basic.fade.in');
+		// console.info('WorkToWork.enter');
+
 		const tl = new TimelineLite({
 			callbackScope: this,
 			onComplete: this.done,
@@ -59,21 +61,12 @@ const Basic = Barba.BaseTransition.extend({
 		tl
 			.set(this.newContainer, { clearProps: 'opacity' })
 			.set(this.oldContainer, { display: 'none' })
+			.set(this.newContainer, { opacity: 1 })
 			.call(() => {
 				// reset scroll position
 				window.app.resetScroll(0, 0);
-			})
-			.fromTo(
-				this.newContainer,
-				1,
-				{
-					opacity: 0,
-				},
-				{
-					opacity: 1,
-				},
-			);
+			});
 	},
 });
 
-export default Basic;
+export default WorkToWork;

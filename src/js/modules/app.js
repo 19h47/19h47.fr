@@ -1,40 +1,32 @@
-module.exports = App;
-
-
-var config = require('../config');
-var css = require('dom-css');
+const css = require('dom-css');
+const config = require('../config');
 
 
 /**
  * App
  */
-function App() {
-	if (!(this instanceof App)) {
-		return new App();
-	}
+export default class App {
 }
 
 
 App.prototype = {
-	
+
 	/**
 	 * App.disableScroll
 	 */
-	disableScroll: function() {
-		
+	disableScroll() {
 		// lock scroll position, but retain settings for later
 		// http://stackoverflow.com/a/3656618
-		config.body.scroll.left = self.pageXOffset || document.documentElement.scrollLeft  || document.body.scrollLeft;
-		config.body.scroll.top = self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop;
-		
+		config.body.scroll.left = document.documentElement.scrollLeft || document.body.scrollLeft;
+		config.body.scroll.top = document.documentElement.scrollTop || document.body.scrollTop;
+
 		css(config.html, 'overflow', 'hidden');
 
 		this.resetScroll(config.body.scroll.left, config.body.scroll.top);
 
 		// disable scroll on touch devices as well
 		if (config.is.touch) {
-			
-			document.addEventListener('touchmove.app', function(e) {
+			document.addEventListener('touchmove.app', (e) => {
 				e.preventDefault();
 			});
 		}
@@ -43,17 +35,18 @@ App.prototype = {
 
 	/**
 	 * App.enableScroll description]
-	 * 
+	 *
 	 * @param  position
 	 */
-	enableScroll: function(position) {
+	enableScroll(position) {
 		if (typeof position === 'undefined') {
+			// eslint-disable-next-line
 			position = config.body.scroll.top;
 		}
 
-		var resume_scroll = true;
+		let resumeScroll = true;
 		if (typeof position === 'boolean' && position === false) {
-			resume_scroll = false;
+			resumeScroll = false;
 		}
 
 		// unlock scroll position
@@ -61,7 +54,7 @@ App.prototype = {
 		css(config.html, 'overflow', 'visible');
 
 		// resume scroll position if possible
-		if (resume_scroll) {
+		if (resumeScroll) {
 			this.resetScroll(config.body.scroll.left, position);
 		}
 
@@ -74,18 +67,17 @@ App.prototype = {
 
 	/**
 	 * App.resetScroll
-	 * 
-	 * @param  position_x
-	 * @param  position_y
+	 *
+	 * @param  positionX
+	 * @param  positionY
 	 */
-	resetScroll: function(position_x, position_y) {
-
-		if (typeof position_x !== 'undefined') {
-			config.body.scroll.left = parseInt(position_x);
+	resetScroll(positionX, positionY) {
+		if (typeof positionX !== 'undefined') {
+			config.body.scroll.left = parseInt(positionX, 10);
 		}
 
-		if (typeof position_y !== 'undefined') {
-			config.body.scroll.top = parseInt(position_y);
+		if (typeof positionY !== 'undefined') {
+			config.body.scroll.top = parseInt(positionY, 10);
 		}
 
 		window.scrollTo(config.body.scroll.left, config.body.scroll.top);
@@ -98,25 +90,22 @@ App.prototype = {
 	 * @param 	state
 	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
 	 */
-	addState: function(state) {
-
-		config.body.$.addClass(state);
-	},
+	addState: state => config.body.$.addClass(state),
 
 
 	/**
 	 * App.removeState
-	 * 
+	 *
 	 * @param 	state
 	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
 	 */
-	removeState: function(state) {
-		var deferred = new $.Deferred();
+	removeState: (state) => {
+		const deferred = new $.Deferred();
 
 		config.body.$.removeClass(state);
 
 		deferred.promise();
 
-		return deferred.resolve();	
-	}
+		return deferred.resolve();
+	},
 };

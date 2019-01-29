@@ -1,8 +1,6 @@
-module.exports = Pages;
+import Mustache from 'mustache';
 
-var config = require('../config');
-var $ = require('jquery');
-var Mustache = require('mustache');
+const config = require('../config');
 
 function Pages(element) {
 	if (!(this instanceof Pages)) {
@@ -12,10 +10,10 @@ function Pages(element) {
 	this.$element = $(element).find('.js-page');
 
 	if (!this.$element || !this.$element.length) {
-		return;
+		return false;
 	}
 
-	this.setup();
+	return this.setup.call(this);
 }
 
 
@@ -23,16 +21,17 @@ function Pages(element) {
  * Pages
  */
 Pages.prototype = {
-	
+
 	/**
 	 * Pages.setup
 	 */
-	setup: function() {
+	// eslint-disable-next-line
+	setup() {
 		// console.info('Pages.setup');
-
-		this.get.url(this.get.postSlug.call(this, this.$element))
-			.then($.proxy(this.construct, this))
-			.done($.proxy(this.append, this));
+		this
+			.get.url(this.get.postSlug(this.$element))
+			.then(this.construct)
+			.done(this.append.bind(this));
 	},
 
 
@@ -44,57 +43,55 @@ Pages.prototype = {
 		/**
 		 * Pages.get.url
 		 */
-		url: function(slug) {
-
+		url(slug) {
 			return $.get({
-				url: config.api + 'pages/', 
-				data: {slug: slug},
-				dataType: 'json'
+				url: `${config.api}pages/`,
+				data: { slug },
+				dataType: 'json',
 			});
 		},
 
 		/**
 		 * Pages.get.postSlug
 		 */
-		postSlug: function(element) {
+		postSlug(element) {
 			return element.attr('data-post-slug');
-		}
+		},
 	},
 
 
 	/**
 	 * Pages.construct
 	 */
-	construct: function(response) {
-		var post;
-
-		return post = {
+	construct(response) {
+		const post = {
 			title: response[0].title.rendered,
-			content: response[0].content.rendered
+			content: response[0].content.rendered,
 		};
+
+		return post;
 	},
 
 
 	/**
 	 * Pages.append
 	 */
-	append: function(post) {
-
+	append(post) {
 		// console.dir(post);
-
-		var template = {
+		const template = {
 			title: $('#page-title').html(),
-			content: $('#page-content').html()
+			content: $('#page-content').html(),
 		};
-		
+
 		Mustache.parse(template.title);
 		Mustache.parse(template.content);
 
-		var htmlTitle = Mustache.render(template.title, {title: post.title});
-		var htmlContent = Mustache.render(template.content, {content: post.content});
+		const htmlTitle = Mustache.render(template.title, { title: post.title });
+		const htmlContent = Mustache.render(template.content, { content: post.content });
 
 		this.$element.find('.js-title').append(htmlTitle);
 		this.$element.find('.js-content').append(htmlContent);
-
-	}
+	},
 };
+
+export default Pages;

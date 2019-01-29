@@ -21,7 +21,8 @@
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-		<link rel="icon" href="{{ theme.link }}/img/png/favicon.png" sizes="160x160" type="image/png">
+		<link rel="icon" href="{{ theme.link }}/dist/favicons/favicon.png" sizes="160x160" type="image/png">
+		<base href="{{ theme.path }}/dist/">
 
 		{{ wp_head }}
 
@@ -31,7 +32,7 @@
 	<body class="page--is-loading">
 		<header class="l-header margin-xs-top-64 margin-xs-bottom-32">
 			<div class="l-container">
-				
+
 
 				<div class="row">
 
@@ -42,43 +43,41 @@
 							</a>
 						</h1>
 					</div>
-					
+
 
 					{# Who I am link #}
 					<div class="col-xs-2 col-lg-1 col-lg-offset-3 hidden-xs text-xs-right text-lg-center">
 						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
-							Who I am
+							{{- __( 'Who I am' ) -}}
 							<span data-text="Who I am"></span>
 						</a>
 					</div>
-					
+
 
 					{# Works #}
 					<div class="col-xs-2 col-lg-1 hidden-xs text-xs-right text-lg-center">
 						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.works }}" data-namespace="works">
-							Works
+							{{- __( 'Works' ) -}}
 							<span data-text="Works"></span>
 						</a>
 					</div>
 
 					{# What I think #}
 					<div class="col-xs-2 col-lg-1 hidden-xs text-xs-right text-lg-center">
-						
+
 						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.thoughts }}" data-namespace="what-i-think">
-							Thoughts
+							{{- __( 'Thoughts' ) -}}
 							<span data-text="Thoughts"></span>
 
 						</a>
 					</div>
-					
+
 
 				</div>
-			
+
 			</div>
 		</header>
 		{% include 'components/transition.twig' %}
 		<main id="barba-wrapper" class="js-wrapper h-xs-100">
 
 				<div {{ body_class( 'barba-container padding-md-bottom-224 padding-xs-top-128' ) }} {{ barba_namespace() }}>
-				
-		

@@ -64,6 +64,13 @@ class LJ extends TimberSite {
     private $theme_version;
 
 
+    /** Manifest
+	 *
+	 * @access private
+	 */
+	private $theme_manifest;
+
+
     /**
      * Initialize the class and set its properties.
      *
@@ -75,6 +82,12 @@ class LJ extends TimberSite {
 
         $this->theme_name = $theme_name;
         $this->theme_version = $theme_version;
+
+		$this->theme_manifest = json_decode(
+			file_get_contents( __DIR__ . '/dist/manifest.json' ),
+			true
+		);
+
         $this->setup();
         $this->load_dependencies();
         // add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
@@ -105,6 +118,15 @@ class LJ extends TimberSite {
      * @return  $twig
      */
     public function add_to_twig () {
+
+		$twig->addFunction(
+			new Twig_SimpleFunction(
+				'get_theme_manifest',
+				function() {
+					return $this->theme_manifest;
+				}
+			)
+		);
 
         return $twig;
     }
@@ -195,6 +217,8 @@ class LJ extends TimberSite {
         $oDateBirth = new DateTime($sDateBirth);
         $oDateInterval = $oDateNow->diff($oDateBirth);
         $context['age'] = $oDateInterval->y;
+
+        $context['manifest'] = $this->theme_manifest;
 
 
         return $context;
@@ -366,7 +390,9 @@ class LJ extends TimberSite {
         /**
          * Editor style
          */
-        add_editor_style( get_template_directory_uri() . '/dist/css/editor-style.css' );
+        add_editor_style(
+            get_template_directory_uri() . '/dist/' . $this->theme_manifest['editor.css']
+        );
     }
 
 
@@ -385,8 +411,19 @@ class LJ extends TimberSite {
         }
 
 
-        // Theme stylesheet
-        wp_register_style(  $this->theme_name . '-global', get_template_directory_uri() . '/dist/css/global.css', $webfonts, null );
+        // var_dump($this->theme_manifest);
+
+
+		/**
+		 * Theme stylesheet
+		 */
+		wp_register_style(
+			$this->theme_name . '-global',
+			get_template_directory_uri() . '/dist/' . $this->theme_manifest['main.css'],
+			$webfonts,
+			null
+		);
+
         wp_enqueue_style( $this->theme_name . '-global' );
     }
 
@@ -404,10 +441,17 @@ class LJ extends TimberSite {
 
         // Remove native version of jQuery and use custom CDN version instead
         wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', '//code.jquery.com/jquery-3.2.1.min.js', false, null, true );
+        wp_register_script( 'jquery', '//code.jquery.com/jquery-3.3.1.min.js', false, null, true );
 
-        //
-        wp_register_script( $this->theme_name . '-main', get_template_directory_uri() . '/dist/js/min/bundle.min.js', array( 'jquery' ), null, true );
+		wp_register_script(
+			$this->theme_name . '-main',
+			get_template_directory_uri() . '/dist/' . $this->theme_manifest['main.js'],
+			array(
+				'jquery'
+			),
+			null,
+			true
+		);
 
         // Localize script
         wp_localize_script(
@@ -502,7 +546,7 @@ class LJ extends TimberSite {
 
 	    ?>
 
-        <script src="<?php echo get_template_directory_uri() ?>/dist/js/min/feature.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feature.js/1.0.1/feature.min.js"></script>
         <script>
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
             if (feature.touch && !navigator.userAgent.match(/Trident\/(6|7)\./)) {

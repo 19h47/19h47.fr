@@ -1,32 +1,30 @@
 module.exports = {
-    "globals": {
-        "app": true,
-        "feature": true,
-        "$": true,
-        "jQuery": true
-    },
-    "code": 80,
-    "env": {
-        "browser": true,
-        "commonjs": true
-    },
-    "extends": "eslint:recommended",
-    "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    }
+	root: true,
+	env: {
+		node: true,
+		browser: true,
+		jquery: true
+	},
+	extends: ['standard', 'airbnb-base'],
+	rules: {
+		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+		'no-tabs': 0,
+		'indent': ['error', 'tab', { 'SwitchCase': 1 }],
+		'no-param-reassign': ['error', {
+			props: true,
+			ignorePropertyModificationsFor: ['state']
+		}],
+	},
+	parser: 'babel-eslint',
+	parserOptions: {
+		'sourceType': 'module'
+	},
+	settings: {
+		'import/resolver': {
+			'webpack': {
+				'config': 'config/webpack.common.js'
+			},
+		}
+	},
 };

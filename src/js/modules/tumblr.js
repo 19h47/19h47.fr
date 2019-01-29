@@ -1,7 +1,4 @@
-module.exports = Tumblr;
-
-var $ = require('jquery');
-var Mustache = require('mustache');
+const Mustache = require('mustache');
 
 function Tumblr(element) {
 	if (!(this instanceof Tumblr)) {
@@ -11,39 +8,34 @@ function Tumblr(element) {
 	this.$element = $(element);
 
 	if (!this.$element || !this.$element.length) {
-		return;
+		return false;
 	}
 
-	this.deferred = new $.Deferred();
-
-	this.setup();
+	return this.setup();
 }
 
 Tumblr.prototype = {
-
-
 	/**
 	 * Tumblr.setup
 	 */
-	setup: function() {
-
+	setup() {
 		this.posts = {
 			offset: 0,
 			per_page: 20,
-			count: null
+			count: null,
 		};
 
-		var KEY = 'T1ta3DzmFPU36KjYWsoJcvjl8kSPybrqagZsRp8sXWpUIlxQ98';
-		var USER = '19h47';
-		var URL = 'http://api.tumblr.com/v2/blog/';
+		const KEY = 'T1ta3DzmFPU36KjYWsoJcvjl8kSPybrqagZsRp8sXWpUIlxQ98';
+		const USER = '19h47';
+		const URL = 'http://api.tumblr.com/v2/blog/';
 
 		this.API = {
-			KEY: KEY,
-			USER: USER,
+			KEY,
+			USER,
 			URL: {
-				info: URL + USER + '.tumblr.com/info?api_key=' + KEY,
-				posts: URL + USER + '.tumblr.com/posts?api_key=' + KEY,
-			}
+				info: `${URL}${USER}.tumblr.com/info?api_key=${KEY}`,
+				posts: `${URL}${USER}.tumblr.com/posts?api_key=${KEY}`,
+			},
 		};
 
 		this.$response = this.$element;
@@ -58,14 +50,12 @@ Tumblr.prototype = {
 	/**
 	 * Tumblr.initEvents
 	 */
-	initEvents: function() {
+	initEvents() {
 		this.button
-			.on('click.tumblr', $.proxy(function() {
-
+			.on('click.tumblr', () => {
 				this.lock.on.call(this);
 				this.more.show.call(this);
-
-			}, this));
+			});
 	},
 
 
@@ -77,30 +67,27 @@ Tumblr.prototype = {
 		/**
 		 * Tumblr.more.show
 		 */
-		show: function() {
-
+		show() {
 			this.more.load.call(this)
 				.then($.proxy(this.construct, this))
 				.then($.proxy(this.append, this))
-				.then($.proxy(this.update, this))
-				.done(this.deferred.promise());
+				.done($.proxy(this.update, this));
 		},
 
 
 		/**
 		 * Tumblr.more.load
 		 */
-		load: function() {
-
+		load() {
 			this.lock.on.call(this);
 
-			var url = this.API.URL.posts;
+			const url = this.API.URL.posts;
 
 			return $.get({
-				url: url  + '&offset=' + this.posts.offset,
-				dataType: 'jsonp'
+				url: `${url}&offset=${this.posts.offset}`,
+				dataType: 'jsonp',
 			});
-		}
+		},
 	},
 
 
@@ -111,67 +98,76 @@ Tumblr.prototype = {
 
 		/**
 		 * Tumblr.lock.off
+		 *
 		 */
+		// eslint-disable-next-line
 		off: function() {
 			// console.info('Tumblr.lock.off');
 
 			// remove loading state to loader if exists
-			this.loader.length &&
-			this.loader
+			// eslint-disable-next-line
+			this.loader.length
+			&& this.loader
 				.removeClass('is-loading');
 
 			// remove loading state to button if exists
-			this.button.length &&
-			this.button
+			// eslint-disable-next-line
+			this.button.length
+			&& this.button
 				.removeClass('is-loading disabled')
 				.prop('disabled', false);
 
 			// add loading state to ajax container if exists
-			this.$response.length &&
-			this.$response.removeClass('is-loading');
+			// eslint-disable-next-line
+			this.$response.length
+			&& this.$response.removeClass('is-loading');
 		},
 
 
 		/**
 		 * Tumblr.lock.on
+		 *
 		 */
+		// eslint-disable-next-line
 		on: function() {
 			// console.info('Tumblr.lock.on');
 
 			// add loading state to loader if exist
-			this.loader.length &&
-			this.loader
+			// eslint-disable-next-line
+			this.loader.length
+			&& this.loader
 				.addClass('is-loading');
 
 			// add loading state to button if exists
-			this.button.length &&
-			this.button
+			// eslint-disable-next-line
+			this.button.length
+			&& this.button
 				.addClass('is-loading disabled')
 				.prop('disabled', true);
 
 			// add loading state to ajax container if exists
-			this.$response.length &&
-			this.$response.addClass('is-loading');
-		}
+			// eslint-disable-next-line
+			this.$response.length
+			&& this.$response.addClass('is-loading');
+		},
 	},
 
 
 	/**
 	 * Tumblr.construct
 	 */
-	construct: function(posts) {
-
+	construct(posts) {
 		// Stock total posts
 		this.posts.count = posts.response.total_posts;
 
-		posts = posts.response.posts;
+		const currentPosts = posts.response.posts;
+		const template = this.$response.find('#post').html();
 
-		var response = '';
-		var template = this.$response.find('#post').html();
+		let response = '';
 
 		Mustache.parse(template);
 
-		posts.forEach(function(post) {
+		currentPosts.forEach((post) => {
 			if (post.type !== 'photo') {
 				return;
 			}
@@ -179,7 +175,7 @@ Tumblr.prototype = {
 			response += Mustache.render(template, {
 				image: post.photos[0].original_size.url,
 				src: post.source_url || post.post_url,
-				summary: post.summary
+				summary: post.summary,
 			});
 		});
 
@@ -190,11 +186,10 @@ Tumblr.prototype = {
 	/**
 	 * Tumblr.append
 	 */
-	append: function(html) {
-
+	append(html) {
 		this.$response
 			.find('.response')
-			.append(html.replace(/>\s+</g,'><'));
+			.append(html.replace(/>\s+</g, '><'));
 
 		$.proxy(this.lock.off, this);
 	},
@@ -203,18 +198,17 @@ Tumblr.prototype = {
 	/**
 	 * Tumblr.update
 	 */
-	update: function() {
-
+	update() {
 		// Ensure everything is unlocked
 		this.lock.off.call(this);
 
 		this.posts.offset += this.posts.per_page;
 
-		this.$response
+		return this.$response
 			.find('.load-more')
 			.attr('data-count', this.posts.count - this.posts.offset)
 			.toggle(this.posts.offset <= this.posts.count);
-
-		return this.deferred.resolve();
-	}
+	},
 };
+
+module.exports = Tumblr;

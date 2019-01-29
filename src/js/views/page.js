@@ -1,44 +1,43 @@
-var Modules = require('../modules/index');
-var Barba = require('barba.enhanced.js');
-var classes = require('dom-classes');
-var select = require('dom-select');
+import Barba from 'Vendors/barba.enhanced';
+
+import Pages from 'Modules/Pages';
 
 /**
  * Page
  */
 
-var Page = Barba.BaseView.extend({
+export default Barba.BaseView.extend({
 
 	namespace: 'page',
-
 
 	/**
 	 * Page.onEnter
 	 */
-	onEnter: function() {
+	onEnter() {
 		// The new Container is ready and attached to the DOM.
-		
-		new Modules.Pages(this.container, {
-			namespace: this.namespace
-		});
+		// eslint-disable-next-line
+		new Pages(
+			this.container,
+			{
+				namespace: this.namespace,
+			},
+		);
 	},
 
 
-	onEnterCompleted: function() {
+	onEnterCompleted() {
 		// The Transition has just finished.
 
 		// classes.remove(select('.js-footer'), 'is-active');
 	},
 
 
-	onLeave: function() {
+	onLeave() {
 		// A new Transition toward a new page has just started.
 	},
 
-	
-	onLeaveCompleted: function() {
-		// The Container has just been removed from the DOM.
-	}
-});
 
-module.exports = Page;
+	onLeaveCompleted() {
+		// The Container has just been removed from the DOM.
+	},
+});

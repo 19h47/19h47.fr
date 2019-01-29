@@ -1,7 +1,4 @@
-module.exports = Lastfm;
-
-var $ = require('jquery');
-var Mustache = require('mustache');
+import Mustache from 'mustache';
 
 /**
  * Lastfm
@@ -25,12 +22,11 @@ function Lastfm(element, options) {
 	}
 
 	this.defaults = {
-		limit: 50,
 		user: '',
 		api: {
 			key: '',
 			secret: '',
-		}
+		},
 	};
 
 	this.options = $.extend({}, this.defaults, options);
@@ -50,9 +46,7 @@ function Lastfm(element, options) {
 		throw new Error('API secret is missing.');
 	}
 
-	this.deferred = new $.Deferred();
-
-	this.setup();
+	return this.setup.call(this);
 }
 
 
@@ -61,13 +55,12 @@ Lastfm.prototype = {
 	/**
 	 * Lastfm.setup
 	 */
-	setup: function() {
-
+	setup() {
 		this.API = {
 			KEY: this.options.api.key,
 			SECRET: this.options.api.secret,
 			USER: this.options.user,
-			URL: 'http://ws.audioscrobbler.com/2.0/'
+			URL: 'http://ws.audioscrobbler.com/2.0/',
 		};
 
 		this.$response = this.$element;
@@ -82,28 +75,29 @@ Lastfm.prototype = {
 	 * Lastfm.show
 	 */
 	show: {
-		
+
 		/**
 		 * Lastfm.show.recentTracks
 		 */
-		recentTracks: function() {
+		recentTracks() {
+			// console.info('Lastfm.show.recentTracks');
 			this.lock.on.call(this);
 
-			this.get(this.url.recentTracks.call(this))
-				.then($.proxy(this.construct.recenTracks, this))
-				.then($.proxy(this.append.recentTracks, this))
-				.done($.proxy(this.lock.off, this));
+			return this.get(this.url.recentTracks.call(this))
+				.then(this.construct.recenTracks.bind(this))
+				.then(this.append.recentTracks.bind(this))
+				.done(this.lock.off.bind(this));
 		},
 
-		
+
 		/**
 		 * Lastfm.show.info
 		 */
-		info: function() {
-			this.get(this.url.info.call(this))
-				.then($.proxy(this.construct.info, this))
-				.done($.proxy(this.append.info, this));
-		}
+		info() {
+			return this.get(this.url.info.call(this))
+				.then(this.construct.info.bind(this))
+				.done(this.append.info.bind(this));
+		},
 	},
 
 
@@ -111,25 +105,20 @@ Lastfm.prototype = {
 	 * Lastfm.append
 	 */
 	append: {
-
 		/**
 		 * Lastfm.append.recentTracks
 		 */
-		recentTracks: function(html) {
-
-			this.$response.find('.response').append(html);
-
-			return this.deferred.resolve();	
+		recentTracks(html) {
+			return this.$response.find('.response').append(html);
 		},
 
 
 		/**
 		 * Lastfm.append.info
 		 */
-		info: function(html) {
-
-			this.$response.find('.playcount').prepend(html);
-		}
+		info(html) {
+			return this.$response.find('.playcount').prepend(html);
+		},
 	},
 
 
@@ -141,37 +130,27 @@ Lastfm.prototype = {
 		/**
 		 * Lastfm.construct.recentTracks
 		 */
-		recenTracks: function(response) {
+		recenTracks(response) {
+			// console.info('Lastfm.construct.recentTracks');
+			const template = $('#track').html();
+			let output = '';
 
-			// var recenTracksLength = response.recenttracks.track.length;
-			var template = $('#track').html();
-			var output = '';
-			var i = 0;
-			
-			Mustache.parse(template);
-
-
-			for (i; i < this.options.limit; i++) {
-
+			response.recenttracks.track.forEach((track) => {
 				output += Mustache.render(template, {
-					image: response.recenttracks.track[i].image[3]['#text'],
-					artist: response.recenttracks.track[i].artist['#text'],
-					name: response.recenttracks.track[i].name
+					image: track.image[3]['#text'],
+					artist: track.artist['#text'],
+					name: track.name,
 				});
-			}
+			});
 
 			return output;
-
 		},
 
 
 		/**
 		 * Lastfm.construct.info
 		 */
-		info: function(response) {
-			
-			return response.user.playcount;
-		}
+		info: response => response.user.playcount,
 	},
 
 
@@ -179,22 +158,19 @@ Lastfm.prototype = {
 	 * Lastfm.url
 	 */
 	url: {
-
 		/**
 		 * Lastfm.url.recentTracks
 		 */
-		recentTracks: function() {
-
-			return this.API.URL + '?method=user.getrecenttracks&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
+		recentTracks() {
+			return `${this.API.URL}?method=user.getrecenttracks&user=${this.API.USER}&api_key=${this.API.KEY}&format=json`;
 		},
 
 
 		/**
 		 * Lastfm.url.info
 		 */
-		info: function() {
-			
-			return this.API.URL + '?method=user.getinfo&user=' + this.API.USER + '&api_key=' + this.API.KEY + '&format=json';
+		info() {
+			return `${this.API.URL}?method=user.getinfo&user=${this.API.USER}&api_key=${this.API.KEY}&format=json`;
 		},
 	},
 
@@ -207,12 +183,13 @@ Lastfm.prototype = {
 		/**
 		 * Lastfm.lock.on
 		 */
-		on: function() {
+		on() {
 			// console.info('Lastfm.lock.on');
 
 			// remove loading state to loader if exists
-			this.loader.length && 
-			this.loader
+			// eslint-disable-next-line
+			this.loader.length
+			&& this.loader
 				.addClass('is-loading');
 		},
 
@@ -220,25 +197,27 @@ Lastfm.prototype = {
 		/**
 		 * Lastfm.lock.off
 		 */
-		off: function() {
+		off() {
 			// console.info('Lastfm.lock.off');
 
 			// remove loading state to loader if exists
-			this.loader.length && 
-			this.loader
+			// eslint-disable-next-line
+			this.loader.length
+			&& this.loader
 				.removeClass('is-loading');
-		}
+		},
 	},
 
 
 	/**
 	 * Lastfm.get
 	 */
-	get: function(url) {
-
+	get(url) {
 		return $.get({
-			url: url, 
-			dataType: 'json'
+			url,
+			dataType: 'json',
 		});
-	}
+	},
 };
+
+export default Lastfm;

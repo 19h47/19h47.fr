@@ -1,9 +1,8 @@
-module.exports = Watchers;
+import scrollMonitor from 'scrollmonitor';
 
-var scrollMonitor = require('scrollMonitor');
-var config = require('../config');
-var classes = require('dom-classes');
-var select = require('dom-select');
+// const config = require('../config');
+const classes = require('dom-classes');
+const select = require('dom-select');
 
 require('polyfill-nodelist-foreach');
 
@@ -14,7 +13,7 @@ function Watchers() {
 	if (!(this instanceof Watchers)) {
 		return new Watchers();
 	}
-	
+
 	this.wrapper = select('.js-wrapper');
 
 	this.setup();
@@ -25,19 +24,16 @@ function Watchers() {
  * Watchers
  */
 Watchers.prototype = {
-	
 	/**
 	 * Watchers.setup
 	 */
-	setup: function() {
-
+	setup() {
 		this.footer();
 		this.initEvents();
 	},
 
-	initEvents: function(){
-
-		window.addEventListener('scroll', function() {
+	initEvents() {
+		window.addEventListener('scroll', () => {
 			// scrollMonitor
 			scrollMonitor.update();
 
@@ -46,13 +42,14 @@ Watchers.prototype = {
 			// console.dir(config.body.el);
 
 			// Update offset
-			var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-			var offset = scrollTop + scrollMonitor.viewportHeight;
+			const scrollTop = window.pageYOffset
+			|| document.documentElement.scrollTop
+			|| document.body.scrollTop
+			|| 0;
+			const offset = scrollTop + scrollMonitor.viewportHeight;
 
 			this.footer(select('.js-footer'), offset);
-
-
-		}.bind(this));
+		});
 	},
 
 
@@ -62,22 +59,19 @@ Watchers.prototype = {
 	 * @var 	element 	DOM element
 	 * @var 	offset		actual offset
 	 */
-	footer: function(element, offset){
-
+	footer(element, offset) {
 		// If element selector doesn't exist
-		if(!element) {
+		if (!element) {
 			return;
 		}
 
 		// Avoid unnecessary DOM manipulation
-		if(classes.contains(element, 'is-active')) {
-
+		if (classes.contains(element, 'is-active')) {
 			classes.remove(element, 'is-active');
 			classes.remove(element, 'is-on-top');
 		}
 
-
-		if(offset == document.documentElement.clientHeight) {
+		if (offset === document.documentElement.clientHeight) {
 			// console.log(offset);
 			// console.log(document.documentElement.clientHeight);
 			classes.add(element, 'is-active');
@@ -85,8 +79,9 @@ Watchers.prototype = {
 		}
 
 		if (offset >= scrollMonitor.documentHeight) {
-			
 			classes.add(element, 'is-active');
 		}
-	}	
+	},
 };
+
+export default Watchers;

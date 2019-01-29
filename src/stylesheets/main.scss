@@ -6,8 +6,8 @@
 /**
 * Dependencies
 */
-@import 'breakpoint';
-@import 'breakpoint-slicer';
+@import '~breakpoint-sass/stylesheets/breakpoint';
+@import '~breakpoint-slicer/stylesheets/breakpoint-slicer';
 @import 'abstracts/variables';
 @import 'base/fonts';
 
@@ -15,16 +15,15 @@
 /**
  * Vendors
  */
-@import 
-	'ress',
+@import
+	'~ress/ress',
 	'vendors/bootstrap-custom';
-	// 'vendors/aos';
 
 
 /**
  * Abstracts
  */
-@import 
+@import
 	'abstracts/variables',
 	'abstracts/functions',
 	'abstracts/mixins',
@@ -34,7 +33,7 @@
 /**
  * Base
  */
-@import 
+@import
 	'base/base',
 	'base/fonts',
 	'base/typography';
@@ -43,7 +42,7 @@
 /**
  * Layout
  */
-@import 
+@import
 	'layout/base',
 	'layout/header',
 	'layout/footer';
@@ -52,7 +51,7 @@
 /**
  * Components
  */
-@import 
+@import
 	'components/guid',
 	'components/lastfm',
 	'components/tumblr',

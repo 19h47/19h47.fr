@@ -1,40 +1,34 @@
 import Barba from 'Vendors/barba.enhanced';
+import Television from 'Modules/Television';
 
-/**
- * Works
- */
+const classes = require('dom-classes');
+const select = require('dom-select');
+
 export default Barba.BaseView.extend({
 
-	namespace: 'works',
+	namespace: '404',
 
 
 	/**
-	 * Works.onEnter
+	 * NotFound.onEnter
 	 */
 	onEnter() {
 		// The new Container is ready and attached to the DOM.
+		// eslint-disable-next-line
+		new Television('#television');
 	},
 
 
-	/**
-	 * Works.onEnterCompleted
-	 */
 	onEnterCompleted() {
 		// The Transition has just finished.
+		classes.add(select('.js-footer'), 'is-active');
 	},
 
-
-	/**
-	 * Works.onLeave description
-	 */
 	onLeave() {
 		// A new Transition toward a new page has just started.
 	},
 
 
-	/**
-	 * Works.onLeaveCompleted
-	 */
 	onLeaveCompleted() {
 		// The Container has just been removed from the DOM.
 	},

@@ -1,90 +1,105 @@
-var $ = require('jquery');
-var Barba = require('barba.enhanced.js');
-var select = require('dom-select');
-var classes = require('dom-classes');
-var style = require('dom-style');
-var config = require('./config');
-// var singleRandomText = require('./vendors/randomize_text');
+import Barba from 'Vendors/barba.enhanced';
 
 // Modules
-var Modules = require('./modules/index.js');
-
+import App from 'Modules/App';
+import Navigation from 'Modules/Navigation';
+import Watchers from 'Modules/Watchers';
 
 // Transitions
-var Transitions = require('./transitions/index');
-
-console.log('%c🔥 Scooby doo wah, scooby doo wee, like a jazz player, I improvise wisely 🔥', 'background-color:#000;color:#fff;padding:0.5em 1em;' );
+import Basic from 'Transitions/Basic';
+import WorkToWork from 'Transitions/WorkToWork';
 
 // Views
-require('./views/index');
+import FrontPage from 'Views/FrontPage';
+import Page from 'Views/Page';
+import WhatInspiresMe from 'Views/WhatInspiresMe';
+import NotFound from 'Views/NotFound';
+import WhatImCurrentlyListeningTo from 'Views/WhatImCurrentlyListeningTo';
+import Works from 'Views/Works';
+import CurriculumVitae from 'Views/CurriculumVitae';
+
+FrontPage.init();
+Page.init();
+WhatInspiresMe.init();
+NotFound.init();
+WhatImCurrentlyListeningTo.init();
+Works.init();
+CurriculumVitae.init();
+
+const classes = require('dom-classes');
+const style = require('dom-style');
+const config = require('./config');
+
+
+// eslint-disable-next-line
+console.log('%c🔥 Scooby doo wah, scooby doo wee, like a jazz player, I improvise wisely 🔥', 'background-color:#000;color:#fff;padding:0.5em 1em;');
+
 
 // create App
-window.app = new Modules.App();
+window.app = new App();
 // add state to App while current page is loading
 window.app.addState('page--is-loading');
 
 // Navigation
-Modules.Navigation();
+// eslint-disable-next-line
+const navigation = new Navigation();
+
 
 // Watchers
-Modules.Watchers();
+// eslint-disable-next-line
+const watchers = new Watchers();
 
 
 // Barba
-Barba.Dispatcher.on('linkClicked', function(HTMLElement, MouseEvent) {
+Barba.Dispatcher.on('linkClicked', (HTMLElement, MouseEvent) => {
 	// console.dir(HTMLElement);
-	if (HTMLElement.dataset.namespace != 'work') {
+	if (HTMLElement.dataset.namespace !== 'work') {
 		config.transition.removeAttribute('style');
-	};
-	
+	}
+
 	// We are going to a single work
 	if (classes.contains(HTMLElement, 'js-to-work-single')) {
-
-		var color = MouseEvent.target.dataset.color;
+		// eslint-disable-next-line
+		const color = MouseEvent.target.dataset.color;
 
 		style(config.transition, 'background-color', color);
 	}
 });
 
 
-Barba.Dispatcher.on('initStateChange', function() {
-	
+Barba.Dispatcher.on('initStateChange', () => {
 	// add state to App to tell new page is loading
 	window.app.addState('page--is-loading');
 
-	
 	// disable scroll between transitions
 	window.app.disableScroll();
 });
 
 
-Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElementContainer, newPageRawHTML) {    
+Barba.Dispatcher.on('newPageReady', (currentStatus, prevStatus, HTMLElementContainer, newPageRawHTML) => {
 	// Add namespace as class to body
-	var bodyClass = $(newPageRawHTML).find('.barba-container').attr('data-namespace');
+	const bodyClass = $(newPageRawHTML).find('.barba-container').attr('data-namespace');
 
-	select('body').dataset.context = bodyClass || '';
+	document.body.dataset.context = bodyClass || '';
 
-
-	var $navLink = $('.js-work-navigation');
-
+	const $navLink = $('.js-work-navigation');
 
 	if ($navLink) {
+		// eslint-disable-next-line
+		$navLink.each(function() {
+			// eslint-disable-next-line
+			const color = this.dataset.color;
 
-		$navLink.each(function(index) {
-
-			var color = this.dataset.color;
-
-			this.addEventListener('mouseover', function() {
-
+			this.addEventListener('mouseover', () => {
 				// console.dir(HTMLElementContainer);
-
+				// eslint-disable-next-line
 				HTMLElementContainer.style.backgroundColor = color;
 
 				style(config.transition, 'background-color', color);
 			});
 
-			this.addEventListener('mouseleave', function() {
-
+			this.addEventListener('mouseleave', () => {
+				// eslint-disable-next-line
 				HTMLElementContainer.style.backgroundColor = '';
 			});
 
@@ -92,18 +107,12 @@ Barba.Dispatcher.on('newPageReady', function(currentStatus, prevStatus, HTMLElem
 		});
 	}
 
-	// $('title').randomizeText({
-	// 	refreshRate: 1,
-	// 	timePerLetter: 25,
-	// 	maxRandomTries: 5,
-	// });
-
-	Modules.Navigation();
+	// eslint-disable-next-line
+	new Navigation();
 });
 
-
+// eslint-disable-next-line
 Barba.Dispatcher.on('transitionCompleted', function() {
-
 	// ensure scroll is enabled and reset it
 	window.app.enableScroll(0);
 
@@ -113,22 +122,21 @@ Barba.Dispatcher.on('transitionCompleted', function() {
 	// $('.js-footer').addClass('is-active');
 });
 
-
+// eslint-disable-next-line
 Barba.Pjax.getTransition = function() {
-	var previousStatus = Barba.Pjax.History.prevStatus();
-	var currentStatus = Barba.Pjax.History.currentStatus();
+	const previousStatus = Barba.Pjax.History.prevStatus();
+	const currentStatus = Barba.Pjax.History.currentStatus();
 
 	if (!currentStatus.namespace) {
-        	// set future namespace before it's loaded
-	        Barba.Pjax.History.setCurrentNamespace();
+		// set future namespace before it's loaded
+		Barba.Pjax.History.setCurrentNamespace();
 	}
 
 	if (previousStatus.namespace === 'work' && currentStatus.namespace === 'work') {
-
-	    return Transitions.WorkToWork;
+		return WorkToWork;
 	}
 
-	return Transitions.Basic;
+	return Basic;
 };
 
 

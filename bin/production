@@ -1,0 +1,1 @@
+NODE_ENV=production webpack --config config/webpack.production.js

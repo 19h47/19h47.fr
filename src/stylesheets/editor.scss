@@ -1,8 +1,8 @@
 /**
  * Dependencies
  */
-@import 'breakpoint';
-@import 'breakpoint-slicer';
+@import '~breakpoint-sass/stylesheets/breakpoint';
+@import '~breakpoint-slicer/stylesheets/breakpoint-slicer';
 @import 'abstracts/variables';
 @import 'base/fonts';
 
@@ -10,14 +10,14 @@
 /**
  * Vendors
  */
-@import 
-	'ress',
+@import
+	'~ress/ress',
 	'vendors/bootstrap-custom';
 
 /**
  * Abstracts
  */
-@import 
+@import
 	'abstracts/variables',
 	'abstracts/functions',
 	'abstracts/mixins',
@@ -50,7 +50,7 @@ body {
 
 @include reset-selection( get_color( black ), get_color( white ) );
 
-a, 
+a,
 button {
     cursor: pointer;
     outline: none;
