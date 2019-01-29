@@ -39,8 +39,8 @@ Tumblr.prototype = {
 		};
 
 		this.$response = this.$element;
-		this.button = this.$response.find('.load-more');
-		this.loader = this.$response.find('.js-loader');
+		this.$button = this.$response.find('.load-more');
+		this.$loader = this.$response.find('.js-loader');
 
 		this.more.show.call(this);
 		this.initEvents();
@@ -51,11 +51,10 @@ Tumblr.prototype = {
 	 * Tumblr.initEvents
 	 */
 	initEvents() {
-		this.button
-			.on('click.tumblr', () => {
-				this.lock.on.call(this);
-				this.more.show.call(this);
-			});
+		this.$button.on('click.tumblr', () => {
+			this.lock.on.call(this);
+			this.more.show.call(this);
+		});
 	},
 
 
@@ -69,9 +68,9 @@ Tumblr.prototype = {
 		 */
 		show() {
 			this.more.load.call(this)
-				.then($.proxy(this.construct, this))
-				.then($.proxy(this.append, this))
-				.done($.proxy(this.update, this));
+				.then(this.construct.bind(this))
+				.then(this.append.bind(this))
+				.done(this.update.bind(this));
 		},
 
 
@@ -100,27 +99,26 @@ Tumblr.prototype = {
 		 * Tumblr.lock.off
 		 *
 		 */
-		// eslint-disable-next-line
-		off: function() {
+		off() {
 			// console.info('Tumblr.lock.off');
 
 			// remove loading state to loader if exists
-			// eslint-disable-next-line
-			this.loader.length
-			&& this.loader
-				.removeClass('is-loading');
+			if (this.$loader.length) {
+				this.$loader.removeClass('is-loading');
+			}
 
 			// remove loading state to button if exists
-			// eslint-disable-next-line
-			this.button.length
-			&& this.button
-				.removeClass('is-loading disabled')
-				.prop('disabled', false);
+			if (this.$button.length) {
+				this.$button
+					.removeClass('is-loading disabled')
+					.prop('disabled', false);
+			}
 
 			// add loading state to ajax container if exists
 			// eslint-disable-next-line
-			this.$response.length
-			&& this.$response.removeClass('is-loading');
+			if (this.$response.length) {
+				this.$response.removeClass('is-loading');
+			}
 		},
 
 
@@ -128,27 +126,25 @@ Tumblr.prototype = {
 		 * Tumblr.lock.on
 		 *
 		 */
-		// eslint-disable-next-line
-		on: function() {
+		on() {
 			// console.info('Tumblr.lock.on');
 
 			// add loading state to loader if exist
-			// eslint-disable-next-line
-			this.loader.length
-			&& this.loader
-				.addClass('is-loading');
+			if (this.$loader.length) {
+				this.$loader.addClass('is-loading');
+			}
 
 			// add loading state to button if exists
-			// eslint-disable-next-line
-			this.button.length
-			&& this.button
-				.addClass('is-loading disabled')
-				.prop('disabled', true);
+			if (this.$button.length) {
+				this.$button
+					.addClass('is-loading disabled')
+					.prop('disabled', true);
+			}
 
 			// add loading state to ajax container if exists
-			// eslint-disable-next-line
-			this.$response.length
-			&& this.$response.addClass('is-loading');
+			if (this.$response.length) {
+				this.$response.addClass('is-loading');
+			}
 		},
 	},
 
@@ -191,7 +187,7 @@ Tumblr.prototype = {
 			.find('.response')
 			.append(html.replace(/>\s+</g, '><'));
 
-		$.proxy(this.lock.off, this);
+		return this.lock.off.call(this);
 	},
 
 
