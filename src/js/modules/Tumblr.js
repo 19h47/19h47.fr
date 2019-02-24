@@ -115,7 +115,6 @@ Tumblr.prototype = {
 			}
 
 			// add loading state to ajax container if exists
-			// eslint-disable-next-line
 			if (this.$response.length) {
 				this.$response.removeClass('is-loading');
 			}
