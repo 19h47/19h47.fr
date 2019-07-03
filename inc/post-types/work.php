@@ -36,10 +36,10 @@ class Work {
         $this->register_post_type();
 
         add_action( 'init', array( $this, 'register_post_type' ) );
-        add_action( 'admin_head', array( $this, 'works_css' ) );
-        add_filter( 'dashboard_glance_items', array( $this, 'at_a_glance_works' ) );
+        add_action( 'admin_head', array( $this, 'work_css' ) );
+        add_filter( 'dashboard_glance_items', array( $this, 'at_a_glance_work' ) );
 
-        add_filter('pre_get_posts', array( $this, 'pre_get_works' ), 10);
+        add_filter('pre_get_posts', array( $this, 'pre_get_work' ), 10);
 	}
 
 
@@ -48,21 +48,21 @@ class Work {
 	 */
 	public function register_post_type() {
 		$labels = array(
-			'name'                  => __( 'Works', $this->theme_name ),
+			'name'                  => __( 'Work', $this->theme_name ),
 			'singular_name'         => __( 'Work', $this->theme_name ),
-			'menu_name'             => __( 'Works', $this->theme_name ),
+			'menu_name'             => __( 'Work', $this->theme_name ),
 			'name_admin_bar'        => __( 'Work', $this->theme_name ),
 			'archives'              => __( 'Work Archives', $this->theme_name ),
 			'attributes'			=> __( 'Item Attributes', $this->theme_name ),
 			'parent_item_colon'     => __( 'Parent Work:', $this->theme_name ),
-			'all_items'             => __( 'All works', $this->theme_name ),
+			'all_items'             => __( 'All work', $this->theme_name ),
 			'add_new_item'          => __( 'Add New Work', $this->theme_name ),
 			'add_new'               => __( 'Add New', $this->theme_name ),
 			'new_item'              => __( 'New Work', $this->theme_name ),
 			'edit_item'             => __( 'Edit work', $this->theme_name ),
 			'update_item'           => __( 'Update work', $this->theme_name ),
 	        'view_item'             => __( 'View Work', $this->theme_name ),
-			'view_items'            => __( 'View Works', $this->theme_name ),
+			'view_items'            => __( 'View Work', $this->theme_name ),
 			'search_items'          => __( 'Search Work', $this->theme_name ),
 			'not_found'             => __( 'Not found', $this->theme_name ),
 			'not_found_in_trash'    => __( 'Not found in Trash', $this->theme_name ),
@@ -72,12 +72,12 @@ class Work {
 			'use_featured_image'    => __( 'Use as featured image', $this->theme_name ),
 			'insert_into_item'      => __( 'Insert into work', $this->theme_name ),
 			'uploaded_to_this_item' => __( 'Updloaded to this work', $this->theme_name ),
-			'items_list'            => __( 'Works list', $this->theme_name ),
-			'items_list_navigation' => __( 'Works list navigation', $this->theme_name ),
-			'filter_items_list'     => __( 'Filtrer works list', $this->theme_name ),
+			'items_list'            => __( 'Work list', $this->theme_name ),
+			'items_list_navigation' => __( 'Work list navigation', $this->theme_name ),
+			'filter_items_list'     => __( 'Filtrer work list', $this->theme_name ),
 		);
 		$rewrite = array(
-	        'slug'          => 'works',
+	        'slug'          => 'work',
 	        'with_front'    => false,
 	    );
 		$args = array(
@@ -105,7 +105,7 @@ class Work {
 	}
 
 
-	function works_css() {
+	function work_css() {
 	?>
 	    <style>
 	        #dashboard_right_now .work-count:before { content: "\f322"; }
@@ -136,7 +136,7 @@ class Work {
 	/**
 	 * "At a glance" items (dashboard widget): add the projects.
 	 */
-	function at_a_glance_works( $items ) {
+	function at_a_glance_work( $items ) {
 	    $post_type = 'work';
 	    $post_status = 'publish';
 
@@ -164,12 +164,12 @@ class Work {
 
 
     /**
-     * Pre get works
+     * Pre get work
      *
      * @param  {} $query
      * @return
      */
-    function pre_get_works( $query ) {
+    function pre_get_work( $query ) {
         if ( ! in_array ( $query->get('post_type'), array( 'work' ) ) ) return false;
 
         $query->set( 'meta_key', 'year' );

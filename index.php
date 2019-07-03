@@ -4,7 +4,7 @@
  *
  * @package  	WordPress
  * @subpackage  19h47
- * @author   	Jérémy Levron levronjeremy@19h47.fr
+ * @author   	Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
  */
 
 if ( ! class_exists( 'Timber' ) ) {
@@ -62,26 +62,26 @@ if ( is_404() ) {
 // Single work
 if ( is_singular( 'work' ) ) {
 
-	$works = new WP_Query(
+	$work = new WP_Query(
 		array(
 			'post_type'			=> 'work',
 	        'posts_per_page' 	=> -1
     	)
 	);
 
-   foreach ( $works->posts as $key => $value ) {
+   foreach ( $work->posts as $key => $value ) {
         if ( $value->ID === $post->ID ) {
-            $next_object = $works->posts[$key - 1];
-            $previous_object = $works->posts[$key + 1];
+            $next_object = $work->posts[$key - 1];
+            $previous_object = $work->posts[$key + 1];
         }
     }
 
 	if ( $next_object === NULL) {
-		$next_object = $works->posts[ count( $works->posts ) - 1 ];
+		$next_object = $work->posts[ count( $work->posts ) - 1 ];
 	}
 
 	if ( $previous_object === NULL ) {
-		$previous_object = $works->posts[0];
+		$previous_object = $work->posts[0];
 	}
 
     $context['work']['previous'] = array(

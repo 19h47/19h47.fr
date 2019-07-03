@@ -6,7 +6,7 @@
 			@include fixed( right 0 bottom 0 left 0 );
 
 		}
-		
+
 		@include between( 'xs', 'md' ) {
 
 			@at-root [data-context="front-page"] & {
@@ -27,15 +27,13 @@
 			@extend %Reset-opacity, %Reset-visibility;
 		}
 
-		@at-root [data-context="works"] &.is-on-top {
-
+		@at-root [data-context="archive-work"] &.is-on-top {
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
 		}
 
 		@at-root [data-context="work"] &.is-on-top {
-
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;

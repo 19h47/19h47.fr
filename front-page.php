@@ -4,7 +4,7 @@
  * 
  * @package  	WordPress
  * @subpackage  19h47
- * @author  	Jérémy Levron levronjeremy@19h47.fr
+ * @author  	Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
  */
 if ( ! class_exists( 'Timber' ) ) {
 	echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';

@@ -4,17 +4,17 @@
  *
  * @package 	WordPress
  * @subpackage 	19h47
- * @author 		Jérémy Levron levronjeremy@19h47.fr
+ * @author 		Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
  */
 #}
 {% extends 'index.twig' %}
 
 {% block header %}
 	{% include 'pages/_header.twig' with {
-			'title': 'Works',
-			'link': page_permalink.works,
-			'class': ' ' 
-		} 
+			'title': 'Work',
+			'link': page_permalink.work,
+			'class': ' '
+		}
 	%}
 {% endblock %}
 
@@ -23,7 +23,7 @@
 	<section class="row">
 
 		<div class="col-xs-12 col-md-10 col-md-offset-1">
-			
+
 			<h2 class="Work__title color-white font-bold margin-xs-top-16">
 				{{ post.title }}
 				<sup class="hidden-xs valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
@@ -32,12 +32,12 @@
 			</h2>
 
 		</div>
-		
+
 
 		<div class="col-xs-12 col-md-6 col-md-offset-1">
-			
+
 			<div class="color-white">
-				
+
 				{{ post.content }}
 
 				{% if work.details.link %}
@@ -56,14 +56,14 @@
 						<span data-text="View the repository"></span>
 					</a>
 				{% endif %}
-				
+
 			</div>
-			
+
 		</div>
 
 
 		<aside class="col-xs-12 col-md-3 col-md-offset-1">
-			
+
 			{% if work.details.clients %}
 			<p class="color-white">
 				<span class="uppercase font-size-13 opacity-40 letter-spacing-100 ">
@@ -90,9 +90,9 @@
 			</p>
 
 
-			
+
 		</aside>
-	
+
 		{% for section in post.get_field( 'sections' ) %}
 
 			{% include 'sections/section-' ~ section.acf_fc_layout ~ '.twig' %}
@@ -104,10 +104,10 @@
 {% endblock %}
 
 {% block footer %}
-	
+
 	{# Navigation #}
 	<nav class="row margin-xs-top-64">
-		
+
 		<div class="col-xs-12 col-md-offset-1 col-md-5">
 			<a class="js-work-navigation display-xs-inline-block Work__navigation" href="{{ work.next.link}}" rel="next" data-namespace="work" data-color="{{ work.next.color }}">
 				<span class="color-white font-size-13 uppercase letter-spacing-100 font-medium color-white">	Next work

@@ -15,7 +15,7 @@ import Page from 'Views/Page';
 import WhatInspiresMe from 'Views/WhatInspiresMe';
 import NotFound from 'Views/NotFound';
 import WhatImCurrentlyListeningTo from 'Views/WhatImCurrentlyListeningTo';
-import Works from 'Views/Works';
+import Work from 'Views/Work';
 import CurriculumVitae from 'Views/CurriculumVitae';
 
 FrontPage.init();
@@ -23,7 +23,7 @@ Page.init();
 WhatInspiresMe.init();
 NotFound.init();
 WhatImCurrentlyListeningTo.init();
-Works.init();
+Work.init();
 CurriculumVitae.init();
 
 const classes = require('dom-classes');

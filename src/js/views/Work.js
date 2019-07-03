@@ -1,15 +1,15 @@
 import Barba from 'Vendors/barba.enhanced';
 
 /**
- * Works
+ * Work
  */
 export default Barba.BaseView.extend({
 
-	namespace: 'works',
+	namespace: 'work',
 
 
 	/**
-	 * Works.onEnter
+	 * Work.onEnter
 	 */
 	onEnter() {
 		// The new Container is ready and attached to the DOM.
@@ -17,7 +17,7 @@ export default Barba.BaseView.extend({
 
 
 	/**
-	 * Works.onEnterCompleted
+	 * Work.onEnterCompleted
 	 */
 	onEnterCompleted() {
 		// The Transition has just finished.
@@ -25,7 +25,7 @@ export default Barba.BaseView.extend({
 
 
 	/**
-	 * Works.onLeave description
+	 * Work.onLeave description
 	 */
 	onLeave() {
 		// A new Transition toward a new page has just started.
@@ -33,7 +33,7 @@ export default Barba.BaseView.extend({
 
 
 	/**
-	 * Works.onLeaveCompleted
+	 * Work.onLeaveCompleted
 	 */
 	onLeaveCompleted() {
 		// The Container has just been removed from the DOM.

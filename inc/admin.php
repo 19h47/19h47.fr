@@ -44,7 +44,7 @@ class ADMIN {
 	 *
 	 * @param 	string $content The content that will be printed.
 	 * @see  	https://developer.wordpress.org/reference/hooks/admin_footer_text/
-	 * @author 	Jérémy Levron levronjeremy@19h47.fr
+	 * @author 	Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
 	 */
 	function set_admin_footer_text() {
 
