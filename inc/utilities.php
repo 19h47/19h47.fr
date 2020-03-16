@@ -41,14 +41,14 @@ endif;
 
 if ( ! function_exists( 'html_class' ) ) :
 
-/**
- * Display the classes for the html element.
- *
- * @param string|array $class One or more classes to add to the class list.
- */
-function html_class( $class = '' ) {
-    // Separates classes with a single space, collates classes for html element
-    echo 'class="' . join( ' ', get_html_class( $class ) ) . '"';
-}
+    /**
+     * Display the classes for the html element.
+     *
+     * @param string|array $class One or more classes to add to the class list.
+     */
+    function html_class( $class = '' ) {
+        // Separates classes with a single space, collates classes for html element
+        echo 'class="' . join( ' ', get_html_class( $class ) ) . '"';
+    }
 
 endif;

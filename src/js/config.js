@@ -1,3 +1,4 @@
+/* global $ */
 const select = require('dom-select');
 
 /**

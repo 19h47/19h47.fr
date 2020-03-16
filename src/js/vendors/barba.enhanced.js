@@ -1,7 +1,7 @@
 import Barba from 'barba.js';
 
 
-Barba.Dispatcher.on('linkClicked', (el) => {
+Barba.Dispatcher.on('linkClicked', el => {
 	// store namespace of page to load for later usage
 	const ns = Barba.Pjax.Dom.getNamespace(el);
 
@@ -14,7 +14,7 @@ Barba.Dispatcher.on('linkClicked', (el) => {
 });
 
 
-Barba.Dispatcher.on('initStateChange', (currentStatus) => {
+Barba.Dispatcher.on('initStateChange', currentStatus => {
 	if (!currentStatus.namespace) {
 		// set namespace of future before it's load
 		Barba.Pjax.History.setCurrentNamespace();
@@ -44,7 +44,7 @@ Barba.HistoryManager.getNamespace = function(url) {
 
 	let namespace = null;
 
-	this.history.forEach((state) => {
+	this.history.forEach(state => {
 		if (!namespace && url === state.url) {
 			// eslint-disable-next-line
 			namespace = state.namespace;

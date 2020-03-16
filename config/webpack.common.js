@@ -8,7 +8,7 @@
 const path = require('path');
 
 // Plugins
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
@@ -176,9 +176,7 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new CleanWebpackPlugin(['dist'], {
-			root: resolve('')
-		}),
+		new CleanWebpackPlugin(),
 		new CopyWebpackPlugin([{
 			from: resolve('src/favicons' ),
 			to: 'favicons'

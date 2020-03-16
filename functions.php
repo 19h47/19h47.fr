@@ -90,7 +90,7 @@ class LJ extends TimberSite {
 
         $this->setup();
         $this->load_dependencies();
-        // add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
+        add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
         add_filter( 'timber_context', array( $this, 'add_to_context' ) );
 
         parent::__construct();
@@ -112,21 +112,50 @@ class LJ extends TimberSite {
     }
 
 
-    /**
-     * Add to Twig
-     *
-     * @return  $twig
-     */
-    public function add_to_twig () {
+	/**
+	 * Add to Twig
+	 *
+	 * @param object $twig Twig environment.
+	 * @return object $twig
+	 * @access public
+	 */
+	public function add_to_twig( object $twig ) : object {
 
 		$twig->addFunction(
-			new Twig_SimpleFunction(
+			new Twig_Function(
 				'get_theme_manifest',
 				function() {
 					return $this->theme_manifest;
 				}
 			)
+        );
+        
+        $twig->addFunction(
+			new Twig_Function(
+				'html_class',
+				function ( $args = '' ) {
+					return html_class( $args );
+				}
+			)
+        );
+        
+		$twig->addFunction(
+			new Twig_Function(
+				'body_class',
+				function ( $args = '' ) {
+					return body_class( $args );
+				}
+			)
 		);
+
+        $twig->addFunction(
+			new Twig_Function(
+				'barba_namespace',
+				function () {
+					return barba_namespace();
+				}
+			)
+        );
 
         return $twig;
     }
@@ -203,11 +232,6 @@ class LJ extends TimberSite {
             'work'                           => get_post_type_archive_link( 'work' ),
             'thoughts'                       => get_permalink( get_page_by_path( 'thoughts' ) ),
         );
-
-        $context['body_class'] = TimberHelper::function_wrapper( 'body_class' );
-
-        // Barba
-        $context['barba_namespace'] = TimberHelper::function_wrapper( 'barba_namespace' );
 
         // Age
         $januaryDate = date('01-m-Y');

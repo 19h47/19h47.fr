@@ -1,7 +1,6 @@
 import Barba from 'Vendors/barba.enhanced';
 
-import TweenLite from 'gsap/TweenLite';
-import TimelineLite from 'gsap/TimelineLite';
+import gsap from 'gsap';
 
 import Basic from 'Transitions/Basic';
 
@@ -30,7 +29,7 @@ const WorkToWork = Basic.extend({
 
 		const deferred = Barba.Utils.deferred();
 
-		TweenLite
+		gsap
 			.fromTo(
 				this.oldContainer,
 				1,
@@ -53,7 +52,7 @@ const WorkToWork = Basic.extend({
 	enter() {
 		// console.info('WorkToWork.enter');
 
-		const tl = new TimelineLite({
+		const tl = gsap.timeline({
 			callbackScope: this,
 			onComplete: this.done,
 		});

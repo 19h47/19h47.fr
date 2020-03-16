@@ -11,10 +11,10 @@
 #}
 <!DOCTYPE html>
 <!--[if IE 9]>
-<html {{ fn( 'html_class', 'ie9 no-js no-touch' ) }} {{ language_attributes }}>
+<html {{ html_class( 'ie9 no-js no-touch' ) }} {{ language_attributes }}>
 <![endif]-->
 <!--[if !(IE 9)]><!-->
-<html {{ language_attributes }} {{ fn( 'html_class', 'no-js no-touch' ) }}>
+<html {{ language_attributes }} {{ html_class( 'no-js no-touch' ) }}>
 <!--<![endif]-->
 	<head>
 		<meta charset="{{ site.charset }}">
@@ -79,5 +79,4 @@
 		</header>
 		{% include 'components/transition.twig' %}
 		<main id="barba-wrapper" class="js-wrapper h-xs-100">
-
-				<div {{ body_class( 'barba-container padding-md-bottom-224 padding-xs-top-128' ) }} {{ barba_namespace() }}>
+			<div {{ body_class( 'barba-container padding-md-bottom-224 padding-xs-top-128' ) }} {{ barba_namespace() }}>

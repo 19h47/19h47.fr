@@ -1,10 +1,11 @@
+/* global $ */
 require('polyfill-nodelist-foreach');
 
 /**
  * Navigation
  *
  */
-function Navigation() {
+export default function Navigation() {
 	// Get current url
 	const currentUrl = window.location.href;
 
@@ -14,7 +15,7 @@ function Navigation() {
 	};
 
 	// Remove CSS class 'is-active' from all link
-	links.all.forEach((link) => {
+	links.all.forEach(link => {
 		link.classList.remove('is-active');
 	});
 
@@ -23,5 +24,3 @@ function Navigation() {
 		$(this).addClass('is-active');
 	});
 }
-
-module.exports = Navigation;

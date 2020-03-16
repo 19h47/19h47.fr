@@ -1,3 +1,5 @@
+/* global $ */
+
 import Mustache from 'mustache';
 
 const config = require('../config');

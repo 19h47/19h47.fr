@@ -1,7 +1,6 @@
 import Barba from 'Vendors/barba.enhanced';
 
-import TweenLite from 'gsap/TweenLite';
-import TimelineLite from 'gsap/TimelineLite';
+import gsap from 'gsap';
 
 
 /**
@@ -29,7 +28,7 @@ const Basic = Barba.BaseTransition.extend({
 
 		const deferred = Barba.Utils.deferred();
 
-		TweenLite
+		gsap
 			.fromTo(
 				this.oldContainer,
 				1,
@@ -51,7 +50,7 @@ const Basic = Barba.BaseTransition.extend({
 	 */
 	enter() {
 		// console.info('Basic.fade.in');
-		const tl = new TimelineLite({
+		const tl = gsap.timeline({
 			callbackScope: this,
 			onComplete: this.done,
 		});

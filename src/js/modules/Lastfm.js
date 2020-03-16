@@ -1,3 +1,4 @@
+/* global $ */
 import Mustache from 'mustache';
 
 /**
@@ -135,7 +136,7 @@ Lastfm.prototype = {
 			const template = $('#track').html();
 			let output = '';
 
-			response.recenttracks.track.forEach((track) => {
+			response.recenttracks.track.forEach(track => {
 				output += Mustache.render(template, {
 					image: track.image[3]['#text'],
 					artist: track.artist['#text'],

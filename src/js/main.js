@@ -1,3 +1,4 @@
+/* global $ */
 import Barba from 'Vendors/barba.enhanced';
 
 // Modules
@@ -53,7 +54,7 @@ const watchers = new Watchers();
 // Barba
 Barba.Dispatcher.on('linkClicked', (HTMLElement, MouseEvent) => {
 	// console.dir(HTMLElement);
-	if (HTMLElement.dataset.namespace !== 'work') {
+	if ('work' !== HTMLElement.dataset.namespace) {
 		config.transition.removeAttribute('style');
 	}
 
@@ -132,7 +133,7 @@ Barba.Pjax.getTransition = function() {
 		Barba.Pjax.History.setCurrentNamespace();
 	}
 
-	if (previousStatus.namespace === 'work' && currentStatus.namespace === 'work') {
+	if ('work' === previousStatus.namespace && 'work' === currentStatus.namespace) {
 		return WorkToWork;
 	}
 

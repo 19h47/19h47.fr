@@ -1,3 +1,4 @@
+/* global $ */
 const css = require('dom-css');
 const config = require('../config');
 
@@ -26,7 +27,7 @@ App.prototype = {
 
 		// disable scroll on touch devices as well
 		if (config.is.touch) {
-			document.addEventListener('touchmove.app', (e) => {
+			document.addEventListener('touchmove.app', e => {
 				e.preventDefault();
 			});
 		}
@@ -39,13 +40,13 @@ App.prototype = {
 	 * @param  position
 	 */
 	enableScroll(position) {
-		if (typeof position === 'undefined') {
+		if ('undefined' === typeof position) {
 			// eslint-disable-next-line
 			position = config.body.scroll.top;
 		}
 
 		let resumeScroll = true;
-		if (typeof position === 'boolean' && position === false) {
+		if ('boolean' === typeof position && false === position) {
 			resumeScroll = false;
 		}
 
@@ -72,11 +73,11 @@ App.prototype = {
 	 * @param  positionY
 	 */
 	resetScroll(positionX, positionY) {
-		if (typeof positionX !== 'undefined') {
+		if ('undefined' !== typeof positionX) {
 			config.body.scroll.left = parseInt(positionX, 10);
 		}
 
-		if (typeof positionY !== 'undefined') {
+		if ('undefined' !== typeof positionY) {
 			config.body.scroll.top = parseInt(positionY, 10);
 		}
 
@@ -99,7 +100,7 @@ App.prototype = {
 	 * @param 	state
 	 * @author 	Julien Vasseur julien@poigneedemainvirile.com
 	 */
-	removeState: (state) => {
+	removeState: state => {
 		const deferred = new $.Deferred();
 
 		config.body.$.removeClass(state);

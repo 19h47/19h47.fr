@@ -1,7 +1,9 @@
+/* global $ */
+
 /**
  * Paint
  */
-function Paint(canvas) {
+export default function Paint(canvas) {
 	// console.info('Paint');
 
 	// Feature
@@ -100,7 +102,7 @@ Paint.prototype = {
 			window.addEventListener('resize', $.proxy(this.resize, this));
 
 			// save button
-			this.$button.save.on('click.paint', (e) => {
+			this.$button.save.on('click.paint', e => {
 				// get the current ImageData for the canvas.
 				// var compositeOperation = this.context.globalCompositeOperation;
 
@@ -145,7 +147,7 @@ Paint.prototype = {
 		};
 
 
-		document.onmousedown = (e) => {
+		document.onmousedown = e => {
 			this.isDrawing = true;
 
 			this.points.push({
@@ -156,7 +158,7 @@ Paint.prototype = {
 			this.$button.instruction.removeClass('is-active');
 		};
 
-		document.onmousemove = (e) => {
+		document.onmousemove = e => {
 			if (!this.isDrawing) return;
 
 			this.points.push({
@@ -254,7 +256,7 @@ Paint.prototype = {
 		// console.info('Paint.offsetPoints');
 		const offsetPoints = [];
 
-		this.points.forEach((point) => {
+		this.points.forEach(point => {
 			offsetPoints.push({
 				x: point.x + val,
 				y: point.y + val,
@@ -264,5 +266,3 @@ Paint.prototype = {
 		return offsetPoints;
 	},
 };
-
-module.exports = Paint;

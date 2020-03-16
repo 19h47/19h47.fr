@@ -1,6 +1,8 @@
+/* global $ */
+
 const Mustache = require('mustache');
 
-function Tumblr(element) {
+export default function Tumblr(element) {
 	if (!(this instanceof Tumblr)) {
 		return new Tumblr();
 	}
@@ -162,8 +164,8 @@ Tumblr.prototype = {
 
 		Mustache.parse(template);
 
-		currentPosts.forEach((post) => {
-			if (post.type !== 'photo') {
+		currentPosts.forEach(post => {
+			if ('photo' !== post.type) {
 				return;
 			}
 
@@ -205,5 +207,3 @@ Tumblr.prototype = {
 			.toggle(this.posts.offset <= this.posts.count);
 	},
 };
-
-module.exports = Tumblr;
