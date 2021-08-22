@@ -1,87 +1,85 @@
 {#
-
-	/**
-	 * /views/footer
-	 *
-	 * @package WordPress
-	 * @subpackage 19h47
-	 * @author Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
-	 */
-
-#}
+ #
+ # /views/footer
+ #
+ # @package WordPress
+ # @subpackage 19h47
+ # @author Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
+ #
+ #}
 			</div>
 
 	</main>
 
-	<footer class="js-footer l-footer margin-xs-bottom-64 margin-xs-top-32">
+	<footer class="js-footer l-footer padding-bottom-64 padding-top-32">
 		<div class="l-container">
 
 			<div class="row">
 
-				<div class="col-xs-12 col-md-2 col-md-offset-1">
-					<p class="font-size-18 no-margin-xs no-margin-sm">
-						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.who_i_am }}">
+				<div class="col-md-2 offset-md-1">
+					<p class="font-size-18 margin-0">
+						<a class="display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.who_i_am }}">
 							{{- __( 'Who I am' ) -}}
-							<span data-text="Who I am"></span>
+							<span data-text="{{- __( 'Who I am' ) -}}"></span>
 						</a>
 						<br>
-						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.work }}">
+						<a class="display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.work }}">
 							{{- __( 'Work' ) -}}
-							<span data-text="Work"></span>
+							<span data-text="{{- __( 'Work' ) -}}"></span>
 						</a>
-						<br>
+						<br/ >
 
 					</p>
 				</div>
-				<div class="col-xs-12 col-md-3">
-					<p class=" font-size-18 no-margin-xs no-margin-sm">
+				<div class="col-md-3">
+					<p class=" font-size-18 margin-0">
 
-						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.what_im_currently_listening_to }}">
-							{{- __( 'What I\'m currently listening to' ) -}}
-							<span data-text="What I'm currently listening to"></span>
+						<a class="display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.what_im_currently_listening_to }}">
+							{{- __( "What I\'m currently listening to", '19h47' ) -}}
+							<span data-text="{{- __( "What I\'m currently listening to", '19h47' ) -}}"></span>
 						</a>
 						<br>
-						<a class="display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.what_inspires_me }}">
-							{{- __( 'What inspires me' ) -}}
-							<span data-text="What inspires me"></span>
+						<a class="display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.what_inspires_me }}">
+							{{- __( 'What inspires me', '19h47' ) -}}
+							<span data-text="{{- __( 'What inspires me', '19h47' ) -}}"></span>
 						</a>
 
-						<br class="hidden-md hidden-lg">
-						<a class="hidden-md hidden-lg display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.thoughts }}">
-							{{- __( 'Thoughts' ) -}}
-							<span data-text="Thoughts"></span>
+						<br class="display-md-none">
+						<a class="display-md-none display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.thoughts }}">
+							{{- __( 'Thoughts', '19h47' ) -}}
+							<span data-text="{{- __( 'Thoughts', '19h47' ) -}}"></span>
 						</a>
 					</p>
 				</div>
 
 
 
-				<div class="col-xs-12 col-md-3">
-					<p class=" font-size-18">
-						<a class="display-xs-inline-block valign-baseline Link-layer" href="https://twitter.com/19h47" target="_blank">
-							{{- __( 'Twitter'  ) -}}
-							<span data-text="Twitter"></span>
+				<div class="col-md-3">
+					<p class="font-size-18 margin-0">
+						<a class="display-inline-block vertical-align-baseline Link-layer" href="https://twitter.com/19h47" target="_blank" rel="noopener noreferer">
+							{{- __( 'Twitter', '19h47'  ) -}}
+							<span data-text="{{- __( 'Twitter', '19h47'  ) -}}"></span>
 						</a>
 						<br>
-						<a class="display-xs-inline-block valign-baseline Link-layer" href="https://github.com/19h47" target="_blank">
-							{{- __( 'Github'  ) -}}
-							<span data-text="Github"></span>
+						<a class="display-inline-block vertical-align-baseline Link-layer" href="https://github.com/19h47" target="_blank" rel="noopener noreferer">
+							{{- __( 'Github', '19h47' ) -}}
+							<span data-text="{{- __( 'Github', '19h47' ) -}}"></span>
 						</a>
 					</p>
 				</div>
 
 				{# Paint control #}
-				<div class="col-xs-12 col-md-2 hidden-xs hidden-sm">
-					<p class=" font-size-18">
+				<div class="col-md-2 display-none display-lg-block">
+					<p class="font-size-18 margin-0">
 
-						<a class="js-save Paint__control display-xs-inline-block valign-baseline Link-layer" href="#" target="_blank">
-							{{- __( 'Save me'  ) -}}
-							<span data-text="Save me"></span>
+						<a class="js-save Paint__control display-inline-block vertical-align-baseline Link-layer" href="#" target="_blank">
+							{{- __( 'Save me', '19h47'  ) -}}
+							<span data-text="{{- __( 'Save me', '19h47'  ) -}}"></span>
 						</a>
 						<br>
-						<button class="js-clear Paint__control display-xs-inline-block valign-baseline Link-layer js-navigation">
-							{{- __( 'Clear me' ) -}}
-							<span data-text="Clear me"></span>
+						<button class="js-clear Paint__control display-inline-block vertical-align-baseline Link-layer js-navigation">
+							{{- __( 'Clear me', '19h47' ) -}}
+							<span data-text="{{- __( 'Clear me', '19h47' ) -}}"></span>
 						</button>
 
 					</p>
@@ -89,17 +87,16 @@
 			</div>
 
 			<div class="row">
-				<div class="col-xs-12 col-md-5 col-md-offset-1">
-
-					<p class="font-size-13 uppercase letter-spacing-100 font-medium ">
-						{{- __( 'Creative front-end developer' ) -}}
+				<div class="col-md-5 offset-md-1">
+					<p class="font-size-13 uppercase letter-spacing-100 font-weight-medium">
+						{{- __( 'Front-end developer', '19h47' ) -}}
 					</p>
 				</div>
 
-				<div class="col-xs-12 col-md-5 text-md-right">
-					<p class="font-size-13 uppercase letter-spacing-100 font-medium ">
+				<div class="col-md-5 text-align-md-right">
+					<p class="font-size-13 uppercase letter-spacing-100 font-weight-medium">
 						{# {{ "now"|date("l, d F, Y") }} #}
-						{{- __( 'Born' ) }} {{ age }} {{ __( 'years ago' ) -}}
+						{{- __( 'Born', '19h47' ) }} {{ age }} {{ __( 'years ago', '19h47' ) -}}
 					</p>
 				</div>
 
@@ -108,6 +105,6 @@
 		</div>
 	</footer>
 	{{ wp_footer }}
-	{% include 'components/guid.twig' %}
+	{{- include( 'components/guid.twig' ) -}}
 </body>
 </html>

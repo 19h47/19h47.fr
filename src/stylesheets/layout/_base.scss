@@ -1,17 +1,18 @@
 .l {
-
 	/**
 	 * Layout container
 	 *
 	 * The fluid container of the grid
-	 * 
+	 *
 	 * @uses .l-container
 	 */
 	&-container {
-		@extend %position-xs-relative;
-		@include padding( right $grid-outer-gutter-width left $grid-outer-gutter-width);
-		@include margin( top 0 right auto bottom 0 left auto );
-		
+		@extend %position-relative;
+		@include padding(
+			right $grid-outer-gutter-width left $grid-outer-gutter-width
+		);
+		@include margin(top 0 right auto bottom 0 left auto);
+
 		// max-width: $container-width;
 		max-width: 100%;
 	}
@@ -22,22 +23,17 @@
  */
 [data-context="front-page"] {
 	user-select: none;
-
 }
-
 
 /**
  * What I think
  */
 [data-context="thoughts"] {
-
 	.wp-caption {
-		@include margin( 
-			top ( ( $base-line-height / $base-font-size ) * 1em )
-			right auto 
-        		bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-        		left auto
-    		);
+		@include margin(
+			top (($base-line-height / $base-font-size) * 1em) right auto bottom
+				((($base-line-height / $base-font-size) / 2) * 1em) left auto
+		);
 
 		max-width: 100%;
 
@@ -46,7 +42,10 @@
 		}
 
 		&-text {
-			@extend %display-xs-block, %font-size-13, %font-regular, %text-xs-right;
+			@extend %display-block,
+				%font-size-13,
+				%font-weight-regular,
+				%text-align-right;
 		}
 	}
 }
@@ -60,12 +59,11 @@
 	}
 }
 
-
 .Transition {
 	@extend %Position-fixed-center;
-	@extend .background-black;
+	@extend .background-color-black;
 
-	transform: translate3d( -100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
 	transition: 1s ease;
 	overflow: hidden;
 	z-index: 9;
@@ -76,25 +74,22 @@
 
 	@at-root [data-context="thoughts"] {
 		background: {
-			color: get_color( white );
+			color: the_color(white);
 		}
 	}
 }
 
 .Work {
-	
 	/**
 	 * Work archive
 	 *
 	 * @uses .Work-archive
 	 */
 	&-archive {
-
 		&__color {
+			@extend %display-block;
 
-			@extend %display-xs-block;
-
-			@include padding( top 100% );
+			@include padding(top 100%);
 
 			// border: {
 			// 	radius: 100%;
@@ -102,44 +97,38 @@
 		}
 	}
 
-
 	/**
 	 * Title
 	 */
 	&__title {
 		@extend .h3;
-		
-		@include from( 'md' ) {
-			
+
+		@include media-breakpoint-up(md) {
 			$line-height: 64;
 			$font-size: 57;
 
-			@include margin (
-			    top ( ( $line-height / $font-size ) * 1em )
-			    bottom ( ( $line-height / $font-size ) / 2 ) * 1em
+			@include margin(
+				top (($line-height / $font-size) * 1em) bottom
+					(($line-height / $font-size) / 2) * 1em
 			);
 			font: {
-			    size: ( $font-size / 10 ) * 1rem;
+				size: ($font-size / 10) * 1rem;
 			}
-			line-height: $line-height / $font-size; 
+			line-height: $line-height / $font-size;
 		}
-
 	}
 
-	
 	/**
 	 * Navigation
 	 */
 	&__navigation {
-
 		&:hover {
 			.Link-layer {
-
 				span {
 					@extend %Reset-translate3d;
 
 					&::before {
-						transform: translate3d( 0, 0, 0 );
+						transform: translate3d(0, 0, 0);
 					}
 				}
 			}

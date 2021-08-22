@@ -1,0 +1,150 @@
+{
+    "key": "group_58f396dca8c71",
+    "title": "Details",
+    "fields": [
+        {
+            "key": "field_58f396e002937",
+            "label": "Year",
+            "name": "year",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y",
+            "return_format": "Y",
+            "first_day": 1,
+            "show_column": 1,
+            "show_column_weight": 0,
+            "allow_quickedit": 1,
+            "allow_bulkedit": 0
+        },
+        {
+            "key": "field_58f3970702938",
+            "label": "Color",
+            "name": "color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "show_column": 1,
+            "show_column_weight": 1000,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0
+        },
+        {
+            "key": "field_58f3b4fa5b54f",
+            "label": "Client",
+            "name": "client",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "post_tag",
+            "field_type": "multi_select",
+            "allow_null": 0,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 0,
+            "return_format": "object",
+            "show_column": 0,
+            "show_column_weight": 0,
+            "multiple": 0
+        },
+        {
+            "key": "field_58f3b55b5cbc8",
+            "label": "Role",
+            "name": "role",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "post_tag",
+            "field_type": "multi_select",
+            "allow_null": 0,
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 0,
+            "return_format": "object",
+            "show_column": 0,
+            "show_column_weight": 0,
+            "multiple": 0
+        },
+        {
+            "key": "field_58f3d180e0361",
+            "label": "Link",
+            "name": "link",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_590457da2e2d7",
+            "label": "Repository",
+            "name": "repository",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "show_column": 0,
+            "show_column_weight": 0,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "work"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "tags"
+    ],
+    "active": true,
+    "description": "Work details",
+    "modified": 1629631958
+}

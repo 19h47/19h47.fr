@@ -30,24 +30,24 @@
 
 	</head>
 	<body class="page--is-loading">
-		<header class="l-header margin-xs-top-64 margin-xs-bottom-32">
+		<header class="l-header padding-top-64 padding-bottom-32">
 			<div class="l-container">
 
 
 				<div class="row">
 
-					<div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-1">
-						<h1 class="font-medium font-size-24 line-height-32 no-margin z-index-1 position-xs-relative">
+					<div class="col-sm-6 col-md-4 offset-md-1">
+						<h1 class="font-weight-medium font-size-24 line-height-32 margin-0 z-index-1 position-relative">
 							<a href="{{ site.url }}">
-								Jérémy Levron<sup class="valign-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-medium">{{ site.name }}</sup>
+								Jérémy Levron<sup class="vertical-align-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-weight-medium">{{ site.name }}</sup>
 							</a>
 						</h1>
 					</div>
 
 
 					{# Who I am link #}
-					<div class="col-xs-2 col-lg-1 col-lg-offset-3 hidden-xs text-xs-right text-lg-center">
-						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
+					<div class="col-2 col-lg-1 offset-lg-3 display-none display-md-block text-align-right text-align-lg-center">
+						<a class="margin-0 font-size-13 line-height-32 uppercase letter-spacing-100 font-weight-medium display-inline-block Link-layer js-navigation" href="{{ page_permalink.who_i_am }}" data-namespace="who-i-am">
 							{{- __( 'Who I am' ) -}}
 							<span data-text="Who I am"></span>
 						</a>
@@ -55,17 +55,17 @@
 
 
 					{# Work #}
-					<div class="col-xs-2 col-lg-1 hidden-xs text-xs-right text-lg-center">
-						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.work }}" data-namespace="work">
+					<div class="col-2 col-lg-1 display-none display-md-block text-align-right text-align-lg-center">
+						<a class="margin-0 font-size-13 line-height-32 uppercase letter-spacing-100 font-weight-medium display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.work }}" data-namespace="work">
 							{{- __( 'Work' ) -}}
 							<span data-text="Work"></span>
 						</a>
 					</div>
 
 					{# What I think #}
-					<div class="col-xs-2 col-lg-1 hidden-xs text-xs-right text-lg-center">
+					<div class="col-2 col-lg-1 display-none display-md-block text-align-right text-align-lg-center">
 
-						<a class="no-margin font-size-13 line-height-32 uppercase letter-spacing-100 font-medium display-xs-inline-block valign-baseline Link-layer js-navigation" href="{{ page_permalink.thoughts }}" data-namespace="what-i-think">
+						<a class="margin-0 font-size-13 line-height-32 uppercase letter-spacing-100 font-weight-medium display-inline-block vertical-align-baseline Link-layer js-navigation" href="{{ page_permalink.thoughts }}" data-namespace="what-i-think">
 							{{- __( 'Thoughts' ) -}}
 							<span data-text="Thoughts"></span>
 
@@ -77,6 +77,6 @@
 
 			</div>
 		</header>
-		{% include 'components/transition.twig' %}
-		<main id="barba-wrapper" class="js-wrapper h-xs-100">
-			<div {{ body_class( 'barba-container padding-md-bottom-224 padding-xs-top-128' ) }} {{ barba_namespace() }}>
+		{{- include( 'components/transition.twig' ) -}}
+		<main id="barba-wrapper" class="js-wrapper h-100">
+			<div {{ body_class( 'barba-container padding-bottom-md-224 padding-top-128' ) }} {{ barba_namespace() }}>

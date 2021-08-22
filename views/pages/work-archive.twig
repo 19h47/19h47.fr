@@ -11,7 +11,7 @@
 
 
 {% block start_wrapper %}
-	<div class="margin-xs-top-64 margin-xs-bottom-64">
+	<div class="margin-top-64 margin-bottom-64">
 {% endblock %}
 
 
@@ -21,53 +21,42 @@
 
 
 {% block content %}
-
-	<section class="row">
-
-		
-		<div class="col-xs-12">
 			
-			{% for post in posts %}
-			<div class="row margin-xs-top-32 margin-xs-bottom-32">
-				<div class="col-xs-1 col-xs-offset-1 hidden-xs hidden-sm">
-					
-					<a class="js-to-work-single Work-archive__color" href="{{ post.link }}" style="background-color: {{ post.get_field( 'color' ) }}"  data-namespace="page" data-color="{{ post.get_field( 'color' ) }}">
-						
-					</a>
+	{% for post in posts %}
+		<div class="row margin-top-32 margin-bottom-32">
+			<div class="col-1 offset-1 d-none d-md-block">
+				
+				<a class="js-to-work-single Work-archive__color" href="{{ post.link }}" style="background-color: {{ post.get_field( 'color' ) }}" data-namespace="page" data-color="{{ post.get_field( 'color' ) }}"></a>
 
-				</div>
-				<div class="col-xs-12 col-md-9">
-					<p class="color-white margin-xs-top-8 no-margin-bottom">
-						<span class="font-medium">
-							<a class="js-to-work-single" href="{{ post.link }}" data-namespace="page" data-color="{{ post.get_field( 'color' ) }}">{{ post.title }}</a>
-							<sup class="hidden-xs valign-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-medium">
-								{{ post.year|date( 'Y' ) }}
-							</sup>
-						</span>
-						<br/>
-						<span class="font-light">
-							{% for role in post.get_field( 'role' ) %}
-								{{ role.name }}{{ not loop.last ? ', ' }}
-							{% endfor %}
-						</span>
-					</p>
-				</div>
 			</div>
-			{% endfor %}
+			<div class="col-md-9">
+				<p class="color-white margin-top-8 margin-bottom-0">
+					
+						<a class="js-to-work-single font-weight-medium" href="{{ post.link }}" data-namespace="page" data-color="{{ post.get_field( 'color' ) }}">{{ post.title }}</a>
+						<sup class="hidden-xs vertical-align-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-weight-medium">
+							{{ post.meta( 'year' ) | date( 'Y' ) }}
+						</sup>
+				</p>
+					
 
+					{% if post.meta( 'role' ) %}
+						<p class="font-weight-light margin-0">
+							{{- post.meta( 'role' ) | map( role => role.name ) | join( ', ' ) -}}
+						</p>
+					{% endif %}
+			</div>
 		</div>
-		
-	</section> 
+	{% endfor %}
 
 {% endblock %}
 
 {% block footer %}
 
 	<footer class="row">
-		<div class="col-xs-12 col-md-10 col-md-offset-1">
-			<p class="color-white font-light">
+		<div class="col-md-10 offset-md-1">
+			<p class="color-white font-weight-light">
 				<small>	
-					This <a class="font-medium" href="https://github.com/19h47/19h47.fr" target="_blank" rel="noopener">website</a> is created with <a class="font-medium" href="https://wordpress.org/" target="_blank" rel="noopener">WordPress</a>, <a class="font-medium" href="https://upstatement.com/timber/" target="_blank" rel="noopener">Timber</a>, <a class="font-medium" href="http://barbajs.org/" target="_blank" rel="noopener">Barba.js</a>. Typeface is <a class="font-medium" href="https://fonts.google.com/specimen/Work+Sans" target="_blank" rel="noopener">Work Sans</a>.
+					This <a class="font-weight-medium" href="https://github.com/19h47/19h47.fr" target="_blank" rel="noopener noreferer">website</a> is created with <a class="font-weight-medium" href="https://wordpress.org/" target="_blank" rel="noopener noreferer">WordPress</a>, <a class="font-weight-medium" href="https://upstatement.com/timber/" target="_blank" rel="noopener noreferer">Timber</a>, <a class="font-weight-medium" href="http://barbajs.org/" target="_blank" rel="noopener">Barba.js</a>. Typeface is <a class="font-weight-medium" href="https://fonts.google.com/specimen/Work+Sans" target="_blank" rel="noopener noreferer">Work Sans</a>.
 				</small>
 			</p>
 		</div>

@@ -2,12 +2,9 @@
  * Paint
  */
 .Paint {
-	
 	@at-root body:not([data-context="front-page"]) & {
-
-		@extend %display-xs-none;
+		@extend %display-none;
 	}
-
 
 	/**
 	 * Instruction
@@ -15,19 +12,16 @@
 	 * @uses .Paint__instruction
 	 */
 	&__instruction {
-	
 		opacity: 0;
 		transition: $ease-transition;
 		visibility: hidden;
-
 
 		&.is-active {
 			opacity: initial;
 			@extend %Reset-visibility;
 		}
 	}
-	
-	
+
 	/**
 	 * Control
 	 * @uses .Paint__control
@@ -38,7 +32,6 @@
 		visibility: hidden;
 
 		@at-root [data-context="front-page"] & {
-
 			@extend %Reset-opacity, %Reset-visibility;
 		}
 	}

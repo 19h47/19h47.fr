@@ -1,14 +1,14 @@
 {
-    "name": "19h47/19h47",
-    "description": "19h47's WordPress theme",
-    "type": "wordpress-theme",
-    "authors": [
-        {
-            "name": "Jérémy Levron",
-            "email": "jeremylevron@19h47.fr"
-        }
-    ],
-    "require": {
-        "timber/timber": "^1.15"
+  "name": "19h47/19h47",
+  "description": "19h47's WordPress theme",
+  "type": "wordpress-theme",
+  "authors": [
+    {
+      "name": "Jérémy Levron",
+      "email": "jeremylevron@19h47.fr"
     }
+  ],
+  "require": {
+    "timber/timber": "^1.18"
+  }
 }

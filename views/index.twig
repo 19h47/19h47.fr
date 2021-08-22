@@ -1,8 +1,8 @@
 {#
-	/**
-	 * /views/index
-	 */
-#}
+ #
+ # /views/index
+ #
+ #}
 
 {# Header #}
 {% include 'header/base.twig' %}
@@ -13,7 +13,7 @@
 
 		{% block start_wrapper %}
 
-			<div class="js-page margin-xs-top-64 margin-xs-bottom-64" data-post-slug="{{ post.slug }}">
+			<div class="js-page margin-top-64 margin-bottom-64" data-post-slug="{{ post.slug }}">
 
 		{% endblock %}
 		
@@ -22,14 +22,14 @@
 		{% block header %}
 
 			<header class="row">
-				<div class="js-title col-xs-12 col-md-10 col-md-offset-1"></div>
+				<div class="js-title col-md-10 offset-md-1"></div>
 			</header>
 
 			<script id="page-title" type="x-tmpl-mustache">
 				
 				{% verbatim %}
 			
-					<p class="opacity-40 font-size-13 uppercase letter-spacing-100 font-medium">
+					<p class="opacity-40 font-size-13 uppercase letter-spacing-100 font-weight-medium">
 						{{{ title }}}
 						<span data-text="{{ title }}"></span>
 					</p>
@@ -44,14 +44,14 @@
 		{% block content %}
 
 			<section class="row">
-				<div class="js-content col-xs-12 col-md-10 col-md-offset-1"></div>
+				<div class="js-content col-md-10 offset-md-1"></div>
 			</section> 
 			
 			<script id="page-content" type="x-tmpl-mustache">
 				
 				{% verbatim %}
 
-					<div class="font-light">
+					<div class="font-weight-light">
 						{{{ content }}}
 					</div>
 

@@ -1,7 +1,7 @@
 {# 
-	/**
-	 * /views/sections/section-full
-	 */
+ #
+ # /views/sections/section-full
+ #
  #}
 
-{% include 'sections/content-' ~ section.type ~ '.twig' %}
+{{- include( 'sections/content-' ~ section.type ~ '.twig' ) -}}

@@ -1,50 +1,18 @@
-// Core variables and mixins
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+// bootstrap-custom.scss
 
-// Reset and dependencies
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/normalize";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/print";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/glyphicons";
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "~bootstrap/scss/functions";
 
-// Core CSS
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/scaffolding";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/type";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/code";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/grid";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/tables";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/forms";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+// 2. Include any default variable overrides here
+@import "bootstrap-variables";
 
-// Components
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/navs";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/navbar";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/breadcrumbs";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/pagination";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/pager";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/labels";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/badges";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/jumbotron";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/thumbnails";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/alerts";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/media";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/list-group";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/panels";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/wells";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/close";
+// 3. Include remainder of required Bootstrap stylesheets
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
-// Components w/ JavaScript
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/modals";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/tooltip";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/popovers";
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/carousel";
+// 4. Include any optional Bootstrap components as you like
+@import "~bootstrap/scss/grid";
+// @import '~bootstrap/scss/utilities';
+@import "~bootstrap/scss/utilities/api";
 
-// Utility classes
-// @import "bootstrap-sass/assets/stylesheets/bootstrap/utilities";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-utilities";
+// 5. Add additional custom code here

@@ -3,147 +3,306 @@
  */
 
 html {
-    @extend %w-xs-100;
-    overflow-y: visible; // reset value from ress.css
+	@extend %w-100;
+	overflow-y: visible; // reset value from ress.css
 }
 
 body {
-    font-size: 62.5%;
-    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
-    background: {
-        color: get_color( black );
-    }
-    color: get_color( white );
-    transition: $ease-transition 1s;
-    
-    &[data-context="curriculum-vitae"],
-    &[data-context="thoughts"] {
-        background: {
-            color: get_color( white );
-        }
-        color: get_color( black );
-    }
+	@extend %font-family-body;
 
-    &.page--is-loading {
-        cursor: progress !important;
-        cursor: wait !important;
-    }
+	font-size: 62.5%;
+	line-height: (($base-line-height / $base-font-size) * 1em);
+	background: {
+		color: the_color(black);
+	}
+	color: the_color(white);
+	transition: $ease-transition 1s;
 
-    @include from('hd') {
-        font-size: 3.157em;
-    }
+	&[data-context="curriculum-vitae"],
+	&[data-context="thoughts"] {
+		background: {
+			color: the_color(white);
+		}
+		color: the_color(black);
+	}
+
+	&.page--is-loading {
+		cursor: progress !important;
+		cursor: wait !important;
+	}
+
+	@include media-breakpoint-up(hd) {
+		font-size: 3.157em;
+	}
 }
 
-a, 
+a,
 button {
-    cursor: pointer;
-    outline: none;
+	cursor: pointer;
+	outline: none;
 }
 
 a {
-    color: currentColor;
-    text-decoration: none;
+	color: currentColor;
+	text-decoration: none;
 }
 
 i {
-    @extend %font-style-normal!optional;
+	@extend %font-style-normal!optional;
 }
 
-b, 
+b,
 strong {
-    font-weight: map-get( $font-weight, medium );
+	@extend %font-weight-medium;
 }
 
 p {
-    @include margin ( 
-        top ( ( $base-line-height / $base-font-size ) * 1em ) 
-        bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-    );
-    
-    font-size: 1em;
-    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+	@include margin(
+		top (($base-line-height / $base-font-size) * 1em) bottom
+			((($base-line-height / $base-font-size) / 2) * 1em)
+	);
+
+	font-size: 1em;
+	line-height: (($base-line-height / $base-font-size) * 1em);
 }
 
 ul,
 ol {
-    @include margin ( 
-        top ( ( $base-line-height / $base-font-size ) * 1em ) 
-        right 0
-        bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-        left 0
-    );
-    @include padding ( 
-        top 0 
-        right 0 
-        bottom 0 
-        left ( ( $base-line-height / $base-font-size ) * 1em ) 
-    );
+	@include margin(
+		top (($base-line-height / $base-font-size) * 1em) right 0 bottom
+			((($base-line-height / $base-font-size) / 2) * 1em) left 0
+	);
+	@include padding(
+		top 0 right 0 bottom 0 left
+			(($base-line-height / $base-font-size) * 1em)
+	);
 }
 
 ul {
-    // list-style-type: none;
+	// list-style-type: none;
 }
 
 li {
-    @include margin ( 
-        top ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-        right 0 
-        bottom ( ( ( $base-line-height / $base-font-size ) / 4 ) * 1em )
-        left 0 
-    );
+	@include margin(
+		top ((($base-line-height / $base-font-size) / 2) * 1em) right 0 bottom
+			((($base-line-height / $base-font-size) / 4) * 1em) left 0
+	);
 }
 
 hr {
-    @extend %no-margin;
-    
-    border: 0;
+	@extend %margin-0;
+
+	border: 0;
 }
 
 em {
-
-    font: 
-    {
-        style: italic;
-    }
+	font: {
+		style: italic;
+	}
 }
 
 iframe {
-    border: 0;
+	border: 0;
 }
 
 blockquote {
-    // Extend class
-    @extend .font-title, .font-regular; 
+	// Extend class
+	@extend %font-family-title, %font-weight-regular;
 
-    // Include mixin
-    @include margin ( 
-        top ( ( $base-line-height / $base-font-size ) * 1em )
-        right 0 
-        bottom ( ( ( $base-line-height / $base-font-size ) / 2 ) * 1em )
-        left 0 
-    );
+	// Include mixin
+	@include margin(
+		top (($base-line-height / $base-font-size) * 1em) right 0 bottom
+			((($base-line-height / $base-font-size) / 2) * 1em) left 0
+	);
 
-    // Include padding
-    @include padding ( 
-        top 20px 
-        left ( $grid-outer-gutter-width * 2 ) 
-        bottom 20px 
-    );
+	// Include padding
+	@include padding(top 20px left ($grid-outer-gutter-width * 2) bottom 20px);
 
-    border: {
-        left: {
-            color: currentColor;
-            style: solid;
-            width: 10px;
-        }
-    }
+	border: {
+		left: {
+			color: currentColor;
+			style: solid;
+			width: 10px;
+		}
+	}
 
-    p {
-        @extend .no-margin;
-    }
+	p {
+		@extend %margin-0;
+	}
 }
 
 [disabled],
 a.disabled {
-    pointer-events: none;
+	pointer-events: none;
+}
+
+.img-full {
+	@include size(auto);
+	@include margin(right auto left auto);
+
+	display: block;
+	max-width: 100%;
+}
+
+.box-shadow {
+	box-shadow: 0px 32px 32px 0px rgba(the_color(black), 0.1);
+}
+
+/**
+ * Placeholder reset
+ *
+ * @uses    @extend %Reset-{$property}
+ * @author  Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Reset {
+	/**
+     * Reset scale
+     *
+     * Turn scale to 1
+     *
+     * @uses @extend %Reset-scale
+     */
+	&-scale {
+		transform: scale(1);
+	}
+
+	/**
+     * Reset scale and rotate
+     *
+     * @uses @extend %Reset-scale-rotate;
+     */
+	&-scale-rotate {
+		transform: scale(1) rotate(0);
+	}
+
+	/**
+     * Reset translate3d
+     *
+     * @uses @extend %Reset-translate3d
+     */
+	&-translate3d {
+		transform: translate3d(0, 0, 0);
+	}
+
+	/**
+     * Reset scaleY
+     *
+     * @uses @extend %Reset-scale-y
+     */
+	&-scaleY {
+		transform: scaleY(1);
+	}
+
+	/**
+     * Reset opacity
+     *
+     * Turn opacity to 1
+     *
+     * @uses @extend %Reset-opacity
+     */
+	&-opacity {
+		opacity: 1;
+	}
+
+	/**
+     * Reset visibility
+     *
+     * Turn visibility to visible
+     *
+     * @uses @extend %Reset-visible
+     */
+	&-visibility {
+		visibility: visible;
+	}
+}
+
+/**
+ * Placeholder filter
+ *
+ * @uses @extend %Filter-{$property}
+ * @author Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Filter {
+	/**
+     * Grayscale
+     *
+     * @uses @extend %Filter-grayscale
+     */
+	&-grayscale {
+		filter: grayscale(100%);
+	}
+}
+
+/**
+ * Placeholder position
+ *
+ * @uses    @extend %Position-{$proprerty}
+ * @author  Jérémy Levron jeremy@poigneedemainvirile.com
+ */
+%Position {
+	/**
+     * Absolute
+     *
+     * Set element to position absolute, top 0, right 0, bottom 0, left 0
+     *
+     * @uses @extend %Position-absolute
+     */
+	&-absolute-center {
+		@include absolute(top 0 right 0 bottom 0 left 0);
+	}
+
+	/**
+     * Absolute
+     *
+     * Set element to position fixed, top 0, right 0, bottom 0, left 0
+     *
+     * @uses @extend %Position-fixed
+     */
+	&-fixed-center {
+		@include fixed(top 0 right 0 bottom 0 left 0);
+	}
+}
+
+.Position-fixed-center {
+	@extend %Position-fixed-center;
+}
+.Position-absolute-center {
+	@extend %Position-absolute-center;
+}
+
+@for $i from 0 to 1 {
+	.z-index-#{$i} {
+		z-index: $i;
+	}
+}
+
+@each $i in (40 60) {
+	.opacity-#{$i} {
+		opacity: ($i / 100);
+	}
+}
+
+.letter-spacing-100 {
+	@include letter-spacing(100);
+}
+
+// Responsive container for videos
+.embed-container {
+	@extend %overflow-hidden, %position-relative;
+
+	@include padding(bottom percentage(1 / (16 / 9)));
+
+	height: 0;
+	max-width: 100%;
+
+	> iframe,
+	> object,
+	> embed,
+	> div {
+		@extend %position-absolute;
+		@include size(100%);
+
+		top: 0;
+		left: 0;
+	}
 }

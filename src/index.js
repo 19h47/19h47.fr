@@ -1,2 +1,2 @@
-require('stylesheets/main.scss');
-require('js/main.js');
+require('stylesheets/styles.scss');
+require('scripts/main');

@@ -1,21 +1,16 @@
 .Lastfm {
-
 	/**
 	 * Row
 	 *
 	 * @uses .Lastfm__row
 	 */
 	&__row {
-
 		@for $i from 1 to 100 {
-		
-			&:nth-child( #{ $i } ) { 
-		  	
-		  		opacity: 1 - ( $i * 0.02 ); 
-		  	}
+			&:nth-child(#{ $i }) {
+				opacity: 1 - ($i * 0.02);
+			}
 		}
 	}
-
 
 	/**
 	 * Cover
@@ -23,12 +18,11 @@
 	 * @uses .Lastfm__cover
 	 */
 	&__cover {
-
-		@extend %Filter-grayscale, %display-xs-block;
-		@include padding( top 100% );
+		@extend %Filter-grayscale, %display-block;
+		@include padding(top 100%);
 
 		background: {
-			color: get_color( white );
+			color: the_color(white);
 			position: center;
 			size: contain;
 		}

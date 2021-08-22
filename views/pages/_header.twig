@@ -10,14 +10,11 @@
  */
 #}
 <header class="row">
-	<div class="col-xs-12 col-md-10 col-md-offset-1">
+	<div class="col-md-10 offset-md-1">
 
-		
-
-		<{{ link ? 'a href="' ~ link ~ '" ' : 'p' }} class="{{ class ? class ~ ' ': ' opacity-40 ' }}font-size-13 line-height-32 no-margin uppercase letter-spacing-100 font-medium{{ link ? ' Link-layer' }}">
+		<{{ link ? 'a href="' ~ link ~ '" ' : 'p' }} class="{{ class ? class ~ ' ' : 'opacity-40 ' }}font-size-13 line-height-32 margin-0 uppercase letter-spacing-100 font-weight-medium{{ link ? ' Link-layer' }}">
 			{{ title ? title : post.title }}
 			<span data-text="{{ title ? title : post.title }}"></span>
-		
 		</{{ link ? 'a' : 'p' }}>
 		
 	</div>

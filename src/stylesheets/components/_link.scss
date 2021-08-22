@@ -1,39 +1,36 @@
 .Link {
-
 	&-layer {
-		@extend %position-xs-relative;
-		
-		color: rgba( get_color( white ), .4 );
+		@extend %position-relative;
+
+		color: rgba(the_color(white), 0.4);
 		z-index: 1;
 
 		&:hover,
 		&.is-active {
-
 			span {
 				@extend %Reset-translate3d;
 
 				&::before {
-					transform: translate3d( 0, 0, 0 );
+					transform: translate3d(0, 0, 0);
 				}
 			}
 		}
 
 		span {
 			@extend %overflow-hidden;
-			@include absolute( top 0 right 0 bottom 0 left 0);
-			
+			@include absolute(top 0 right 0 bottom 0 left 0);
 
 			pointer-events: none;
-			transform: translate3d( -100%, 0, 0 );
+			transform: translate3d(-100%, 0, 0);
 			transition: $ease-transition;
 			z-index: 2;
 
 			&::before {
-				@extend %display-xs-block;
-				
-				color: get_color( white );
+				@extend %display-block;
+
+				color: the_color(white);
 				content: attr(data-text);
-				transform: translate3d( 100%, 0, 0 );
+				transform: translate3d(100%, 0, 0);
 				transition: $ease-transition;
 				z-index: 1;
 			}
@@ -43,13 +40,11 @@
 		 * Thoughts
 		 */
 		@at-root [data-context="thoughts"] & {
-			
-			color: rgba( get_color( black ), .4 );
-			
-			span {
+			color: rgba(the_color(black), 0.4);
 
+			span {
 				&::before {
-					color: get_color( black );
+					color: the_color(black);
 				}
 			}
 		}

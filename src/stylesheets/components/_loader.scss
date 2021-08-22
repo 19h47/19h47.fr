@@ -1,47 +1,41 @@
 @keyframes loading-mask {
- 	
- 	0% {
- 		transform: translate3d( 110%, 0, 0 );
- 		// opacity: 1;
-    		// background-color: #001F3F;
-  	}
+	0% {
+		transform: translate3d(110%, 0, 0);
+		// opacity: 1;
+		// background-color: #001F3F;
+	}
 
-  	100% {
-  		transform: translate3d( -110%, 0, 0 );
-  		// opacity: 0;
-  		
-  	}
+	100% {
+		transform: translate3d(-110%, 0, 0);
+		// opacity: 0;
+	}
 }
 
 @keyframes loading-text {
- 	
 	0% {
-		transform: translate3d( -110%, 0, 0 );
+		transform: translate3d(-110%, 0, 0);
 		// opacity: 1;
-   		// background-color: #001F3F;
- 	}
+		// background-color: #001F3F;
+	}
 
- 	100% {
- 		transform: translate3d( 110%, 0, 0 );
- 		// opacity: 0;
- 		
- 	}
+	100% {
+		transform: translate3d(110%, 0, 0);
+		// opacity: 0;
+	}
 }
 
 /**
  * Loader
  */
 .Loader {
-	@extend 
-		%position-xs-relative,
-		%display-xs-inline-block;
+	@extend %position-relative, %display-inline-block;
 
-	color: rgba( get_color( white ), .4 );
+	color: rgba(the_color(white), 0.4);
 
 	@mixin animation($animation-name) {
 		animation-name: $animation-name;
-		animation-duration: 1.8s; 
-		animation-timing-function: ease-in-out; 
+		animation-duration: 1.8s;
+		animation-timing-function: ease-in-out;
 		animation-delay: 0s;
 		animation-direction: alternate;
 		animation-iteration-count: infinite;
@@ -49,16 +43,16 @@
 	}
 
 	span {
-		@extend %Position-absolute-center, %display-xs-block, %overflow-hidden;
+		@extend %Position-absolute-center, %display-block, %overflow-hidden;
 
 		@include animation(loading-mask);
-		
+
 		animation-play-state: paused;
 
 		&::before {
-			@extend %Position-absolute-center, %display-xs-block;
+			@extend %Position-absolute-center, %display-block;
 			content: attr(data-text);
-			color: get_color( white );
+			color: the_color(white);
 
 			@include animation(loading-text);
 
@@ -69,14 +63,13 @@
 	}
 
 	&.is-loading {
-
 		span {
 			animation-play-state: running;
 
 			&::before {
 				animation-play-state: running;
 				opacity: 1;
-			}	
+			}
 		}
 	}
 }

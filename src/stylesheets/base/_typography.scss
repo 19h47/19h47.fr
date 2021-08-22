@@ -4,29 +4,28 @@
 
 html {
 	font: {
-		size:62.5%
+		size: 62.5%;
 	}
 }
 
 body {
-    
+	@extend %font-weight-book;
 
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    font: {
-        family: map-get( $font, body-family );
-        size: $base-font-size-px;
-        weight: map-get( $font-weight, book );
-    }
-    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
-    text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font: {
+		family: map-get($font, body-family);
+		size: $base-font-size-px;
+	}
+	line-height: (($base-line-height / $base-font-size) * 1em);
+	text-rendering: optimizeLegibility;
 }
 
-@include reset-selection( get_color( black ), get_color( white ) );
+@include reset-selection(the_color(black), the_color(white));
 
 [data-context="thoughts"],
 [data-context="curriculum-vitae"] {
-    @include reset-selection( get_color( white ), get_color( black ) );
+	@include reset-selection(the_color(white), the_color(black));
 }
 
 /**
@@ -43,37 +42,34 @@ body {
  * @author  Jérémy Levron   jeremy@poigneedemainvirile.com
  */
 $titles: (
-    h1: (
-        57, 
-        64,
-        map-get( $font-weight, medium ), 
-        map-get( $font, body-family ),
-        0 
-    ),
-
-    h2: (
-        43,
-        64,
-        map-get( $font-weight, regular ),
-        map-get( $font, cursive-family ),
-        0    
-    ),
-
-    h3: (
-        32,
-        32,
-        map-get( $font-weight, regular ),
-        map-get( $font, title-family ),
-        0    
-    ),
-
-    h4: (
-        24,
-        32,
-        map-get( $font-weight, medium ),
-        map-get( $font, title-family ),
-        0    
-    ),
+	h1: (
+		57,
+		64,
+		map-get(map-get($font, weights), medium),
+		map-get($font, body-family),
+		0,
+	),
+	h2: (
+		43,
+		64,
+		map-get(map-get($font, weights), regular),
+		map-get($font, cursive-family),
+		0,
+	),
+	h3: (
+		32,
+		32,
+		map-get(map-get($font, weights), regular),
+		map-get($font, title-family),
+		0,
+	),
+	h4: (
+		24,
+		32,
+		map-get(map-get($font, weights), medium),
+		map-get($font, title-family),
+		0,
+	),
 );
 
 /**
@@ -82,41 +78,38 @@ $titles: (
  * Each $key and $value find in $titles
  */
 @each $title, $value in $titles {
-
-    /**
+	/**
      * Private var
      *
      * Get and stock all values from each keys in map
      */
-    $font-size: nth( $value, 1 );
-    $line-height: nth( $value, 2 );
-    $weight: nth( $value, 3 );
-    $family: nth( $value, 4 );
-    $letter-spacing: nth( $value, 5 );
+	$font-size: nth($value, 1);
+	$line-height: nth($value, 2);
+	$weight: nth($value, 3);
+	$family: nth($value, 4);
+	$letter-spacing: nth($value, 5);
 
-
-    /**
+	/**
      * Generate tag and class selector
      */
-    #{ $title }, .#{ $title } {
-        // Include mixin
-        @include letter-spacing( $letter-spacing );
-        @include margin (
-            top ( ( $line-height / $font-size ) * 1em )
-            bottom ( ( $line-height / $font-size ) / 2 ) * 1em
-        );
+	#{ $title },
+	.#{ $title } {
+		// Include mixin
+		@include letter-spacing($letter-spacing);
+		@include margin(
+			top (($line-height / $font-size) * 1em) bottom
+				(($line-height / $font-size) / 2) * 1em
+		);
 
-        font: {
-            family: $family;
-            size: ( $font-size / 10 ) * 1rem;
-            weight: $weight;
-        }
-        line-height: $line-height / $font-size; 
+		font: {
+			family: $family;
+			size: ($font-size / 10) * 1rem;
+			weight: $weight;
+		}
+		line-height: $line-height / $font-size;
 
-        @if $line-height == normal {
-
-            line-height: normal;
-        }
-            
-    }
-};
+		@if $line-height == normal {
+			line-height: normal;
+		}
+	}
+}

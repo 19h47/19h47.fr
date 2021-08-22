@@ -1,0 +1,145 @@
+/**
+ * Grid columns number
+ *
+ * Number of columns in the grid, it override `$grid-columns` from
+ * bootstrap-sass. It means, if you wish, that you can instantiate a grid of 8,
+ * for example.
+ *
+ * @see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss#L329
+ */
+$grid-columns: 12;
+
+/**
+ * Gutter width
+ *
+ * Padding between columns. Gets divided in half for the left and right, it
+ * overide `$grid-gutter-width` from bootstrap-sass
+ *
+ * @see http://stackoverflow.com/a/28193872/5091221
+ * @see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss#L331
+ */
+$grid-gutter-width: 16px;
+
+/**
+ * Grid breakpoints
+ *
+ * Define the minimum dimensions at which your layout will change,
+ * adapting to different screen sizes, for use in media queries.
+ *
+ * @see https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss#L180
+ */
+$grid-breakpoints: (
+	xs: 0,
+	sm: 768px,
+	md: 992px,
+	lg: 1200px,
+	hd: 1400px
+);
+
+$utilities: (
+	'flex': (
+		responsive: true,
+		property: flex,
+		values: (
+			fill: 1 1 auto,
+		),
+	),
+	'flex-direction': (
+		responsive: true,
+		property: flex-direction,
+		class: flex,
+		values: row column row-reverse column-reverse,
+	),
+	'flex-grow': (
+		responsive: true,
+		property: flex-grow,
+		class: flex,
+		values: (
+			grow-0: 0,
+			grow-1: 1,
+		),
+	),
+	'flex-shrink': (
+		responsive: true,
+		property: flex-shrink,
+		class: flex,
+		values: (
+			shrink-0: 0,
+			shrink-1: 1,
+		),
+	),
+	'flex-wrap': (
+		responsive: true,
+		property: flex-wrap,
+		class: flex,
+		values: wrap nowrap wrap-reverse,
+	),
+	// 'gap': (
+	// 	responsive: true,
+	// 	property: gap,
+	// 	class: gap,
+	// 	values: $spacers,
+	// ),
+	'justify-content':
+		(
+			responsive: true,
+			property: justify-content,
+			values: (
+				start: flex-start,
+				end: flex-end,
+				center: center,
+				between: space-between,
+				around: space-around,
+				evenly: space-evenly,
+			),
+		),
+	'align-items': (
+		responsive: true,
+		property: align-items,
+		values: (
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			baseline: baseline,
+			stretch: stretch,
+		),
+	),
+	'align-content': (
+		responsive: true,
+		property: align-content,
+		values: (
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			between: space-between,
+			around: space-around,
+			stretch: stretch,
+		),
+	),
+	'align-self': (
+		responsive: true,
+		property: align-self,
+		values: (
+			auto: auto,
+			start: flex-start,
+			end: flex-end,
+			center: center,
+			baseline: baseline,
+			stretch: stretch,
+		),
+	),
+	'order': (
+		responsive: true,
+		property: order,
+		values: (
+			first: -1,
+			0: 0,
+			1: 1,
+			2: 2,
+			3: 3,
+			4: 4,
+			5: 5,
+			last: 6,
+		),
+	),
+);

@@ -1,0 +1,138 @@
+{#
+/**
+ * /views/pages/work-single
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
+ */
+#}
+{% extends 'index.twig' %}
+
+{% block header %}
+	{{- 
+		include(
+			'pages/_header.twig', 
+			{
+				title: 'Work',
+				link: page_permalink.work,
+				class: 'display-inline-block'
+			}
+		)
+	-}}
+{% endblock %}
+
+{% block content %}
+
+	<section class="row">
+
+		<div class="col-md-10 offset-md-1">
+
+			<h2 class="Work__title color-white font-weight-bold margin-top-16">
+				{{ post.title }}
+				<sup class="display-none display-sm-inline vertical-align-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-weight-medium">
+					{{ post.meta( 'year' ) | date( 'Y' ) }}
+				</sup>
+			</h2>
+
+		</div>
+
+
+		<div class="col-md-6 offset-md-1">
+
+			<div class="color-white">
+
+				{{- post.content -}}
+
+				{% if post.meta( 'link' ) %}
+					<a class="font-size-18 font-weight-regular display-inline-block vertical-align-baseline Link-layer" href="{{ post.meta( 'link' ) }}" target="_blank" rel="noopener noreferer">
+						{{- __( 'View the website', '19h47' ) -}}
+						<span data-text="{{- __( 'View the website', '19h47' ) -}}"></span>
+					</a>
+				{% endif %}
+
+				{% if post.meta( 'repository' ) %}
+
+					{% if work.details.link %}<br>{% endif %}
+
+					<a class="font-size-18 font-weight-regular display-inline-block vertical-align-baseline Link-layer" href="{{ post.meta( 'repository' ) }}" target="_blank" rel="noopener noreferer">
+						{{- __( 'View the repository', '19h47' ) -}}
+						<span data-text="{{- __( 'View the repository', '19h47' ) -}}"></span>
+					</a>
+				{% endif %}
+
+			</div>
+
+		</div>
+
+		{% if  post.meta( 'client' ) or post.meta( 'role' ) %}
+			<aside class="col-md-3 offset-md-1">
+
+				{% if post.meta( 'client' ) %}
+					<p class="color-white">
+						<span class="uppercase font-size-13 opacity-40 letter-spacing-100">
+							{{ __( 'Client', '19h47' ) }}
+						</span>
+						<br>
+						<span class="font-size-18 font-weight-medium">
+							{{- post.meta( 'client' ) | map( client => client.name ) | join( '<br />' ) -}}
+						</span>
+					</p>
+				{% endif %}
+
+				{% if post.meta( 'role' ) %}
+					<p class="color-white">
+						<span class="uppercase font-size-13 opacity-40 letter-spacing-100">
+							{{- __( 'Role', '19h47' ) -}}
+						</span><br>
+						<span class="font-size-18 font-weight-medium">
+							{{- post.meta( 'role' ) | map( role => role.name ) | join( '<br/ >' ) -}}
+						</span>
+					</p>
+				{% endif %}
+
+			</aside>
+		{% endif %}
+
+		{% for section in post.meta( 'sections' ) %}
+			{{- include( 'sections/section-' ~ section.acf_fc_layout ~ '.twig' ) -}}
+		{% endfor %}
+
+	</section>
+
+{% endblock %}
+
+{% block footer %}
+
+	{# Navigation #}
+	<nav class="row margin-top-64">
+
+		<div class="offset-md-1 col-md-5">
+			<a class="js-work-navigation display-inline-block Work__navigation" href="{{ post.next.link }}" rel="next" data-namespace="work" data-color="{{ post.next.color }}">
+				<span class="color-white font-size-13 uppercase letter-spacing-100 font-weight-medium color-white">
+					{{- __( 'Next work', '19h47' ) -}}
+				</span>
+				<br>
+				<p class="display-inline-block vertical-align-baseline Link-layer margin-top-0">
+					{{ post.next.title }}
+					<span data-text="{{ post.next.title }}"></span>
+				</p>
+			</a>
+		</div>
+
+		<div class="col-md-5 text-align-md-right">
+			<a class="js-work-navigation display-inline-block Work__navigation" href="{{ post.previous.link }}" rel="prev" data-namespace="work" data-color="{{ post.previous.color }}">
+				<span class="color-white font-size-13 uppercase letter-spacing-100 font-weight-medium color-white">
+					{{- __( 'Previous work', '19h47' ) -}}
+				</span>
+				<br>
+				<p class="display-inline-block vertical-align-baseline Link-layer margin-top-0">
+					{{ post.previous.title }}
+					<span data-text="{{ post.previous.title }}"></span>
+				</p>
+			</a>
+		</div>
+
+	</nav>
+
+{% endblock %}

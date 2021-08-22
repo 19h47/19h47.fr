@@ -1,70 +1,98 @@
-/**
- * Dependencies
- */
-@import '~breakpoint-sass/stylesheets/breakpoint';
-@import '~breakpoint-slicer/stylesheets/breakpoint-slicer';
-@import 'abstracts/variables';
-@import 'base/fonts';
+// Dependencies
+@import "vendors/bootstrap-custom";
+@import "vendors/architecture-variables";
 
+@import "~@19h47/architecture/src/stylesheets/abstracts/easings";
 
-/**
- * Vendors
- */
-@import
-	'~ress/ress',
-	'vendors/bootstrap-custom';
+@import "abstracts/variables";
 
-/**
- * Abstracts
- */
-@import
-	'abstracts/variables',
-	'abstracts/functions',
-	'abstracts/mixins',
-	'abstracts/placeholders';
+@import "base/fonts";
+
+@import "~ress/ress";
+//
+
+// // Functions
+@import "~@19h47/architecture/src/stylesheets/abstracts/functions";
+
+// // Mixins.
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/auto-alpha";
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/create-class-color";
+// @import '~@19h47/architecture/src/stylesheets/abstracts/mixins/font';
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/letter-spacing";
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/margin";
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/padding";
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/position";
+// @import '~@19h47/architecture/src/stylesheets/abstracts/mixins/power';
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/reset-placeholder";
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/reset-selection";
+// @import '~@19h47/architecture/src/stylesheets/abstracts/mixins/fluid-properties';
+@import "~@19h47/architecture/src/stylesheets/abstracts/mixins/size";
+
+@import "~@19h47/architecture/src/stylesheets/abstracts/placeholders";
+
+//
+//
+// // Base stuff
+@import "base/base";
+@import "base/typography";
 
 /**
  * Utilities
  */
-@import 'Utilities/_settings';
-
-
+// // Utilities.
+@import "~@19h47/architecture/src/stylesheets/utilities/colors";
+@import "~@19h47/architecture/src/stylesheets/utilities/cursors";
+@import "~@19h47/architecture/src/stylesheets/utilities/displays";
+// // @import '~@19h47/architecture/src/stylesheets/utilities/floats';
+@import "~@19h47/architecture/src/stylesheets/utilities/fonts";
+@import "~@19h47/architecture/src/stylesheets/utilities/margins";
+@import "~@19h47/architecture/src/stylesheets/utilities/overflows";
+@import "~@19h47/architecture/src/stylesheets/utilities/paddings";
+@import "~@19h47/architecture/src/stylesheets/utilities/positions";
+@import "~@19h47/architecture/src/stylesheets/utilities/sizes";
+@import "~@19h47/architecture/src/stylesheets/utilities/text-aligns";
+@import "~@19h47/architecture/src/stylesheets/utilities/text-decorations";
+@import "~@19h47/architecture/src/stylesheets/utilities/text-transforms";
+@import "~@19h47/architecture/src/stylesheets/utilities/vertical-aligns";
+// // @import '~@19h47/architecture/src/stylesheets/utilities/visibilities';
+// @import '~@19h47/architecture/src/stylesheets/utilities/white-spaces';
+@import "~@19h47/architecture/src/stylesheets/utilities/lists";
 
 html {
 	font: {
-		size:62.5%
+		size: 62.5%;
 	}
 }
 
 body {
+	@extend %font-weight-book, %font-family-body;
 
-    -webkit-font-smoothing: antialiased;
-    font: {
-        family: map-get( $font, body-family );
-        size: $base-font-size-px;
-        weight: map-get( $font-weight, book );
-    }
-    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
-    text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	font: {
+		size: $base-font-size-px;
+	}
+	line-height: (($base-line-height / $base-font-size) * 1em);
+	text-rendering: optimizeLegibility;
 }
 
-@include reset-selection( get_color( black ), get_color( white ) );
+@include reset-selection(the_color(black), the_color(white));
 
 a,
 button {
-    cursor: pointer;
-    outline: none;
+	cursor: pointer;
+	outline: none;
 }
 
 a {
-	@extend %font-medium, %text-decoration-none;;
-	color: ger_color( black );
+	@extend %font-weight-medium, %text-decoration-none;
+	color: the_color(black);
 
 	&:active,
 	&:focus,
 	&:visited,
 	&:-webkit-any-link {
-		color: get_color( black );
+		color: the_color(black);
 	}
 }
-@include reset-selection( get_color( white ), get_color( black ) );
+
+@include reset-selection(the_color(white), the_color(black));

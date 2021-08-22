@@ -1,16 +1,12 @@
 .l {
 	&-footer {
-
-		@include from( 'md' ) {
-
-			@include fixed( right 0 bottom 0 left 0 );
-
+		@include media-breakpoint-up(md) {
+			@include fixed(right 0 bottom 0 left 0);
 		}
 
-		@include between( 'xs', 'md' ) {
-
+		@include media-breakpoint-between(xs, md) {
 			@at-root [data-context="front-page"] & {
-				@include fixed( right 0 bottom 0 left 0 );
+				@include fixed(right 0 bottom 0 left 0);
 			}
 		}
 
@@ -40,24 +36,19 @@
 		}
 
 		@at-root [data-context="page"] &.is-on-top {
-
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
 		}
 
 		@at-root [data-context="thoughts"] &.is-on-top {
-
 			opacity: 0;
 			visibility: hidden;
 			pointer-events: none;
 		}
 
-
 		@at-root .page--is-loading & {
-
-			@include at( 'xs' ) {
-
+			@include media-breakpoint-only(xs) {
 				opacity: 0;
 				visibility: hidden;
 				pointer-events: none;

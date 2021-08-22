@@ -6,8 +6,8 @@
  * Color variation
  *
  * Each colors used in the theme.
- * 
- * @uses get_color($key, $value) to retrieve color value
+ *
+ * @uses the_color($key, $value) to retrieve color value
  * @type nested map
  * @see http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
  * @see http://www.colorhexa.com/ to pickup color name
@@ -16,29 +16,25 @@
 $color-variations: (
 	black: #000000,
 	white: #ffffff,
-
-	blue: (		
+	blue: (
 		pure: #0000ff,
 	),
-
 	red: (
 		strong: #ff0000,
 	),
-	
 	social: (
 		/**
 		 * Brand colors
 		 *
 		 * @see https://brandcolors.net/
-		 */
-		facebook: #3b5998, 
+		 */ facebook:
+			#3b5998,
 		twitter: #1da1f2,
 		google-plus: #dd4b39,
 		linkedin: #0077b5,
 		mail: #000000,
-	)
+	),
 );
-
 
 /**
  * Font
@@ -48,11 +44,71 @@ $color-variations: (
  * @uses map-get( $font, $key ) to retrieve font value from map
  * @type map
  */
-$font: (
-	body-family: ( 'Work Sans', sans-serif ),
-	title-family: ( 'Work Sans', sans-serif ),
-);
 
+/**
+ * Font
+ *
+ * A map containing all information about fonts
+ *
+ * @type map
+ */
+$font: (
+	/**
+	 * Font
+	 *
+	 * All fonts families found in the site are listed here
+	 *
+	 * @uses map-get( $font, $key ) to retrieve font value from map
+	 * @type map
+	 */
+		families:
+		(
+			body: (
+				'"Work Sans", sans-serif',
+			),
+			title: (
+				'"Work Sans", sans-serif',
+			),
+		),
+	/**
+	 * Font weights
+	 *
+	 * Each font weight used in the theme.
+	 *
+	 * @uses map-get( $font, weights ) to retrieve font weight value
+	 * @type map
+	 */
+		weights:
+		(
+			extralight: 100,
+			light: 200,
+			book: 300,
+			regular: 400,
+			medium: 500,
+			semibold: 600,
+			bold: 700,
+			extrabold: 800,
+			extrablack: 900,
+		),
+	/**
+	 * Font styles
+	 *
+	 * Each font style used in the theme.
+	 *
+	 * @uses map-get( $font, styles ) to retrieve font style value
+	 * @type list
+	 */
+		styles: italic normal,
+	/**
+	 * Font sizes
+	 *
+	 * Each font size used in the theme.
+	 *
+	 * @uses map-get( $font, sizes ) to retrieve font size value
+	 * @type list
+	 */
+		sizes: 13 18 24
+);
 
 /**
  * Base
@@ -60,43 +116,9 @@ $font: (
 $base-font-size: 24;
 $base-font-size-px: $base-font-size * 1px;
 $base-line-height: 32;
-
-
-/**
- * Font weight
- *
- * Each font weight used in the theme.
- * 
- * @uses map-get( $font-weight, $key ) to retrieve font weight value
- * @type map
- * @author Jérémy Levron jeremy@poigneedemainvirile.com
- */
-$font-weight: (
-	extralight: 100,
-	light: 200,
-	book: 300,
-	regular: 400,
-	medium: 500,
-	semibold: 600,
-	bold: 700,
-	extrabold: 800,
-	extrablack: 900
-);
-
-
-// Layout ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-$grid-columns: 12;
-
-
-/**
- * Gutter width
- * 
- * Overall grid gutter size from Bootstrap
- * 
- * @see http://stackoverflow.com/a/28193872/5091221
- */
-$grid-gutter-width: 16px;
-
+$base-line-height-px: $base-line-height * 1px;
+$scale-factor: 8;
+$base-unit: em;
 
 /**
  * Outer gutter width
@@ -107,7 +129,6 @@ $grid-gutter-width: 16px;
 $grid-outer-gutter-width-unitless: 32;
 $grid-outer-gutter-width: $grid-outer-gutter-width-unitless * 1px;
 
-
 /**
  * Prototype width
  *
@@ -116,32 +137,29 @@ $grid-outer-gutter-width: $grid-outer-gutter-width-unitless * 1px;
 $psd-width-unitless: 1280;
 $psd-width: $psd-width-unitless * 1px;
 
-
 /**
  * Prototype width
- * 
+ *
  * Width keep from .psd (grid + outer gutter)
  */
 // $container-width-unitless: 1198;
 $container-width: 1280px;
 
-
 /**
  * Ease transition
  */
-$ease-transition: .3s ease;
+$ease-transition: 0.3s ease;
 
 /**
  * Directories
  *
  * Each directories used in this theme.
- * 
+ *
  * @uses map-get( $directories, $key ) to retrieve directory value from map
  * @type map
  * @author Jérémy Levron jeremy@poigneedemainvirile.com
  */
-$directories:
-(
+$directories: (
 	fonts: "../../fonts/",
 	img: "../../img/",
 	svg: "../../img/svg/",
@@ -150,26 +168,22 @@ $directories:
 	gif: "../../img/gif/",
 );
 
-
-/**
- * Breakpoint slicer
- *
- * @see https://github.com/lolmaus/breakpoint-slicer
- */
-$slicer-breakpoints-settings: true;
-@if ($slicer-breakpoints-settings == true) {
-
-	$slicer-breakpoints: 0 768px 992px 1200px 1400px;
-	$slicer-breakpoint-names: 'xs' 'sm' 'md' 'lg' 'hd';
-	$slicer-anti-overlap-corrections: -1px;
-}
-
+$spacers: (
+	0: 0,
+	8: 8,
+	16: 16,
+	32: 32,
+	64: 64,
+	96: 96,
+	128: 128,
+	224: 224,
+);
 
 /**
  * State classes
  *
  * Each state class used in this theme.
- * 
+ *
  * @uses map-get( $state-classes, $key ) to retrieve class name from map
  * @type map
  * @author Jérémy Levron jeremy@poigneedemainvirile.com
