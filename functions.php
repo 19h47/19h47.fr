@@ -409,7 +409,7 @@ class LJ extends TimberSite {
 		 * Editor style
 		 */
 		add_editor_style(
-			get_template_directory_uri() . '/dist/' . $this->theme_manifest['editor.css']
+			get_template_directory_uri() . '/' . $this->theme_manifest['editor.css']
 		);
 	}
 
@@ -427,8 +427,6 @@ class LJ extends TimberSite {
 			wp_register_style( 'font-' . $name, $url, array(), null );
 			$webfonts[] = 'font-' . $name;
 		}
-
-		// var_dump($this->theme_manifest);
 
 		/**
 		 * Theme stylesheet
@@ -456,7 +454,7 @@ class LJ extends TimberSite {
 
 		// Remove native version of jQuery and use custom CDN version instead
 		wp_deregister_script( 'jquery' );
-		wp_register_script( 'jquery', '//code.jquery.com/jquery-3.3.1.min.js', false, null, true );
+		wp_register_script( 'jquery', '//code.jquery.com/jquery-3.6.0.min.js', false, null, true );
 
 		wp_register_script(
 			$this->theme_name . '-main',
@@ -546,7 +544,7 @@ class LJ extends TimberSite {
 	public function webfonts() {
 
 		return array(
-			'work-sans' => 'https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900',
+			'work-sans' => 'https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,200;0,300;0,400;0,700;1,500&display=swap',
 		);
 	}
 
