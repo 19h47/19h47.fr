@@ -34,7 +34,7 @@
 					
 						<a class="js-to-work-single font-weight-medium" href="{{ post.link }}" data-namespace="page" data-color="{{ post.get_field( 'color' ) }}">{{ post.title }}</a>
 						<sup class="hidden-xs vertical-align-text-top opacity-40 font-size-13 uppercase letter-spacing-100 font-weight-medium">
-							{{ post.meta( 'year' ) | date( 'Y' ) }}
+							{{- post.meta( 'year' ) -}}
 						</sup>
 				</p>
 					
