@@ -49,7 +49,7 @@
     "image-webpack-loader": "^7.0.1",
     "mini-css-extract-plugin": "^2.3.0",
     "node-sass": "^7.0.0",
-    "postcss": "^8.3.6",
+    "postcss": "^8.4.31",
     "postcss-100vh-fix": "^1.0.2",
     "postcss-loader": "^6.1.1",
     "postcss-object-fit-images": "^1.1.2",
