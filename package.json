@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@19h47/architecture": "19h47/architecture",
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.29.6",
     "barba.js": "^1.0.0",
     "bootstrap": "^5.1.1",
     "dom-classes": "^1.0.0",
