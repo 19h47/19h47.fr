@@ -1,6 +1,6 @@
 {#
 /**
- * /views/pages/what-inspires-me
+ * /views/pages/lastfm-page
  *
  * @package 	WordPress
  * @subpackage 	19h47
@@ -9,16 +9,16 @@
 #}
 {% extends 'index.html.twig' %}
 
-{# Tumblr #}
+{# Last.fm #}
 {% block start_wrapper %}
-	<tumblr-feed class="block my-64" per-page="20">
+	<lastfm-feed class="block my-64" limit="50">
 {% endblock %}
 
 {% block header %}
 	<header class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 			<p class="js-loader is-loading Loader m-0 text-13 font-medium uppercase leading-32 tracking-100">
-				{{ post.title }}
+				{{- post.title -}}
 				<span data-text="{{ post.title }}"></span>
 			</p>
 		</div>
@@ -28,29 +28,23 @@
 {% block content %}
 
 	<section class="my-32 grid grid-cols-12 gap-x-16">
-		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<section class="response grid grid-cols-12 gap-x-16"></section>
+		<div class="col-span-12">
+			<div class="response"></div>
 		</div>
 	</section>
 
 {% endblock %}
 
 {% block footer %}
-
 	<footer class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<button class="load-more relative m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white" type="button">
-				<div class="Link-layer">
-					Load more
-					<span data-text="Load more"></span>
-				</div>
-				<span class="pointer-events-none absolute bottom-0 left-full pb-8 pl-4 text-[smaller] text-white/40" data-count aria-hidden="true"></span>
-			</button>
+			<p class="m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white">
+				{{- __( 'I\'ve listened to %s songs since 2008.', '19h47' ) | format( '<span class="playcount"></span>' ) -}}
+			</p>
 		</div>
 	</footer>
-
 {% endblock %}
 
 {% block end_wrapper %}
-	</tumblr-feed>
+	</lastfm-feed>
 {% endblock %}

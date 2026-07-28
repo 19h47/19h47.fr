@@ -42,12 +42,12 @@ class NamespaceFilter implements Service {
 			$ns = 'work';
 		}
 
-		if ( is_page( 'what-inspires-me' ) ) {
-			$ns = 'what-inspires-me';
+		if ( is_page( 'tumblr' ) ) {
+			$ns = 'tumblr';
 		}
 
-		if ( is_page( 'what-im-currently-listening-to' ) ) {
-			$ns = 'what-im-currently-listening-to';
+		if ( is_page( 'lastfm' ) ) {
+			$ns = 'lastfm';
 		}
 
 		if ( is_page( 'curriculum-vitae' ) ) {

@@ -35,7 +35,12 @@
 			{% if post.thumbnail %}
 				<div class="col-span-12 md:col-span-10 md:col-start-2">
 					<p>
-						<img src="{{ post.thumbnail.src }}" class="img-full box-shadow" alt=""/>
+						{{ include( 'components/image.html.twig', {
+							image: post.thumbnail,
+							classes: [ 'img-full', 'box-shadow' ],
+							size: 'full',
+							sizes: '100vw',
+						}, with_context = false ) }}
 
 						{% if post.thumbnail.caption %}
 							<span class="block text-right text-13 font-normal">

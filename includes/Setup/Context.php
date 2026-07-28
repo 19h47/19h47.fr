@@ -36,11 +36,11 @@ class Context extends Site implements Service {
 		$context['socials'] = $this->get_socials();
 
 		$context['page_permalink'] = array(
-			'what_im_currently_listening_to' => get_permalink( get_page_by_path( 'what-im-currently-listening-to' ) ),
-			'who_i_am'                       => get_permalink( get_page_by_path( 'who-i-am' ) ),
-			'what_inspires_me'               => get_permalink( get_page_by_path( 'what-inspires-me' ) ),
-			'work'                           => get_post_type_archive_link( 'work' ),
-			'thoughts'                       => get_permalink( get_page_by_path( 'thoughts' ) ),
+			'lastfm'   => get_permalink( get_page_by_path( 'lastfm' ) ),
+			'who_i_am' => get_permalink( get_page_by_path( 'who-i-am' ) ),
+			'tumblr'   => get_permalink( get_page_by_path( 'tumblr' ) ),
+			'work'     => get_post_type_archive_link( 'work' ),
+			'thoughts' => get_permalink( get_page_by_path( 'thoughts' ) ),
 		);
 
 		$context['barba_namespace'] = get_barba_namespace();

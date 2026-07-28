@@ -17,8 +17,8 @@
 	<header class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 			<p class="BlackBoard__instruction is-loading Loader m-0 text-13 font-medium uppercase leading-32 tracking-100">
-				Click. Drag. Draw!
-				<span data-text="Click. Drag. Draw!"></span>
+				{{- __( 'Click. Drag. Draw!', '19h47' ) -}}
+				<span data-text="{{- __( 'Click. Drag. Draw!', '19h47' ) -}}"></span>
 			</p>
 		</div>
 	</header>
@@ -27,7 +27,7 @@
 {% block content %}
 
 	<black-board empty>
-		<canvas class="fixed inset-0 z-[1] h-full w-full"></canvas>
+		<canvas class="fixed inset-0 z-1 h-full w-full"></canvas>
 	</black-board>
 
 {% endblock %}

@@ -13,8 +13,8 @@
 	<header class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 			<a class="Link-layer m-0 inline-block text-13 font-medium uppercase leading-32 tracking-100" href="{{ page_permalink.work }}">
-				Work
-				<span data-text="Work"></span>
+				{{- __( 'Work', '19h47' ) -}}
+				<span data-text="{{- __( 'Work', '19h47' ) -}}"></span>
 			</a>
 		</div>
 	</header>
@@ -27,7 +27,7 @@
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 
 			<h2 class="Work__title mt-16 font-bold text-white">
-				{{ post.title }}
+				{{- post.title -}}
 				<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-40 sm:inline">
 					{{- post.meta( 'year' )  -}}
 				</sup>
@@ -112,7 +112,7 @@
 				</span>
 				<br>
 				<p class="Link-layer mt-0 inline-block align-baseline">
-					{{ post.next.title }}
+					{{- post.next.title -}}
 					<span data-text="{{ post.next.title }}"></span>
 				</p>
 			</a>

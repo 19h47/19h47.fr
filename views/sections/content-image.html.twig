@@ -1,13 +1,18 @@
 <div class="col-span-12 mt-64 md:col-span-10 md:col-start-2">
 	<p>
 		{% set image = get_image( section.image ) %}
-		<img class="img-full {% if section.shadow == 'true' %}box-shadow{% endif %}" src="{{ image.src }}" alt="{{ image.title }}" />
+		{{ include( 'components/image.html.twig', {
+			image: image,
+			classes: [ 'img-full', section.shadow == 'true' ? 'box-shadow' ],
+			size: 'full',
+			sizes: '100vw',
+		}, with_context = false ) }}
 
 		{% if image.caption %}
 
 			{# Caption #}
 			<span class="block text-right text-13 font-normal">
-				{{ image.caption }}
+				{{- image.caption -}}
 			</span>
 
 		{% endif %}

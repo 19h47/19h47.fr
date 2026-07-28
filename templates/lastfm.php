@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: What I'm currently listening to
+ * Template Name: Last.fm
  *
  * @package DixNeufHeureQuaranteSept
  */
@@ -9,6 +9,6 @@ use Timber\Timber;
 
 $context         = Timber::context();
 $context['post'] = Timber::get_post();
-$templates       = array( 'pages/what-im-currently-listening-to.html.twig' );
+$templates       = array( 'pages/lastfm-page.html.twig' );
 
 Timber::render( $templates, $context );

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: What inspires me
+ * Template Name: Tumblr
  *
  * @package DixNeufHeureQuaranteSept
  */
@@ -9,6 +9,6 @@ use Timber\Timber;
 
 $context         = Timber::context();
 $context['post'] = Timber::get_post();
-$templates       = array( 'pages/what-inspires-me.html.twig' );
+$templates       = array( 'pages/tumblr-page.html.twig' );
 
 Timber::render( $templates, $context );

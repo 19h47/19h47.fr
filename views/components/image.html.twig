@@ -1,0 +1,59 @@
+{#
+ # Image
+ #
+ # @param {array} image Image object or ID.
+ # @param {array} [classes] Additional classes to add to the img tag. Optional.
+ # @param {string} [loading] Loading attribute for the img tag. Defaults to 'lazy'. Optional.
+ # @param {string} [fetchpriority] Fetch priority: 'high', 'low', or 'auto'. Optional.
+ # @param {string} [decoding] Decoding hint. Defaults to 'async'. Optional.
+ # @param {object} [attributes] Additional attributes to add to the img tag. Optional.
+ # @param {string} [size] Image size to use. Defaults to 'large' unless the image is a GIF. Optional.
+ # @param {string} [sizes] Sizes attribute for responsive srcset. Strongly recommended. Optional.
+ # @param {string} [alt] Alt text for the image. If not provided, the image's alt text will be used. Optional.
+ #
+ # Since the towebp filter doesn't work on srcset, we need to manually convert each URL to webp format.
+ #
+ # @package DixNeufHeureQuaranteSept
+ #}
+
+{%- if image -%}
+	{% set image = get_image( image ) %}
+	{% set size = 'image/gif' == image.post_mime_type ? 'full' : ( size | default( 'large' ) ) %}
+	{% set width = 'image/svg+xml' == image.post_mime_type ? image.width : ( image.sizes[size].width ? image.sizes[size].width : image.width ) -%}
+	{% set height = 'image/svg+xml' == image.post_mime_type ? image.height : ( image.sizes[size].height ? image.sizes[size].height : image.height ) -%}
+	{% set sizes = sizes | default( image.img_sizes ? image.img_sizes( size ) : ( image.srcset( size ) ? fn( 'wp_get_attachment_image_sizes', image.id, size ) : '100vw' ) ) -%}
+
+	<picture{{ size ? " data-size=\"#{ size }\"" }} data-mime-type="{{ image.post_mime_type }}">
+
+		{%- if 'image/svg+xml' != image.post_mime_type and 'image/gif' != image.post_mime_type and image.srcset( size ) -%}
+			<source type="image/webp" srcset="{{
+				image.srcset( size )
+					| split(', ')
+					| map(url => url
+						| split(' ')
+						| map((part, i) => i == 0 ? part | towebp(100) : part)
+						| join(' ')
+					)
+					| join(', ')
+			}}" sizes="{{ sizes | e }}">
+			<source type="{{ image.post_mime_type }}" srcset="{{ image.srcset( size ) }}" sizes="{{ sizes | e }}">
+		{%- endif -%}
+
+		<img
+			class="{{ html_classes( classes | default( [] ) | join( ' ' ) ) }}"
+			loading="{{ loading | default( 'lazy' ) }}"
+			{%- if fetchpriority %} fetchpriority="{{ fetchpriority | e }}"{%- endif %}
+			decoding="{{ decoding | default( 'async' ) }}"
+			src="{{ image.src( size ) | e }}"
+			alt="{{ alt | default( image.alt ? image.alt : image.title ) | e }}"
+			width="{{ width | e }}"
+			height="{{ height | e }}"
+			{{ attributes ? attributes | map( ( value, key ) => value == '' ? key : "#{key}=\"#{value}\"" ) | join( ' ' ) | raw }}
+			{% if 'image/svg+xml' != image.post_mime_type and image.srcset %}
+				srcset="{{ image.srcset( size ) | e }}"
+				sizes="{{ sizes | e }}"
+			{% endif %}
+		>
+	</picture>
+
+{%- endif -%}
