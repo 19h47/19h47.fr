@@ -14,29 +14,36 @@
 	--color-blue: #0000ff;
 	--color-red: #ff0000;
 
-	/* Spacing scale matching previous architecture utilities (px) */
+	/**
+	 * Vertical rhythm — 1 baseline = body line-height (24px × 4/3).
+	 * Use rem (html 62.5% → 1rem = 10px) so it does not re-resolve
+	 * against local font-size / lh (unlike raw 1em / 1lh on children).
+	 */
+	--baseline: 3.2rem; /* 32px */
+
+	/* Spacing — vertical steps = N × baseline */
 	--spacing-*: initial;
 	--spacing-0: 0;
-	--spacing-8: 8px;
-	--spacing-16: 16px;
-	--spacing-32: 32px;
-	--spacing-64: 64px;
-	--spacing-96: 96px;
-	--spacing-128: 128px;
-	--spacing-224: 224px;
+	--spacing-8: 0.8rem;
+	--spacing-16: 1.6rem;
+	--spacing-32: var(--baseline);
+	--spacing-64: calc(var(--baseline) * 2);
+	--spacing-96: calc(var(--baseline) * 3);
+	--spacing-128: calc(var(--baseline) * 4);
+	--spacing-224: calc(var(--baseline) * 7);
 
-	/* Type scale used in templates */
+	/* Type — line-heights lock to the baseline */
 	--text-*: initial;
-	--text-13: 13px;
-	--text-13--line-height: 32px;
-	--text-18: 18px;
-	--text-18--line-height: 1.333;
-	--text-24: 24px;
-	--text-24--line-height: 32px;
-	--text-32: 32px;
-	--text-32--line-height: 1;
-	--text-57: 57px;
-	--text-57--line-height: calc(64 / 57);
+	--text-13: 1.3rem;
+	--text-13--line-height: var(--baseline);
+	--text-18: 1.8rem;
+	--text-18--line-height: var(--baseline);
+	--text-24: 2.4rem;
+	--text-24--line-height: var(--baseline);
+	--text-32: 3.2rem;
+	--text-32--line-height: var(--baseline);
+	--text-57: 5.7rem;
+	--text-57--line-height: calc(var(--baseline) * 2);
 
 	--tracking-100: 0.1em;
 }

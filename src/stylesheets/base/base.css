@@ -2,7 +2,7 @@
 	html {
 		width: 100%;
 		overflow-y: visible;
-		font-size: 62.5%; /* 1rem = 10px — matches prod heading rem scale */
+		font-size: 62.5%; /* 1rem = 10px */
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
@@ -10,9 +10,9 @@
 
 	body {
 		font-family: var(--default-font-family);
-		font-size: 24px;
+		font-size: 2.4rem; /* 24px */
 		font-weight: 200;
-		line-height: calc(32 / 24);
+		line-height: calc(4 / 3); /* → 1 baseline (3.2rem) */
 		background-color: var(--color-black);
 		color: var(--color-white);
 		transition: background-color 0.3s ease 1s, color 0.3s ease 1s;
@@ -22,6 +22,29 @@
 	body[data-context="thoughts"] {
 		background-color: var(--color-white);
 		color: var(--color-black);
+	}
+
+	body[data-context="curriculum-vitae"] {
+		background-color: var(--color-white);
+		background-image: linear-gradient(rgb(0 0 0 / 0.1) 1px, transparent 0);
+		background-size: var(--baseline) var(--baseline);
+		background-position: 0 1em;
+	}
+
+	body[data-context="curriculum-vitae"]
+		main
+		.relative.mx-auto
+		> .grid:not([class*="mt-"]) {
+		align-items: start;
+		margin-bottom: var(--baseline);
+	}
+
+	body[data-context="curriculum-vitae"]
+		main
+		.relative.mx-auto
+		> .grid:not([class*="mt-"])
+		p {
+		margin-bottom: 0;
 	}
 
 	body.page--is-loading {
@@ -56,20 +79,22 @@
 	}
 
 	p {
-		margin-top: 1.333em;
-		margin-bottom: 0.667em;
+		margin-top: 0;
+		margin-bottom: var(--baseline);
 		font-size: 1em;
-		line-height: calc(32 / 24);
+		line-height: var(--baseline);
 	}
 
 	ul,
 	ol {
-		margin: 1.333em 0 0.667em;
-		padding: 0 0 0 1.333em;
+		margin: 0 0 var(--baseline);
+		padding: 0 0 0 calc(4 / 3 * 1em);
+		line-height: var(--baseline);
 	}
 
 	li {
-		margin: 0.667em 0 0.333em;
+		margin: 0;
+		line-height: var(--baseline);
 	}
 
 	hr {
@@ -86,10 +111,11 @@
 	}
 
 	blockquote {
-		margin: 1.333em 0 0.667em;
-		padding: 20px 0 20px 64px;
+		margin: 0 0 var(--baseline);
+		padding: 0 0 0 calc(var(--baseline) * 2);
 		border-left: 10px solid currentColor;
 		font-weight: 400;
+		line-height: var(--baseline);
 	}
 
 	blockquote p {
@@ -103,34 +129,34 @@
 
 	h1,
 	.h1 {
-		margin: calc(64 / 57 * 1em) 0 calc(64 / 57 / 2 * 1em);
+		margin: calc(var(--baseline) * 2) 0 var(--baseline);
 		font-size: 5.7rem;
 		font-weight: 500;
-		line-height: calc(64 / 57);
+		line-height: calc(var(--baseline) * 2);
 	}
 
 	h2,
 	.h2 {
-		margin: 1.5em 0 0.75em;
+		margin: calc(var(--baseline) * 2) 0 var(--baseline);
 		font-size: 4.3rem;
 		font-weight: 400;
-		line-height: calc(64 / 43);
+		line-height: calc(var(--baseline) * 2);
 	}
 
 	h3,
 	.h3 {
-		margin: 1em 0 0.5em;
+		margin: var(--baseline) 0 var(--baseline);
 		font-size: 3.2rem;
 		font-weight: 400;
-		line-height: 1;
+		line-height: var(--baseline);
 	}
 
 	h4,
 	.h4 {
-		margin: calc(32 / 24 * 1em) 0 calc(32 / 24 / 2 * 1em);
+		margin: var(--baseline) 0 var(--baseline);
 		font-size: 2.4rem;
 		font-weight: 500;
-		line-height: calc(32 / 24);
+		line-height: var(--baseline);
 	}
 
 	button:not(:disabled),
@@ -150,7 +176,7 @@
 	}
 
 	.box-shadow {
-		box-shadow: 0 32px 32px 0 rgb(0 0 0 / 0.1);
+		box-shadow: 0 var(--baseline) var(--baseline) 0 rgb(0 0 0 / 0.1);
 	}
 
 	.embed-container {

@@ -73,7 +73,7 @@ body[data-context="thoughts"].is-at-top .l-footer {
 }
 
 [data-context="thoughts"] .wp-caption {
-	margin: 1.333em auto 0.667em;
+	margin: 0 auto var(--baseline);
 	max-width: 100%;
 }
 
@@ -84,12 +84,13 @@ body[data-context="thoughts"].is-at-top .l-footer {
 	max-width: 100%;
 	margin-right: auto;
 	margin-left: auto;
-	box-shadow: 0 32px 32px 0 rgb(0 0 0 / 0.1);
+	box-shadow: 0 var(--baseline) var(--baseline) 0 rgb(0 0 0 / 0.1);
 }
 
 [data-context="thoughts"] .wp-caption-text {
 	display: block;
 	font-size: 13px;
 	font-weight: 400;
+	line-height: var(--baseline);
 	text-align: right;
 }

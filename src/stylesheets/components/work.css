@@ -4,17 +4,17 @@
 }
 
 .Work__title {
-	margin: 1em 0 0.5em;
+	margin: var(--baseline) 0 var(--baseline);
 	font-size: 3.2rem;
 	font-weight: 400;
-	line-height: 1;
+	line-height: var(--baseline);
 }
 
 @media (width >= 992px) {
 	.Work__title {
-		margin: calc(64 / 57 * 1em) 0 calc(64 / 57 / 2 * 1em);
+		margin: calc(var(--baseline) * 2) 0 var(--baseline);
 		font-size: 5.7rem;
-		line-height: calc(64 / 57);
+		line-height: calc(var(--baseline) * 2);
 	}
 }
 
