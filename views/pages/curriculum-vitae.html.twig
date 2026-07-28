@@ -33,9 +33,9 @@
 						<div class="grid grid-cols-12 gap-x-16">
 
 							<div class="col-span-12 md:col-span-4 md:col-start-2">
-								<h1 class="relative z-[1] m-0 text-24 font-medium leading-32">
+								<h1 class="relative z-1 m-0 text-24 font-medium leading-32">
 									<a href="http://19h47.fr" data-barba-prevent>
-										Jérémy Levron<sup class="align-text-top text-13 font-medium uppercase tracking-100 opacity-40">19h47</sup>
+										{{- __( 'Jérémy Levron', '19h47' ) -}}<sup class="align-text-top text-13 font-medium uppercase tracking-100 opacity-40">{{- __( '19h47', '19h47' ) -}}</sup>
 									</a>
 								</h1>
 							</div>
@@ -53,7 +53,7 @@
 
 							<p class="uppercase tracking-100 opacity-40 ">
 								<span class="text-13">
-									Informations
+									Information
 								</span>
 							</p>
 						</div>
@@ -63,11 +63,11 @@
 						<div class="col-span-12 md:col-span-7 md:col-start-2">
 							<p>
 
-								I'm Jérémy Levron an enthusiastic and creatif<br>front-end developer.<br>
+								I'm Jérémy Levron, an enthusiastic and creative<br>front-end developer.<br>
 								<br>
 								I was born in the beautiful year of 1986, and you can reach me at <a class="font-medium" href="mailto:jeremylevron@19h47.fr" target="_blank">jeremylevron[at]19h47.fr</a>.<br>
 								<br>
-								Oh, and my <span class="font-medium">Github account</span> is <a href="https://github.com/19h47" target="_blank">right here. 🚀</a>
+								Oh, and my <span class="font-medium">GitHub account</span> is <a href="https://github.com/19h47" target="_blank">right here. 🚀</a>
 							</p>
 						</div>
 
@@ -91,7 +91,7 @@
 
 						<div class="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-2">
 							<p class="text-13 uppercase tracking-100 opacity-40 ">
-								Experiences
+								{{- __( 'Experience', '19h47' ) -}}
 							</p>
 						</div>
 					</div>
@@ -99,19 +99,40 @@
 					<div class="grid grid-cols-12 gap-x-16">
 						<div class="col-span-12 md:col-span-2 md:col-start-2">
 							<p>
-								2018
+								{{- __( '2024-today', '19h47' ) -}}
+							</p>
+						</div>
+						<div class="col-span-12 md:col-span-4">
+							<p>
+								<a class="font-medium" href="https://agencecinq.com/" target="_blank">CINQ</a>,<br>
+								{{- __( 'France', '19h47' ) -}}
+							</p>
+						</div>
+						<div class="col-span-12 md:col-span-3">
+							<p>
+								<span class="text-13">
+									{{- __( 'Co-founder & Lead developer', '19h47' ) -}}
+								</span>
+							</p>
+						</div>
+					</div>
+
+					<div class="grid grid-cols-12 gap-x-16">
+						<div class="col-span-12 md:col-span-2 md:col-start-2">
+							<p>
+								{{- __( '2018', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-4">
 							<p>
 								<a class="font-medium" href="http://www.colorz.fr/" target="_blank">Colorz</a>,<br>
-								Paris, France
+								{{- __( 'Paris, France', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-3">
 							<p>
 								<span class="text-13">
-									Front-end developer
+									{{- __( 'Front-end developer', '19h47' ) -}}
 								</span>
 							</p>
 						</div>
@@ -123,19 +144,19 @@
 
 						<div class="col-span-12 md:col-span-2 md:col-start-2">
 							<p>
-								2017
+								{{- __( '2017', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-4">
 							<p>
 								<a class="font-medium" href="https://www.troa.fr/" target="_blank">Troa</a>,<br>
-								Montpellier, France
+								{{- __( 'Montpellier, France', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-3">
 							<p>
 								<span class="text-13">
-									Front-end developer
+									{{- __( 'Front-end developer', '19h47' ) -}}
 								</span>
 							</p>
 						</div>
@@ -147,19 +168,19 @@
 
 						<div class="col-span-12 md:col-span-2 md:col-start-2">
 							<p>
-								2015-2017
+								{{- __( '2015-2017', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-4">
 							<p>
 								<a class="font-medium" href="http://www.poigneedemainvirile.com/" target="_blank">Poignée de main virile</a>,<br>
-								Nantes, France
+								{{- __( 'Nantes, France', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-3">
 							<p>
 								<span class="text-13">
-									Front-end developer
+									{{- __( 'Front-end developer', '19h47' ) -}}
 								</span>
 							</p>
 						</div>
@@ -170,18 +191,18 @@
 
 						<div class="col-span-12 md:col-span-2 md:col-start-2">
 							<p>
-								2014-today
+								{{- __( '2014-today', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-4">
 							<p>
-								Freelance
+								{{- __( 'Freelance', '19h47' ) -}}
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-3">
 							<p>
 								<span class="text-13">
-									Front-end developer
+									{{- __( 'Front-end developer', '19h47' ) -}}	
 								</span>
 							</p>
 						</div>
@@ -191,7 +212,7 @@
 
 						<div class="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-2">
 							<p class="text-13 uppercase tracking-100 opacity-40">
-								Formations
+								Education
 							</p>
 						</div>
 					</div>
@@ -212,7 +233,7 @@
 						<div class="col-span-12 md:col-span-4">
 							<p>
 								<span class="text-13">
-									Infographist
+									Graphic designer
 								</span>
 							</p>
 						</div>
@@ -234,7 +255,7 @@
 						<div class="col-span-12 md:col-span-4">
 							<p>
 								<span class="text-13">
-									Beaux arts
+									Fine arts
 								</span>
 							</p>
 						</div>
@@ -363,12 +384,12 @@
 
 						<div class="col-span-12 md:col-span-2 md:col-start-2">
 							<p>
-								Futur
+								Future
 							</p>
 						</div>
 						<div class="col-span-12 md:col-span-8">
 							<p>
-								More and more to come, maybe with you? 😉</span>
+								More and more to come, maybe with you? 😉
 							</p>
 						</div>
 
@@ -513,7 +534,7 @@
 					<div class="mt-128 grid grid-cols-12 gap-x-16">
 						<div class="col-span-12 md:col-span-10 md:col-start-2">
 						 	<p class="text-13">
-							 	Pssst, if you love grid, you can display one with <code>ctrl + :</code>
+							 	Pssst, if you love grids, you can display one with <code>ctrl + :</code>
 						 	</p>
 					 	</div>
 					</div>
