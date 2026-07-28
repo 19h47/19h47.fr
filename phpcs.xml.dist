@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="19h47">
+	<description>WordPress Coding Standards for the 19h47 theme.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/dist/*</exclude-pattern>
+	<exclude-pattern>/views/*</exclude-pattern>
+	<exclude-pattern>/src/*</exclude-pattern>
+
+	<arg name="basepath" value="."/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+	<arg value="ps"/>
+	<arg name="colors"/>
+
+	<!-- Resolve WPCS even when the global phpcs/phpcbf binary is used. -->
+	<config name="installed_paths" value="vendor/wp-coding-standards/wpcs,vendor/phpcsstandards/phpcsutils,vendor/phpcsstandards/phpcsextra"/>
+
+	<config name="minimum_supported_wp_version" value="6.4"/>
+
+	<rule ref="WordPress">
+		<!-- PSR-4 class filenames (Tumblr.php, not class-tumblr.php). -->
+		<exclude name="WordPress.Files.FileName"/>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="DixNeufHeureQuaranteSept"/>
+				<element value="dixneufheurequarantesept"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="19h47"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

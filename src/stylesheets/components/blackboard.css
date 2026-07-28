@@ -1,0 +1,34 @@
+body:not([data-context="front-page"]) .BlackBoard,
+body:not([data-context="front-page"]) .BlackBoard__instruction,
+body:not([data-context="front-page"]) .BlackBoard__control {
+	display: none;
+}
+
+/* Do not use display:contents on <black-board> — it breaks CE connectedCallback in some engines. */
+black-board-button,
+television-noise {
+	display: contents;
+}
+
+.BlackBoard__instruction {
+	opacity: 0;
+	transition: 0.3s ease;
+	visibility: hidden;
+}
+
+body:has(black-board[empty]) .BlackBoard__instruction {
+	opacity: 1;
+	visibility: visible;
+}
+
+.BlackBoard__control {
+	opacity: 0;
+	transition: 0.3s ease;
+	visibility: hidden;
+}
+
+[data-context="front-page"] .BlackBoard__control {
+	opacity: 1;
+	visibility: visible;
+	display: inline-block;
+}

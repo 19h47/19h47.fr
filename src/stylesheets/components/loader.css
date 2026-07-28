@@ -1,0 +1,55 @@
+@keyframes loading-mask {
+	0% {
+		transform: translate3d(110%, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(-110%, 0, 0);
+	}
+}
+
+@keyframes loading-text {
+	0% {
+		transform: translate3d(-110%, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(110%, 0, 0);
+	}
+}
+
+.Loader {
+	position: relative;
+	display: inline-block;
+	color: rgb(255 255 255 / 0.4);
+}
+
+.Loader span {
+	position: absolute;
+	inset: 0;
+	display: block;
+	overflow: hidden;
+	animation: loading-mask 1.8s ease-in-out 0s infinite alternate;
+	animation-play-state: paused;
+}
+
+.Loader span::before {
+	position: absolute;
+	inset: 0;
+	display: block;
+	content: attr(data-text);
+	color: var(--color-white);
+	animation: loading-text 1.8s ease-in-out 0s infinite alternate;
+	animation-play-state: paused;
+	transition: 0.3s ease;
+	opacity: 0;
+}
+
+.Loader.is-loading span,
+.Loader.is-loading span::before {
+	animation-play-state: running;
+}
+
+.Loader.is-loading span::before {
+	opacity: 1;
+}

@@ -1,23 +1,49 @@
-Thumbs.db
-npm-debug.log
+.env
+.env.local
+.env.*.local
+
+# PHP #
+#######
+/vendor/
+# Node.js #
+###########
 /node_modules/
+.pnpm-store/
+.pnpm-debug.log
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build #
+#########
 /dist/
+
+# Editor / deploy #
+###################
+sftp-config.json
+sftp-config.json.dev
+sftp-config.json.prod
+.remote-sync.json
+*.sublime-workspace
+*.sublime-project
+.idea/
+.vscode/
+
+# Local assets / scratch #
+##########################
 /src/ai/
 /src/psd/
 /src/jpg/
 /src/pdf/
 /src/content/
 /src/mockup/
-sftp-config.json.prod
-sftp-config.json.dev
-sftp-config.json
-.remote-sync.json
-*.sublime-workspace
-/vendor/
-
-#Update a gitignore http://stackoverflow.com/a/1139797
-#git rm -r --cached .
-#This removes any changed files from the index(staging area), then just run:
-#git add .
-#Commit it:
-#git commit -m ".gitignore is now working"

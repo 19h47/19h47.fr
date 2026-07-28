@@ -1,0 +1,95 @@
+.l-header {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 10;
+}
+
+@media (width < 768px) {
+	.page--is-loading .l-header {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.l-footer {
+	opacity: 0;
+	transition: 0.3s ease;
+	visibility: hidden;
+	z-index: 10;
+}
+
+@media (width >= 992px) {
+	.l-footer {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+@media (width < 992px) {
+	[data-context="front-page"] .l-footer {
+		position: fixed;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+.l-footer.is-init,
+body.is-at-top .l-footer,
+body.is-at-bottom .l-footer,
+[data-context="front-page"] .l-footer,
+[data-context="404"] .l-footer {
+	opacity: 1;
+	visibility: visible;
+}
+
+body[data-context="archive-work"].is-at-top .l-footer,
+body[data-context="work"].is-at-top .l-footer,
+body[data-context="page"].is-at-top .l-footer,
+body[data-context="thoughts"].is-at-top .l-footer {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+@media (width < 768px) {
+	.page--is-loading .l-footer {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+	}
+}
+
+[data-context="front-page"] {
+	user-select: none;
+}
+
+.Page__who-i-am header {
+	display: none;
+}
+
+[data-context="thoughts"] .wp-caption {
+	margin: 1.333em auto 0.667em;
+	max-width: 100%;
+}
+
+[data-context="thoughts"] .wp-caption img {
+	display: block;
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	box-shadow: 0 32px 32px 0 rgb(0 0 0 / 0.1);
+}
+
+[data-context="thoughts"] .wp-caption-text {
+	display: block;
+	font-size: 13px;
+	font-weight: 400;
+	text-align: right;
+}

@@ -1,0 +1,111 @@
+{#
+ #
+ # /views/footer
+ #
+ # @package WordPress
+ # @subpackage 19h47
+ # @author Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
+ #
+ #}
+			</div>
+
+	</main>
+
+	<footer class="l-footer pt-32 pb-64">
+		<div class="relative mx-auto max-w-full px-32">
+
+			<div class="grid grid-cols-12 gap-x-16">
+
+				<div class="col-span-12 md:col-span-2 md:col-start-2">
+					<p class="m-0 text-18">
+						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.who_i_am }}">
+							{{- __( 'Who I am' ) -}}
+							<span data-text="{{- __( 'Who I am' ) -}}"></span>
+						</a>
+						<br>
+						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.work }}">
+							{{- __( 'Work' ) -}}
+							<span data-text="{{- __( 'Work' ) -}}"></span>
+						</a>
+						<br>
+
+					</p>
+				</div>
+				<div class="col-span-12 md:col-span-3">
+					<p class="m-0 text-18">
+
+						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.what_im_currently_listening_to }}">
+							{{- __( "What I\'m currently listening to", '19h47' ) -}}
+							<span data-text="{{- __( "What I\'m currently listening to", '19h47' ) -}}"></span>
+						</a>
+						<br>
+						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.what_inspires_me }}">
+							{{- __( 'What inspires me', '19h47' ) -}}
+							<span data-text="{{- __( 'What inspires me', '19h47' ) -}}"></span>
+						</a>
+
+						<br class="md:hidden">
+						<a class="Link-layer js-navigation inline-block align-baseline md:hidden" href="{{ page_permalink.thoughts }}">
+							{{- __( 'Thoughts', '19h47' ) -}}
+							<span data-text="{{- __( 'Thoughts', '19h47' ) -}}"></span>
+						</a>
+					</p>
+				</div>
+
+				<div class="col-span-12 md:col-span-3">
+					<p class="m-0 text-18">
+						<a class="Link-layer inline-block align-baseline" href="https://instagram.com/19h47" target="_blank" rel="noopener noreferer">
+							{{- __( 'Instagram', '19h47'  ) -}}
+							<span data-text="{{- __( 'Instagram', '19h47'  ) -}}"></span>
+						</a>
+						<br>
+						<a class="Link-layer inline-block align-baseline" href="https://github.com/19h47" target="_blank" rel="noopener noreferer">
+							{{- __( 'Github', '19h47' ) -}}
+							<span data-text="{{- __( 'Github', '19h47' ) -}}"></span>
+						</a>
+					</p>
+				</div>
+
+				{# Paint control #}
+				<div class="col-span-12 hidden lg:col-span-2 lg:block">
+					<p class="m-0 text-18">
+
+						<black-board-button action="save">
+							<a class="BlackBoard__control Link-layer inline-block align-baseline" href="#" download="19h47.png">
+								{{- __( 'Save me', '19h47'  ) -}}
+								<span data-text="{{- __( 'Save me', '19h47'  ) -}}"></span>
+							</a>
+						</black-board-button>
+						<br>
+						<black-board-button action="clear">
+							<button class="BlackBoard__control Link-layer js-navigation inline-block align-baseline" type="button">
+								{{- __( 'Clear me', '19h47' ) -}}
+								<span data-text="{{- __( 'Clear me', '19h47' ) -}}"></span>
+							</button>
+						</black-board-button>
+
+					</p>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-12 gap-x-16">
+				<div class="col-span-12 md:col-span-5 md:col-start-2">
+					<p class="text-13 font-medium uppercase tracking-100">
+						{{- __( 'Front-end developer', '19h47' ) -}}
+					</p>
+				</div>
+
+				<div class="col-span-12 md:col-span-5 md:text-right">
+					<p class="text-13 font-medium uppercase tracking-100">
+						{{- __( 'Born', '19h47' ) }} {{ age }} {{ __( 'years ago', '19h47' ) -}}
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+	</footer>
+	{{ function( 'wp_footer' ) }}
+	{{- include( 'components/guid.html.twig' ) -}}
+</body>
+</html>

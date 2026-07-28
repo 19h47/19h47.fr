@@ -1,0 +1,50 @@
+{#
+/**
+ * /views/pages/what-currently-listening
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
+ */
+#}
+{% extends 'index.html.twig' %}
+
+{# Last.fm #}
+{% block start_wrapper %}
+	<lastfm-feed class="block my-64" limit="50">
+{% endblock %}
+
+{% block header %}
+	<header class="grid grid-cols-12 gap-x-16">
+		<div class="col-span-12 md:col-span-10 md:col-start-2">
+			<p class="js-loader is-loading Loader m-0 text-13 font-medium uppercase leading-32 tracking-100">
+				{{ post.title }}
+				<span data-text="{{ post.title }}"></span>
+			</p>
+		</div>
+	</header>
+{% endblock %}
+
+{% block content %}
+
+	<section class="my-32 grid grid-cols-12 gap-x-16">
+		<div class="col-span-12">
+			<div class="response"></div>
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block footer %}
+	<footer class="grid grid-cols-12 gap-x-16">
+		<div class="col-span-12 md:col-span-10 md:col-start-2">
+			<p class="m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white">
+				I've listened to <span class="playcount"></span>&nbsp;songs since 2008.
+			</p>
+		</div>
+	</footer>
+{% endblock %}
+
+{% block end_wrapper %}
+	</lastfm-feed>
+{% endblock %}

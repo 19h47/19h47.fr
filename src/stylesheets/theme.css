@@ -1,0 +1,42 @@
+@theme {
+	--default-font-family: "Work Sans", sans-serif;
+
+	/* Breakpoints (legacy Bootstrap theme) */
+	--breakpoint-sm: 768px;
+	--breakpoint-md: 992px;
+	--breakpoint-lg: 1200px;
+	--breakpoint-hd: 1400px;
+
+	/* Colors */
+	--color-*: initial;
+	--color-black: #000000;
+	--color-white: #ffffff;
+	--color-blue: #0000ff;
+	--color-red: #ff0000;
+
+	/* Spacing scale matching previous architecture utilities (px) */
+	--spacing-*: initial;
+	--spacing-0: 0;
+	--spacing-8: 8px;
+	--spacing-16: 16px;
+	--spacing-32: 32px;
+	--spacing-64: 64px;
+	--spacing-96: 96px;
+	--spacing-128: 128px;
+	--spacing-224: 224px;
+
+	/* Type scale used in templates */
+	--text-*: initial;
+	--text-13: 13px;
+	--text-13--line-height: 32px;
+	--text-18: 18px;
+	--text-18--line-height: 1.333;
+	--text-24: 24px;
+	--text-24--line-height: 32px;
+	--text-32: 32px;
+	--text-32--line-height: 1;
+	--text-57: 57px;
+	--text-57--line-height: calc(64 / 57);
+
+	--tracking-100: 0.1em;
+}

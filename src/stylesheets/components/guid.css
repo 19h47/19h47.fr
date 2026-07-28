@@ -1,0 +1,17 @@
+.Guid {
+	position: fixed;
+	inset: 0;
+	z-index: 10000;
+}
+
+.Guid__column {
+	width: 100%;
+	height: 100%;
+	color: rgb(0 0 0 / 0.2);
+	background-color: rgb(0 0 255 / 0.2);
+}
+
+.Guid [class*="col-"]:nth-child(odd) .Guid__column,
+.Guid .grid > *:nth-child(odd) .Guid__column {
+	background-color: rgb(255 0 0 / 0.2);
+}

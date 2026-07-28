@@ -1,19 +1,16 @@
 <?php
 /**
- * /index
+ * Main template.
  *
- * @package     WordPress
- * @subpackage  19h47
- * @author      Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
+ * @package WordPress
+ * @subpackage 19h47
+ * @author     Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
  */
 
-if ( ! class_exists( 'Timber' ) ) {
-	echo 'Timber not activated. Make sure you activate the plugin in <a href="/wp-admin/plugins.php#timber">/wp-admin/plugins.php</a>';
-	return;
-}
+use Timber\Timber;
 
-$context         = Timber::get_context();
-$post            = new TimberPost();
+$context         = Timber::context();
+$post            = Timber::get_post();
 $context['post'] = $post;
 
 // Roles
@@ -53,14 +50,14 @@ if ( ! empty( $repository ) ) {
 }
 
 
-$templates = array( 'index.twig' );
+$templates = array( 'index.html.twig' );
 
 if ( is_404() ) {
-	array_unshift( $templates, 'pages/404.twig' );
+	array_unshift( $templates, 'pages/404.html.twig' );
 }
 
 // Single work
-if ( is_singular( 'work' ) ) {
+if ( is_singular( 'work' ) && $post ) {
 
 	$work = new WP_Query(
 		array(
@@ -69,24 +66,27 @@ if ( is_singular( 'work' ) ) {
 		)
 	);
 
+	$next_object     = null;
+	$previous_object = null;
+
 	foreach ( $work->posts as $key => $value ) {
-		if ( $value->ID === $post->ID ) {
-			$next_object     = $work->posts[ $key - 1 ];
-			$previous_object = $work->posts[ $key + 1 ];
+		if ( (int) $value->ID === (int) $post->ID ) {
+			$next_object     = $work->posts[ $key - 1 ] ?? null;
+			$previous_object = $work->posts[ $key + 1 ] ?? null;
 		}
 	}
 
-	if ( $next_object === null ) {
+	if ( null === $next_object ) {
 		$next_object = $work->posts[ count( $work->posts ) - 1 ];
 	}
 
-	if ( $previous_object === null ) {
+	if ( null === $previous_object ) {
 		$previous_object = $work->posts[0];
 	}
 
 	$context['work']['previous'] = array(
 		'id'    => $previous_object->ID,
-		'title' => strip_tags( str_replace( '"', '', $previous_object->post_title ) ),
+		'title' => wp_strip_all_tags( str_replace( '"', '', $previous_object->post_title ) ),
 		'link'  => get_permalink( $previous_object->ID ),
 		'color' => get_field( 'color', $previous_object->ID ),
 		'slug'  => $previous_object->post_name,
@@ -94,23 +94,23 @@ if ( is_singular( 'work' ) ) {
 
 	$context['work']['next'] = array(
 		'id'    => $next_object->ID,
-		'title' => strip_tags( str_replace( '"', '', $next_object->post_title ) ),
+		'title' => wp_strip_all_tags( str_replace( '"', '', $next_object->post_title ) ),
 		'link'  => get_permalink( $next_object->ID ),
 		'color' => get_field( 'color', $next_object->ID ),
 		'slug'  => $next_object->post_name,
 	);
 
-	array_unshift( $templates, 'pages/work-single.twig' );
+	array_unshift( $templates, 'pages/single-work.html.twig' );
 }
 
 // Archive work
 if ( is_post_type_archive( 'work' ) ) {
-	array_unshift( $templates, 'pages/work-archive.twig' );
+	array_unshift( $templates, 'pages/work-archive.html.twig' );
 }
 
 // Home
 if ( is_home() ) {
-	array_unshift( $templates, 'pages/thoughts.twig' );
+	array_unshift( $templates, 'pages/thoughts.html.twig' );
 }
 
 Timber::render( $templates, $context );

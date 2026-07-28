@@ -1,13 +1,14 @@
 <?php
-
 /**
  * Template Name: What I'm currently listening to
+ *
+ * @package DixNeufHeureQuaranteSept
  */
 
-$context = Timber::get_context();
-$post = new TimberPost();
-$context['post'] = $post;
+use Timber\Timber;
 
-$templates = array( 'pages/what-im-currently-listening-to.twig' );
+$context         = Timber::context();
+$context['post'] = Timber::get_post();
+$templates       = array( 'pages/what-im-currently-listening-to.html.twig' );
 
 Timber::render( $templates, $context );

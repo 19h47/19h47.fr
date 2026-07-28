@@ -1,0 +1,58 @@
+{#
+/**
+ * /views/pages/thoughts
+ *
+ * @package 	WordPress
+ * @subpackage 	19h47
+ * @author 		Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
+ */
+#}
+{% extends 'index.html.twig' %}
+
+{% block start_wrapper %}
+	<div class="my-64">
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+	{% for post in posts %}
+
+		<article class="my-64 grid grid-cols-12 gap-x-16" id="post-{{ post.ID }}">
+			<div class="col-span-12 md:col-span-10 md:col-start-2">
+
+				<p class="m-0 text-13 font-medium uppercase leading-32 tracking-100 opacity-40">
+					{{- post.date( 'F j, Y' ) -}}
+				</p>
+
+				<h2 class="mt-0">
+					{{- post.title -}}
+				</h2>
+
+			</div>
+
+			{% if post.thumbnail %}
+				<div class="col-span-12 md:col-span-10 md:col-start-2">
+					<p>
+						<img src="{{ post.thumbnail.src }}" class="img-full box-shadow" alt=""/>
+
+						{% if post.thumbnail.caption %}
+							<span class="block text-right text-13 font-normal">
+								{{ post.thumbnail.caption }}
+							</span>
+						{% endif %}
+					</p>
+				</div>
+			{% endif %}
+
+			<div class="col-span-12 md:col-span-8 md:col-start-3">{{- post.content -}}</div>
+		</article>
+
+	{% endfor %}
+
+{% endblock %}
+
+{% block end_wrapper %}
+	</div>
+{% endblock %}

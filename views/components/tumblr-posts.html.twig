@@ -1,0 +1,23 @@
+{#
+/**
+ * Tumblr photo posts partial (AJAX).
+ *
+ * @package WordPress
+ * @subpackage 19h47
+ */
+#}
+{% for post in posts %}
+	<div class="col-span-12 my-32 md:col-span-6">
+		<div
+			class="relative aspect-square bg-center bg-contain bg-no-repeat"
+			style="background-image: url('{{ post.image }}');"
+		>
+			<a
+				class="absolute inset-0 h-full w-full"
+				href="{{ post.src }}"
+				target="_blank"
+				rel="noopener noreferrer"
+			></a>
+		</div>
+	</div>
+{% endfor %}

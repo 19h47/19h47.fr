@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@source "../../views/**/*.twig";
+@source "../../src/scripts/**/*.{js,jsx,ts,tsx}";
+@source "../../includes/**/*.php";
+
+@import "./theme.css";
+
+@import "./base/base.css";
+
+@import "./components/link.css";
+@import "./components/loader.css";
+@import "./components/transition.css";
+@import "./components/blackboard.css";
+@import "./components/work.css";
+@import "./components/guid.css";
+@import "./components/layout.css";

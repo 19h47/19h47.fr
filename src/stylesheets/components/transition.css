@@ -1,0 +1,17 @@
+.Transition {
+	position: fixed;
+	inset: 0;
+	background-color: var(--color-black);
+	transform: translate3d(-100%, 0, 0);
+	transition: 1s ease;
+	overflow: hidden;
+	z-index: 9;
+}
+
+.page--is-loading .Transition {
+	transform: translate3d(0, 0, 0);
+}
+
+[data-context="thoughts"] .Transition {
+	background-color: var(--color-white);
+}

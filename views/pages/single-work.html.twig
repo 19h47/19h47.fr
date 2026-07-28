@@ -7,30 +7,28 @@
  * @author 		Jérémy Levron <jeremyjeremy@19h47.fr> (http://19h47.fr)
  */
 #}
-{% extends 'index.twig' %}
+{% extends 'index.html.twig' %}
 
 {% block header %}
-	{{- 
-		include(
-			'pages/_header.twig', 
-			{
-				title: 'Work',
-				link: page_permalink.work,
-				class: 'display-inline-block'
-			}
-		)
-	-}}
+	<header class="grid grid-cols-12 gap-x-16">
+		<div class="col-span-12 md:col-span-10 md:col-start-2">
+			<a class="Link-layer m-0 inline-block text-13 font-medium uppercase leading-32 tracking-100" href="{{ page_permalink.work }}">
+				Work
+				<span data-text="Work"></span>
+			</a>
+		</div>
+	</header>
 {% endblock %}
 
 {% block content %}
 
-	<section class="row">
+	<section class="grid grid-cols-12 gap-x-16">
 
-		<div class="col-md-10 offset-md-1">
+		<div class="col-span-12 md:col-span-10 md:col-start-2">
 
-			<h2 class="Work__title color-white font-weight-bold margin-top-16">
+			<h2 class="Work__title mt-16 font-bold text-white">
 				{{ post.title }}
-				<sup class="display-none display-sm-inline vertical-align-text-top opacity-40 font-size-13px uppercase letter-spacing-100 font-weight-medium">
+				<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-40 sm:inline">
 					{{- post.meta( 'year' )  -}}
 				</sup>
 			</h2>
@@ -38,14 +36,14 @@
 		</div>
 
 
-		<div class="col-md-6 offset-md-1">
+		<div class="col-span-12 md:col-span-6 md:col-start-2">
 
-			<div class="color-white">
+			<div class="text-white">
 
 				{{- post.content -}}
 
 				{% if post.meta( 'link' ) %}
-					<a class="font-size-18 font-weight-regular display-inline-block vertical-align-baseline Link-layer" href="{{ post.meta( 'link' ) }}" target="_blank" rel="noopener noreferer">
+					<a class="Link-layer inline-block align-baseline text-18 font-normal" href="{{ post.meta( 'link' ) }}" target="_blank" rel="noopener noreferer">
 						{{- __( 'View the website', '19h47' ) -}}
 						<span data-text="{{- __( 'View the website', '19h47' ) -}}"></span>
 					</a>
@@ -55,7 +53,7 @@
 
 					{% if work.details.link %}<br>{% endif %}
 
-					<a class="font-size-18 font-weight-regular display-inline-block vertical-align-baseline Link-layer" href="{{ post.meta( 'repository' ) }}" target="_blank" rel="noopener noreferer">
+					<a class="Link-layer inline-block align-baseline text-18 font-normal" href="{{ post.meta( 'repository' ) }}" target="_blank" rel="noopener noreferer">
 						{{- __( 'View the repository', '19h47' ) -}}
 						<span data-text="{{- __( 'View the repository', '19h47' ) -}}"></span>
 					</a>
@@ -66,26 +64,26 @@
 		</div>
 
 		{% if  post.meta( 'client' ) or post.meta( 'role' ) %}
-			<aside class="col-md-3 offset-md-1">
+			<aside class="col-span-12 md:col-span-3 md:col-start-9">
 
 				{% if post.meta( 'client' ) %}
-					<p class="color-white">
-						<span class="uppercase font-size-13 opacity-40 letter-spacing-100">
+					<p class="text-white">
+						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{ __( 'Client', '19h47' ) }}
 						</span>
 						<br>
-						<span class="font-size-18 font-weight-medium">
+						<span class="text-18 font-medium">
 							{{- post.meta( 'client' ) | map( client => client.name ) | join( '<br />' ) -}}
 						</span>
 					</p>
 				{% endif %}
 
 				{% if post.meta( 'role' ) %}
-					<p class="color-white">
-						<span class="uppercase font-size-13 opacity-40 letter-spacing-100">
+					<p class="text-white">
+						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{- __( 'Role', '19h47' ) -}}
 						</span><br>
-						<span class="font-size-18 font-weight-medium">
+						<span class="text-18 font-medium">
 							{{- post.meta( 'role' ) | map( role => role.name ) | join( '<br/ >' ) -}}
 						</span>
 					</p>
@@ -95,7 +93,7 @@
 		{% endif %}
 
 		{% for section in post.meta( 'sections' ) %}
-			{{- include( 'sections/section-' ~ section.acf_fc_layout ~ '.twig' ) -}}
+			{{- include( 'sections/section-' ~ section.acf_fc_layout ~ '.html.twig' ) -}}
 		{% endfor %}
 
 	</section>
@@ -105,28 +103,28 @@
 {% block footer %}
 
 	{# Navigation #}
-	<nav class="row margin-top-64">
+	<nav class="mt-64 grid grid-cols-12 gap-x-16">
 
-		<div class="offset-md-1 col-md-5">
-			<a class="js-work-navigation display-inline-block Work__navigation" href="{{ post.next.link }}" rel="next" data-namespace="work" data-color="{{ post.next.color }}">
-				<span class="color-white font-size-13 uppercase letter-spacing-100 font-weight-medium color-white">
+		<div class="col-span-12 md:col-span-5 md:col-start-2">
+			<a class="js-work-navigation Work__navigation inline-block" href="{{ post.next.link }}" rel="next" data-namespace="work" data-color="{{ post.next.color }}">
+				<span class="text-13 font-medium uppercase tracking-100 text-white">
 					{{- __( 'Next work', '19h47' ) -}}
 				</span>
 				<br>
-				<p class="display-inline-block vertical-align-baseline Link-layer margin-top-0">
+				<p class="Link-layer mt-0 inline-block align-baseline">
 					{{ post.next.title }}
 					<span data-text="{{ post.next.title }}"></span>
 				</p>
 			</a>
 		</div>
 
-		<div class="col-md-5 text-align-md-right">
-			<a class="js-work-navigation display-inline-block Work__navigation" href="{{ post.previous.link }}" rel="prev" data-namespace="work" data-color="{{ post.previous.color }}">
-				<span class="color-white font-size-13 uppercase letter-spacing-100 font-weight-medium color-white">
+		<div class="col-span-12 md:col-span-5 md:text-right">
+			<a class="js-work-navigation Work__navigation inline-block" href="{{ post.previous.link }}" rel="prev" data-namespace="work" data-color="{{ post.previous.color }}">
+				<span class="text-13 font-medium uppercase tracking-100 text-white">
 					{{- __( 'Previous work', '19h47' ) -}}
 				</span>
 				<br>
-				<p class="display-inline-block vertical-align-baseline Link-layer margin-top-0">
+				<p class="Link-layer mt-0 inline-block align-baseline">
 					{{ post.previous.title }}
 					<span data-text="{{ post.previous.title }}"></span>
 				</p>

@@ -1,0 +1,31 @@
+.Work-archive__color {
+	display: block;
+	padding-top: 100%;
+}
+
+.Work__title {
+	margin: 1em 0 0.5em;
+	font-size: 3.2rem;
+	font-weight: 400;
+	line-height: 1;
+}
+
+@media (width >= 992px) {
+	.Work__title {
+		margin: calc(64 / 57 * 1em) 0 calc(64 / 57 / 2 * 1em);
+		font-size: 5.7rem;
+		line-height: calc(64 / 57);
+	}
+}
+
+.Work__navigation:hover .Link-layer span {
+	transform: translate3d(0, 0, 0);
+}
+
+.Work__navigation:hover .Link-layer span::before {
+	transform: translate3d(0, 0, 0);
+}
+
+.single-work {
+	transition: background-color 2s ease;
+}

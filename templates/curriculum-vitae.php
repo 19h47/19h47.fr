@@ -1,13 +1,14 @@
 <?php
-
 /**
  * Template Name: Curriculum Vitae
+ *
+ * @package DixNeufHeureQuaranteSept
  */
 
-$context = Timber::get_context();
-$post = new TimberPost();
-$context['post'] = $post;
+use Timber\Timber;
 
-$templates = array( 'pages/curriculum-viate.twig' );
+$context         = Timber::context();
+$context['post'] = Timber::get_post();
+$templates       = array( 'pages/curriculum-vitae.html.twig' );
 
 Timber::render( $templates, $context );

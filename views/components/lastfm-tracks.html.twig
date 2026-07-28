@@ -1,0 +1,29 @@
+{#
+/**
+ * Last.fm recent tracks partial (AJAX).
+ *
+ * @package WordPress
+ * @subpackage 19h47
+ */
+#}
+{% for track in tracks %}
+	<div class="my-32 grid grid-cols-12 gap-x-16{% if track.nowplaying %} is-nowplaying{% endif %}" style="opacity: {{ 1 - loop.index * 0.02 }}">
+		<div class="col-span-1 col-start-2 hidden md:block">
+			<div
+				class="aspect-square w-full bg-white bg-center bg-contain bg-no-repeat grayscale"
+				style="background-image: url('{{ track.image }}')"
+			></div>
+		</div>
+		<div class="col-span-12 md:col-span-9">
+			<p class="mt-8 mb-0 text-white">
+				{% if track.url %}
+					<a class="artist font-medium" href="{{ track.url }}" target="_blank" rel="noopener noreferrer">{{ track.artist }}</a><br/>
+					<a class="name font-extralight" href="{{ track.url }}" target="_blank" rel="noopener noreferrer">{{ track.name }}</a>
+				{% else %}
+					<span class="artist font-medium">{{ track.artist }}</span><br/>
+					<span class="name font-extralight">{{ track.name }}</span>
+				{% endif %}
+			</p>
+		</div>
+	</div>
+{% endfor %}

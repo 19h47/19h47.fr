@@ -1,0 +1,173 @@
+@layer base {
+	html {
+		width: 100%;
+		overflow-y: visible;
+		font-size: 62.5%; /* 1rem = 10px — matches prod heading rem scale */
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
+
+	body {
+		font-family: var(--default-font-family);
+		font-size: 24px;
+		font-weight: 200;
+		line-height: calc(32 / 24);
+		background-color: var(--color-black);
+		color: var(--color-white);
+		transition: background-color 0.3s ease 1s, color 0.3s ease 1s;
+	}
+
+	body[data-context="curriculum-vitae"],
+	body[data-context="thoughts"] {
+		background-color: var(--color-white);
+		color: var(--color-black);
+	}
+
+	body.page--is-loading {
+		cursor: wait !important;
+	}
+
+	::selection {
+		background-color: var(--color-black);
+		color: var(--color-white);
+	}
+
+	body[data-context="thoughts"] ::selection,
+	body[data-context="curriculum-vitae"] ::selection {
+		background-color: var(--color-white);
+		color: var(--color-black);
+	}
+
+	a,
+	button {
+		cursor: pointer;
+		outline: none;
+	}
+
+	a {
+		color: currentColor;
+		text-decoration: none;
+	}
+
+	b,
+	strong {
+		font-weight: 500;
+	}
+
+	p {
+		margin-top: 1.333em;
+		margin-bottom: 0.667em;
+		font-size: 1em;
+		line-height: calc(32 / 24);
+	}
+
+	ul,
+	ol {
+		margin: 1.333em 0 0.667em;
+		padding: 0 0 0 1.333em;
+	}
+
+	li {
+		margin: 0.667em 0 0.333em;
+	}
+
+	hr {
+		margin: 0;
+		border: 0;
+	}
+
+	em {
+		font-style: italic;
+	}
+
+	iframe {
+		border: 0;
+	}
+
+	blockquote {
+		margin: 1.333em 0 0.667em;
+		padding: 20px 0 20px 64px;
+		border-left: 10px solid currentColor;
+		font-weight: 400;
+	}
+
+	blockquote p {
+		margin: 0;
+	}
+
+	[disabled],
+	a.disabled {
+		pointer-events: none;
+	}
+
+	h1,
+	.h1 {
+		margin: calc(64 / 57 * 1em) 0 calc(64 / 57 / 2 * 1em);
+		font-size: 5.7rem;
+		font-weight: 500;
+		line-height: calc(64 / 57);
+	}
+
+	h2,
+	.h2 {
+		margin: 1.5em 0 0.75em;
+		font-size: 4.3rem;
+		font-weight: 400;
+		line-height: calc(64 / 43);
+	}
+
+	h3,
+	.h3 {
+		margin: 1em 0 0.5em;
+		font-size: 3.2rem;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	h4,
+	.h4 {
+		margin: calc(32 / 24 * 1em) 0 calc(32 / 24 / 2 * 1em);
+		font-size: 2.4rem;
+		font-weight: 500;
+		line-height: calc(32 / 24);
+	}
+
+	button:not(:disabled),
+	[role="button"]:not(:disabled) {
+		cursor: pointer;
+	}
+}
+
+@layer utilities {
+	.img-full {
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.box-shadow {
+		box-shadow: 0 32px 32px 0 rgb(0 0 0 / 0.1);
+	}
+
+	.embed-container {
+		position: relative;
+		overflow: hidden;
+		height: 0;
+		max-width: 100%;
+		padding-bottom: 56.25%;
+	}
+
+	.embed-container > iframe,
+	.embed-container > object,
+	.embed-container > embed,
+	.embed-container > div {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
