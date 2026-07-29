@@ -35,7 +35,7 @@ class Lastfm implements Service {
 	private const API_URL = 'https://ws.audioscrobbler.com/2.0/';
 
 	/**
-	 * Cache TTL in seconds.
+	 * Cache TTL in seconds (short: scrobbles change often).
 	 *
 	 * @var int
 	 */
@@ -52,7 +52,7 @@ class Lastfm implements Service {
 	}
 
 	/**
-	 * Proxy recent tracks + playcount.
+	 * Proxy recent tracks + playcount (AJAX).
 	 *
 	 * @return void
 	 */
@@ -66,23 +66,54 @@ class Lastfm implements Service {
 			);
 		}
 
-		if ( empty( LASTFM_API_KEY ) ) {
+		$limit = isset( $_GET['limit'] ) ? absint( wp_unslash( $_GET['limit'] ) ) : 50;
+		$feed  = $this->get_feed( $limit );
+
+		if ( is_wp_error( $feed ) ) {
+			$status = 502;
+			$data   = $feed->get_error_data();
+
+			if ( is_array( $data ) && isset( $data['status'] ) ) {
+				$status = (int) $data['status'];
+			} elseif ( is_int( $data ) ) {
+				$status = $data;
+			}
+
 			wp_send_json_error(
 				array(
-					'message' => __( 'Last.fm API key is missing.', '19h47' ),
+					'message' => $feed->get_error_message(),
 				),
+				$status ? $status : 502
+			);
+		}
+
+		wp_send_json_success( $feed );
+	}
+
+	/**
+	 * Fetch (and cache) recent tracks for SSR or AJAX.
+	 *
+	 * @param int $limit Number of tracks (1–200).
+	 * @return array|\WP_Error {
+	 *     @type string $html
+	 *     @type int    $playcount
+	 * }
+	 */
+	public function get_feed( int $limit = 50 ) {
+		if ( empty( LASTFM_API_KEY ) ) {
+			return new \WP_Error(
+				'lastfm_api_key',
+				__( 'Last.fm API key is missing.', '19h47' ),
 				500
 			);
 		}
 
-		$limit = isset( $_GET['limit'] ) ? absint( wp_unslash( $_GET['limit'] ) ) : 50;
-		$limit = min( max( $limit, 1 ), 200 );
-
+		$limit     = min( max( $limit, 1 ), 200 );
 		$cache_key = sprintf( '19h47_lastfm_recent_%s_%d', sanitize_key( LASTFM_USER ), $limit );
 		$cached    = get_transient( $cache_key );
 
 		if ( is_array( $cached ) ) {
-			wp_send_json_success( $cached );
+			return $cached;
 		}
 
 		$tracks_body = $this->request(
@@ -105,12 +136,7 @@ class Lastfm implements Service {
 		);
 
 		if ( is_wp_error( $tracks_body ) ) {
-			wp_send_json_error(
-				array(
-					'message' => $tracks_body->get_error_message(),
-				),
-				502
-			);
+			return $tracks_body;
 		}
 
 		$raw_tracks = isset( $tracks_body['recenttracks']['track'] ) ? $tracks_body['recenttracks']['track'] : array();
@@ -138,13 +164,13 @@ class Lastfm implements Service {
 		}
 
 		$payload = array(
-			'html'      => Timber::compile( 'components/lastfm-tracks.html.twig', array( 'tracks' => $tracks ) ),
+			'html'      => Timber::compile( 'components/tracks.html.twig', array( 'tracks' => $tracks ) ),
 			'playcount' => $playcount,
 		);
 
 		set_transient( $cache_key, $payload, self::CACHE_TTL );
 
-		wp_send_json_success( $payload );
+		return $payload;
 	}
 
 	/**
@@ -209,7 +235,7 @@ class Lastfm implements Service {
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( 200 !== $code || ! is_array( $body ) ) {
-			return new \WP_Error( 'lastfm_error', __( 'Unable to load Last.fm data.', '19h47' ) );
+			return new \WP_Error( 'lastfm_error', __( 'Unable to load Last.fm data.', '19h47' ), 502 );
 		}
 
 		// Last.fm often returns HTTP 200 with an error payload.

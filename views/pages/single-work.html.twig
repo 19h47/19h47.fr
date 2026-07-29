@@ -63,11 +63,11 @@
 
 		</div>
 
-		{% if  post.meta( 'client' ) or post.meta( 'role' ) %}
+		{% if post.meta( 'client' ) or post.meta( 'role' ) or post.meta( 'stack' ) %}
 			<aside class="col-span-12 md:col-span-3 md:col-start-9">
 
 				{% if post.meta( 'client' ) %}
-					<p class="text-white">
+					<p class="m-0 text-white">
 						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{ __( 'Client', '19h47' ) }}
 						</span>
@@ -79,12 +79,23 @@
 				{% endif %}
 
 				{% if post.meta( 'role' ) %}
-					<p class="text-white">
+					<p class="m-0 text-white">
 						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{- __( 'Role', '19h47' ) -}}
 						</span><br>
 						<span class="text-18 font-medium">
 							{{- post.meta( 'role' ) | map( role => role.name ) | join( '<br/ >' ) -}}
+						</span>
+					</p>
+				{% endif %}
+
+				{% if post.meta( 'stack' ) %}
+					<p class="m-0 text-white">
+						<span class="text-13 uppercase tracking-100 opacity-40">
+							{{- __( 'Stack', '19h47' ) -}}
+						</span><br>
+						<span class="text-18 font-medium">
+							{{- post.meta( 'stack' ) | map( item => item.name ) | join( ', ' ) -}}
 						</span>
 					</p>
 				{% endif %}
@@ -111,7 +122,7 @@
 					{{- __( 'Next work', '19h47' ) -}}
 				</span>
 				<br>
-				<p class="Link-layer mt-0 inline-block align-baseline">
+				<p class="Link-layer m-0 inline-block align-baseline">
 					{{- post.next.title -}}
 					<span data-text="{{ post.next.title }}"></span>
 				</p>
@@ -124,7 +135,7 @@
 					{{- __( 'Previous work', '19h47' ) -}}
 				</span>
 				<br>
-				<p class="Link-layer mt-0 inline-block align-baseline">
+				<p class="Link-layer m-0 inline-block align-baseline">
 					{{ post.previous.title }}
 					<span data-text="{{ post.previous.title }}"></span>
 				</p>

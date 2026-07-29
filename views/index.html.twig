@@ -21,8 +21,8 @@
 			<header class="grid grid-cols-12 gap-x-16">
 				<div class="js-title col-span-12 md:col-span-10 md:col-start-2">
 					<p class="m-0 text-13 font-medium uppercase tracking-100 opacity-40">
-						{{ post.title }}
-						<span data-text="{{ post.title }}"></span>
+						{{- post.title -}}
+						<span data-text="{{- post.title -}}"></span>
 					</p>
 				</div>
 			</header>
@@ -35,7 +35,7 @@
 			<section class="grid grid-cols-12 gap-x-16">
 				<div class="js-content col-span-12 md:col-span-10 md:col-start-2">
 					<div class="font-extralight">
-						{{ post.content }}
+						{{- post.content -}}
 					</div>
 				</div>
 			</section>

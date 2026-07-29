@@ -39,11 +39,7 @@
 		margin-bottom: var(--baseline);
 	}
 
-	body[data-context="curriculum-vitae"]
-		main
-		.relative.mx-auto
-		> .grid:not([class*="mt-"])
-		p {
+	body[data-context="curriculum-vitae"] main .relative.mx-auto > .grid p {
 		margin-bottom: 0;
 	}
 

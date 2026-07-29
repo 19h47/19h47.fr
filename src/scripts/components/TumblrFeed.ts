@@ -15,6 +15,9 @@ type WpAjaxResponse<T> = {
 /**
  * Tumblr feed web component (AJAX → admin-ajax → Timber HTML).
  *
+ * First paint can be SSR’d into `.response` with data-offset / data-total /
+ * data-has-more on the host; mount then hydrates and skips the first fetch.
+ *
  * Usage:
  *   <tumblr-feed class="block" per-page="20">
  *     <div class="js-loader"></div>
@@ -50,6 +53,10 @@ class TumblrFeed extends Piece {
 			this.on('click', this.#button, this.#onLoadMore);
 		}
 
+		if (this.#hydrateFromDom()) {
+			return;
+		}
+
 		void this.#loadMore();
 	}
 
@@ -66,6 +73,36 @@ class TumblrFeed extends Piece {
 		const value = Number(this.getAttribute('per-page'));
 
 		return Number.isFinite(value) && value > 0 ? Math.min(value, 20) : 20;
+	}
+
+	#hydrateFromDom(): boolean {
+		if (!this.#response?.children.length) {
+			return false;
+		}
+
+		const offsetAttr = this.getAttribute('data-offset');
+		const totalAttr = this.getAttribute('data-total');
+		const hasMoreAttr = this.getAttribute('data-has-more');
+
+		this.#offset =
+			offsetAttr !== null && Number.isFinite(Number(offsetAttr))
+				? Number(offsetAttr)
+				: this.#response.children.length;
+		this.#total =
+			totalAttr !== null && Number.isFinite(Number(totalAttr))
+				? Number(totalAttr)
+				: 0;
+
+		const hasMore =
+			hasMoreAttr === null
+				? this.#offset < this.#total
+				: hasMoreAttr !== 'false';
+
+		this.#updateButton(hasMore);
+		this.#setLoading(false);
+		this.#loader?.classList.remove('is-loading');
+
+		return true;
 	}
 
 	#onLoadMore = () => {
@@ -96,6 +133,12 @@ class TumblrFeed extends Piece {
 			}
 
 			this.#updateButton(Boolean(data.has_more));
+			this.setAttribute('data-offset', String(this.#offset));
+			this.setAttribute('data-total', String(this.#total));
+			this.setAttribute(
+				'data-has-more',
+				data.has_more ? 'true' : 'false',
+			);
 		} catch (error) {
 			console.error('[tumblr-feed]', error);
 		} finally {

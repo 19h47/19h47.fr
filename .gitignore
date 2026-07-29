@@ -41,6 +41,7 @@ sftp-config.json.prod
 
 # Local assets / scratch #
 ##########################
+/tmp/
 /src/ai/
 /src/psd/
 /src/jpg/

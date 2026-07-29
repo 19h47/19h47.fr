@@ -90,14 +90,14 @@
 
 			<div class="grid grid-cols-12 gap-x-16">
 				<div class="col-span-12 md:col-span-5 md:col-start-2">
-					<p class="text-13 font-medium uppercase tracking-100">
+					<p class="m-0 text-13 font-medium uppercase tracking-100">
 						{{- __( 'Front-end developer', '19h47' ) -}}
 					</p>
 				</div>
 
 				<div class="col-span-12 md:col-span-5 md:text-right">
-					<p class="text-13 font-medium uppercase tracking-100">
-						{{- __( 'Born', '19h47' ) }} {{ age }} {{ __( 'years ago', '19h47' ) -}}
+					<p class="m-0 text-13 font-medium uppercase tracking-100">
+						{{- __( 'Born %s years ago', '19h47' ) | format( age ) -}}
 					</p>
 				</div>
 

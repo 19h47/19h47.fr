@@ -11,13 +11,19 @@
 
 {# Last.fm #}
 {% block start_wrapper %}
-	<lastfm-feed class="block my-64" limit="50">
+	<lastfm-feed
+		class="block my-64"
+		limit="50"
+		{% if lastfm_feed %}
+			data-playcount="{{ lastfm_feed.playcount }}"
+		{% endif %}
+	>
 {% endblock %}
 
 {% block header %}
 	<header class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<p class="js-loader is-loading Loader m-0 text-13 font-medium uppercase leading-32 tracking-100">
+			<p class="js-loader Loader m-0 text-13 font-medium uppercase leading-32 tracking-100{% if not lastfm_feed %} is-loading{% endif %}">
 				{{- post.title -}}
 				<span data-text="{{ post.title }}"></span>
 			</p>
@@ -29,7 +35,11 @@
 
 	<section class="my-32 grid grid-cols-12 gap-x-16">
 		<div class="col-span-12">
-			<div class="response"></div>
+			<div class="response">
+				{% if lastfm_feed %}
+					{{ lastfm_feed.html|raw }}
+				{% endif %}
+			</div>
 		</div>
 	</section>
 
@@ -39,7 +49,10 @@
 	<footer class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 			<p class="m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white">
-				{{- __( 'I\'ve listened to %s songs since 2008.', '19h47' ) | format( '<span class="playcount"></span>' ) -}}
+				{%- set playcount_html -%}
+					<span class="playcount">{% if lastfm_feed %}{{ lastfm_feed.playcount|number_format(0, '.', ',') }}{% endif %}</span>
+				{%- endset -%}
+				{{- __( 'I\'ve listened to %s songs since 2008.', '19h47' ) | format( playcount_html ) -}}
 			</p>
 		</div>
 	</footer>

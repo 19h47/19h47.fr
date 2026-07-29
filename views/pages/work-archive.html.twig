@@ -38,19 +38,18 @@
 			</div>
 			<div class="col-span-12 md:col-span-9">
 				<p class="mt-8 mb-0 text-white">
-
-						<a class="js-to-work-single font-medium" href="{{ post.link }}" data-namespace="page" data-color="{{ post.meta( 'color' ) }}">{{ post.title }}</a>
-						<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-40 sm:inline">
-							{{- post.meta( 'year' ) -}}
-						</sup>
+					<a class="js-to-work-single font-medium" href="{{ post.link }}" data-namespace="page" data-color="{{ post.meta( 'color' ) }}">{{ post.title }}</a>
+					<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-40 sm:inline">
+						{{- post.meta( 'year' ) -}}
+					</sup>
 				</p>
 
 
-					{% if post.meta( 'role' ) %}
-						<p class="m-0 font-extralight">
-							{{- post.meta( 'role' ) | map( role => role.name ) | join( ', ' ) -}}
-						</p>
-					{% endif %}
+				{%- if post.meta( 'role' ) -%}
+					<p class="m-0 font-extralight">
+						{{- post.meta( 'role' ) | map( role => role.name ) | join( ', ' ) -}}
+					</p>
+				{%- endif -%}
 			</div>
 		</div>
 	{% endfor %}
@@ -61,7 +60,7 @@
 
 	<footer class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<p class="font-extralight text-white">
+			<p class="m-0 font-extralight text-white">
 				<small>
 					This <a class="font-medium" href="https://github.com/19h47/19h47.fr" target="_blank" rel="noopener noreferer">website</a> is created with <a class="font-medium" href="https://wordpress.org/" target="_blank" rel="noopener noreferer">WordPress</a>, <a class="font-medium" href="https://upstatement.com/timber/" target="_blank" rel="noopener noreferer">Timber</a>, <a class="font-medium" href="http://barbajs.org/" target="_blank" rel="noopener">Barba.js</a>. Typeface is <a class="font-medium" href="https://fonts.google.com/specimen/Work+Sans" target="_blank" rel="noopener noreferer">Work Sans</a>.
 				</small>

@@ -22,6 +22,7 @@ class Work implements Service {
 	 */
 	public function run(): void {
 		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		add_action( 'admin_head', array( $this, 'work_css' ) );
 		add_filter( 'dashboard_glance_items', array( $this, 'at_a_glance_work' ) );
 		add_filter( 'pre_get_posts', array( $this, 'pre_get_work' ), 10 );
@@ -72,7 +73,7 @@ class Work implements Service {
 			'description'         => __( 'Work description', $theme ),
 			'labels'              => $labels,
 			'supports'            => array( 'title', 'editor' ),
-			'taxonomies'          => array( 'post_tag' ),
+			'taxonomies'          => array( 'post_tag', 'stack' ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
@@ -93,6 +94,50 @@ class Work implements Service {
 		);
 
 		register_post_type( 'work', $args );
+	}
+
+	/**
+	 * Register stack taxonomy.
+	 *
+	 * @return void
+	 */
+	public function register_taxonomy(): void {
+		$theme = get_theme_text_domain();
+
+		$labels = array(
+			'name'                       => __( 'Stack', $theme ),
+			'singular_name'              => __( 'Stack', $theme ),
+			'search_items'               => __( 'Search Stack', $theme ),
+			'popular_items'              => __( 'Popular Stack', $theme ),
+			'all_items'                  => __( 'All Stack', $theme ),
+			'edit_item'                  => __( 'Edit Stack', $theme ),
+			'update_item'                => __( 'Update Stack', $theme ),
+			'add_new_item'               => __( 'Add New Stack', $theme ),
+			'new_item_name'              => __( 'New Stack Name', $theme ),
+			'separate_items_with_commas' => __( 'Separate stack items with commas', $theme ),
+			'add_or_remove_items'        => __( 'Add or remove stack', $theme ),
+			'choose_from_most_used'      => __( 'Choose from the most used stack', $theme ),
+			'not_found'                  => __( 'No stack found', $theme ),
+			'menu_name'                  => __( 'Stack', $theme ),
+		);
+
+		register_taxonomy(
+			'stack',
+			array( 'work' ),
+			array(
+				'labels'             => $labels,
+				'hierarchical'       => false,
+				'public'             => false,
+				'show_ui'            => true,
+				'show_admin_column'  => true,
+				'show_in_nav_menus'  => false,
+				'show_tagcloud'      => false,
+				'show_in_rest'       => true,
+				'meta_box_cb'        => false,
+				'rewrite'            => false,
+				'publicly_queryable' => false,
+			)
+		);
 	}
 
 	/**

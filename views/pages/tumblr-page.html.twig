@@ -11,13 +11,21 @@
 
 {# Tumblr #}
 {% block start_wrapper %}
-	<tumblr-feed class="block my-64" per-page="20">
+	<tumblr-feed
+		class="block my-64"
+		per-page="20"
+		{% if tumblr_feed %}
+			data-offset="{{ tumblr_feed.next_offset }}"
+			data-total="{{ tumblr_feed.total_posts }}"
+			data-has-more="{{ tumblr_feed.has_more ? 'true' : 'false' }}"
+		{% endif %}
+	>
 {% endblock %}
 
 {% block header %}
 	<header class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<p class="js-loader is-loading Loader m-0 text-13 font-medium uppercase leading-32 tracking-100">
+			<p class="js-loader Loader m-0 text-13 font-medium uppercase leading-32 tracking-100{% if not tumblr_feed %} is-loading{% endif %}">
 				{{- post.title -}}
 				<span data-text="{{ post.title }}"></span>
 			</p>
@@ -29,7 +37,11 @@
 
 	<section class="my-32 grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<section class="response grid grid-cols-12 gap-x-16"></section>
+			<section class="response grid grid-cols-12 gap-x-16">
+				{% if tumblr_feed %}
+					{{ tumblr_feed.html|raw }}
+				{% endif %}
+			</section>
 		</div>
 	</section>
 
@@ -39,12 +51,20 @@
 
 	<footer class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<button class="load-more relative m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white" type="button">
+			<button
+				class="load-more relative m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white"
+				type="button"
+				{% if tumblr_feed and not tumblr_feed.has_more %}hidden{% endif %}
+			>
 				<div class="Link-layer">
-					{{- __( 'Load more', '19h47' ) -}}	
+					{{- __( 'Load more', '19h47' ) -}}
 					<span data-text="{{- __( 'Load more', '19h47' ) -}}"></span>
 				</div>
-				<span class="pointer-events-none absolute bottom-0 left-full pb-8 pl-4 text-[smaller] text-white/40" data-count aria-hidden="true"></span>
+				<span class="pointer-events-none absolute bottom-0 left-full pb-8 pl-4 text-[smaller] text-white/40" data-count aria-hidden="true">
+					{%- if tumblr_feed -%}
+						{{- tumblr_feed.total_posts - tumblr_feed.next_offset -}}
+					{%- endif -%}
+				</span>
 			</button>
 		</div>
 	</footer>

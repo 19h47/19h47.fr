@@ -13,6 +13,10 @@ type WpAjaxResponse<T> = {
 /**
  * Last.fm feed web component (AJAX → admin-ajax → Timber HTML).
  *
+ * First paint can be SSR’d into `.response` (and playcount); mount then
+ * hydrates and soft-refreshes via AJAX so recent scrobbles stay current.
+ * Server cache TTL stays short because scrobbles change often.
+ *
  * Usage:
  *   <lastfm-feed class="block" limit="50">
  *     <div class="js-loader"></div>
@@ -36,7 +40,12 @@ class LastfmFeed extends Piece {
 		this.#loader = this.queryOne<HTMLElement>('.js-loader');
 		this.#playcount = this.queryOne<HTMLElement>('.playcount');
 		this.#abort = new AbortController();
-		void this.#load();
+
+		// SSR paints first; always soft-refresh so scrobbles stay current
+		// (hydrate alone used to skip AJAX forever for the visit).
+		const hydrated = this.#hydrateFromDom();
+
+		void this.#load({ silent: hydrated });
 	}
 
 	unmount() {
@@ -50,27 +59,48 @@ class LastfmFeed extends Piece {
 		return Number.isFinite(value) && value > 0 ? Math.min(value, 200) : 50;
 	}
 
-	async #load() {
+	#hydrateFromDom(): boolean {
+		if (!this.#response?.children.length) {
+			return false;
+		}
+
+		const playcountAttr = this.getAttribute('data-playcount');
+
+		if (this.#playcount && playcountAttr != null && playcountAttr !== '') {
+			this.#playcount.textContent = Number(playcountAttr).toLocaleString();
+		}
+
+		this.#setLoading(false);
+		this.#loader?.classList.remove('is-loading');
+
+		return true;
+	}
+
+	async #load({ silent = false }: { silent?: boolean } = {}) {
 		if (this.#loading) {
 			return;
 		}
 
-		this.#setLoading(true);
+		this.#loading = true;
+
+		if (!silent) {
+			this.classList.add('is-loading');
+			this.#loader?.classList.add('is-loading');
+		}
 
 		try {
 			const data = await this.#fetch();
 
-			if (data.html) {
-				this.#response?.insertAdjacentHTML(
-					'beforeend',
-					data.html.replace(/>\s+</g, '><'),
-				);
+			// Full recent list (not paginated) — always replace.
+			if (data.html && this.#response) {
+				this.#response.innerHTML = data.html.replace(/>\s+</g, '><');
 			}
 
 			if (this.#playcount && data.playcount != null) {
 				this.#playcount.textContent = Number(
 					data.playcount,
 				).toLocaleString();
+				this.setAttribute('data-playcount', String(data.playcount));
 			}
 		} catch (error) {
 			console.error('[lastfm-feed]', error);
