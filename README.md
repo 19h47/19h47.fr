@@ -87,8 +87,8 @@ src/scripts/
 | Tumblr | `tumblr-page.html.twig` | Inspiration feed (“Currently inspired”) |
 | Curriculum Vitae | `curriculum-vitae-page.html.twig` | CV |
 | — | `front-page.html.twig` | Home / blackboard |
-| — | `thoughts.html.twig` | Blog (posts) |
-| — | `work-archive.html.twig` / `single-work.html.twig` | Work CPT |
+| `home.php` | `home-page.html.twig` | Blog (posts) |
+| `archive-work.php` / `single-work.php` | `archive-work.html.twig` / `single-work.html.twig` | Work CPT |
 
 Last.fm and Tumblr data are proxied through `admin-ajax` and rendered as Timber HTML partials.
 

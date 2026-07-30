@@ -25,7 +25,7 @@
 {% block header %}
 	<header class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
-			<p class="js-loader Loader m-0 text-13 font-medium uppercase leading-32 tracking-100{% if not tumblr_feed %} is-loading{% endif %}">
+			<p class="js-loader Loader text-13 font-medium uppercase leading-32 tracking-100{% if not tumblr_feed %} is-loading{% endif %}">
 				{{- post.title -}}
 				<span data-text="{{ post.title }}"></span>
 			</p>
@@ -52,7 +52,7 @@
 	<footer class="grid grid-cols-12 gap-x-16">
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 			<button
-				class="load-more relative m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100 text-white"
+				class="load-more relative m-0 inline-block align-baseline text-13 font-medium uppercase tracking-100"
 				type="button"
 				{% if tumblr_feed and not tumblr_feed.has_more %}hidden{% endif %}
 			>

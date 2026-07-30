@@ -1,6 +1,6 @@
 {#
 /**
- * /views/pages/thoughts
+ * /views/pages/home-page
  *
  * @package 	WordPress
  * @subpackage 	19h47
@@ -22,7 +22,7 @@
 		<article class="my-64 grid grid-cols-12 gap-x-16" id="post-{{ post.ID }}">
 			<div class="col-span-12 md:col-span-10 md:col-start-2">
 
-				<p class="m-0 text-13 font-medium uppercase leading-32 tracking-100 opacity-40">
+				<p class="text-13 font-medium uppercase leading-32 tracking-100 opacity-40">
 					{{- post.date( 'F j, Y' ) -}}
 				</p>
 
@@ -34,7 +34,7 @@
 
 			{% if post.thumbnail %}
 				<div class="col-span-12 md:col-span-10 md:col-start-2">
-					<p class="m-0">
+					<p>
 						{{ include( 'components/image.html.twig', {
 							image: post.thumbnail,
 							classes: [ 'img-full', 'box-shadow' ],
@@ -51,7 +51,7 @@
 				</div>
 			{% endif %}
 
-			<div class="col-span-12 md:col-span-8 md:col-start-3">{{- post.content -}}</div>
+			<div class="col-span-12 md:col-span-8 md:col-start-3 wysiwyg">{{- post.content -}}</div>
 		</article>
 
 	{% endfor %}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Single work template.
+ * Work archive template.
  *
  * @package DixNeufHeureQuaranteSept
  */
@@ -9,4 +9,4 @@ use Timber\Timber;
 
 $context = Timber::context();
 
-Timber::render( 'pages/single-work.html.twig', $context );
+Timber::render( 'pages/archive-work.html.twig', $context );

@@ -1,0 +1,115 @@
+@layer components {
+	.wysiwyg > *:first-child {
+		margin-top: 0;
+	}
+
+	.wysiwyg > *:last-child {
+		margin-bottom: 0;
+	}
+
+	.wysiwyg p:empty {
+		display: none;
+	}
+
+	.wysiwyg p {
+		margin-top: 0;
+		margin-bottom: var(--baseline);
+		font-size: 1em;
+		line-height: var(--baseline);
+	}
+
+	.wysiwyg ul,
+	.wysiwyg ol {
+		margin: 0 0 var(--baseline);
+		padding: 0 0 0 calc(4 / 3 * 1em);
+		line-height: var(--baseline);
+	}
+
+	.wysiwyg ul {
+		list-style-type: disc;
+	}
+
+	.wysiwyg ol {
+		list-style-type: decimal;
+	}
+
+	.wysiwyg li {
+		margin: 0;
+		line-height: var(--baseline);
+	}
+
+	.wysiwyg blockquote {
+		margin: 0 0 var(--baseline);
+		padding: 0 0 0 calc(var(--baseline) * 2);
+		border-left: 10px solid currentColor;
+		font-weight: 400;
+		line-height: var(--baseline);
+	}
+
+	.wysiwyg blockquote p {
+		margin: 0;
+	}
+
+	.wysiwyg a {
+		color: rgb(255 255 255 / 0.4);
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	.wysiwyg a:hover {
+		color: var(--color-white);
+	}
+
+	[data-context="thoughts"] .wysiwyg a {
+		color: rgb(0 0 0 / 0.4);
+	}
+
+	[data-context="thoughts"] .wysiwyg a:hover {
+		color: var(--color-black);
+	}
+
+	.wysiwyg code {
+		padding: 0.05em 0.35em;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 0.875em;
+		font-weight: 400;
+		background-color: color-mix(in srgb, currentColor 10%, transparent);
+	}
+
+	.wysiwyg pre {
+		overflow-x: auto;
+		margin: 0 0 var(--baseline);
+		padding: var(--baseline);
+		line-height: var(--baseline);
+		background-color: color-mix(in srgb, currentColor 8%, transparent);
+	}
+
+	.wysiwyg pre code {
+		padding: 0;
+		font-size: 1em;
+		background: none;
+	}
+
+	.wysiwyg .wp-caption {
+		margin: 0 auto var(--baseline);
+		max-width: 100%;
+	}
+
+	.wysiwyg .wp-caption img {
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+		box-shadow: 0 var(--baseline) var(--baseline) 0 rgb(0 0 0 / 0.1);
+	}
+
+	.wysiwyg .wp-caption-text {
+		display: block;
+		font-size: 1.3rem;
+		font-weight: 400;
+		line-height: var(--baseline);
+		text-align: right;
+	}
+}

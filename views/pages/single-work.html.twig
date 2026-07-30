@@ -26,10 +26,10 @@
 
 		<div class="col-span-12 md:col-span-10 md:col-start-2">
 
-			<h2 class="Work__title mt-16 font-bold text-white">
+			<h2 class="Work__title mt-16 font-bold">
 				{{- post.title -}}
 				<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-40 sm:inline">
-					{{- post.meta( 'year' )  -}}
+					{{- post.year -}}
 				</sup>
 			</h2>
 
@@ -38,22 +38,22 @@
 
 		<div class="col-span-12 md:col-span-6 md:col-start-2">
 
-			<div class="text-white">
+			<div class="wysiwyg">
 
 				{{- post.content -}}
 
-				{% if post.meta( 'link' ) %}
-					<a class="Link-layer inline-block align-baseline text-18 font-normal" href="{{ post.meta( 'link' ) }}" target="_blank" rel="noopener noreferer">
+				{% if post.website %}
+					<a class="Link-layer inline-block align-baseline text-18 font-normal" href="{{ post.website }}" target="_blank" rel="noopener noreferer">
 						{{- __( 'View the website', '19h47' ) -}}
 						<span data-text="{{- __( 'View the website', '19h47' ) -}}"></span>
 					</a>
 				{% endif %}
 
-				{% if post.meta( 'repository' ) %}
+				{% if post.repository %}
 
-					{% if work.details.link %}<br>{% endif %}
+					{% if post.website %}<br>{% endif %}
 
-					<a class="Link-layer inline-block align-baseline text-18 font-normal" href="{{ post.meta( 'repository' ) }}" target="_blank" rel="noopener noreferer">
+					<a class="Link-layer inline-block align-baseline text-18 font-normal" href="{{ post.repository }}" target="_blank" rel="noopener noreferer">
 						{{- __( 'View the repository', '19h47' ) -}}
 						<span data-text="{{- __( 'View the repository', '19h47' ) -}}"></span>
 					</a>
@@ -63,39 +63,39 @@
 
 		</div>
 
-		{% if post.meta( 'client' ) or post.meta( 'role' ) or post.meta( 'stack' ) %}
+		{% if post.clients or post.roles or post.stack %}
 			<aside class="col-span-12 md:col-span-3 md:col-start-9">
 
-				{% if post.meta( 'client' ) %}
-					<p class="m-0 text-white">
+				{% if post.clients %}
+					<p>
 						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{ __( 'Client', '19h47' ) }}
 						</span>
 						<br>
 						<span class="text-18 font-medium">
-							{{- post.meta( 'client' ) | map( client => client.name ) | join( '<br />' ) -}}
+							{{- post.clients | join( '<br />' ) -}}
 						</span>
 					</p>
 				{% endif %}
 
-				{% if post.meta( 'role' ) %}
-					<p class="m-0 text-white">
+				{% if post.roles %}
+					<p>
 						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{- __( 'Role', '19h47' ) -}}
 						</span><br>
 						<span class="text-18 font-medium">
-							{{- post.meta( 'role' ) | map( role => role.name ) | join( '<br/ >' ) -}}
+							{{- post.roles | join( '<br />' ) -}}
 						</span>
 					</p>
 				{% endif %}
 
-				{% if post.meta( 'stack' ) %}
-					<p class="m-0 text-white">
+				{% if post.stack %}
+					<p>
 						<span class="text-13 uppercase tracking-100 opacity-40">
 							{{- __( 'Stack', '19h47' ) -}}
 						</span><br>
 						<span class="text-18 font-medium">
-							{{- post.meta( 'stack' ) | map( item => item.name ) | join( ', ' ) -}}
+							{{- post.stack | join( ', ' ) -}}
 						</span>
 					</p>
 				{% endif %}
@@ -118,11 +118,11 @@
 
 		<div class="col-span-12 md:col-span-5 md:col-start-2">
 			<a class="js-work-navigation Work__navigation inline-block" href="{{ post.next.link }}" rel="next" data-namespace="work" data-color="{{ post.next.color }}">
-				<span class="text-13 font-medium uppercase tracking-100 text-white">
+				<span class="text-13 font-medium uppercase tracking-100">
 					{{- __( 'Next work', '19h47' ) -}}
 				</span>
 				<br>
-				<p class="Link-layer m-0 inline-block align-baseline">
+				<p class="Link-layer inline-block align-baseline">
 					{{- post.next.title -}}
 					<span data-text="{{ post.next.title }}"></span>
 				</p>
@@ -131,12 +131,12 @@
 
 		<div class="col-span-12 md:col-span-5 md:text-right">
 			<a class="js-work-navigation Work__navigation inline-block" href="{{ post.previous.link }}" rel="prev" data-namespace="work" data-color="{{ post.previous.color }}">
-				<span class="text-13 font-medium uppercase tracking-100 text-white">
+				<span class="text-13 font-medium uppercase tracking-100">
 					{{- __( 'Previous work', '19h47' ) -}}
 				</span>
 				<br>
-				<p class="Link-layer m-0 inline-block align-baseline">
-					{{ post.previous.title }}
+				<p class="Link-layer inline-block align-baseline">
+					{{- post.previous.title -}}
 					<span data-text="{{ post.previous.title }}"></span>
 				</p>
 			</a>

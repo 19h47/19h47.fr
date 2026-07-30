@@ -24,7 +24,8 @@
 
 	a {
 		color: currentColor;
-		text-decoration: none;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
 	}
 
 	b,

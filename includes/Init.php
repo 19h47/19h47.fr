@@ -32,6 +32,8 @@ class Init {
 			Post\Work::class,
 			Post\Tumblr::class,
 			Post\Lastfm::class,
+			Plugins\ACF\Init::class,
+			Plugins\ACF\IncludeFields\ThemeFields::class,
 			Plugins\ACF\IncludeFields\WorkDetailsFields::class,
 			Plugins\ACF\IncludeFields\WorkLayoutFields::class,
 		);

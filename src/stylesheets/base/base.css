@@ -39,10 +39,6 @@
 		margin-bottom: var(--baseline);
 	}
 
-	body[data-context="curriculum-vitae"] main .relative.mx-auto > .grid p {
-		margin-bottom: 0;
-	}
-
 	body.page--is-loading {
 		cursor: wait !important;
 	}
@@ -74,25 +70,6 @@
 		font-weight: 500;
 	}
 
-	p {
-		margin-top: 0;
-		margin-bottom: var(--baseline);
-		font-size: 1em;
-		line-height: var(--baseline);
-	}
-
-	ul,
-	ol {
-		margin: 0 0 var(--baseline);
-		padding: 0 0 0 calc(4 / 3 * 1em);
-		line-height: var(--baseline);
-	}
-
-	li {
-		margin: 0;
-		line-height: var(--baseline);
-	}
-
 	hr {
 		margin: 0;
 		border: 0;
@@ -104,18 +81,6 @@
 
 	iframe {
 		border: 0;
-	}
-
-	blockquote {
-		margin: 0 0 var(--baseline);
-		padding: 0 0 0 calc(var(--baseline) * 2);
-		border-left: 10px solid currentColor;
-		font-weight: 400;
-		line-height: var(--baseline);
-	}
-
-	blockquote p {
-		margin: 0;
 	}
 
 	[disabled],

@@ -44,11 +44,11 @@ class WorkDetailsFields implements Service {
 		$fields = array(
 			array(
 				'key'            => 'field_58f396e002937',
-				'label'          => __( 'Year', '19h47' ),
+				'label'          => __( 'Date', '19h47' ),
 				'name'           => 'year',
-				'aria-label'     => __( 'Year', '19h47' ),
+				'aria-label'     => __( 'Date', '19h47' ),
 				'type'           => 'date_picker',
-				'display_format' => 'Y',
+				'display_format' => 'd/m/Y',
 				'return_format'  => 'Y',
 				'first_day'      => 1,
 			),

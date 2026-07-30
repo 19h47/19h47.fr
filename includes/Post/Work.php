@@ -24,7 +24,9 @@ class Work implements Service {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		add_action( 'admin_head', array( $this, 'work_css' ) );
+		add_action( 'manage_work_posts_custom_column', array( $this, 'render_custom_columns' ), 10, 2 );
 		add_filter( 'dashboard_glance_items', array( $this, 'at_a_glance_work' ) );
+		add_filter( 'manage_work_posts_columns', array( $this, 'add_custom_columns' ) );
 		add_filter( 'pre_get_posts', array( $this, 'pre_get_work' ), 10 );
 		add_action( 'wp_head', array( $this, 'work_styles' ), 99 );
 		add_action( 'save_post_work', array( $this, 'clear_transient_for_work_styles' ), 10, 3 );
@@ -149,26 +151,72 @@ class Work implements Service {
 		?>
 		<style>
 			#dashboard_right_now .work-count:before { content: "\f322"; }
-			.widefat .column-featured-image { width: 60px; }
-			.fixed .column-year {
-				width: 10%;
-				text-align: left;
-				vertical-align: top;
-			}
 			.fixed .column-color {
-				width: 10%;
+				width: 60px;
 				text-align: center;
-				vertical-align: top;
+				vertical-align: middle;
 			}
 			.column-color .color-indicator {
 				border: none !important;
 				border-radius: 50% !important;
+				display: block;
 				height: 26px !important;
 				margin-left: auto;
 				margin-right: auto;
+				width: 26px;
 			}
 		</style>
 		<?php
+	}
+
+	/**
+	 * Add custom columns.
+	 *
+	 * @param array $columns Columns.
+	 * @return array
+	 *
+	 * @link https://developer.wordpress.org/reference/hooks/manage_post_type_posts_columns/
+	 */
+	public function add_custom_columns( array $columns ): array {
+		$new_columns = array();
+
+		foreach ( $columns as $key => $value ) {
+			if ( 'title' === $key ) {
+				$new_columns['color'] = __( 'Color', get_theme_text_domain() );
+			}
+
+			$new_columns[ $key ] = $value;
+		}
+
+		return $new_columns;
+	}
+
+	/**
+	 * Render custom columns.
+	 *
+	 * @param string $column_name Column name.
+	 * @param int    $post_id     Post ID.
+	 * @return void
+	 *
+	 * @link https://developer.wordpress.org/reference/hooks/manage_post-post_type_posts_custom_column/
+	 */
+	public function render_custom_columns( string $column_name, int $post_id ): void {
+		if ( 'color' !== $column_name ) {
+			return;
+		}
+
+		$color = get_field( 'color', $post_id );
+
+		if ( ! $color ) {
+			echo '—';
+			return;
+		}
+
+		printf(
+			'<span class="color-indicator" style="background-color: %s;" title="%s"></span>',
+			esc_attr( $color ),
+			esc_attr( $color )
+		);
 	}
 
 	/**
@@ -205,7 +253,7 @@ class Work implements Service {
 	}
 
 	/**
-	 * Order work by year meta.
+	 * Order work by date meta (Ymd in DB; front returns year only).
 	 *
 	 * @param \WP_Query $query Query.
 	 * @return \WP_Query|false
@@ -216,8 +264,13 @@ class Work implements Service {
 		}
 
 		$query->set( 'meta_key', 'year' );
-		$query->set( 'orderby', 'meta_value_num' );
-		$query->set( 'order', 'DESC' );
+		$query->set(
+			'orderby',
+			array(
+				'meta_value_num' => 'DESC',
+				'ID'             => 'DESC',
+			)
+		);
 
 		return $query;
 	}

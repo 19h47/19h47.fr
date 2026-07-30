@@ -1,6 +1,6 @@
 <?php
 /**
- * Single work template.
+ * 404 template.
  *
  * @package DixNeufHeureQuaranteSept
  */
@@ -9,4 +9,4 @@ use Timber\Timber;
 
 $context = Timber::context();
 
-Timber::render( 'pages/single-work.html.twig', $context );
+Timber::render( 'pages/404.html.twig', $context );

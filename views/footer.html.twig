@@ -17,8 +17,8 @@
 			<div class="grid grid-cols-12 gap-x-16">
 
 				<div class="col-span-12 md:col-span-2 md:col-start-2">
-					<p class="m-0 text-18">
-						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.who_i_am }}">
+					<p class="text-18">
+						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.about }}">
 							{{- __( 'Who I am' ) -}}
 							<span data-text="{{- __( 'Who I am' ) -}}"></span>
 						</a>
@@ -32,7 +32,7 @@
 					</p>
 				</div>
 				<div class="col-span-12 md:col-span-3">
-					<p class="m-0 text-18">
+					<p class="text-18">
 
 						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.lastfm }}">
 							{{- __( 'Currently listening', '19h47' ) -}}
@@ -45,7 +45,7 @@
 						</a>
 
 						<br class="md:hidden">
-						<a class="Link-layer js-navigation inline-block align-baseline md:hidden" href="{{ page_permalink.thoughts }}">
+						<a class="Link-layer js-navigation inline-block align-baseline md:hidden" href="{{ page_permalink.posts }}">
 							{{- __( 'Thoughts', '19h47' ) -}}
 							<span data-text="{{- __( 'Thoughts', '19h47' ) -}}"></span>
 						</a>
@@ -53,7 +53,7 @@
 				</div>
 
 				<div class="col-span-12 md:col-span-3">
-					<p class="m-0 text-18">
+					<p class="text-18">
 						<a class="Link-layer inline-block align-baseline" href="https://instagram.com/19h47" target="_blank" rel="noopener noreferer">
 							{{- __( 'Instagram', '19h47'  ) -}}
 							<span data-text="{{- __( 'Instagram', '19h47'  ) -}}"></span>
@@ -68,7 +68,7 @@
 
 				{# Paint control #}
 				<div class="col-span-12 hidden lg:col-span-2 lg:block">
-					<p class="m-0 text-18">
+					<p class="text-18">
 
 						<black-board-button action="save">
 							<a class="BlackBoard__control Link-layer inline-block align-baseline" href="#" download="19h47.png">
@@ -90,13 +90,13 @@
 
 			<div class="grid grid-cols-12 gap-x-16">
 				<div class="col-span-12 md:col-span-5 md:col-start-2">
-					<p class="m-0 text-13 font-medium uppercase tracking-100">
+					<p class="text-13 font-medium uppercase tracking-100">
 						{{- __( 'Front-end developer', '19h47' ) -}}
 					</p>
 				</div>
 
 				<div class="col-span-12 md:col-span-5 md:text-right">
-					<p class="m-0 text-13 font-medium uppercase tracking-100">
+					<p class="text-13 font-medium uppercase tracking-100">
 						{{- __( 'Born %s years ago', '19h47' ) | format( age ) -}}
 					</p>
 				</div>
