@@ -8,15 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@barba/core':
-        specifier: ^2.10.3
-        version: 2.10.3
-      '@barba/prefetch':
-        specifier: ^2.2.0
-        version: 2.2.0
-      gsap:
-        specifier: 3.15.0
-        version: 3.15.0
+      '@fontsource-variable/work-sans':
+        specifier: ^5.3.0
+        version: 5.3.0
       piecesjs:
         specifier: ^0.5.5
         version: 0.5.5
@@ -57,12 +51,6 @@ packages:
   '@19h47/prettier-config@2.0.0':
     resolution: {integrity: sha512-icgsNYGzI6frgbWhn2G9zWxvVrKEfYNCaj8z+zYPv3i543cle5EJBfENi9N7nU675rK41OKUlW+26VV53MGSpg==}
 
-  '@barba/core@2.10.3':
-    resolution: {integrity: sha512-ovVeT1wUcdMg8Lu6Iel6yEBW2+s6iA7qfRLCVKTSIfJU9csiawU0UOmVJdcoy3WNOsF2Ur9UfoTUC9aDcm4c0w==}
-
-  '@barba/prefetch@2.2.0':
-    resolution: {integrity: sha512-ql56K043GNsKhs9jCzr7et3f1MZpOkpbUN9rtVpSXJqH96Zr+l6JuGrXUgB2TvebtrFycaOOaBZys0oZenTCcg==}
-
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
 
@@ -71,6 +59,9 @@ packages:
 
   '@emnapi/wasi-threads@1.2.2':
     resolution: {integrity: sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA==}
+
+  '@fontsource-variable/work-sans@5.3.0':
+    resolution: {integrity: sha512-le8h/OIIuhm5Z7TdvuMw0yKg2gaCZUiMec8zaumsVVjzeJRBPEF0bQI/MkaZDHCVzZDvZoP/O2LiGOSfDLSbaw==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -560,9 +551,6 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  gsap@3.15.0:
-    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
-
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
@@ -577,9 +565,6 @@ packages:
   is-glob@4.0.3:
     resolution: {integrity: sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==}
     engines: {node: '>=0.10.0'}
-
-  is-promise@4.0.0:
-    resolution: {integrity: sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==}
 
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
@@ -760,9 +745,6 @@ packages:
 
   node-addon-api@7.1.1:
     resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
-
-  path-to-regexp@6.3.0:
-    resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -968,13 +950,6 @@ snapshots:
     dependencies:
       prettier: 3.9.6
 
-  '@barba/core@2.10.3':
-    dependencies:
-      is-promise: 4.0.0
-      path-to-regexp: 6.3.0
-
-  '@barba/prefetch@2.2.0': {}
-
   '@emnapi/core@1.11.1':
     dependencies:
       '@emnapi/wasi-threads': 1.2.2
@@ -990,6 +965,8 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@fontsource-variable/work-sans@5.3.0': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -1313,8 +1290,6 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  gsap@3.15.0: {}
-
   has-flag@4.0.0: {}
 
   immutable@5.1.9:
@@ -1327,8 +1302,6 @@ snapshots:
     dependencies:
       is-extglob: 2.1.1
     optional: true
-
-  is-promise@4.0.0: {}
 
   jiti@2.7.0: {}
 
@@ -1453,8 +1426,6 @@ snapshots:
 
   node-addon-api@7.1.1:
     optional: true
-
-  path-to-regexp@6.3.0: {}
 
   picocolors@1.1.1: {}
 

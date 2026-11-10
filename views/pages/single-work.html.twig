@@ -28,7 +28,7 @@
 
 			<h2 class="Work__title mt-16 font-bold">
 				{{- post.title -}}
-				<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-40 sm:inline">
+				<sup class="hidden align-text-top text-13 font-medium uppercase tracking-100 opacity-60 sm:inline">
 					{{- post.year -}}
 				</sup>
 			</h2>
@@ -68,7 +68,7 @@
 
 				{% if post.clients %}
 					<p>
-						<span class="text-13 uppercase tracking-100 opacity-40">
+						<span class="text-13 uppercase tracking-100 opacity-60">
 							{{ __( 'Client', '19h47' ) }}
 						</span>
 						<br>
@@ -80,7 +80,7 @@
 
 				{% if post.roles %}
 					<p>
-						<span class="text-13 uppercase tracking-100 opacity-40">
+						<span class="text-13 uppercase tracking-100 opacity-60">
 							{{- __( 'Role', '19h47' ) -}}
 						</span><br>
 						<span class="text-18 font-medium">
@@ -91,7 +91,7 @@
 
 				{% if post.stack %}
 					<p>
-						<span class="text-13 uppercase tracking-100 opacity-40">
+						<span class="text-13 uppercase tracking-100 opacity-60">
 							{{- __( 'Stack', '19h47' ) -}}
 						</span><br>
 						<span class="text-18 font-medium">
@@ -117,7 +117,7 @@
 	<nav class="mt-64 grid grid-cols-12 gap-x-16">
 
 		<div class="col-span-12 md:col-span-5 md:col-start-2">
-			<a class="js-work-navigation Work__navigation inline-block" href="{{ post.next.link }}" rel="next" data-namespace="work" data-color="{{ post.next.color }}">
+			<a class="Work__navigation inline-block" href="{{ post.next.link }}" rel="next">
 				<span class="text-13 font-medium uppercase tracking-100">
 					{{- __( 'Next work', '19h47' ) -}}
 				</span>
@@ -130,7 +130,7 @@
 		</div>
 
 		<div class="col-span-12 md:col-span-5 md:text-right">
-			<a class="js-work-navigation Work__navigation inline-block" href="{{ post.previous.link }}" rel="prev" data-namespace="work" data-color="{{ post.previous.color }}">
+			<a class="Work__navigation inline-block" href="{{ post.previous.link }}" rel="prev">
 				<span class="text-13 font-medium uppercase tracking-100">
 					{{- __( 'Previous work', '19h47' ) -}}
 				</span>

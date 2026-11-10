@@ -1,16 +1,16 @@
 <?php
 /**
- * Barba namespace filter.
+ * Page namespace filter.
  *
  * @package DixNeufHeureQuaranteSept
  */
 
-namespace DixNeufHeureQuaranteSept\Barba;
+namespace DixNeufHeureQuaranteSept\PostTemplate;
 
 use DixNeufHeureQuaranteSept\Service;
 
 /**
- * Sets Barba.js data-barba-namespace.
+ * Sets the current page namespace.
  */
 class NamespaceFilter implements Service {
 
@@ -20,16 +20,16 @@ class NamespaceFilter implements Service {
 	 * @return void
 	 */
 	public function run(): void {
-		add_filter( 'barba_namespace', array( $this, 'barba_namespace' ) );
+		add_filter( 'theme_namespace', array( $this, 'resolve' ) );
 	}
 
 	/**
-	 * Resolve Barba namespace for the current view.
+	 * Resolve namespace for the current view.
 	 *
 	 * @param string $ns Default namespace.
 	 * @return string
 	 */
-	public function barba_namespace( $ns ) {
+	public function resolve( $ns ) {
 		if ( is_page() ) {
 			$ns = 'page';
 		}

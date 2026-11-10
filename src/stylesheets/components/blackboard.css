@@ -1,6 +1,6 @@
-body:not([data-context="front-page"]) .BlackBoard,
-body:not([data-context="front-page"]) .BlackBoard__instruction,
-body:not([data-context="front-page"]) .BlackBoard__control {
+body:not([data-namespace="front-page"]) .BlackBoard,
+body:not([data-namespace="front-page"]) .BlackBoard__instruction,
+body:not([data-namespace="front-page"]) .BlackBoard__control {
 	display: none;
 }
 
@@ -27,7 +27,7 @@ body:has(black-board[empty]) .BlackBoard__instruction {
 	visibility: hidden;
 }
 
-[data-context="front-page"] .BlackBoard__control {
+[data-namespace="front-page"] .BlackBoard__control {
 	opacity: 1;
 	visibility: visible;
 	display: inline-block;

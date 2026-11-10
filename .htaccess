@@ -1,0 +1,7 @@
+# Vite build: every file under dist/ is content-hashed, so it can be cached
+# for a year without revalidation. A new build ships new file names.
+<IfModule mod_headers.c>
+	<If "%{REQUEST_URI} =~ m#/dist/#">
+		Header set Cache-Control "public, max-age=31536000, immutable"
+	</If>
+</IfModule>

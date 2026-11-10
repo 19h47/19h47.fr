@@ -51,7 +51,7 @@
 	}
 
 	.wysiwyg a {
-		color: rgb(255 255 255 / 0.4);
+		color: rgb(255 255 255 / 0.65);
 		text-decoration: none;
 		transition: color 0.3s ease;
 	}
@@ -60,11 +60,11 @@
 		color: var(--color-white);
 	}
 
-	[data-context="thoughts"] .wysiwyg a {
-		color: rgb(0 0 0 / 0.4);
+	[data-namespace="thoughts"] .wysiwyg a {
+		color: rgb(0 0 0 / 0.65);
 	}
 
-	[data-context="thoughts"] .wysiwyg a:hover {
+	[data-namespace="thoughts"] .wysiwyg a:hover {
 		color: var(--color-black);
 	}
 
@@ -107,7 +107,7 @@
 
 	.wysiwyg .wp-caption-text {
 		display: block;
-		font-size: 1.3rem;
+		font-size: 0.8125rem; /* 13px */
 		font-weight: 400;
 		line-height: var(--baseline);
 		text-align: right;

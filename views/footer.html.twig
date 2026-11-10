@@ -18,12 +18,12 @@
 
 				<div class="col-span-12 md:col-span-2 md:col-start-2">
 					<p class="text-18">
-						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.about }}">
+						<a class="Link-layer inline-block align-baseline" href="{{ page_permalink.about }}"{{ page_permalink.about == current_url ? ' aria-current="page"' }}>
 							{{- __( 'Who I am' ) -}}
 							<span data-text="{{- __( 'Who I am' ) -}}"></span>
 						</a>
 						<br>
-						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.work }}">
+						<a class="Link-layer inline-block align-baseline" href="{{ page_permalink.work }}"{{ page_permalink.work == current_url ? ' aria-current="page"' }}>
 							{{- __( 'Work' ) -}}
 							<span data-text="{{- __( 'Work' ) -}}"></span>
 						</a>
@@ -34,18 +34,18 @@
 				<div class="col-span-12 md:col-span-3">
 					<p class="text-18">
 
-						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.lastfm }}">
+						<a class="Link-layer inline-block align-baseline" href="{{ page_permalink.lastfm }}"{{ page_permalink.lastfm == current_url ? ' aria-current="page"' }}>
 							{{- __( 'Currently listening', '19h47' ) -}}
 							<span data-text="{{- __( 'Currently listening', '19h47' ) -}}"></span>
 						</a>
 						<br>
-						<a class="Link-layer js-navigation inline-block align-baseline" href="{{ page_permalink.tumblr }}">
+						<a class="Link-layer inline-block align-baseline" href="{{ page_permalink.tumblr }}"{{ page_permalink.tumblr == current_url ? ' aria-current="page"' }}>
 							{{- __( 'Currently inspired', '19h47' ) -}}
 							<span data-text="{{- __( 'Currently inspired', '19h47' ) -}}"></span>
 						</a>
 
 						<br class="md:hidden">
-						<a class="Link-layer js-navigation inline-block align-baseline md:hidden" href="{{ page_permalink.posts }}">
+						<a class="Link-layer inline-block align-baseline md:hidden" href="{{ page_permalink.posts }}"{{ page_permalink.posts == current_url ? ' aria-current="page"' }}>
 							{{- __( 'Thoughts', '19h47' ) -}}
 							<span data-text="{{- __( 'Thoughts', '19h47' ) -}}"></span>
 						</a>
@@ -60,8 +60,8 @@
 						</a>
 						<br>
 						<a class="Link-layer inline-block align-baseline" href="https://github.com/19h47" target="_blank" rel="noopener noreferer">
-							{{- __( 'Github', '19h47' ) -}}
-							<span data-text="{{- __( 'Github', '19h47' ) -}}"></span>
+							{{- __( 'GitHub', '19h47' ) -}}
+							<span data-text="{{- __( 'GitHub', '19h47' ) -}}"></span>
 						</a>
 					</p>
 				</div>
@@ -78,7 +78,7 @@
 						</black-board-button>
 						<br>
 						<black-board-button action="clear">
-							<button class="BlackBoard__control Link-layer js-navigation inline-block align-baseline" type="button">
+							<button class="BlackBoard__control Link-layer inline-block align-baseline" type="button">
 								{{- __( 'Clear me', '19h47' ) -}}
 								<span data-text="{{- __( 'Clear me', '19h47' ) -}}"></span>
 							</button>

@@ -2,7 +2,7 @@
 
 Personal WordPress theme for [19h47.fr](https://www.19h47.fr/), version **4**.
 
-Built with [Timber](https://timber.github.io/docs/) / Twig, [Vite](https://vitejs.dev/), TypeScript, [Tailwind CSS](https://tailwindcss.com/) v4, [Barba](https://barba.js.org/), [PiecesJS](https://github.com/piecesjs/piecesjs), and GSAP.
+Built with [Timber](https://timber.github.io/docs/) / Twig, [Vite](https://vitejs.dev/), TypeScript, [Tailwind CSS](https://tailwindcss.com/) v4 and [PiecesJS](https://github.com/piecesjs/piecesjs).
 
 ## Requirements
 
@@ -52,7 +52,7 @@ Service registry:
 - Each feature implements `Service` and registers hooks in `run()`
 - `includes/helpers.php` — shared procedural helpers (Composer `files`)
 
-Notable services: `Setup\Enqueue`, `Setup\Context`, `Setup\Twig`, `Vite`, `Barba\NamespaceFilter`, `Post\Work`, `Post\Lastfm`, `Post\Tumblr`, ACF field loaders.
+Notable services: `Setup\Enqueue`, `Setup\Context`, `Setup\Twig`, `Vite`, `PostTemplate\NamespaceFilter`, `Post\Work`, `Post\Lastfm`, `Post\Tumblr`, ACF field loaders.
 
 ### Twig
 
@@ -65,18 +65,16 @@ Notable services: `Setup\Enqueue`, `Setup\Context`, `Setup\Twig`, `Vite`, `Barba
 Entry: `src/scripts/main.ts` + `src/stylesheets/styles.css`.
 
 - **Vite** builds JS/CSS into `dist/` with a manifest consumed by PHP
-- **Barba** handles page transitions; namespaces come from `Barba\NamespaceFilter` / Timber context
-- **PiecesJS** custom elements (`lastfm-feed`, `tumblr-feed`, `black-board`, …) mount on boot and after Barba `afterEnter`
-- **GSAP** powers transitions and interactions
+- **Page transitions** are native cross-document view transitions (`components/view-transition.css`): a cross-fade, and a colour wipe into a work page. Linked pages are prefetched on hover with WordPress speculation rules
+- **Namespaces** (`body[data-namespace]`, page-type styling) come from `PostTemplate\NamespaceFilter` / Timber context
+- **PiecesJS** custom elements (`lastfm-feed`, `tumblr-feed`, `black-board`, …) mount on boot
 
 ```
 src/scripts/
   main.ts
   components/     # PiecesJS web components
-  modules/        # App, Navigation, Watchers, guid
-  transitions/    # Barba transitions
-  views/          # Barba views (e.g. Work)
-  lib/Piece.ts    # Piece base adapted for Barba
+  modules/        # Watchers, guid
+  lib/Piece.ts    # Piece base with a typed queryOne
 ```
 
 ## Page templates

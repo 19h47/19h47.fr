@@ -1,16 +1,16 @@
 .Link-layer {
 	position: relative;
-	color: rgb(255 255 255 / 0.4);
+	color: rgb(255 255 255 / 0.65);
 	z-index: 1;
 }
 
 .Link-layer:hover span,
-.Link-layer.is-active span {
+.Link-layer[aria-current="page"] span {
 	transform: translate3d(0, 0, 0);
 }
 
 .Link-layer:hover span::before,
-.Link-layer.is-active span::before {
+.Link-layer[aria-current="page"] span::before {
 	transform: translate3d(0, 0, 0);
 }
 
@@ -33,10 +33,10 @@
 	z-index: 1;
 }
 
-[data-context="thoughts"] .Link-layer {
-	color: rgb(0 0 0 / 0.4);
+[data-namespace="thoughts"] .Link-layer {
+	color: rgb(0 0 0 / 0.65);
 }
 
-[data-context="thoughts"] .Link-layer span::before {
+[data-namespace="thoughts"] .Link-layer span::before {
 	color: var(--color-black);
 }

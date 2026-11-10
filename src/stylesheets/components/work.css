@@ -5,7 +5,7 @@
 
 .Work__title {
 	margin: var(--baseline) 0 var(--baseline);
-	font-size: 3.2rem;
+	font-size: 2rem; /* 32px */
 	font-weight: 400;
 	line-height: var(--baseline);
 }
@@ -13,7 +13,7 @@
 @media (width >= 992px) {
 	.Work__title {
 		margin: calc(var(--baseline) * 2) 0 var(--baseline);
-		font-size: 5.7rem;
+		font-size: 3.5625rem; /* 57px */
 		line-height: calc(var(--baseline) * 2);
 	}
 }
@@ -28,4 +28,13 @@
 
 .single-work {
 	transition: background-color 2s ease;
+}
+
+/* Preview the colour of the work a navigation link leads to. */
+.single-work:has(.Work__navigation[rel="next"]:hover) {
+	background-color: var(--next-color);
+}
+
+.single-work:has(.Work__navigation[rel="prev"]:hover) {
+	background-color: var(--previous-color);
 }

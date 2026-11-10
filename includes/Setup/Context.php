@@ -53,7 +53,9 @@ class Context extends Site implements Service {
 
 		$context['page_permalink'] = $this->get_page_permalinks();
 
-		$context['barba_namespace'] = get_barba_namespace();
+		$context['namespace'] = get_namespace();
+
+		$context['current_url'] = home_url( user_trailingslashit( $GLOBALS['wp']->request ) );
 
 		$o_date_now      = new DateTime( 'now' );
 		$o_date_birth    = new DateTime( '1986-07-27' );

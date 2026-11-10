@@ -21,12 +21,47 @@ class Reset implements Service {
 		add_filter( 'wpcf7_load_css', '__return_false' );
 		add_filter( 'pre_get_shortlink', '__return_empty_string' );
 		add_filter( 'wpseo_canonical', '__return_false' );
+		add_filter( 'script_loader_tag', array( $this, 'defer_third_party_scripts' ), 10, 3 );
 
 		add_action( 'after_setup_theme', array( $this, 'remove_some_metas' ) );
 
 		if ( ! is_admin() ) {
 			add_action( 'init', array( $this, 'disable_wp_emojicons' ) );
 		}
+	}
+
+	/**
+	 * Defer third-party analytics scripts enqueued by plugins.
+	 *
+	 * @param string $tag    Script tag.
+	 * @param string $handle Script handle.
+	 * @param string $src    Script URL.
+	 * @return string
+	 */
+	public function defer_third_party_scripts( string $tag, string $handle, string $src ): string {
+		if ( is_admin() ) {
+			return $tag;
+		}
+
+		$needles = array(
+			'googletagmanager.com',
+			'google-analytics.com',
+			'gtag/js',
+		);
+
+		foreach ( $needles as $needle ) {
+			if ( false === strpos( $src, $needle ) ) {
+				continue;
+			}
+
+			if ( false !== strpos( $tag, ' defer' ) || false !== strpos( $tag, ' async' ) ) {
+				return $tag;
+			}
+
+			return str_replace( ' src', ' defer src', $tag );
+		}
+
+		return $tag;
 	}
 
 	/**

@@ -1,0 +1,20 @@
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition {
+		navigation: auto;
+	}
+}
+
+/* Entering a work page: its colour wipes in from the left over the page left. */
+:root:has(> body[data-namespace="work"])::view-transition-old(root) {
+	animation: none;
+}
+
+:root:has(> body[data-namespace="work"])::view-transition-new(root) {
+	animation: work-wipe 0.8s ease both;
+}
+
+@keyframes work-wipe {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+}

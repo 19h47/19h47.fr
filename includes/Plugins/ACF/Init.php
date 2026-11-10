@@ -40,6 +40,7 @@ class Init implements Service {
 				'menu_slug'   => 'options-theme',
 				'parent_slug' => 'options-general.php',
 				'redirect'    => false,
+				'autoload'    => true,
 			)
 		);
 	}

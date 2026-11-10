@@ -1,5 +1,5 @@
 @theme {
-	--default-font-family: "Work Sans", sans-serif;
+	--default-font-family: "Work Sans Variable", "Work Sans", sans-serif;
 
 	/* Breakpoints (legacy Bootstrap theme) */
 	--breakpoint-sm: 768px;
@@ -15,17 +15,16 @@
 	--color-red: #ff0000;
 
 	/**
-	 * Vertical rhythm — 1 baseline = body line-height (24px × 4/3).
-	 * Use rem (html 62.5% → 1rem = 10px) so it does not re-resolve
-	 * against local font-size / lh (unlike raw 1em / 1lh on children).
+	 * Vertical rhythm — 1 baseline = body line-height (24px × 4/3 = 32px).
+	 * Rem on a normal root (1rem = 16px) so values stay independent of local font-size.
 	 */
-	--baseline: 3.2rem; /* 32px */
+	--baseline: 2rem; /* 32px */
 
 	/* Spacing — vertical steps = N × baseline */
 	--spacing-*: initial;
 	--spacing-0: 0;
-	--spacing-8: 0.8rem;
-	--spacing-16: 1.6rem;
+	--spacing-8: 0.5rem; /* 8px */
+	--spacing-16: 1rem; /* 16px */
 	--spacing-32: var(--baseline);
 	--spacing-64: calc(var(--baseline) * 2);
 	--spacing-96: calc(var(--baseline) * 3);
@@ -34,15 +33,15 @@
 
 	/* Type — line-heights lock to the baseline */
 	--text-*: initial;
-	--text-13: 1.3rem;
+	--text-13: 0.8125rem; /* 13px */
 	--text-13--line-height: var(--baseline);
-	--text-18: 1.8rem;
+	--text-18: 1.125rem; /* 18px */
 	--text-18--line-height: var(--baseline);
-	--text-24: 2.4rem;
+	--text-24: 1.5rem; /* 24px */
 	--text-24--line-height: var(--baseline);
-	--text-32: 3.2rem;
+	--text-32: 2rem; /* 32px */
 	--text-32--line-height: var(--baseline);
-	--text-57: 5.7rem;
+	--text-57: 3.5625rem; /* 57px */
 	--text-57--line-height: calc(var(--baseline) * 2);
 
 	--tracking-100: 0.1em;

@@ -8,17 +8,8 @@ type Theme = {
 	text_domain: string;
 };
 
-type AppInstance = {
-	disableScroll(): void;
-	enableScroll(position?: number | boolean): void;
-	resetScroll(positionX?: number | string, positionY?: number | string): void;
-	addState(state: string): void;
-	removeState(state: string): Promise<void>;
-};
-
 declare global {
 	interface Window {
-		app: AppInstance;
 		theme: Theme;
 	}
 }

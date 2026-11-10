@@ -25,18 +25,23 @@
 
 	<picture{{ size ? " data-size=\"#{ size }\"" }} data-mime-type="{{ image.post_mime_type }}">
 
-		{%- if 'image/svg+xml' != image.post_mime_type and 'image/gif' != image.post_mime_type and image.srcset( size ) -%}
-			<source type="image/webp" srcset="{{
-				image.srcset( size )
-					| split(', ')
-					| map(url => url
-						| split(' ')
-						| map((part, i) => i == 0 ? part | towebp(100) : part)
-						| join(' ')
-					)
-					| join(', ')
-			}}" sizes="{{ sizes | e }}">
-			<source type="{{ image.post_mime_type }}" srcset="{{ image.srcset( size ) }}" sizes="{{ sizes | e }}">
+		{%- if 'image/svg+xml' != image.post_mime_type and 'image/gif' != image.post_mime_type -%}
+			{%- if image.srcset( size ) -%}
+				<source type="image/webp" srcset="{{
+					image.srcset( size )
+						| split(', ')
+						| map(url => url
+							| split(' ')
+							| map((part, i) => i == 0 ? part | towebp(82) : part)
+							| join(' ')
+						)
+						| join(', ')
+				}}" sizes="{{ sizes | e }}">
+				<source type="{{ image.post_mime_type }}" srcset="{{ image.srcset( size ) }}" sizes="{{ sizes | e }}">
+			{%- else -%}
+				{#- A size with no same-ratio sibling has no srcset: still offer its WebP. -#}
+				<source type="image/webp" srcset="{{ image.src( size ) | towebp(82) }}">
+			{%- endif -%}
 		{%- endif -%}
 
 		<img

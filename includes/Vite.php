@@ -161,6 +161,31 @@ class Vite implements Service {
 	}
 
 	/**
+	 * Return URIs to the files an entry emits (fonts, images referenced from CSS).
+	 *
+	 * The dev server serves them itself: no list while hot.
+	 *
+	 * @param string $entry Entry path.
+	 * @return array
+	 */
+	public static function entry_assets( $entry ) {
+		if ( ! static::$booted ) {
+			self::boot( null, false );
+		}
+
+		if ( static::$is_hot ) {
+			return array();
+		}
+
+		$assets = static::$manifest[ $entry ]['assets'] ?? array();
+
+		return array_map(
+			fn( $file ) => implode( '/', array( get_stylesheet_directory_uri(), static::$build_path, $file ) ),
+			$assets
+		);
+	}
+
+	/**
 	 * Return theme-relative path to a built asset (for add_editor_style).
 	 *
 	 * @param string $asset Asset path.

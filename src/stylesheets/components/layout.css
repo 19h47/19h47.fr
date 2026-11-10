@@ -6,17 +6,12 @@
 	z-index: 10;
 }
 
-@media (width < 768px) {
-	.page--is-loading .l-header {
-		opacity: 0;
-		visibility: hidden;
-	}
-}
-
 .l-footer {
+	/* Avoid CLS: keep in-flow space while fading in. */
 	opacity: 0;
-	transition: 0.3s ease;
-	visibility: hidden;
+	transition: opacity 0.3s ease;
+	visibility: visible;
+	pointer-events: none;
 	z-index: 10;
 }
 
@@ -29,42 +24,37 @@
 	}
 }
 
-@media (width < 992px) {
-	[data-context="front-page"] .l-footer {
-		position: fixed;
-		right: 0;
-		bottom: 0;
-		left: 0;
-	}
-}
-
-.l-footer.is-init,
-body.is-at-top .l-footer,
-body.is-at-bottom .l-footer,
-[data-context="front-page"] .l-footer,
-[data-context="404"] .l-footer {
+/*
+ * Home / 404: pin to the viewport from first paint.
+ * Without position:fixed, the footer sits in flow under main (h-full + md:pb-224)
+ * and looks like it “drops” until CSS/JS catches up.
+ */
+body[data-namespace="front-page"] .l-footer,
+body[data-namespace="404"] .l-footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	opacity: 1;
-	visibility: visible;
+	pointer-events: auto;
+	transition: none;
 }
 
-body[data-context="archive-work"].is-at-top .l-footer,
-body[data-context="work"].is-at-top .l-footer,
-body[data-context="page"].is-at-top .l-footer,
-body[data-context="thoughts"].is-at-top .l-footer {
+body.is-at-top .l-footer,
+body.is-at-bottom .l-footer {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+body[data-namespace="archive-work"].is-at-top .l-footer,
+body[data-namespace="work"].is-at-top .l-footer,
+body[data-namespace="page"].is-at-top .l-footer,
+body[data-namespace="thoughts"].is-at-top .l-footer {
 	opacity: 0;
-	visibility: hidden;
 	pointer-events: none;
 }
 
-@media (width < 768px) {
-	.page--is-loading .l-footer {
-		opacity: 0;
-		visibility: hidden;
-		pointer-events: none;
-	}
-}
-
-[data-context="front-page"] {
+[data-namespace="front-page"] {
 	user-select: none;
 }
 

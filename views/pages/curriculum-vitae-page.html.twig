@@ -13,18 +13,15 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 
 		{{ function( 'wp_head' ) }}
-		{{ include( 'components/google-analytics.html.twig' ) }}
 	</head>
-	<body{% if barba_namespace %} data-context="{{ barba_namespace }}"{% endif %}>
+	<body{% if namespace %} data-namespace="{{ namespace }}"{% endif %}>
 
-		{{ include( 'components/transition.html.twig' ) }}
+		<main class="h-full">
 
-		<main data-barba="wrapper" class="js-wrapper h-full">
-
-			<div {{ body_class( 'pt-96 md:pb-224' ) }} data-barba="container"{% if barba_namespace %} data-barba-namespace="{{ barba_namespace }}"{% endif %}>
+			<div {{ body_class( 'pt-96 md:pb-224' ) }}>
 
 				<header class="l-header mt-64 mb-32">
 					<div class="relative mx-auto max-w-full px-32">
@@ -34,8 +31,8 @@
 
 							<div class="col-span-12 md:col-span-4 md:col-start-2">
 								<h1 class="relative z-1 m-0 text-24 font-medium leading-32">
-									<a href="http://19h47.fr" data-barba-prevent>
-										{{- __( 'Jérémy Levron', '19h47' ) -}}<sup class="align-text-top text-13 font-medium uppercase tracking-100 opacity-40">{{- __( '19h47', '19h47' ) -}}</sup>
+									<a href="http://19h47.fr">
+										{{- __( 'Jérémy Levron', '19h47' ) -}}<sup class="align-text-top text-13 font-medium uppercase tracking-100 opacity-60">{{- __( '19h47', '19h47' ) -}}</sup>
 									</a>
 								</h1>
 							</div>
@@ -51,7 +48,7 @@
 						</div>
 						<div class="col-span-12 md:col-span-2 md:col-start-10">
 
-							<p class="uppercase tracking-100 opacity-40">
+							<p class="uppercase tracking-100 opacity-60">
 								<span class="text-13">
 									Information
 								</span>
@@ -90,7 +87,7 @@
 					<div class="mt-64 grid grid-cols-12 gap-x-16">
 
 						<div class="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-2">
-							<p class="text-13 uppercase tracking-100 opacity-40">
+							<p class="text-13 uppercase tracking-100 opacity-60">
 								{{- __( 'Experience', '19h47' ) -}}
 							</p>
 						</div>
@@ -211,7 +208,7 @@
 					<div class="mt-64 grid grid-cols-12 gap-x-16">
 
 						<div class="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-2">
-							<p class="text-13 uppercase tracking-100 opacity-40">
+							<p class="text-13 uppercase tracking-100 opacity-60">
 								Education
 							</p>
 						</div>
@@ -287,7 +284,7 @@
 					<div class="mt-64 grid grid-cols-12 gap-x-16">
 
 						<div class="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-2">
-							<p class="text-13 uppercase tracking-100 opacity-40">
+							<p class="text-13 uppercase tracking-100 opacity-60">
 								Awards
 							</p>
 						</div>
@@ -398,7 +395,7 @@
 					<div class="mt-64 grid grid-cols-12 gap-x-16">
 
 						<div class="col-span-12 sm:col-span-6 md:col-span-4 md:col-start-2">
-							<p class="text-13 uppercase tracking-100 opacity-40">
+							<p class="text-13 uppercase tracking-100 opacity-60">
 								References
 							</p>
 						</div>

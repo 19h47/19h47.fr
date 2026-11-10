@@ -27,7 +27,7 @@ class Init {
 			Post::class,
 			Reset::class,
 			PostTemplate\BodyClass::class,
-			Barba\NamespaceFilter::class,
+			PostTemplate\NamespaceFilter::class,
 			Vite::class,
 			Post\Work::class,
 			Post\Tumblr::class,

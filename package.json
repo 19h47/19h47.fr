@@ -29,9 +29,7 @@
     "vite-plugin-compression": "^0.5.1"
   },
   "dependencies": {
-    "@barba/core": "^2.10.3",
-    "@barba/prefetch": "^2.2.0",
-    "gsap": "3.15.0",
+    "@fontsource-variable/work-sans": "^5.3.0",
     "piecesjs": "^0.5.5",
     "playwright": "1.62.0"
   },

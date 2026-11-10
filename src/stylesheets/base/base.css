@@ -2,7 +2,6 @@
 	html {
 		width: 100%;
 		overflow-y: visible;
-		font-size: 62.5%; /* 1rem = 10px */
 		-moz-osx-font-smoothing: grayscale;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
@@ -10,28 +9,27 @@
 
 	body {
 		font-family: var(--default-font-family);
-		font-size: 2.4rem; /* 24px */
+		font-size: 1.5rem; /* 24px */
 		font-weight: 200;
-		line-height: calc(4 / 3); /* → 1 baseline (3.2rem) */
+		line-height: calc(4 / 3); /* → 1 baseline (2rem) */
 		background-color: var(--color-black);
 		color: var(--color-white);
-		transition: background-color 0.3s ease 1s, color 0.3s ease 1s;
 	}
 
-	body[data-context="curriculum-vitae"],
-	body[data-context="thoughts"] {
+	body[data-namespace="curriculum-vitae"],
+	body[data-namespace="thoughts"] {
 		background-color: var(--color-white);
 		color: var(--color-black);
 	}
 
-	body[data-context="curriculum-vitae"] {
+	body[data-namespace="curriculum-vitae"] {
 		background-color: var(--color-white);
 		background-image: linear-gradient(rgb(0 0 0 / 0.1) 1px, transparent 0);
 		background-size: var(--baseline) var(--baseline);
 		background-position: 0 1em;
 	}
 
-	body[data-context="curriculum-vitae"]
+	body[data-namespace="curriculum-vitae"]
 		main
 		.relative.mx-auto
 		> .grid:not([class*="mt-"]) {
@@ -39,17 +37,13 @@
 		margin-bottom: var(--baseline);
 	}
 
-	body.page--is-loading {
-		cursor: wait !important;
-	}
-
 	::selection {
 		background-color: var(--color-black);
 		color: var(--color-white);
 	}
 
-	body[data-context="thoughts"] ::selection,
-	body[data-context="curriculum-vitae"] ::selection {
+	body[data-namespace="thoughts"] ::selection,
+	body[data-namespace="curriculum-vitae"] ::selection {
 		background-color: var(--color-white);
 		color: var(--color-black);
 	}
@@ -91,7 +85,7 @@
 	h1,
 	.h1 {
 		margin: calc(var(--baseline) * 2) 0 var(--baseline);
-		font-size: 5.7rem;
+		font-size: 3.5625rem; /* 57px */
 		font-weight: 500;
 		line-height: calc(var(--baseline) * 2);
 	}
@@ -99,7 +93,7 @@
 	h2,
 	.h2 {
 		margin: calc(var(--baseline) * 2) 0 var(--baseline);
-		font-size: 4.3rem;
+		font-size: 2.6875rem; /* 43px */
 		font-weight: 400;
 		line-height: calc(var(--baseline) * 2);
 	}
@@ -107,7 +101,7 @@
 	h3,
 	.h3 {
 		margin: var(--baseline) 0 var(--baseline);
-		font-size: 3.2rem;
+		font-size: 2rem; /* 32px */
 		font-weight: 400;
 		line-height: var(--baseline);
 	}
@@ -115,7 +109,7 @@
 	h4,
 	.h4 {
 		margin: var(--baseline) 0 var(--baseline);
-		font-size: 2.4rem;
+		font-size: 1.5rem; /* 24px */
 		font-weight: 500;
 		line-height: var(--baseline);
 	}

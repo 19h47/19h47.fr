@@ -301,8 +301,7 @@ class Work implements Service {
 						$color = get_field( 'color', $project );
 						if ( $color ) :
 							?>
-							.Page__<?php echo esc_attr( $project->post_name ); ?>,
-							.Transition .js-to-<?php echo esc_attr( $project->post_name ); ?> { background-color: <?php echo esc_attr( $color ); ?> }
+							.Page__<?php echo esc_attr( $project->post_name ); ?> { background-color: <?php echo esc_attr( $color ); ?> }
 							<?php
 						endif;
 					endforeach;

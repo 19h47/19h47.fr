@@ -7,7 +7,7 @@
  */
 #}
 {% for track in tracks %}
-	<div class="my-32 grid grid-cols-12 gap-x-16{% if track.nowplaying %} is-nowplaying{% endif %}" style="opacity: {{ 1 - loop.index * 0.02 }}">
+	<div class="grid grid-cols-12 gap-x-16{% if track.nowplaying %} is-nowplaying{% endif %}" style="opacity: {{ 1 - loop.index * 0.02 }}">
 		<div class="col-span-1 col-start-2 hidden md:block">
 			<div
 				class="aspect-square w-full bg-white bg-center bg-contain bg-no-repeat grayscale"

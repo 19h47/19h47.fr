@@ -51,32 +51,11 @@ function html_class( $c = '' ): string {
 }
 
 /**
- * Retrieve data-barba-namespace for Barba.js.
+ * Retrieve the current page namespace.
  *
  * @param string $ns Namespace.
  * @return string
  */
-function get_barba_namespace( $ns = '' ): string {
-	return (string) apply_filters( 'barba_namespace', $ns );
-}
-
-/**
- * Return data-title attribute for Barba.js.
- *
- * @return string
- */
-function barba_title(): string {
-	return 'data-title="' . esc_attr( wp_title( '&raquo;', false ) ) . '"';
-}
-
-/**
- * Whether the request comes from Barba.js.
- *
- * @return bool
- */
-function is_from_barba(): bool {
-	return (
-		isset( $_SERVER['HTTP_X_BARBA'] )
-		&& 'yes' === strtolower( sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_BARBA'] ) ) )
-	);
+function get_namespace( $ns = '' ): string {
+	return (string) apply_filters( 'theme_namespace', $ns );
 }

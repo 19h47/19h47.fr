@@ -26,7 +26,12 @@ export default defineConfig({
 			],
 			refresh: ["**/*.php", "**/*.twig"],
 		}),
-		viteCompression(),
+		viteCompression({
+			algorithm: "gzip",
+			ext: ".gz",
+			threshold: 1024,
+			filter: /\.(js|mjs|css|json|svg|html)$/i,
+		}),
 	],
 	resolve: {
 		alias: [
