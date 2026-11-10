@@ -13,6 +13,7 @@
 {% block start_wrapper %}
 	<tumblr-feed
 		class="block my-64"
+		src="{{ tumblr_endpoint }}"
 		per-page="20"
 		{% if tumblr_feed %}
 			data-offset="{{ tumblr_feed.next_offset }}"

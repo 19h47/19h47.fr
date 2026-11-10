@@ -1,6 +1,6 @@
 {#
 /**
- * Last.fm recent tracks partial (AJAX).
+ * Last.fm recent tracks partial (SSR and REST).
  *
  * @package WordPress
  * @subpackage 19h47
@@ -9,10 +9,19 @@
 {% for track in tracks %}
 	<div class="grid grid-cols-12 gap-x-16{% if track.nowplaying %} is-nowplaying{% endif %}" style="opacity: {{ 1 - loop.index * 0.02 }}">
 		<div class="col-span-1 col-start-2 hidden md:block">
-			<div
-				class="aspect-square w-full bg-white bg-center bg-contain bg-no-repeat grayscale"
-				style="background-image: url('{{ track.image }}')"
-			></div>
+			<div class="aspect-square w-full bg-white">
+				{% if track.image %}
+					<img
+						class="h-full w-full object-contain grayscale"
+						src="{{ track.image.src }}"
+						srcset="{{ track.image.srcset }}"
+						sizes="7vw"
+						alt=""
+						loading="lazy"
+						decoding="async"
+					>
+				{% endif %}
+			</div>
 		</div>
 		<div class="col-span-12 md:col-span-9">
 			<p class="mt-8">

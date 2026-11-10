@@ -13,6 +13,7 @@
 {% block start_wrapper %}
 	<lastfm-feed
 		class="block my-64"
+		src="{{ lastfm_endpoint }}"
 		limit="50"
 		{% if lastfm_feed %}
 			data-playcount="{{ lastfm_feed.playcount }}"

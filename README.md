@@ -23,12 +23,17 @@ pnpm build            # production assets → dist/
 
 `APP_URL` is used by `laravel-vite-plugin` for the local Vite server.
 
-Optional API overrides (defaults live in the theme; prefer `wp-config.php` in production):
+API keys go in `wp-config.php` (required, never in the theme). The Tumblr key is the OAuth consumer key of a [registered app](https://www.tumblr.com/oauth/apps); the Last.fm key comes from an [API account](https://www.last.fm/api/account/create):
 
 ```php
 define( 'LASTFM_API_KEY', '…' );
-define( 'LASTFM_USER', '…' );
 define( 'TUMBLR_API_KEY', '…' );
+```
+
+Optional overrides (defaults live in the theme):
+
+```php
+define( 'LASTFM_USER', '…' );
 define( 'TUMBLR_BLOG', '….tumblr.com' );
 ```
 
@@ -88,7 +93,7 @@ src/scripts/
 | `home.php` | `home-page.html.twig` | Blog (posts) |
 | `archive-work.php` / `single-work.php` | `archive-work.html.twig` / `single-work.html.twig` | Work CPT |
 
-Last.fm and Tumblr data are proxied through `admin-ajax` and rendered as Timber HTML partials.
+Last.fm and Tumblr data are rendered server-side as Timber HTML partials, then refreshed (Last.fm) or paginated (Tumblr) through public REST routes: `GET /wp-json/19h47/v1/lastfm?limit=` and `GET /wp-json/19h47/v1/tumblr?offset=&per_page=`. The last successful feed is kept as a fallback when an API is down.
 
 ## Deploy
 

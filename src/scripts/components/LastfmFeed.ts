@@ -1,24 +1,23 @@
 import { Piece } from '../lib/Piece';
 
-type LastfmAjaxData = {
+type LastfmData = {
 	html?: string;
 	playcount?: number | string;
 };
 
-type WpAjaxResponse<T> = {
-	success: boolean;
-	data: T & { message?: string };
+type RestError = {
+	message?: string;
 };
 
 /**
- * Last.fm feed web component (AJAX → admin-ajax → Timber HTML).
+ * Last.fm feed web component (REST → Timber HTML).
  *
  * First paint can be SSR’d into `.response` (and playcount); mount then
- * hydrates and soft-refreshes via AJAX so recent scrobbles stay current.
+ * hydrates and soft-refreshes from `src` so recent scrobbles stay current.
  * Server cache TTL stays short because scrobbles change often.
  *
  * Usage:
- *   <lastfm-feed class="block" limit="50">
+ *   <lastfm-feed class="block" src="/wp-json/19h47/v1/lastfm" limit="50">
  *     <div class="js-loader"></div>
  *     <div class="response"></div>
  *     <span class="playcount"></span>
@@ -109,31 +108,19 @@ class LastfmFeed extends Piece {
 		}
 	}
 
-	async #fetch(): Promise<LastfmAjaxData> {
-		const { ajax_url: ajaxUrl, nonce } = window.theme || {};
+	async #fetch(): Promise<LastfmData> {
+		const url = new URL(this.getAttribute('src') ?? '', document.baseURI);
 
-		if (!ajaxUrl || !nonce) {
-			throw new Error('Theme config missing (window.theme).');
-		}
-
-		const url = new URL(ajaxUrl);
-
-		url.searchParams.set('action', 'lastfm_recent');
-		url.searchParams.set('nonce', nonce);
 		url.searchParams.set('limit', String(this.limit));
 
-		const response = await fetch(url.toString(), {
-			signal: this.#abort?.signal,
-		});
-		const payload = (await response.json()) as WpAjaxResponse<LastfmAjaxData>;
+		const response = await fetch(url, { signal: this.#abort?.signal });
+		const payload = (await response.json()) as LastfmData & RestError;
 
-		if (!payload.success) {
-			throw new Error(
-				payload.data?.message || 'Unable to load Last.fm tracks.',
-			);
+		if (!response.ok) {
+			throw new Error(payload.message || 'Unable to load Last.fm tracks.');
 		}
 
-		return payload.data;
+		return payload;
 	}
 
 	#setLoading(isLoading: boolean) {

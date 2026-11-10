@@ -1,25 +1,24 @@
 import { Piece } from '../lib/Piece';
 
-type TumblrAjaxData = {
+type TumblrData = {
 	html?: string;
 	total_posts?: number;
 	next_offset?: number;
 	has_more?: boolean;
 };
 
-type WpAjaxResponse<T> = {
-	success: boolean;
-	data: T & { message?: string };
+type RestError = {
+	message?: string;
 };
 
 /**
- * Tumblr feed web component (AJAX → admin-ajax → Timber HTML).
+ * Tumblr feed web component (REST → Timber HTML).
  *
  * First paint can be SSR’d into `.response` with data-offset / data-total /
  * data-has-more on the host; mount then hydrates and skips the first fetch.
  *
  * Usage:
- *   <tumblr-feed class="block" per-page="20">
+ *   <tumblr-feed class="block" src="/wp-json/19h47/v1/tumblr" per-page="20">
  *     <div class="js-loader"></div>
  *     <section class="response"></section>
  *     <button class="load-more" type="button">Load more <span data-count></span></button>
@@ -146,32 +145,20 @@ class TumblrFeed extends Piece {
 		}
 	}
 
-	async #fetch(): Promise<TumblrAjaxData> {
-		const { ajax_url: ajaxUrl, nonce } = window.theme || {};
+	async #fetch(): Promise<TumblrData> {
+		const url = new URL(this.getAttribute('src') ?? '', document.baseURI);
 
-		if (!ajaxUrl || !nonce) {
-			throw new Error('Theme config missing (window.theme).');
-		}
-
-		const url = new URL(ajaxUrl);
-
-		url.searchParams.set('action', 'tumblr_posts');
-		url.searchParams.set('nonce', nonce);
 		url.searchParams.set('offset', String(this.#offset));
 		url.searchParams.set('per_page', String(this.perPage));
 
-		const response = await fetch(url.toString(), {
-			signal: this.#abort?.signal,
-		});
-		const payload = (await response.json()) as WpAjaxResponse<TumblrAjaxData>;
+		const response = await fetch(url, { signal: this.#abort?.signal });
+		const payload = (await response.json()) as TumblrData & RestError;
 
-		if (!payload.success) {
-			throw new Error(
-				payload.data?.message || 'Unable to load Tumblr posts.',
-			);
+		if (!response.ok) {
+			throw new Error(payload.message || 'Unable to load Tumblr posts.');
 		}
 
-		return payload.data;
+		return payload;
 	}
 
 	#setLoading(isLoading: boolean) {

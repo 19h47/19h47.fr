@@ -1,6 +1,6 @@
 {#
 /**
- * Tumblr photo posts partial (AJAX).
+ * Tumblr photo posts partial (SSR and REST).
  *
  * @package WordPress
  * @subpackage 19h47
@@ -8,16 +8,21 @@
 #}
 {% for post in posts %}
 	<div class="col-span-12 md:col-span-6">
-		<div
-			class="relative aspect-square bg-center bg-contain bg-no-repeat"
-			style="background-image: url('{{ post.image }}');"
+		<a
+			class="block"
+			href="{{ post.src }}"
+			target="_blank"
+			rel="noopener noreferrer"
 		>
-			<a
-				class="absolute inset-0 h-full w-full"
-				href="{{ post.src }}"
-				target="_blank"
-				rel="noopener noreferrer"
-			></a>
-		</div>
+			<img
+				class="aspect-square w-full object-contain"
+				src="{{ post.image.src }}"
+				srcset="{{ post.image.srcset }}"
+				sizes="(min-width: 992px) 42vw, 100vw"
+				alt="{{ post.label }}"
+				loading="lazy"
+				decoding="async"
+			>
+		</a>
 	</div>
 {% endfor %}

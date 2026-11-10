@@ -177,8 +177,6 @@ class Enqueue implements Service {
 			'template_directory_uri' => get_template_directory_uri(),
 			'base_url'               => site_url(),
 			'home_url'               => home_url( '/' ),
-			'ajax_url'               => admin_url( 'admin-ajax.php' ),
-			'nonce'                  => wp_create_nonce( 'security' ),
 			'api_url'                => esc_url_raw( rest_url( 'wp/v2/' ) ),
 			'text_domain'            => $theme,
 		);

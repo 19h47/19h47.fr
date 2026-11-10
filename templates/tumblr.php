@@ -14,7 +14,8 @@ $context['post'] = Timber::get_post();
 $per_page = 20;
 $feed     = ( new Tumblr() )->get_feed( 0, $per_page );
 
-$context['tumblr_feed'] = is_wp_error( $feed ) ? null : $feed;
-$templates              = array( 'pages/tumblr-page.html.twig' );
+$context['tumblr_feed']     = is_wp_error( $feed ) ? null : $feed;
+$context['tumblr_endpoint'] = Tumblr::endpoint();
+$templates                  = array( 'pages/tumblr-page.html.twig' );
 
 Timber::render( $templates, $context );

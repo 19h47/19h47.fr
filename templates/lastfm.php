@@ -14,7 +14,8 @@ $context['post'] = Timber::get_post();
 $limit = 50;
 $feed  = ( new Lastfm() )->get_feed( $limit );
 
-$context['lastfm_feed'] = is_wp_error( $feed ) ? null : $feed;
-$templates              = array( 'pages/lastfm-page.html.twig' );
+$context['lastfm_feed']     = is_wp_error( $feed ) ? null : $feed;
+$context['lastfm_endpoint'] = Lastfm::endpoint();
+$templates                  = array( 'pages/lastfm-page.html.twig' );
 
 Timber::render( $templates, $context );
