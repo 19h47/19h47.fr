@@ -1,7 +1,26 @@
+/*
+ * Page changes cross-fade: the browser's default cross-document view
+ * transition. Browsers without support navigate as usual.
+ */
 @media (prefers-reduced-motion: no-preference) {
 	@view-transition {
 		navigation: auto;
 	}
+}
+
+/*
+ * The header is the same on every page: it stays put above the page changing
+ * beneath it. Its group does not move, so a header scrolled out of view
+ * reappears in place instead of sliding in. Only the name is reset: the old
+ * and new headers inherit the group duration, so a header that differs (or
+ * is hidden, on Who I am) still cross-fades.
+ */
+.l-header {
+	view-transition-name: header;
+}
+
+::view-transition-group(header) {
+	animation-name: none;
 }
 
 /* Entering a work page: its colour wipes in from the left over the page left. */
